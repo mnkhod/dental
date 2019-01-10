@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dore jQuery</title>
+    <title>MonFamily</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="{{asset('font/iconsmind/style.css')}}" />
@@ -57,8 +57,6 @@
     <div class="navbar-right">
         <div class="header-icons d-inline-block align-middle">
             <a class="btn btn-sm btn-outline-primary mr-2 d-none d-md-inline-block mb-2" href="https://1.envato.market/5kAb">&nbsp;BUY&nbsp;</a>
-
-
 
             <div class="position-relative d-inline-block">
                 <button class="header-icon btn btn-empty" type="button" id="notificationButton" data-toggle="dropdown"

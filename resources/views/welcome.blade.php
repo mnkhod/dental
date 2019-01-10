@@ -4,29 +4,29 @@
     @endsection
 @section('menu')
     <li  class="active">
-        <a href="#dashboard">
+        <a href="{{url('/home')}}">
             <i class="iconsmind-Shop-4"></i>
-            <span>Dashboards</span>
+            <span>Самбар</span>
         </a>
     </li>
     <li>
-        <a href="#layouts">
-            <i class="iconsmind-Digital-Drawing"></i> Layouts
+        <a href="{{url('/workers')}}">
+            <i class="iconsmind-Digital-Drawing"></i> Ажилчид
         </a>
     </li>
     <li>
-        <a href="#applications">
-            <i class="iconsmind-Air-Balloon"></i> Applications
+        <a href="{{url('/time')}}">
+            <i class="iconsmind-Air-Balloon"></i> Цаг
         </a>
     </li>
     <li>
-        <a href="#ui">
-            <i class="iconsmind-Pantone"></i> UI
+        <a href="{{url('/material')}}">
+            <i class="iconsmind-Pantone"></i> Материал
         </a>
     </li>
     <li>
-        <a href="#landingPage">
-            <i class="iconsmind-Space-Needle"></i> Landing Page
+        <a href="{{url('/income')}}">
+            <i class="iconsmind-Space-Needle"></i> Тайлан
         </a>
     </li>
     @endsection
