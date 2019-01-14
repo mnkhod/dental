@@ -36,14 +36,15 @@
                             <span class="logo-single"></span>
                         </a>
                         <h6 class="mb-4">Нэвтрэх</h6>
-                        <form action="{{url('login')}}">
+                        <form method="post" action="{{url('login')}}">
+                            @csrf
                             <label class="form-group has-float-label mb-4">
-                                <input class="form-control" />
+                                <input class="form-control" type="email" name="email"/>
                                 <span>Цахим хаяг</span>
                             </label>
 
                             <label class="form-group has-float-label mb-4">
-                                <input class="form-control" type="password" placeholder="" />
+                                <input class="form-control" type="password" placeholder="" name="password"/>
                                 <span>Нууц үг</span>
                             </label>
                             <div class="d-flex justify-content-between align-items-center">
