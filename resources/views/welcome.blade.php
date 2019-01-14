@@ -5,28 +5,28 @@
 @section('menu')
     <li  class="active">
         <a href="{{url('/home')}}">
-            <i class="iconsmind-Shop-4"></i>
+            <i class="iconsmind-Digital-Drawing"></i>
             <span>Самбар</span>
         </a>
     </li>
     <li>
         <a href="{{url('/workers')}}">
-            <i class="iconsmind-Digital-Drawing"></i> Ажилчид
+            <i class="simple-icon-people"></i> Ажилчид
         </a>
     </li>
     <li>
         <a href="{{url('/time')}}">
-            <i class="iconsmind-Air-Balloon"></i> Цаг
+            <i class="simple-icon-clock"></i> Цаг
         </a>
     </li>
     <li>
         <a href="{{url('/material')}}">
-            <i class="iconsmind-Pantone"></i> Материал
+            <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li>
         <a href="{{url('/income')}}">
-            <i class="iconsmind-Space-Needle"></i> Тайлан
+            <i class="iconsmind-Paper"></i> Тайлан
         </a>
     </li>
     @endsection
