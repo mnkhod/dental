@@ -19,3 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test','AdminController@index');
+
+Route::get('/ochir', function () {
+    return view('tselmeg');
+});
