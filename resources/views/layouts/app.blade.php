@@ -41,7 +41,7 @@
         </a>
 
         <div class="search" data-search-path="Layouts.Search.html?q=">
-            <input placeholder="Search...">
+            <input placeholder="Хайх...">
             <span class="search-icon">
                     <i class="simple-icon-magnifier"></i>
                 </span>
@@ -90,7 +90,7 @@
         <div class="user d-inline-block">
             <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                <span class="name">Sarah Kortney</span>
+                <span class="name">Цэлмэг</span>
                 <span>
                         <img alt="Profile Picture" src="img/profile-pic-l.jpg" />
                     </span>
