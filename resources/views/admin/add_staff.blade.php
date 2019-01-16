@@ -171,13 +171,13 @@
                             <p class="text-muted">{{$user->last_name}}</p>
                         </td>
                         <td>
-                            {{--<p class="text-muted">@if($user->role()->role_id ==0)--}}
-                                                    {{--Ресепшн--}}
-                                                    {{--@elseif($user->role()->role_id ==1)--}}
-                                                        {{--Эмч--}}
-                                                    {{--@else--}}
-                                                        {{--Сувилагч--}}
-                                                    {{--@endif</p>--}}
+                            <p class="text-muted">@if($user->role->role_id ==1)
+                                                    Ресепшн
+                                                    @elseif($user->role->role_id ==2)
+                                                        Эмч
+                                                    @else
+                                                        Сувилагч
+                                                    @endif</p>
                         </td>
                         <td>
                             <p class="text-muted">{{$user->phone_number}}</p>
