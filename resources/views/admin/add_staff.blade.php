@@ -37,7 +37,7 @@
     </li>
     <li>
         <a href="{{url('/income')}}">
-            <i class="iconsmind-Space-Needle"></i> Тайлан
+            <i class="iconsmind-Space-Needle"></i> Санхүү
         </a>
     </li>
 @endsection
