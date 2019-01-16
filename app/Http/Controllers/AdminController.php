@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     //
+
+
     public function index(){
         $users = User::all();
         return view('admin.add_staff',compact('users'));
@@ -24,13 +26,13 @@ class AdminController extends Controller
         $role = Role::create(['user_id'=>$user->id, 'role_id'=>$request['role']]);
         if ($photo = $request->file(['photo'])) {
             $photo_name = time() . $photo->getClientOriginalName();
-            $photo->move('assets/images/uploads', $photo_name);
+            $photo->move('img/uploads', $photo_name);
             $user->photos()->create(['path'=>$photo_name]);
-            return redirect('admin.add_staff',compact('user','role'));
+            return redirect('/admin/add_staff');
         }
         else{
-            return redirect()->back();
-
+            return redirect('/admin/add_staff');
         }
+
     }
 }
