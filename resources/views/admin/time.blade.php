@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('header')
     {{--End css style gh met link file oruulna--}}
-    @endsection
+@endsection
 @section('menu')
     <li>
         <a href="{{url('/home')}}">
@@ -29,7 +29,7 @@
             <i class="iconsmind-Paper"></i> Тайлан
         </a>
     </li>
-    @endsection
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -81,10 +81,10 @@
                         </tr>
                         <tr>
                             <th rowspan="2">Доржоо</th>
-                            <td style="background-color: #8f8f8f; color: white">6</td>
-                            <td style="background-color: #8f8f8f; color: white">3</td>
-                            <td style="background-color: #8f8f8f; color: white">1</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -94,42 +94,42 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                         </tr>
                         <tr>
                             <th rowspan="2">Батаа</th>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                         </tr>
                         <tr>
                             <th rowspan="2">Намжаа</th>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                         </tr>
                         <tr>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -138,41 +138,41 @@
                         </tr>
                         <tr>
                             <th rowspan="2">Алимаа</th>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                         </tr>
                         <tr>
                             <th rowspan="2">Навчаа</th>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
+                            <td style="background-color: #8f8f8f"></td>
                             <td></td>
                             <td></td>
-                            <td style="background-color: #8f8f8f; color: white">0</td>
-                            <td style="background-color: #8f8f8f; color: white">0 </td>
+                            <td style="background-color: #8f8f8f"></td>
+                            <td style="background-color: #8f8f8f"></td>
                         </tr>
                     </table>
                 </div>
@@ -180,7 +180,7 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection
 @section('footer')
     {{--Scriptuudiig include hiiideg heseg--}}
-    @endsection
+@endsection

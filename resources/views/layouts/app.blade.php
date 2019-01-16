@@ -41,7 +41,7 @@
         </a>
 
         <div class="search" data-search-path="Layouts.Search.html?q=">
-            <input placeholder="Search...">
+            <input placeholder="Хайх...">
             <span class="search-icon">
                     <i class="simple-icon-magnifier"></i>
                 </span>
@@ -56,7 +56,7 @@
 
     <div class="navbar-right">
         <div class="header-icons d-inline-block align-middle">
-            <a class="btn btn-sm btn-outline-primary mr-2 d-none d-md-inline-block mb-2" href="https://1.envato.market/5kAb">&nbsp;BUY&nbsp;</a>
+            {{--<a class="btn btn-sm btn-outline-primary mr-2 d-none d-md-inline-block mb-2" href="https://1.envato.market/5kAb">&nbsp;BUY&nbsp;</a>--}}
 
             <div class="position-relative d-inline-block">
                 <button class="header-icon btn btn-empty" type="button" id="notificationButton" data-toggle="dropdown"
@@ -90,7 +90,7 @@
         <div class="user d-inline-block">
             <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                <span class="name">Sarah Kortney</span>
+                <span class="name">Цэлмэг</span>
                 <span>
                         <img alt="Profile Picture" src="img/profile-pic-l.jpg" />
                     </span>
