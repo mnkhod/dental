@@ -115,7 +115,7 @@
                     <br><br>
                     <h5 class="mb-12">Зураг оруулах</h5>
                     <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
-                        <input data-dz-name="photo" type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                        <input type="file" class="sr-only" id="inputImage" name="photo" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
                         Зургаа сонгох
                     </label>
                     <div class="row">
@@ -171,13 +171,13 @@
                             <p class="text-muted">{{$user->last_name}}</p>
                         </td>
                         <td>
-                            {{--<p class="text-muted">@if($user->role()->role_id ==0)--}}
-                                                    {{--Ресепшн--}}
-                                                    {{--@elseif($user->role()->role_id ==1)--}}
-                                                        {{--Эмч--}}
-                                                    {{--@else--}}
-                                                        {{--Сувилагч--}}
-                                                    {{--@endif</p>--}}
+                            <p class="text-muted">@if($user->role->role_id ==1)
+                                                    Ресепшн
+                                                    @elseif($user->role->role_id ==2)
+                                                        Эмч
+                                                    @else
+                                                        Сувилагч
+                                                    @endif</p>
                         </td>
                         <td>
                             <p class="text-muted">{{$user->phone_number}}</p>

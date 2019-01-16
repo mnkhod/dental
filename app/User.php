@@ -20,11 +20,11 @@ class User extends Authenticatable
     ];
 
     public function role() {
-        $this->hasOne('App\Role', 'user_id', 'id');
+        return $this->hasOne('App\Role', 'user_id', 'id');
     }
 
     public function photos(){
-        return $this->morphMany('App\Photo', 'imageable_id','imageable_type');
+        return $this->morphMany('App\Photo', 'imageable');
     }
 
     /**
