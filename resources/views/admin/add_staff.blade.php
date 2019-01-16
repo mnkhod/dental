@@ -1,13 +1,17 @@
 @extends('layouts.app')
 @section('header')
+
+
+
+    <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/select2.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}" />
+
     @endsection
 @section('menu')
     <li  class="active">
@@ -46,14 +50,38 @@
                 <h5 class="mb-4">Шинэ ажилтан нэмэх</h5>
 
                 <form>
-                    <div class="form-group">
-                        <label for="inputAddress2">Овог</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Овог">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress2">Овог</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Овог">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputAddress2">Нэр</label>
+                                <input type="text" class="form-control" id="inputAddress2" placeholder="Нэр">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Нэр</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Нэр">
+
+
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label>Хүйс сонгох</label>
+                            <select id="inputState" class="form-control">
+                                <option>Эр</option>
+                                <option>Эм</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Төрсөн он сар</label>
+                                <input class="form-control datepicker" placeholder="Төрсөн он сар">
+                        </div>
                     </div>
+
+                    <br>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Цахим хаяг</label>
@@ -81,18 +109,9 @@
                         <option>Сувилагч</option>
                         <option>Нягтлан</option>
                     </select><br>
-                    <select id="inputState" class="form-control">
-                        <option selected>Хүйс сонгох ...</option>
-                        <option>Эр</option>
-                        <option>Эм</option>
-                    </select>
-                    <br>
-                    <label class="inputState">
-                        <input class="form-control datepicker" placeholder="Төрсөн он сар">
-                    </label>
-                    <br><br>
 
-                    <textarea class="text-area text-box multi-line" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info" cols="40" rows="3" placeholder="Тайлбар"></textarea>
+
+                    <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info"  placeholder="Тайлбар"></textarea>
                     <br><br>
                     <h5 class="mb-12">Зураг оруулах</h5>
                     <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
@@ -127,7 +146,7 @@
     </div><!--col end -->
     <!-- ajiltan nemeh-->
     <div class="col-xl-6 col-lg-12 mb-4"><!--table-->
-        <div class="card h-100">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Бүх ажилтан</h5>
                 <table class="data-table">
@@ -185,7 +204,8 @@
 </div><!-- row end-->
     @endsection
 @section('footer')
-    <script src="{{asset('js/vendor/datatables.min.js')}}"></script>
+
+
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
     <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
     <script src="{{asset('js/vendor/moment.min.js')}}"></script>
@@ -198,5 +218,5 @@
     <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
-    <script src="{{asset('js/scripts.js')}}"></script>
+
     @endsection

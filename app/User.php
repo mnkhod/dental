@@ -23,6 +23,10 @@ class User extends Authenticatable
         $this->hasOne('App\Role', 'user_id', 'id');
     }
 
+    public function photos(){
+        return $this->morphMany('App\Photo', 'imageable');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
