@@ -1,0 +1,4 @@
+read -p "git comment: " n
+git add *
+git commit -m "$n"
+git push
