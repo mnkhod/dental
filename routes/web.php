@@ -22,4 +22,5 @@ Route::get('/time', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test','AdminController@index');
+Route::get('/admin/add_staff','AdminController@index');
+Route::post('/admin/add_staff','AdminController@add_staff');
