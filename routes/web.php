@@ -24,3 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
+
+Route::get('/admin/product','AdminController@product');
+Route::post('/admin/add_product','AdminController@add_product');
+//Route::get('/admin/edit_product','AdminController@');
+Route::post('/admin/edit_product','AdminController@edit_product');
