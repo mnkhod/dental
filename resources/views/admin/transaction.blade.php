@@ -95,9 +95,12 @@
                 <div class="tab-pane" id="third" role="tabpane3" aria-labelledby="third-tab">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <input class="form-control mb-3" type="number" placeholder="Үнийн дүн">
-                            <input class="form-control mb-3" type="text" placeholder="Тайлбар">
-                            <button class="btn btn-primary btn-block">ОРЛОГО ОРУУЛАХ</button>
+                            <form action="" method="post">
+                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн">
+                                <input class="form-control mb-3" type="text" placeholder="Тайлбар">
+                                <button class="btn btn-primary btn-block">ОРЛОГО ОРУУЛАХ</button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
