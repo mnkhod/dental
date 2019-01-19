@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Products;
 use App\Role;
 use Aloha\Twilio\Support\Laravel\Facade as Twilio;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,18 @@ class AdminController extends Controller
         $product = Products::create(['name'=>$request['name'],'quantity'=>0]);
         return redirect('/admin/product');
     }
-    public function edit_product(){
-        return redirect('admin.product');
+    public function edit_product(Request $request){
+        $product = Products::find($request['id']);
+        $product->update(['quantity'=>$request['quantity']]);
+        $transaction = Transaction::create(['type'=>2,'type_id'=>$request['id'],'price'=>$request['price'],'description'=>''.$product->name.' '.$product->quantity.'']);
+        return redirect('/admin/product');
+    }
+    public function add_transaction(Request $request){
+        return redirect('/admin/product');
+    }
+    public function delete_product($id){
+        $product = Products::find($id);
+        $product->delete();
+        return redirect('/admin/product');
     }
 }

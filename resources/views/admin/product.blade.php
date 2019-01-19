@@ -79,21 +79,32 @@
 
                         <thead>
                         <tr>
+                            <th>Дугаар</th>
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
+                            <th>Үйлдэл</th>
+
 
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $i=1?>
                         @foreach($products as $product)
                         <tr>
+                            <td>{{$i}}</td>
+                            <?php $i = $i + 1?>
                             <td>
-                                <button type="button" class="btn " data-toggle="modal" data-target="#exampleModalPopovers" onclick="onItemClick({{$product->id}})">
+                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalPopovers" onclick="onItemClick({{$product->id}})">
                                     {{$product->name}}
                                 </button>
                             </td>
                             <td>
                                 <p class="text-muted">{{$product->quantity}}</p>
+
+                            <td>
+                                <a href="{{url('/admin/delete_product').'/'.$product->id}}">
+                                    <i class="simple-icon-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -109,46 +120,106 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalPopoversLabel">Барааны мэдээллийг өөрчлөх</h5>
+
+                                        <h5 class="modal-title" id="exampleModalPopoversLabel">Барааг нэмэж хасах</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <input type="hidden" value="0" id="hidden">
+
                                     </div>
-                                    <div class="col-md-11 mb-3">
-                                        <label for="validationCustomUsername">Тоо</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroupPrepend">№</span>
+
+                                    <div class="    col-md-12 ">
+                                        {{--<label for="validationCustomUsername">Тоо</label>--}}
+                                        {{--<div class="input-group">--}}
+                                            {{--<div class="input-group-prepend">--}}
+                                                {{--<span class="input-group-text" id="inputGroupPrepend">№</span>--}}
+                                            {{--</div>--}}
+                                            {{--<input type="number" class="form-control" id="validationCustomUsername"--}}
+                                                   {{--name="quantity" placeholder="Бүтээгдэхүүний ширхэг" aria-describedby="inputGroupPrepend" required>--}}
+                                        {{--</div>--}}
+                                        <!-- row-->
+
+
+                                                <ul class="nav nav-tabs separator-tabs ml-0 mb-6" role="tablist">
+                                                    <li class="nav-item ">
+                                                                <a class="nav-link active " id="first-tab" data-toggle="tab" href="#first" role="tab"
+                                                                   aria-controls="first" aria-selected="true" >Бүтээгдэхүүн нэмэх</a>
+                                                    </li>
+
+
+                                                    <li class="nav-item">
+                                                            <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
+                                                               aria-controls="second" aria-selected="false">Бүтээгдэхүүн хасах</a>
+                                                    </li>
+
+
+                                                </ul>
+
+                                            <div class="tab-content">
+
+                                                    <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                                                        <div class="card mb-4">
+                                                            <div class="card-body">
+                                                                <form action="{{url('/admin/edit_product')}}" method="post">
+                                                                    @csrf
+                                                                    <input name="id" type="hidden" value="0" id="hidden">
+
+                                                                    <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн">
+                                                                    <input name="quantity" class="form-control mb-3" type="number" placeholder="Тоо ширхэг">
+                                                                    <button class="btn btn-primary btn-block" type="submit">Хадгалах</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                            <div class="tab-pane" id="second" role="tabpane2" aria-labelledby="second-tab">
+                                                        <div class="card mb-4">
+                                                            <div class="card-body">
+                                                                <form action="{{url('/admin/add_transaction')}}" method="post">
+                                                                    <input name="id" type="hidden" value="0" id="hidden">
+                                                                    @csrf
+                                                                    <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар">
+                                                                    <input class="form-control mb-3" name="price" type="number" placeholder="Тоо ширхэг">
+                                                                    <button class="btn btn-primary btn-block" type="submit">Хадгалах</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <input type="text" class="form-control" id="validationCustomUsername"
-                                                   placeholder="Бүтээгдэхүүний ширхэг" aria-describedby="inputGroupPrepend" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-11 mb-3">
-                                        <label for="validationCustomUsername">Үнэ</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prestart">
-                                                <span class="input-group-text" id="inputGroupPrepend">₮</span>
-                                            </div>
-                                            <input type="text" class="form-control" id="validationCustomUsername"
-                                                   placeholder="Бүтээгдэхүүний үнэ" aria-describedby="inputGroupPrepend" required>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
-                                        <button type="button" class="btn btn-primary">Хадгалах</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+                                    {{--<div class="col-md-6">--}}
+                                        {{--<label for="validationCustomUsername">Үнэ</label>--}}
+                                        {{--<div class="input-group">--}}
+                                            {{--<div class="input-group-prestart">--}}
+                                                {{--<span class="input-group-text" id="inputGroupPrepend">₮</span>--}}
+                                            {{--</div>--}}
+                                            {{--<input type="number" class="form-control" id="validationCustomUsername"--}}
+                                                   {{--name="price" placeholder="Бүтээгдэхүүний үнэ" aria-describedby="inputGroupPrepend" required>--}}
+                                        {{--</div>--}}
+                               {{--<button type="submit" class="btn btn-danger">--}}
+                                   {{--<i class="delete-library-item">--}}
+                                   {{--</i>--}}
+                               {{--</button>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="modal-footer">--}}
+                                        {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>--}}
+                                        {{--<button type="submit" class="btn btn-primary">Хадгалах</button>--}}
+                                    {{--</div>--}}
+
+
   @endsection
   @section('footer')
 
