@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Products;
 use App\Role;
 use Aloha\Twilio\Support\Laravel\Facade as Twilio;
 use App\User;
@@ -34,5 +35,16 @@ class AdminController extends Controller
             return redirect('/admin/add_staff');
         }
 
+    }
+    public function product(){
+        $products = Products::all();
+        return view('admin.product',compact('products'));
+    }
+    public function add_product(Request $request){
+        $product = Products::create(['name'=>$request['name'],'quantity'=>0]);
+        return redirect('/admin/product');
+    }
+    public function edit_product(){
+        return redirect('admin.product');
     }
 }
