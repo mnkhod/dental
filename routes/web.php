@@ -24,3 +24,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
+Route::get('/admin/transaction', 'AdminTransactionController@index');
+Route::post('/admin/transaction/salary', 'AdminTransactionController@salary');
+Route::post('/admin/transaction/add', 'AdminTransactionController@store');

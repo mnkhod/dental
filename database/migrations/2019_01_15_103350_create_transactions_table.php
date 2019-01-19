@@ -17,6 +17,11 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->bigInteger('price');
             $table->tinyInteger('type');
+            //1->Tsalin
+            //2->Material
+            //3->Busad
+            //4->Emchilgee - orlogo
+            //5->Busad - orlogo
             $table->integer('type_id');
             $table->text('description');
             $table->timestamps();

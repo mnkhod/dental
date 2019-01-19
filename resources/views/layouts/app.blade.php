@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/perfect-scrollbar.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/dore.light.blue.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/dore.light.orange.min.css')}}" />
     @yield('header')
 </head>
 
@@ -56,7 +56,7 @@
     </div>
 
 
-    <a class="navbar-logo" href="Dashboard.Default.html">
+    <a class="navbar-logo">
         <span class="logo d-none d-xs-block"></span>
         <span class="logo-mobile d-block d-xs-none"></span>
     </a>

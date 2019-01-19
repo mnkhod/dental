@@ -20,12 +20,12 @@
             <span>Самбар</span>
         </a>
     </li>
-    <li>
+    <li  class="active">
         <a href="{{url('/workers')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
-    <li class="active">
+    <li>
         <a href="{{url('/time')}}">
             <i class="iconsmind-Alarm"></i> Цаг
         </a>
@@ -52,20 +52,19 @@
                 <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="inputAddress2">Овог</label>
                                 <input name="last_name" type="text" class="form-control" id="inputAddress2" placeholder="Овог">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="inputAddress2">Нэр</label>
                                 <input name="name" type="text" class="form-control" id="inputAddress2" placeholder="Нэр">
                             </div>
                         </div>
                     </div>
-
 
                     <div class="form-row">
                         <div class="col-md-6">
@@ -77,7 +76,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Төрсөн он сар</label>
-                                <input name="birth_date" class="form-control datepicker" placeholder="Төрсөн он сар">
+                                <input name="birth_date" autocomplete="off" class="form-control datepicker" placeholder="Төрсөн он сар">
                         </div>
                     </div>
 
