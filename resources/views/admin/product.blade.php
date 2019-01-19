@@ -88,7 +88,7 @@
                         @foreach($products as $product)
                         <tr>
                             <td>
-                                <button type="button" class="btn " data-toggle="modal" data-target="#exampleModalPopovers">
+                                <button type="button" class="btn " data-toggle="modal" data-target="#exampleModalPopovers" onclick="onItemClick({{$product->id}})">
                                     {{$product->name}}
                                 </button>
                             </td>
@@ -97,6 +97,12 @@
                             </td>
                         </tr>
                         @endforeach
+                        <script>
+                            function onItemClick(id) {
+                                document.getElementById('hidden').value = id;
+                                return true;
+                            }
+                        </script>
 
                         <div id="exampleModalPopovers" class="modal fade show" tabindex="-1" role="dialog"
                              aria-hidden="true">
@@ -107,6 +113,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
+                                        <input type="hidden" value="0" id="hidden">
                                     </div>
                                     <div class="col-md-11 mb-3">
                                         <label for="validationCustomUsername">Тоо</label>
