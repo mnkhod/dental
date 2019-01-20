@@ -48,9 +48,16 @@
                             <th>1/20</th>
                         </tr>
                         @foreach($doctors as $doctor)
-                        <tr style="border-color: black">
+                        <tr>
                             <th rowspan="2"><br><br>
                                 {{$doctor->staff->name}}</th>
+                            @for($i = 0; $i < 7; $i++)
+                                    <td><a href="{{url('/admin/time/'.$i.'/'.$doctor->staff->id.'/1')}}"></a></td>
+                                {{--i - udur [1,2,3,4,5,6,7] gh met--}}
+                                {{--doctor->id--}}
+                                {{--1 - ugluunii eelj--}}
+                                {{--2 - oroinii eelj--}}
+                            @endfor
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
@@ -59,16 +66,17 @@
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
+                            <tr>
+                                <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                                <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            </tr>
                         @endforeach
-                        <tr>
-                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
-                        </tr>
+
                         <tr>
                             <th rowspan="2"><br><br>Доржнадминжав</th>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
