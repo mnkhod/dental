@@ -15,28 +15,28 @@
     @endsection
 @section('menu')
     <li>
-        <a href="{{url('/home')}}">
+        <a href="{{url('/admin')}}">
             <i class="iconsmind-Digital-Drawing"></i>
             <span>Самбар</span>
         </a>
     </li>
     <li  class="active">
-        <a href="{{url('/workers')}}">
+        <a href="{{url('/admin/add_staff')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
     <li>
-        <a href="{{url('/time')}}">
+        <a href="{{url('/admin/time')}}">
             <i class="iconsmind-Alarm"></i> Цаг
         </a>
     </li>
     <li>
-        <a href="{{url('/material')}}">
+        <a href="{{url('/admin/product')}}">
             <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li>
-        <a href="{{url('/income')}}">
+        <a href="{{url('/admin/transaction')}}">
             <i class="iconsmind-Space-Needle"></i> Санхүү
         </a>
     </li>

@@ -27,8 +27,16 @@ Route::post('/admin/add_staff','AdminController@add_staff');
 
 Route::get('/admin/product','AdminController@product');
 Route::post('/admin/add_product','AdminController@add_product');
-
-
 Route::post('/admin/edit_product','AdminController@edit_product');
-Route::post('/admin/add_transaction','AdminController@add_transaction');
 Route::get('/admin/delete_product/{id}','AdminController@delete_product');
+
+
+Route::post('/admin/add_transaction','AdminController@add_transaction');
+Route::post('/admin/transaction/date', 'AdminTransactionController@date');
+Route::get('/admin/transaction/{start_date}/{end_date}', 'AdminTransactionController@search');
+Route::get('/admin/transaction', 'AdminTransactionController@index');
+Route::post('/admin/transaction/salary', 'AdminTransactionController@salary');
+Route::post('/admin/transaction/add', 'AdminTransactionController@store');
+Route::post('/admin/transaction/income', 'AdminTransactionController@income');
+
+Route::get('/admin/time', 'AdminTimeController@index');

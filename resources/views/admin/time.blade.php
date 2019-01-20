@@ -32,43 +32,11 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-3">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <form method="post" action="">
-                        <div class="row">
-                            <h3 class="mb-3">Цагийн хуваарь</h3>
 
-                            <select class="form-control mb-3">
-                                <option>1/14</option>
-                                <option>1/15</option>
-                                <option>1/16</option>
-                                <option>1/17</option>
-                                <option>1/18</option>
-                                <option>1/19</option>
-                                <option>1/20</option>
-                            </select>
-
-                            <select class="form-control mb-3">
-                                <option>Доржоо</option>
-                                <option>Батаа</option>
-                            </select>
-                            <select class="form-control mb-3">
-                                <option>Өдрийн ээлж</option>
-                                <option>Оройн ээлж</option>
-                                <option>Бүтэн өдөр</option>
-                            </select>
-                            <button class="btn btn-primary btn-block">Оруулах</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table text-center">
+                    <table class="table table-responsive text-center">
                         <tr>
                             <th>Эмч</th>
                             <th>1/14</th>
@@ -79,100 +47,119 @@
                             <th>1/19</th>
                             <th>1/20</th>
                         </tr>
-                        <tr>
-                            <th rowspan="2">Доржоо</th>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr style="border-color: black">
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
                         </tr>
                         <tr>
-                            <th rowspan="2">Батаа</th>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
                         </tr>
                         <tr>
-                            <th rowspan="2">Намжаа</th>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
                         <tr>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
                         </tr>
                         <tr>
-                            <th rowspan="2">Алимаа</th>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
                         </tr>
                         <tr>
-                            <th rowspan="2">Навчаа</th>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
                         <tr>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td></td>
-                            <td></td>
-                            <td style="background-color: #8f8f8f"></td>
-                            <td style="background-color: #8f8f8f"></td>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
+                            <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
                         </tr>
                     </table>
                 </div>
