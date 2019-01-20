@@ -40,4 +40,4 @@ Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 Route::get('/admin/time', 'AdminTimeController@index');
-Route::get('/admin/time/{doctor_id}/{}');
+Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
