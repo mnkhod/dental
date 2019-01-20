@@ -47,8 +47,10 @@
                             <th>1/19</th>
                             <th>1/20</th>
                         </tr>
+                        @foreach($doctors as $doctor)
                         <tr style="border-color: black">
-                            <th rowspan="2"><br><br>Доржнадминжав</th>
+                            <th rowspan="2"><br><br>
+                                {{$doctor->staff->name}}</th>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
@@ -57,6 +59,7 @@
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                         </tr>
+                        @endforeach
                         <tr>
                             <td><button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button></td>
                             <td><button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button></td>
