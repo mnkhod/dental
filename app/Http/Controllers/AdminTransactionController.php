@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 class AdminTransactionController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function index() {
         $transactions = Transaction::all()->where('created_at','>', date('Y-m-d', strtotime('-30 Days')))->sortByDesc('id');
         $roles = Role::all();

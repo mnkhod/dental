@@ -101,12 +101,13 @@
                         <input name="location" type="text" class="form-control" id="inputAddress2" placeholder="Гэрийн хаягаа оруулна уу">
                     </div>
 
-                    <label for="inputState">Сонгох</label>
+                    <label for="inputState">Мэргэжил сонгох</label>
                     <select name="role" id="inputState" class="form-control">
-                        <option selected>Мэргэжил сонгоно уу ...</option>
                         <option value="1">Ресепшн</option>
                         <option value="2">Эмч</option>
                         <option value="3">Сувилагч</option>
+                        <option value="0">Менежер</option>
+                        <option value="4">Бусад</option>
                     </select><br>
 
 
@@ -148,7 +149,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Бүх ажилтан</h5>
-                <table class="data-table">
+                <table class="table">
                     <thead>
                     <tr>
 

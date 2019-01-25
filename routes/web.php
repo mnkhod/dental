@@ -25,10 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
 
-Route::get('/admin/product','AdminController@product');
-Route::post('/admin/add_product','AdminController@add_product');
-Route::post('/admin/edit_product','AdminController@edit_product');
-Route::get('/admin/delete_product/{id}','AdminController@delete_product');
+Route::get('/admin/product','AdminProductController@product');
+Route::get('/admin/product/{id}','AdminProductController@show');
+Route::post('/admin/add_product','AdminProductController@add_product');
+Route::post('/admin/edit_product','AdminProductController@edit_product');
+Route::post('/admin/decrease_product','AdminProductController@decrease_product');
+Route::get('/admin/delete_product/{id}','AdminProductController@delete_product');
 
 
 Route::post('/admin/add_transaction','AdminController@add_transaction');
@@ -41,3 +43,8 @@ Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 Route::get('/admin/time', 'AdminTimeController@index');
 Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
+Route::get('/admin', 'AdminController@dashboard');
+
+Route::get('/test', function() {
+    return view('test');
+});

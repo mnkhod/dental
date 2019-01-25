@@ -9,10 +9,16 @@ use Carbon\Carbon;
 
 class AdminTimeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     //
     public function index() {
         $doctors = Role::all()->where('role_id',2);
-        return view('admin.time',compact('doctors','time'));
+        $shifts = Time::all()->where('date', '>=', date('Y-m-d'));
+        return view('admin.time',compact('doctors', 'shifts'));
+
     }
     public function store($i, $doctor_staff_id, $shift_id){
         $date = Carbon::now()->addDays($i);

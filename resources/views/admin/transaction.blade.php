@@ -126,9 +126,9 @@
                                 $income = $income + $transaction->price;
                             } else {
                                 $outcome = $outcome + $transaction->price;
-                                if ($transaction->type == 1) {
+                                if ($transaction->type == 2) {
                                     $material = $material + $transaction->price;
-                                } elseif($transaction->type == 2) {
+                                } elseif($transaction->type == 1) {
                                     $salary = $salary + $transaction->price;
                                 } else {
                                     $other = $other + $transaction->price;
@@ -138,9 +138,9 @@
                     @endforeach
 
                     <div class="ct-chart ct-golden-section" id="chart1"></div>
-                    <b style="color: #f4c63d">O</b> - Цалин<br>
-                    <b style="color: #d70206">O</b> - Материал<br>
-                    <b style="color: #f05b4f">O</b> - Бусад
+                    <b style="color: #f4c63d">O</b> - Бусад<br>
+                    <b style="color: #d70206">O</b> - Цалин<br>
+                    <b style="color: #f05b4f">O</b> - Материал
                     <script>
                         var data = {
                             series: [{{-1*$salary}}, {{-1*$material}}, {{-1*$other}}]
@@ -159,7 +159,29 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-9">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <form method="post" action="{{url('/admin/transaction/date')}}">
+                        @csrf
+                        <div class="input-group">
+                            <a href="#" onclick="$(this).closest('form').submit()">Хугацаа өөрчлөн харах</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="date" name="start_date" autocomplete="off" class="form-control datepicker" style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: gray; padding: 0px"
+                                   placeholder="Эхлэл" value="@if($start_date){{date('m/d/Y', $start_date)}}@else{{date('m/d/Y', strtotime('-30 Days'))}}@endif">&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>
+                            <input name="end_date" autocomplete="off" class="form-control datepicker " style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: gray; padding: 0px"
+                                   placeholder="Төгсгөл" value="@if($end_date){{date('m/d/Y', $end_date)}}@else{{date('m/d/Y')}}@endif">
+                            <a href="#" onclick="$(this).closest('form').submit()">үзэх</a>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="#" onclick="exportTableToExcel('myTable', 'tselmeg')"><i class="iconsmind-File-Excel"></i> Excel-ээр татах</a>
+                </div>
+            </div>
+
+            {{--<div class="separator mb-2"></div>--}}
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="card">
@@ -196,27 +218,8 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <form method="post" action="{{url('/admin/transaction/date')}}">
-                                        @csrf
-                                    <div class="input-group">
-                                        <input name="start_date" autocomplete="off" class="form-control datepicker "
-                                               placeholder="Эхлэл" value="@if($start_date){{date('m/d/Y', $start_date)}}@else{{date('m/d/Y', strtotime('-30 Days'))}}@endif">
-                                        <input name="end_date" autocomplete="off" class="form-control datepicker "
-                                               placeholder="Төгсгөл" value="@if($end_date){{date('m/d/Y', $end_date)}}@else{{date('m/d/Y')}}@endif">
-                                        <button class="btn btn-primary" type="submit" style="border-radius: 0px">ҮЗЭХ</button>
-                                    </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    <button class="btn btn-success"><i class="iconsmind-File-Excel"></i> Excel татах
-                                    </button>
-                                </div>
-                            </div>
-                            <br>
 
-                            <table class="data-table ">
+                            <table class="data-table">
                                 <thead>
                                 <tr>
                                     <th>#</th>

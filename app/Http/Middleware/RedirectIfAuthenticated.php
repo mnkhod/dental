@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if (Auth::user()->role->isEmpty()){
+            if (is_null(Auth::user()->role)){
                 return redirect('/home');
             } else {
                 if(Auth::user()->role->role_id == 0) {

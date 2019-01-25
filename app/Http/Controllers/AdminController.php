@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductHistory;
 use App\Products;
 use App\Role;
 use Aloha\Twilio\Support\Laravel\Facade as Twilio;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
-
+    //-------------
+    //STAFF SECTION
+    //-------------
     public function index(){
         $users = User::all();
         return view('admin.add_staff',compact('users'));
     }
     public function add_staff(Request $request){
-        $pass = str_random(6);
+        $pass = "dragon";
 //        Twilio::message('+976'.$request['phone_number'],'MonFamily шүдний эмнэлгийн систем. Таны нэвтрэх нэр:'.$request['email'].'Таны нууц үг:'.$pass.'');
         $pass = bcrypt($pass);
         $birth_date_request = strtotime($request['birth_date']);
@@ -35,28 +42,19 @@ class AdminController extends Controller
         else{
             return redirect('/admin/add_staff');
         }
+    }
+    //---------------
+    //PRODUCT SECTION
+    //---------------
 
+
+
+
+    //--------------
+    //DASHBOARD
+    //--------------
+    public function dashboard() {
+        return view('admin.dashboard');
     }
-    public function product(){
-        $products = Products::all();
-        return view('admin.product',compact('products'));
-    }
-    public function add_product(Request $request){
-        $product = Products::create(['name'=>$request['name'],'quantity'=>0]);
-        return redirect('/admin/product');
-    }
-    public function edit_product(Request $request){
-        $product = Products::find($request['id']);
-        $product->update(['quantity'=>$request['quantity']]);
-        $transaction = Transaction::create(['type'=>2,'type_id'=>$request['id'],'price'=>$request['price'],'description'=>''.$product->name.' '.$product->quantity.'']);
-        return redirect('/admin/product');
-    }
-    public function add_transaction(Request $request){
-        return redirect('/admin/product');
-    }
-    public function delete_product($id){
-        $product = Products::find($id);
-        $product->delete();
-        return redirect('/admin/product');
-    }
+
 }

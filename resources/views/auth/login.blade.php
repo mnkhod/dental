@@ -26,15 +26,16 @@
                         <p class=" text-white h2">MonFamily</p>
 
                         <p class="white mb-0">
-                            Please use your credentials to login.
-                            <br>If you are not a member, please
-                            <a href="#" class="white">register</a>.
+                            Шүдний эмнэлгийн систем
+                            <br>Та өөрийн цахим хаяг болон нууц үгээ оруулна
+                            <a href="#" class="white"></a>.
                         </p>
                     </div>
                     <div class="form-side">
                         <a href="Dashboard.Default.html">
-                            <span class="logo-single"></span>
+                            <img src="{{asset('img/logo-black.png')}}" style="padding-bottom: 20px">
                         </a>
+                        <br>
                         <h6 class="mb-4">Нэвтрэх</h6>
                         <form method="post" action="{{url('login')}}">
                             @csrf
