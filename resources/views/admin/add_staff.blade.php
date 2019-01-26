@@ -137,7 +137,7 @@
                     <div class="form-group row mb-0">
                         <div class="col-sm-10">
                             <br>
-                            <button type="submit" class="btn btn-primary mb-0">Ажилтан нэмэх</button>
+                            <button type="submit" class="btn btn-primary mb-0" onclick="validate()">Ажилтан нэмэх</button>
                         </div>
                     </div>
                 </form>
