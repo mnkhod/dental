@@ -15,28 +15,28 @@
     @endsection
 @section('menu')
     <li>
-        <a href="{{url('/admin')}}">
+        <a href="{{url('/home')}}">
             <i class="iconsmind-Digital-Drawing"></i>
             <span>Самбар</span>
         </a>
     </li>
-    <li  class="active">
-        <a href="{{url('/admin/add_staff')}}">
+    <li>
+        <a href="{{url('/workers')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
-    <li>
-        <a href="{{url('/admin/time')}}">
+    <li class="active">
+        <a href="{{url('/time')}}">
             <i class="iconsmind-Alarm"></i> Цаг
         </a>
     </li>
     <li>
-        <a href="{{url('/admin/product')}}">
+        <a href="{{url('/material')}}">
             <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li>
-        <a href="{{url('/admin/transaction')}}">
+        <a href="{{url('/income')}}">
             <i class="iconsmind-Space-Needle"></i> Санхүү
         </a>
     </li>
@@ -52,19 +52,20 @@
                 <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputAddress2">Овог</label>
                                 <input name="last_name" type="text" class="form-control" id="inputAddress2" placeholder="Овог">
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputAddress2">Нэр</label>
                                 <input name="name" type="text" class="form-control" id="inputAddress2" placeholder="Нэр">
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-row">
                         <div class="col-md-6">
@@ -76,7 +77,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Төрсөн он сар</label>
-                                <input name="birth_date" autocomplete="off" class="form-control datepicker" placeholder="Төрсөн он сар">
+                                <input name="birth_date" class="form-control datepicker" placeholder="Төрсөн он сар">
                         </div>
                     </div>
 
@@ -101,13 +102,12 @@
                         <input name="location" type="text" class="form-control" id="inputAddress2" placeholder="Гэрийн хаягаа оруулна уу">
                     </div>
 
-                    <label for="inputState">Мэргэжил сонгох</label>
+                    <label for="inputState">Сонгох</label>
                     <select name="role" id="inputState" class="form-control">
+                        <option selected>Мэргэжил сонгоно уу ...</option>
                         <option value="1">Ресепшн</option>
                         <option value="2">Эмч</option>
                         <option value="3">Сувилагч</option>
-                        <option value="0">Менежер</option>
-                        <option value="4">Бусад</option>
                     </select><br>
 
 
@@ -121,7 +121,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div id="cropperContainer">
-                                <img id="cropperImage" alt="Cropper Image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
+                                <img id="yourImgId" alt="Cropper Image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
                             </div>
                         </div>
                         <div class="col-3">
@@ -149,7 +149,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Бүх ажилтан</h5>
-                <table class="table">
+                <table class="data-table">
                     <thead>
                     <tr>
 
