@@ -52,6 +52,42 @@
     </li>
 @endsection
 @section('content')
+    <div class="modal fade modal-right" id="exampleModalRight" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalRight" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Цаг захиалах<br><span id="nameShow">Алимаа</span> <span id="timeShow"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form>
+                        <div class="form-group">
+                            <label>Нэр</label>
+                            <input autocomplete="off" type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label>Утасны дугаар</label>
+                            <input autocomplete="off" type="text" class="form-control" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Шаардагдах хугацаа (цагаар)</label>
+                                <input autocomplete="off" type="number" class="form-control" placeholder="">
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -65,17 +101,29 @@
                             <?php $s++?>
                         @endforeach
                         </tr>
-                        @for($i = 0; $i<12; $i++)
+                        @for($i = 0; $i<6; $i++)
                             <tr>
                                 <td height="90px">{{9+$i}}:00</td>
-                                {{--@for($f=0; $f<3; $f++)--}}
-                                   @if($shifts[0]->shift_id == 0)
+                                @foreach($shifts as $shift)
+                                    @if($shift->shift_id == 0 || $shift->shift_id ==2)
+                                        <td height="90px" rowspan="1"><button onclick="bookTime('{{9+$i}}:00', '{{$shift->doctor->id}}', '{{$shift->doctor->name}}')" class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;" >Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
+                                    @else
                                         <td height="90px" style="background-color: #bcbcbc"></td>
                                     @endif
-                                {{--@endfor--}}
-
-
-
+                                @endforeach
+                            </tr>
+                        @endfor
+                        @for($i = 6; $i<12; $i++)
+                            <tr>
+                                <td height="90px">{{9+$i}}:00</td>
+                                @foreach($shifts as $shift)
+                                    @if($shift->shift_id == 1 || $shift->shift_id ==2)
+                                        <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" data-toggle="modal" data-backdrop="static"
+                                                                              data-target="#exampleModalRight" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
+                                    @else
+                                        <td height="90px" style="background-color: #bcbcbc"></td>
+                                    @endif
+                                @endforeach
                             </tr>
                         @endfor
                         <tr>
@@ -142,6 +190,14 @@
     </div>
 @endsection
 @section('footer')
+    <script>
+        function bookTime(time, doctor_id, doctor_name) {
+            document.getElementById("timeShow").innerHTML = time;
+            document.getElementById("nameShow").innerHTML = doctor_name;
+            // document.getElementById('hiddenDoctor').value = doctor_id;
+            $("#exampleModalRight").modal();
+        }
+    </script>
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
     <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
     <script src="{{asset('js/vendor/moment.min.js')}}"></script>
