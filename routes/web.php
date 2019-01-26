@@ -48,6 +48,7 @@ Route::get('/admin', 'AdminController@dashboard');
 
 Route::get('/reception/user', 'ReceptionUserController@index');
 Route::get('/reception/time', 'ReceptionTimeController@index');
+Route::post('/reception/time/add', 'ReceptionTimeController@store');
 
 Route::get('/test', function() {
     return view('test');
