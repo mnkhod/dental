@@ -164,7 +164,7 @@
                     <tr>
                         <td>
                             <p class="list-item-heading">
-                                <a href="profile.html">{{$user->name}}</a>
+                                <a href="{{url('/admin/add_staff/'.$user->id.'/profile')}}">{{$user->name}}</a>
                             </p>
                         </td>
                         <td>

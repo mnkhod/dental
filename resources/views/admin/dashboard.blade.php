@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('header')
-
-
-
     <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}" />
@@ -13,7 +10,6 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-
 @endsection
 @section('menu')
     <li  class="active">
@@ -50,7 +46,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                        <div class="col-md-7 text-right"><h4>10000</h4>Үйлчлүүлэгч</div>
+                        <div class="col-md-7 text-right"><h4>{{$users_number}}</h4>Үйлчлүүлэгч</div>
                     </div>
                 </div>
             </div>
@@ -60,7 +56,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                        <div class="col-md-7 text-right"><h4>5</h4>Ажилтан</div>
+                        <div class="col-md-7 text-right"><h4>{{$roles}}</h4>Ажилтан</div>
                     </div>
                 </div>
             </div>

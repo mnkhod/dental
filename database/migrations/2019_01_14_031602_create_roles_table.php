@@ -17,6 +17,8 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('role_id');
+            $table->tinyInteger('state');
+
             //Admin->0
             //Reception->1
             //Doctor->2

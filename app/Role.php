@@ -8,7 +8,7 @@ class Role extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'role_id'
+        'user_id', 'role_id','state'
     ];
     public function staff() {
         return $this->hasOne('App\User', 'id', 'user_id');
