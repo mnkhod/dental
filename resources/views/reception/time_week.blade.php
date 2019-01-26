@@ -94,6 +94,17 @@
         {{--<div class="col-md-12">--}}
         <div class="card">
             <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <form>
+                            <select class="form-control">
+                                <option>Алимаа</option>
+                                <option>Алимаа</option>
+                                <option>Алимаа</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
                 <table class="table table-responsive text-center table-bordered">
                     <tr>
                         <th></th>

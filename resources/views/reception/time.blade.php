@@ -94,6 +94,7 @@
         {{--<div class="col-md-12">--}}
             <div class="card">
                 <div class="card-body">
+
                     <table class="table table-responsive text-center table-bordered">
                         <tr>
                             <th></th>
