@@ -55,15 +55,26 @@
                                     <?php $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 0)->first(); ?>
                                     @if($time)
                                         <td>
-                                            <button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button>
+                                            <button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right"
+                                                                                                   style="font-size: 10px">8 хүн захиалсан</span>
+                                            </button>
                                         </td>
-                                        @else
+
+                                    @elseif($shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
+                                        <td>
+                                            <button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right"
+                                                                                                   style="font-size: 10px">8 хүн захиалсан</span>
+                                            </button>
+                                        </td>
+                                    @else
                                         <td>
                                             <a href="{{url('/admin/time/'.$i.'/'.$doctor->staff->id.'/0')}}">
-                                                <button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button>
+                                                <button class="btn btn-light">Тавигдаагүй<br><span class="text-right"
+                                                                                                   style="font-size: 10px">ээлж тавих</span>
+                                                </button>
                                             </a>
                                         </td>
-                                        @endif
+                                    @endif
                                 @endfor
                             </tr>
                             <tr>
@@ -71,12 +82,22 @@
                                     <?php $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 1)->first(); ?>
                                     @if($time)
                                         <td>
-                                            <button class="btn btn-success">Оройний ээлж<br><span class="text-right" style="font-size: 10px">8 хүн захиалсан</span></button>
+                                            <button class="btn btn-success">Оройний ээлж<br><span class="text-right"
+                                                                                                  style="font-size: 10px">8 хүн захиалсан</span>
+                                            </button>
+                                        </td>
+                                    @elseif($shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
+                                        <td>
+                                            <button class="btn btn-success">Оройний ээлж<br><span class="text-right"
+                                                                                                  style="font-size: 10px">8 хүн захиалсан</span>
+                                            </button>
                                         </td>
                                     @else
                                         <td>
                                             <a href="{{url('/admin/time/'.$i.'/'.$doctor->staff->id.'/1')}}">
-                                                <button class="btn btn-light">Тавигдаагүй<br><span class="text-right" style="font-size: 10px">ээлж тавих</span></button>
+                                                <button class="btn btn-light">Тавигдаагүй<br><span class="text-right"
+                                                                                                   style="font-size: 10px">ээлж тавих</span>
+                                                </button>
                                             </a>
                                         </td>
                                     @endif

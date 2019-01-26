@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,19 +23,16 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-        if (!empty(Auth::user())) {
-            if (Auth::user()->fitnessUser){
+        if (Auth::check()) {
+            if (is_null(Auth::user()->role)){
                 return redirect('/home');
             } else {
-                if($user = Auth::user()->fitnessUser->where('role_id', 1)->first()) {
-                    session()->put(['fitness_id'=>$user->fitness_id]);
+                if(Auth::user()->role->role_id == 0) {
                     return redirect('/admin');
-                } elseif ($user = Auth::user()->fitnessUser->where('role_id', 2)->first()) {
-                    session()->put(['reception_fitness_id'=>$user->fitness_id]);
+                } elseif (Auth::user()->role->role_id == 1) {
                     return redirect('/reception');
-                } elseif ($user = Auth::user()->fitnessUser->where('role_id', 3)->first()) {
-                    session()->put(['trainer_fitness_id'=>$user->fitness_id]);
-                    return redirect('/trainer');
+                } elseif (Auth::user()->role->role_id == 2) {
+                    return redirect('/doctor');
                 } else {
                     return redirect('/home');
                 }

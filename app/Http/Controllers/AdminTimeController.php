@@ -21,8 +21,15 @@ class AdminTimeController extends Controller
 
     }
     public function store($i, $doctor_staff_id, $shift_id){
-        $date = Carbon::now()->addDays($i);
-        $time = Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id]);
-        return redirect('/admin/time');
+        $date = date('Y-m-d', strtotime("+".$i." Days"));
+        if (!is_null($time = Time::all()->where('date', $date)->where('doctor_id', $doctor_staff_id)->first())) {
+                //Full time
+                $time->shift_id = 2;
+                $time->save();
+        } else {
+            //Half time
+            Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id]);
+        }
+        return redirect('admin/time');
     }
 }

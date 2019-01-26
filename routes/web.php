@@ -20,6 +20,7 @@ Route::get('/time', function () {
 });
 
 Auth::routes();
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/add_staff','AdminController@index');
@@ -44,6 +45,9 @@ Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 Route::get('/admin/time', 'AdminTimeController@index');
 Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
 Route::get('/admin', 'AdminController@dashboard');
+
+Route::get('/reception/user', 'ReceptionUserController@index');
+Route::get('/reception/time', 'ReceptionTimeController@index');
 
 Route::get('/test', function() {
     return view('test');
