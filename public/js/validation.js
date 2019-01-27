@@ -5,10 +5,10 @@ function validate() {
     var address = document.getElementById("Address").value;
     var birth = document.getElementById("birth").value;
     var regnum = document.getElementById("registernum").value;
-    var img = document.getElementById('yourImgId');
+    var img = document.getElementById('Image');
 
 
-//console.log(surname,name, phone, address, birth, regnum, sex);
+console.log(surname,name, phone, address, birth, regnum, sex);
     var reglet = [А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,Ө,П,Р,С,Т,У,Ү,Ф,Х,Ц,Ч,Ш,Щ,Ь,Ы,Ъ,Э,Ю,Я];
 
 
