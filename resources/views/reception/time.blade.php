@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('header')
-    <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/select2.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/select2.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/owl.carousel.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
 
     <style>
         .hidden {
@@ -15,6 +15,7 @@
             background-color: white;
             border: 0px;
         }
+
         .hidden:hover, .hidden:focus {
             opacity: 0.2;
             background-color: #8f8f8f;
@@ -57,56 +58,72 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Цаг захиалах<br><span id="nameShow">Алимаа</span> <span id="timeShow"></span></h5>
+                    <h5 class="modal-title">Цаг захиалах<br><span id="nameShow">Алимаа</span> <span
+                                id="timeShow"></span>:00</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-
-                    <form>
+                <form action="{{url('reception/time/add')}}" method="post">
+                    <div class="modal-body">
+                        @csrf
                         <div class="form-group">
                             <label>Нэр</label>
-                            <input autocomplete="off" type="text" class="form-control" placeholder="">
+                            <input name="name" autocomplete="off" type="text" class="form-control" placeholder="">
                         </div>
                         <div class="form-group">
                             <label>Утасны дугаар</label>
-                            <input autocomplete="off" type="text" class="form-control" placeholder="">
+                            <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
                         </div>
-
+                        <input type="hidden" name="time" id="timeInput">
+                        <input type="hidden" name="shift_id" id="shiftInput">
                         <div class="form-group">
                             <label>Шаардагдах хугацаа (цагаар)</label>
-                                <input autocomplete="off" type="number" class="form-control" placeholder="">
+                            <input name="hours" autocomplete="off" type="number" class="form-control" placeholder="">
                         </div>
 
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        {{--<div class="col-md-12">--}}
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-responsive text-center">
+                    <table class="table table-responsive text-center table-bordered">
                         <tr>
                             <th></th>
                             <?php $s = 0?>
-                        @foreach($shifts as $shift)
-                                <th><img style="border-radius: 100%" src="{{asset('img/profile5.jpg')}}" width="25px"> {{$shift->doctor->name}}</th>
-                            <?php $s++?>
-                        @endforeach
+                            @foreach($shifts as $shift)
+                                <th><img style="border-radius: 100%" src="{{asset('img/profile5.jpg')}}"
+                                         width="25px"> {{$shift->doctor->name}}</th>
+                                <?php $s++?>
+                            @endforeach
                         </tr>
                         @for($i = 0; $i<6; $i++)
                             <tr>
                                 <td height="90px">{{9+$i}}:00</td>
                                 @foreach($shifts as $shift)
                                     @if($shift->shift_id == 0 || $shift->shift_id ==2)
-                                        <td height="90px" rowspan="1"><button onclick="bookTime('{{9+$i}}:00', '{{$shift->doctor->id}}', '{{$shift->doctor->name}}')" class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;" >Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
+                                        @if($appointment = $shift->appointments->where('start', 9+$i)->first())
+                                            <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
+                                                <button class="btn btn-primary btn-block text-left"
+                                                        style="border-radius: 20px; height: 100%;">
+                                                    {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
+                                            </td>
+                                        @elseif($appointment = $shift->appointments->where('start','<', 9+$i)->where('end', '>', 9+$i)->first())
+                                        @else
+                                            <td height="90px" rowspan="1">
+                                                <button onclick="bookTime('{{9+$i}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
+                                                        class="btn btn-primary btn-block text-left hidden"
+                                                        style="border-radius: 20px; height: 100%;">Захиалга
+                                                    нэмэх<br><span>бол дарна уу</span></button>
+                                            </td>
+                                        @endif
                                     @else
                                         <td height="90px" style="background-color: #bcbcbc"></td>
                                     @endif
@@ -118,83 +135,42 @@
                                 <td height="90px">{{9+$i}}:00</td>
                                 @foreach($shifts as $shift)
                                     @if($shift->shift_id == 1 || $shift->shift_id ==2)
-                                        <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" data-toggle="modal" data-backdrop="static"
-                                                                              data-target="#exampleModalRight" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
+                                        @if($appointment = $shift->appointments->where('start', 9+$i)->first())
+                                            <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
+                                                <button class="btn btn-primary btn-block text-left"
+                                                        style="border-radius: 20px; height: 100%;">
+                                                    {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
+                                            </td>
+                                        @elseif($appointment = $shift->appointments->where('start','<', 9+$i)->where('end', '>', 9+$i)->first())
+                                        @else
+                                            <td height="90px" rowspan="1">
+                                                <button onclick="bookTime('{{9+$i}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
+                                                        class="btn btn-primary btn-block text-left hidden"
+                                                        style="border-radius: 20px; height: 100%;">Захиалга
+                                                    нэмэх<br><span>бол дарна уу</span></button>
+                                            </td>
+                                        @endif
                                     @else
                                         <td height="90px" style="background-color: #bcbcbc"></td>
                                     @endif
                                 @endforeach
                             </tr>
                         @endfor
-                        <tr>
-                            <td height="90px">09:00</td>
-                            <td height="90px" rowspan="2" ><button class="btn btn-primary btn-block text-left" style="border-radius: 20px; height: 100%;">Агваажавзандулам<br><span>95520073</span></button></td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left" style="border-radius: 20px; height: 100%;">Агваажавзандулам<br><span>95520073</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-
-                        </tr>
-                        <tr>
-                            <td height="90px">10:00</td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-                        </tr>
-                        <tr>
-                            <td height="90px">11:00</td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left" style="border-radius: 20px; height: 100%;">Агваажавзандулам<br><span>95520073</span></button></td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-
-                        </tr>
-                        <tr>
-                            <td height="90px">12:00</td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" rowspan="2" ><button class="btn btn-primary btn-block text-left" style="border-radius: 20px; height: 100%;">Агваажавзандулам<br><span>95520073</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-                        </tr>
-                        <tr>
-                            <td height="90px">13:00</td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-                        </tr>
-                        <tr>
-                            <td height="90px">14:00</td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" rowspan="1"><button class="btn btn-primary btn-block text-left hidden" style="border-radius: 20px; height: 100%;">Захиалга нэмэх<br><span>бол дарна уу</span></button></td>
-                            <td height="90px" style="background-color: #bcbcbc"></td>
-                        </tr>
-                        <tr>
-                            <td height="90px">15:00</td>
-                        </tr>
-                        <tr>
-                            <td height="90px">16:00</td>
-                        </tr>
-                        <tr>
-                            <td height="90px">17:00</td>
-                        </tr>
-                        <tr>
-                            <td height="90px">18:00</td>
-                        </tr>
-                        <tr>
-                            <td height="90px">19:00</td>
-                        </tr>
-                        <tr>
-                            <td height="90px">20:00</td>
-                        </tr>
-
 
                     </table>
                 </div>
-            </div>
+            {{--</div>--}}
         </div>
 
     </div>
 @endsection
 @section('footer')
     <script>
-        function bookTime(time, doctor_id, doctor_name) {
+        function bookTime(time, shift_id, doctor_name) {
             document.getElementById("timeShow").innerHTML = time;
+            document.getElementById("timeInput").value = time;
             document.getElementById("nameShow").innerHTML = doctor_name;
-            // document.getElementById('hiddenDoctor').value = doctor_id;
+            document.getElementById('shiftInput').value = shift_id;
             $("#exampleModalRight").modal();
         }
     </script>

@@ -12,4 +12,8 @@ class Time extends Model
     public function doctor() {
         return $this->hasOne('App\User', 'id', 'doctor_id');
     }
+
+    public function appointments() {
+        return $this->hasMany('App\Appointment', 'shift_id', 'id');
+    }
 }

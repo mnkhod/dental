@@ -45,9 +45,13 @@ Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 Route::get('/admin/time', 'AdminTimeController@index');
 Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
 Route::get('/admin', 'AdminController@dashboard');
+Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
+
+Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 
 Route::get('/reception/user', 'ReceptionUserController@index');
 Route::get('/reception/time', 'ReceptionTimeController@index');
+Route::post('/reception/time/add', 'ReceptionTimeController@store');
 
 Route::get('/test', function() {
     return view('test');
