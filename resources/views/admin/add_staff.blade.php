@@ -56,13 +56,14 @@
                             <div class="form-group">
                                 <label for="inputAddress2">Овог</label>
                                 <input name="last_name" type="text" class="form-control" id="lname" placeholder="Овог">
-                                <span id="lname_msg"></span>
+                                <span id="lname_msg" style="color:red"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputAddress2">Нэр</label>
                                 <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр">
+                                <span id="fname_msg" style="color:red"></span>
                             </div>
                         </div>
                     </div>
@@ -79,6 +80,7 @@
                         <div class="col-md-6">
                             <label>Төрсөн он сар</label>
                                 <input name="birth_date" class="form-control datepicker" id="birth" placeholder="Төрсөн он сар">
+                                <span id="date_msg" style="color:red"></span>
                         </div>
                     </div>
 
@@ -92,15 +94,18 @@
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Регистрийн дугаар</label>
                             <input name="register" type="text" class="form-control" id="registernum" placeholder="Регистрийн дугаараа оруулна уу">
+                            <span id="registernum_msg" style="color:red"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Утасны дугаар</label>
                         <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу">
+                        <span id="phone_msg" style="color:red"></span>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress2">Гэрийн хаяг</label>
                         <input name="location" type="text" class="form-control" id="Address" placeholder="Гэрийн хаягаа оруулна уу">
+                        <span id="address_msg" style="color:red"></span>
                     </div>
 
                     <label for="inputState">Сонгох</label>
@@ -138,7 +143,7 @@
                     <div class="form-group row mb-0">
                         <div class="col-sm-10">
                             <br>
-                            <button type="submit" class="btn btn-primary mb-0" onclick="validate()">Ажилтан нэмэх</button>
+                            <button onclick="validate()" type="button" class="btn btn-primary mb-0" >Ажилтан нэмэх</button>
 
                         </div>
                     </div>
@@ -210,5 +215,4 @@
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
     <script src="{{asset('js/validation.js')}}"></script>
-
     @endsection
