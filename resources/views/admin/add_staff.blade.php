@@ -55,13 +55,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputAddress2">Овог</label>
-                                <input name="last_name" type="text" class="form-control" id="inputAddress2" placeholder="Овог">
+                                <input name="last_name" type="text" class="form-control" id="lname" placeholder="Овог">
+                                <span id="lname_msg" style="color:red"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputAddress2">Нэр</label>
-                                <input name="name" type="text" class="form-control" id="inputAddress2" placeholder="Нэр">
+                                <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр">
+                                <span id="fname_msg" style="color:red"></span>
                             </div>
                         </div>
                     </div>
@@ -70,14 +72,15 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <label>Хүйс сонгох</label>
-                            <select name="sex" id="inputState" class="form-control">
+                            <select name="sex" id="sex" class="form-control">
                                 <option value="0">Эр</option>
                                 <option value="1">Эм</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label>Төрсөн он сар</label>
-                                <input name="birth_date" class="form-control datepicker" placeholder="Төрсөн он сар">
+                                <input name="birth_date" class="form-control datepicker" id="birth" placeholder="Төрсөн он сар">
+                                <span id="date_msg" style="color:red"></span>
                         </div>
                     </div>
 
@@ -90,16 +93,19 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Регистрийн дугаар</label>
-                            <input name="register" type="text" class="form-control" id="inputPassword4" placeholder="Регистрийн дугаараа оруулна уу">
+                            <input name="register" type="text" class="form-control" id="registernum" placeholder="Регистрийн дугаараа оруулна уу">
+                            <span id="registernum_msg" style="color:red"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Утасны дугаар</label>
-                        <input name="phone_number" type="text" class="form-control" id="inputAddress" placeholder="Утасны дугаараа оруулна уу">
+                        <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу">
+                        <span id="phone_msg" style="color:red"></span>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress2">Гэрийн хаяг</label>
-                        <input name="location" type="text" class="form-control" id="inputAddress2" placeholder="Гэрийн хаягаа оруулна уу">
+                        <input name="location" type="text" class="form-control" id="Address" placeholder="Гэрийн хаягаа оруулна уу">
+                        <span id="address_msg" style="color:red"></span>
                     </div>
 
                     <label for="inputState">Сонгох</label>
@@ -115,13 +121,13 @@
                     <br><br>
                     <h5 class="mb-12">Зураг оруулах</h5>
                     <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
-                        <input type="file" class="sr-only" id="inputImage" name="photo" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                        <input type="file" class="sr-only" id="Image" name="photo" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
                         Зургаа сонгох
                     </label>
                     <div class="row">
                         <div class="col-12">
                             <div id="cropperContainer">
-                                <img id="yourImgId" alt="Cropper Image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
+                                <img id="Image" alt="Cropper Image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
                             </div>
                         </div>
                         <div class="col-3">
@@ -137,7 +143,8 @@
                     <div class="form-group row mb-0">
                         <div class="col-sm-10">
                             <br>
-                            <button type="submit" class="btn btn-primary mb-0" onclick="validate()">Ажилтан нэмэх</button>
+                            <button onclick="validate()" type="button" class="btn btn-primary mb-0" >Ажилтан нэмэх</button>
+
                         </div>
                     </div>
                 </form>
@@ -207,5 +214,5 @@
     <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
-
+    <script src="{{asset('js/validation.js')}}"></script>
     @endsection

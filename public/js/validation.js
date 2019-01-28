@@ -4,16 +4,16 @@ function validate() {
     var phone = document.getElementById("phone").value;
     var address = document.getElementById("Address").value;
     var birth = document.getElementById("birth").value;
-    var regnum = document.getElementById("registernum").value;
-    var img = document.getElementById('yourImgId');
+    var reg = document.getElementById("registernum").value;
+    var img = document.getElementById('Image');
 
 
-//console.log(surname,name, phone, address, birth, regnum, sex);
-    var reglet = [А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,Ө,П,Р,С,Т,У,Ү,Ф,Х,Ц,Ч,Ш,Щ,Ь,Ы,Ъ,Э,Ю,Я];
+    //console.log(surname,name, phone, address, birth, regnum, sex);
+    var reglet = ["А","Б","В","Г","Д","Е","Ё","Ж","З","И","Й","К","Л","М","Н","О","Ө","П","Р","С","Т","У","Ү","Ф","Х","Ц","Ч","Ш","Щ","Ь","Ы","Ъ","Э","Ю","Я"];
 
 
     // last name
-    if(surename === ''){
+    if(surename === ""){
         document.getElementById('lname').classList.add('border-danger');
         document.getElementById('lname_msg').innerHTML = "Овгоо оруулна уу"
 
@@ -24,7 +24,7 @@ function validate() {
 
     // first name
 
-    if(name === ''){
+    if(name === ""){
         document.getElementById('fname').classList.add('border-danger');
         document.getElementById('fname_msg').innerHTML = "Нэрээ оруулна уу"
     }else{
@@ -35,6 +35,9 @@ function validate() {
     if(isValidDate(birth) === false){
         document.getElementById('birth').classList.add('border-danger');
         document.getElementById('date_msg').innerHTML = "Төрсөн он сараа оруулна уу"
+    }else{
+        document.getElementById('birth').classList.remove('border-danger');
+        document.getElementById('date_msg').innerHTML = ""
     }
 
     // email
@@ -43,23 +46,33 @@ function validate() {
         document.getElementById('lname_msg').innerHTML = ""
     }*/
 
-    if(address === ''){
+    if(address === ""){
         document.getElementById('Address').classList.add('border-danger');
         document.getElementById('address_msg').innerHTML = "Гэрийн хаягаа оруулна уу"
+    }else{
+        document.getElementById('Address').classList.remove('border-danger');
+        document.getElementById('address_msg').innerHTML = ""
     }
 
     if(ph(phone) === false){
         document.getElementById('phone').classList.add('border-danger');
         document.getElementById('phone_msg').innerHTML = "Дугаараа зөв оруулна уу"
+    }else{
+        document.getElementById('phone').classList.remove('border-danger');
+        document.getElementById('phone_msg').innerHTML = ""
     }
 
 
-    if(regnumber(regnum) === false){
+    if(regnumber(reg) === false){
         document.getElementById('registernum').classList.add('border-danger');
         document.getElementById('registernum_msg').innerHTML = "Регистерийн дугаараа зөв оруулна уу"
+    }else{
+        document.getElementById('registernum').classList.remove('border-danger');
+        document.getElementById('registernum_msg').innerHTML = ""
     }
 
 //Checking phone number
+
     function ph(o) {
         var h = parseInt(o);
         var s = h.toString();
@@ -73,16 +86,23 @@ function validate() {
         }
     }
 
-    function regnumber(reg) {
-        if(reg[0] in reglet && reg[1] in reglet){
-            return true}
-        else{
-            return false
+    function regnumber(regg) {
+        var i;
+        var x=7;
+        var y=2;
+        for(i in reglet){
+            if (regg[0]===reglet[i]){
+                x = 1;
+            }
+            if (regg[1]===reglet[i]){
+                y = 1;
+            }
+            if (x===y){
+                return true;
+            }
         }
-
-        }
-
-
+        return false
+}
 
     function isValidDate(dateString)
     {
