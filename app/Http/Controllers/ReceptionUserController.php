@@ -20,4 +20,17 @@ class ReceptionUserController extends Controller
         User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);
         return redirect('/reception/user');
     }
+
+    public function search(Request $request){
+        $input = $request->key;
+        $results = User::where('email', 'like', '%'.$input.'%')
+            ->orWhere('phone_number', 'like', '%'.$input.'%')
+            ->orWhere('name', 'like', '%'.$input.'%')
+            ->orWhere('last_name', 'like', '%'.$input.'%')
+            ->limit('25')
+        ;
+
+        return view('reception.search', compact('results', 'input'));
+
+    }
 }

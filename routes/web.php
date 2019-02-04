@@ -49,9 +49,12 @@ Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
 
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 
+Route::get('/reception', 'ReceptionTimeController@index');
 Route::get('/reception/user', 'ReceptionUserController@index');
-Route::get('/reception/time', 'ReceptionTimeController@index');
+Route::get('/reception/search', 'ReceptionUserController@search');
+Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
+
 
 Route::get('/test', function() {
     return view('test');

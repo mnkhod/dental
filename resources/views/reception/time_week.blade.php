@@ -108,65 +108,80 @@
                 <table class="table table-responsive text-center table-bordered">
                     <tr>
                         <th></th>
-                        <?php $s = 0?>
-                        @foreach($shifts as $shift)
-                            <th><img style="border-radius: 100%" src="{{asset('img/profile5.jpg')}}"
-                                     width="25px"> {{$shift->doctor->name}}</th>
-                            <?php $s++?>
-                        @endforeach
+                        <th>2019-01-27</th>
+                        <th>2019-01-28</th>
+                        <th>2019-01-29</th>
+                        <th>2019-01-30</th>
+                        <th>2019-01-31</th>
+                        <th>2019-02-01</th>
                     </tr>
-                    @for($i = 0; $i<6; $i++)
-                        <tr>
-                            <td height="90px">{{9+$i}}:00</td>
-                            @foreach($shifts as $shift)
-                                @if($shift->shift_id == 0 || $shift->shift_id ==2)
-                                    @if($appointment = $shift->appointments->where('start', 9+$i)->first())
-                                        <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                            <button class="btn btn-primary btn-block text-left"
-                                                    style="border-radius: 20px; height: 100%;">
-                                                {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
-                                        </td>
-                                    @elseif($appointment = $shift->appointments->where('start','<', 9+$i)->where('end', '>', 9+$i)->first())
-                                    @else
-                                        <td height="90px" rowspan="1">
-                                            <button onclick="bookTime('{{9+$i}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
-                                                    class="btn btn-primary btn-block text-left hidden"
-                                                    style="border-radius: 20px; height: 100%;">Захиалга
-                                                нэмэх<br><span>бол дарна уу</span></button>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td height="90px" style="background-color: #bcbcbc"></td>
-                                @endif
-                            @endforeach
-                        </tr>
-                    @endfor
-                    @for($i = 6; $i<12; $i++)
-                        <tr>
-                            <td height="90px">{{9+$i}}:00</td>
-                            @foreach($shifts as $shift)
-                                @if($shift->shift_id == 1 || $shift->shift_id ==2)
-                                    @if($appointment = $shift->appointments->where('start', 9+$i)->first())
-                                        <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                            <button class="btn btn-primary btn-block text-left"
-                                                    style="border-radius: 20px; height: 100%;">
-                                                {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
-                                        </td>
-                                    @elseif($appointment = $shift->appointments->where('start','<', 9+$i)->where('end', '>', 9+$i)->first())
-                                    @else
-                                        <td height="90px" rowspan="1">
-                                            <button onclick="bookTime('{{9+$i}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
-                                                    class="btn btn-primary btn-block text-left hidden"
-                                                    style="border-radius: 20px; height: 100%;">Захиалга
-                                                нэмэх<br><span>бол дарна уу</span></button>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td height="90px" style="background-color: #bcbcbc"></td>
-                                @endif
-                            @endforeach
-                        </tr>
-                    @endfor
+                    <tr>
+                        <td height="90px">09:00</td>
+                        <td height="90px" rowspan="2">
+                            <button class="btn btn-primary btn-block text-left"
+                                    style="border-radius: 20px; height: 100%;">
+                                Khatanbold<br><span>95520073</span></button>
+                        </td>
+                        <td height="90px" style="background-color: #bcbcbc"></td>
+                        <td height="90px" style="background-color: #bcbcbc"></td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td height="90px">10:00</td>
+
+                        <td height="90px" style="background-color: #bcbcbc"></td>
+                        <td height="90px" style="background-color: #bcbcbc"></td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+                        <td height="90px">
+                            <button onclick="bookTime('10', '1', 'Алимаа')"
+                                    class="btn btn-primary btn-block text-left hidden"
+                                    style="border-radius: 20px; height: 100%;">Захиалга
+                                нэмэх<br><span>бол дарна уу</span></button>
+                        </td>
+
+                    </tr>
+
 
                 </table>
             </div>

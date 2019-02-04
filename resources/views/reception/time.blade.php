@@ -94,6 +94,15 @@
         {{--<div class="col-md-12">--}}
             <div class="card">
                 <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 text-right">
+                            <div class="input-group">
+                                <input name="birth_date" autocomplete="off" class="form-control datepicker" placeholder="Өдөр сонгох">
+                                <button class="btn btn-primary" style="border-radius: 0px">Үзэх</button></div>
+                        </div>
+
+
+                    </div>
 
                     <table class="table table-responsive text-center table-bordered">
                         <tr>

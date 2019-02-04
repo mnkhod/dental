@@ -172,7 +172,6 @@
                             <input name="end_date" autocomplete="off" class="form-control datepicker " style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: gray; padding: 0px"
                                    placeholder="Төгсгөл" value="@if($end_date){{date('m/d/Y', $end_date)}}@else{{date('m/d/Y')}}@endif">
                             <a href="#" onclick="$(this).closest('form').submit()">үзэх</a>
-
                         </div>
                     </form>
                 </div>

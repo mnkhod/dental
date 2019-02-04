@@ -47,17 +47,21 @@
             </svg>
         </a>
 
-        <div class="search" data-search-path="Layouts.Search.html?q=">
-            <input placeholder="Хайх...">
-            <span class="search-icon">
+        <div class="search">
+            <form action="{{url('/reception/search')}}" method="get" role="search">
+                @csrf
+                <input placeholder="Хайх..." name="key">
+                <span class="search-icon">
                     <i class="simple-icon-magnifier"></i>
                 </span>
+            </form>
+
         </div>
     </div>
 
 
     <a class="navbar-logo">
-        <span class="logo d-none d-xs-block"></span>
+        <span class="d-none d-xs-block"><img src="{{asset('img/logo-black.png')}}"></span>
         <span class="logo-mobile d-block d-xs-none"></span>
     </a>
 
@@ -65,30 +69,7 @@
         <div class="header-icons d-inline-block align-middle">
             {{--<a class="btn btn-sm btn-outline-primary mr-2 d-none d-md-inline-block mb-2" href="https://1.envato.market/5kAb">&nbsp;BUY&nbsp;</a>--}}
 
-            <div class="position-relative d-inline-block">
-                <button class="header-icon btn btn-empty" type="button" id="notificationButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    <i class="simple-icon-bell"></i>
-                    <span class="count">3</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right mt-3 scroll position-absolute" id="notificationDropdown">
-
-                    {{--<div class="d-flex flex-row mb-3 pb-3 border-bottom">--}}
-                        {{--<a href="#">--}}
-                            {{--<img src="img/profile-pic-l-2.jpg" alt="Notification Image" class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle" />--}}
-                        {{--</a>--}}
-                        {{--<div class="pl-3 pr-2">--}}
-                            {{--<a href="#">--}}
-                                {{--<p class="font-weight-medium mb-1">Joisse Kaycee just sent a new comment!</p>--}}
-                                {{--<p class="text-muted mb-0 text-small">09.04.2018 - 12:45</p>--}}
-                            {{--</a>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-
-
-                </div>
-            </div>
+           
 
 
 
@@ -115,29 +96,7 @@
         </div>
     </div>
 
-    {{--<div class="sub-menu">--}}
-        {{--<div class="scroll">--}}
 
-
-            {{--<ul class="list-unstyled" data-link="menu">--}}
-                {{--<li>--}}
-                    {{--<a href="Menu.Default.html">--}}
-                        {{--<i class="simple-icon-control-pause"></i> Default--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="active">--}}
-                    {{--<a href="Menu.Subhidden.html">--}}
-                        {{--<i class="simple-icon-arrow-left mi-subhidden"></i> Subhidden--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<a href="Menu.Hidden.html">--}}
-                        {{--<i class="simple-icon-control-start mi-hidden"></i> Hidden--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 </div>
 <main>
     <div class="container-fluid">

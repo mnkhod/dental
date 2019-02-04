@@ -300,59 +300,59 @@ $.dore = function(element, options) {
     });
     onResize();
 
-    /* 03.03. Search */
-    function searchIconClick() {
-      if ($(window).outerWidth() < searchHiddenBreakpoint) {
-        if ($(".search").hasClass("mobile-view")) {
-          $(".search").removeClass("mobile-view");
-          navigateToSearchPage();
-        } else {
-          $(".search").addClass("mobile-view");
-          $(".search input").focus();
-        }
-      } else {
-        navigateToSearchPage();
-      }
-    }
-
-    $(".search .search-icon").on("click", function() {
-      searchIconClick();
-    });
-
-    $(".search input").on("keyup", function(e) {
-      if (e.which == 13) {
-        navigateToSearchPage();
-      }
-      if (e.which == 27) {
-        hideSearchArea();
-      }
-    });
-
-    function navigateToSearchPage() {
-      var inputVal = $(".search input").val();
-      var searchPath = $(".search").data("searchPath");
-      if (inputVal != "") {
-        $(".search input").val("");
-        window.location.href = searchPath + inputVal;
-      }
-    }
-
-    function hideSearchArea() {
-      if ($(".search").hasClass("mobile-view")) {
-        $(".search").removeClass("mobile-view");
-        $(".search input").val("");
-      }
-    }
-
-    $(document).on("click", function(event) {
-      if (
-        !$(event.target)
-          .parents()
-          .hasClass("search")
-      ) {
-        hideSearchArea();
-      }
-    });
+    // /* 03.03. Search */
+    // function searchIconClick() {
+    //   if ($(window).outerWidth() < searchHiddenBreakpoint) {
+    //     if ($(".search").hasClass("mobile-view")) {
+    //       $(".search").removeClass("mobile-view");
+    //       navigateToSearchPage();
+    //     } else {
+    //       $(".search").addClass("mobile-view");
+    //       $(".search input").focus();
+    //     }
+    //   } else {
+    //     navigateToSearchPage();
+    //   }
+    // }
+    //
+    // $(".search .search-icon").on("click", function() {
+    //   searchIconClick();
+    // });
+    //
+    // $(".search input").on("keyup", function(e) {
+    //   if (e.which == 13) {
+    //     navigateToSearchPage();
+    //   }
+    //   if (e.which == 27) {
+    //     hideSearchArea();
+    //   }
+    // });
+    //
+    // function navigateToSearchPage() {
+    //   var inputVal = $(".search input").val();
+    //   var searchPath = $(".search").data("searchPath");
+    //   if (inputVal != "") {
+    //     $(".search input").val("");
+    //     window.location.href = searchPath + inputVal;
+    //   }
+    // }
+    //
+    // function hideSearchArea() {
+    //   if ($(".search").hasClass("mobile-view")) {
+    //     $(".search").removeClass("mobile-view");
+    //     $(".search input").val("");
+    //   }
+    // }
+    //
+    // $(document).on("click", function(event) {
+    //   if (
+    //     !$(event.target)
+    //       .parents()
+    //       .hasClass("search")
+    //   ) {
+    //     hideSearchArea();
+    //   }
+    // });
 
     /* 03.04. Shift Selectable Init */
     $shiftSelect = $(".list").shiftSelectable();
