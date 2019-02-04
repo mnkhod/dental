@@ -20,6 +20,12 @@ class ReceptionTimeController extends Controller
         return view('reception.time', compact('shifts'));
     }
 
+//    public function date(Request $request) {
+//        $shifts = Time::all()->where('date', date('Y-m-d'));
+//        return view('reception.time', compact('shifts'));
+//    }
+
+
     public function store(Request $request) {
 
         $shift = Time::find($request['shift_id']);
