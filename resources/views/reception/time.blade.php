@@ -104,7 +104,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             {{--sdfdsafsa--}}
-                        </button>
+                        </button>git pull origin master --allow-unrelated-histories
                     </div>
                     <div class="modal-body">
                         Үйлчлүүлэгч: <span id="da_user_name"></span><br>
