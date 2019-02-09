@@ -19,6 +19,10 @@ class ReceptionTimeController extends Controller
         $shifts = Time::all()->where('date', date('Y-m-d'));
         return view('reception.time', compact('shifts'));
     }
+    public function timeWeek($id) {
+        $role = Role::find($id);
+
+    }
 
 //    public function date(Request $request) {
 //        $shifts = Time::all()->where('date', date('Y-m-d'));
