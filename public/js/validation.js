@@ -5,7 +5,7 @@ function validate() {
     var address = document.getElementById("Address").value;
     var birth = document.getElementById("birth").value;
     var reg = document.getElementById("registernum").value;
-    var img = document.getElementById('Image');
+    //var img = document.getElementById('Image');
 
 
     //console.log(surname,name, phone, address, birth, regnum, sex);
@@ -40,11 +40,6 @@ function validate() {
         document.getElementById('date_msg').innerHTML = ""
     }
 
-    // email
-  /*  if() {
-        document.getElementById('lname').classList.remove('border-danger');
-        document.getElementById('lname_msg').innerHTML = ""
-    }*/
 
     if(address === ""){
         document.getElementById('Address').classList.add('border-danger');
@@ -137,12 +132,14 @@ function validate() {
 
         return false
     }
+    /*
     function resize(yourImg){
         if(yourImg && yourImg.style) {
             yourImg.style.height = '200px';
             yourImg.style.width = '200px';
         }
     }
+    */
     return false
 }
 
