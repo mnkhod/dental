@@ -1,47 +1,46 @@
-@extends('layouts.app')
-@section('header')
+<?php $__env->startSection('header'); ?>
 
 
 
-    <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/select2.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/owl.carousel.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/fullcalendar.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/dataTables.bootstrap4.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/datatables.responsive.bootstrap4.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/select2.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/owl.carousel.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/bootstrap-stars.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/nouislider.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/vendor/bootstrap-datepicker3.min.css')); ?>" />
 
-    @endsection
-@section('menu')
+    <?php $__env->stopSection(); ?>
+<?php $__env->startSection('menu'); ?>
     <li>
-        <a href="{{url('/home')}}">
+        <a href="<?php echo e(url('/home')); ?>">
             <i class="iconsmind-Digital-Drawing"></i>
             <span>Самбар</span>
         </a>
     </li>
     <li>
-        <a href="{{url('/workers')}}">
+        <a href="<?php echo e(url('/workers')); ?>">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
     <li class="active">
-        <a href="{{url('/time')}}">
+        <a href="<?php echo e(url('/time')); ?>">
             <i class="iconsmind-Alarm"></i> Цаг
         </a>
     </li>
     <li>
-        <a href="{{url('/material')}}">
+        <a href="<?php echo e(url('/material')); ?>">
             <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li>
-        <a href="{{url('/income')}}">
+        <a href="<?php echo e(url('/income')); ?>">
             <i class="iconsmind-Space-Needle"></i> Санхүү
         </a>
     </li>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row"><!-- row-->
     <!-- ajiltan nemeh-->
     <div class="col-xl-6 col-lg-12 mb-4"><!-- col start-->
@@ -49,8 +48,8 @@
             <div class="card-body">
                 <h5 class="mb-4">Шинэ ажилтан нэмэх</h5>
 
-                <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form action="<?php echo e(url('/admin/add_staff')); ?>" method="post" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -116,15 +115,30 @@
                         <option value="3">Сувилагч</option>
                     </select><br>
 
+
                     <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info"  placeholder="Тайлбар"></textarea>
                     <br><br>
                     <h5 class="mb-12">Зураг оруулах</h5>
-
-                    <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file" >
+                    <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file">
                         <input type="file" class="sr-only" id="Image" name="photo" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
                         Зургаа сонгох
                     </label>
-
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="cropperContainer">
+                                <img id="Image" alt="Cropper Image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="cropper-preview"></div>
+                        </div>
+                        <div class="col-2">
+                            <div class="cropper-preview"></div>
+                        </div>
+                        <div class="col-1">
+                            <div class="cropper-preview"></div>
+                        </div>
+                    </div>
                     <div class="form-group row mb-0">
                         <div class="col-sm-10">
                             <br>
@@ -152,30 +166,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($users as $user)
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td>
                             <p class="list-item-heading">
-                                <a href="{{url('/admin/add_staff/'.$user->id.'/profile')}}">{{$user->name}}</a>
+                                <a href="<?php echo e(url('/admin/add_staff/'.$user->id.'/profile')); ?>"><?php echo e($user->name); ?></a>
                             </p>
                         </td>
                         <td>
-                            <p class="text-muted">{{$user->last_name}}</p>
+                            <p class="text-muted"><?php echo e($user->last_name); ?></p>
                         </td>
                         <td>
-                            <p class="text-muted">@if($user->role->role_id ==1)
+                            <p class="text-muted"><?php if($user->role->role_id ==1): ?>
                                                     Ресепшн
-                                                    @elseif($user->role->role_id ==2)
+                                                    <?php elseif($user->role->role_id ==2): ?>
                                                         Эмч
-                                                    @else
+                                                    <?php else: ?>
                                                         Сувилагч
-                                                    @endif</p>
+                                                    <?php endif; ?></p>
                         </td>
                         <td>
-                            <p class="text-muted">{{$user->phone_number}}</p>
+                            <p class="text-muted"><?php echo e($user->phone_number); ?></p>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </tbody>
                 </table>
@@ -183,21 +197,23 @@
         </div>
     </div><!-- table end-->
 </div><!-- row end-->
-    @endsection
-@section('footer')
+    <?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
 
 
-    <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
-    <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
-    <script src="{{asset('js/vendor/moment.min.js')}}"></script>
-    <script src="{{asset('js/vendor/fullcalendar.min.js')}}"></script>
-    <script src="{{asset('js/vendor/datatables.min.js')}}"></script>
-    <script src="{{asset('js/vendor/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('js/vendor/progressbar.min.js')}}"></script>
-    <script src="{{asset('js/vendor/jquery.barrating.min.js')}}"></script>
-    <script src="{{asset('js/vendor/select2.full.js')}}"></script>
-    <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
-    <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
-    <script src="{{asset('js/vendor/Sortable.js')}}"></script>
-    <script src="{{asset('js/validation.js')}}"></script>
-    @endsection
+    <script src="<?php echo e(asset('js/vendor/Chart.bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/chartjs-plugin-datalabels.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/moment.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/fullcalendar.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/datatables.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/owl.carousel.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/progressbar.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/jquery.barrating.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/select2.full.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/nouislider.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/bootstrap-datepicker.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/vendor/Sortable.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/validation.js')); ?>"></script>
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

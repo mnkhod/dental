@@ -69,4 +69,22 @@ class ReceptionTimeController extends Controller
         Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
         return redirect('/reception/time');
     }
+    public function appointment_index(){
+        $doctors = Role::all()->where('role_id',2);
+        $shifts = Time::all()->where('doctor_id', 3);
+        $shift1 = $shifts->where('date', date('Y-m-d', strtotime('+' . 1 . ' Days')));
+        $shift = $shifts->where('date', date('Y-m-d', strtotime('+' . 0 . ' Days')));
+        $shift2 = $shifts->where('date', date('Y-m-d', strtotime('+' . 2 . ' Days')));
+        $shift3 = $shifts->where('date', date('Y-m-d', strtotime('+' . 3 . ' Days')));
+        $shift4 = $shifts->where('date', date('Y-m-d', strtotime('+' . 4 . ' Days')));
+        $shift5 = $shifts->where('date', date('Y-m-d', strtotime('+' . 5 . ' Days')));
+        $shift6 = $shifts->where('date', date('Y-m-d', strtotime('+' . 6 . ' Days')));
+        return view('reception.appointment',compact('doctors','shift','shift1','shift2','shift3','shift4','shift5','shift6'));
+    }
+    public function appointment_edit(){
+        return redirect('/reception/appointment');
+    }
+    public function appointment_cancel(){
+        return redirect('/reception/appointment');
+    }
 }

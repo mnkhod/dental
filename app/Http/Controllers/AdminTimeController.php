@@ -9,11 +9,11 @@ use Carbon\Carbon;
 
 class AdminTimeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
-    //
+//    public function __construct()
+//    {
+//        $this->middleware('admin');
+//    }
+//    //
     public function index() {
         $doctors = Role::all()->where('role_id',2);
         $shifts = Time::all()->where('date', '>=', date('Y-m-d'));

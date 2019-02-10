@@ -55,6 +55,11 @@ Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
 
+Route::get('/reception/appointment','ReceptionTimeController@appointment_index');
+Route::post('/reception/appointment/edit/{id}','ReceptionTimeController@appointment_edit');
+Route::get('/reception/appointment/cancel/{id}','ReceptionTimeController@appointment_cancel');
+
+
 
 Route::get('/test', function() {
     return view('test');
