@@ -74,7 +74,8 @@ class ReceptionTimeController extends Controller
         }
 
         Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
-        return redirect('/reception/time');
+//        return redirect('/reception/time');
+        return back();
     }
     public function appointment_index(){
         $doctors = Role::all()->where('role_id',2);

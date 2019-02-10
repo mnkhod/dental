@@ -58,8 +58,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Цаг захиалах<br><span id="nameShow">Алимаа</span> <span
-                                id="timeShow"></span>:00</h5>
+                    <h5 class="modal-title">Цаг захиалах: <b><span id="nameShow"></span></b><br>
+                        <span id="dateShow"></span> <span id="timeShow"></span>:00</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -165,7 +165,7 @@
                                         @elseif($appointment = $shift->appointments->where('start','<', 9+$i)->where('end', '>', 9+$i)->first())
                                         @else
                                             <td height="90px" rowspan="1">
-                                                <button onclick="bookTime('{{9+$i}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
+                                                <button onclick="bookTime('{{9+$i}}', '{{date('Y-m-d', strtotime("+".$d." Days"))}}', '{{$shift->id}}', '{{$shift->doctor->name}}')"
                                                         class="btn btn-primary btn-block text-left hidden"
                                                         style="border-radius: 20px; height: 100%;">Захиалга
                                                     нэмэх<br><span>бол дарна уу</span></button>
@@ -238,8 +238,9 @@
 @endsection
 @section('footer')
     <script>
-        function bookTime(time, shift_id, doctor_name) {
+        function bookTime(time, date, shift_id, doctor_name) {
             document.getElementById("timeShow").innerHTML = time;
+            document.getElementById("dateShow").innerHTML = date;
             document.getElementById("timeInput").value = time;
             document.getElementById("nameShow").innerHTML = doctor_name;
             document.getElementById('shiftInput').value = shift_id;
