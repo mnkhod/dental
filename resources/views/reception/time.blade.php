@@ -94,7 +94,7 @@
     <div class="modal fade" id="deleteAppointment" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="" >
+                <form action="{{url('/reception/time/cancel')}}" >
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -104,7 +104,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             {{--sdfdsafsa--}}
-                        </button>git pull origin master --allow-unrelated-histories
+                        </button>
                     </div>
                     <div class="modal-body">
                         Үйлчлүүлэгч: <span id="da_user_name"></span><br>
@@ -183,6 +183,7 @@
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                                 <button class="btn btn-primary btn-block text-left"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                             </td>

@@ -91,4 +91,9 @@ class ReceptionTimeController extends Controller
     public function appointment_cancel(){
         return redirect('/reception/appointment');
     }
+    public function cancel(Request $request){
+        $id = $request['appointment_id'];
+        Appointment::find($id)->delete();
+        return redirect('/reception/time');
+    }
 }
