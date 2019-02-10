@@ -53,6 +53,7 @@ Route::get('/reception', 'ReceptionTimeController@index');
 Route::get('/reception/user', 'ReceptionUserController@index');
 Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
+Route::get('/reception/time/week/{id}', 'ReceptionTimeController@timeWeek');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
 Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
 
