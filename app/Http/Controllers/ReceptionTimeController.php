@@ -22,6 +22,9 @@ class ReceptionTimeController extends Controller
     }
     public function timeWeek($id) {
         $role = Role::find($id);
+        $roles = Role::where('role_id', 2);
+        $shifts = $role->shifts->where('date', '>=', date('Y-m-d'));
+        return view('reception.time_week', compact('role', 'roles', 'shifts'));
 
     }
 
