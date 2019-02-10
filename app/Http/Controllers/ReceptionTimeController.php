@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use App\Role;
 use App\Time;
+use App\User;
 use Illuminate\Http\Request;
 
 class ReceptionTimeController extends Controller
@@ -70,7 +71,12 @@ class ReceptionTimeController extends Controller
             }
         }
 
-        Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+        if($user =User::where('phone_number',$request['phone'])->first()){
+            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+        }
+        else{
+            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+        }
         return redirect('/reception/time');
     }
     public function appointment_index(){
@@ -96,4 +102,5 @@ class ReceptionTimeController extends Controller
         Appointment::find($id)->delete();
         return redirect('/reception/time');
     }
+
 }
