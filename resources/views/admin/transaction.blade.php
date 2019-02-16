@@ -69,8 +69,8 @@
                         <div class="card-body">
                             <form method="post" action="{{url('/admin/transaction/add')}}">
                                 @csrf
-                                <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн">
-                                <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар">
+                                <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн" autocomplete="off">
+                                <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар" autocomplete="off">
                                 <button class="btn btn-primary btn-block" type="submit">ЗАРЛАГА ОРУУЛАХ</button>
                             </form>
                         </div>
@@ -89,7 +89,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн">
+                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн" autocomplete="off">
                                 <button class="btn btn-primary btn-block" type="submit">ОРУУЛАХ</button>
                             </form>
                         </div>
@@ -100,8 +100,8 @@
                         <div class="card-body">
                             <form action="{{url('admin/transaction/income')}}" method="post">
                                 @csrf
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн">
-                                <input class="form-control mb-3" name="description" type="text" placeholder="Тайлбар">
+                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн" autocomplete="off">
+                                <input class="form-control mb-3" name="description" type="text" placeholder="Тайлбар" autocomplete="off">
                                 <button class="btn btn-primary btn-block">ОРЛОГО ОРУУЛАХ</button>
                             </form>
 

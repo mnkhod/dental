@@ -56,14 +56,14 @@
                                     @if($time)
                                         <td>
                                             <button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right"
-                                                                                                   style="font-size: 10px">8 хүн захиалсан</span>
+                                                                                                   style="font-size: 10px">{{$time->appointments->count()}} хүн захиалсан</span>
                                             </button>
                                         </td>
 
-                                    @elseif($shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
+                                    @elseif($time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
                                         <td>
                                             <button class="btn btn-primary">Өглөөний ээлж<br><span class="text-right"
-                                                                                                   style="font-size: 10px">8 хүн захиалсан</span>
+                                                                                                   style="font-size: 10px">{{$time->appointments->count()}} хүн захиалсан</span>
                                             </button>
                                         </td>
                                     @else
@@ -83,13 +83,13 @@
                                     @if($time)
                                         <td>
                                             <button class="btn btn-success">Оройний ээлж<br><span class="text-right"
-                                                                                                  style="font-size: 10px">8 хүн захиалсан</span>
+                                                                                                  style="font-size: 10px">{{$time->appointments->count()}} хүн захиалсан</span>
                                             </button>
                                         </td>
-                                    @elseif($shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
+                                    @elseif( $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 2)->first())
                                         <td>
                                             <button class="btn btn-success">Оройний ээлж<br><span class="text-right"
-                                                                                                  style="font-size: 10px">8 хүн захиалсан</span>
+                                                                                                  style="font-size: 10px">{{$time->appointments->count()}} хүн захиалсан</span>
                                             </button>
                                         </td>
                                     @else

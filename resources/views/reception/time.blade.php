@@ -119,23 +119,31 @@
             </div>
         </div>
     </div>
-    <div class="row mb-3">
-            <div class="col-md-3">
-                <form method="post" action="{{url('/admin/transaction/date')}}">
-                    @csrf
-                    <div class="input-group">
-                        <a href="#" onclick="$(this).closest('form').submit()">Хугацаа өөрчлөх</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input id="date" name="start_date" autocomplete="off" class="form-control datepicker" style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: gray; padding: 0px"
-                               placeholder="mm/dd/YYYY" value="">&nbsp;&nbsp;&nbsp;</span>
-                        <a href="#" onclick="$(this).closest('form').submit()">үзэх</a>
-                    </div>
-                </form>
-            </div>
-    </div>
     <div class="row">
         {{--<div class="col-md-12">--}}
             <div class="card">
                 <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <select class="form-control" onchange="location = this.value;">
+                                <option>Өдрөөр</option>
+                                <option value="{{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}">7 хоногоор</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <form method="post" action="{{url('/admin/transaction/date')}}">
+                                @csrf
+                                <div class="input-group">
+                                    <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
+                                           placeholder="mm/dd/YYYY" value="">
+                                    <button class="btn btn-primary" style="border-radius: 0px">ҮЗЭХ</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
 
 
                     <table class="table table-responsive text-center table-bordered">

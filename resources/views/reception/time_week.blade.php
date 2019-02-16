@@ -59,7 +59,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Цаг захиалах: <b><span id="nameShow"></span></b><br>
-                        <span id="dateShow"></span> <span id="timeShow"></span>:00</h5>
+                        <span id="dateShow"></span> <br><span id="timeShow"></span>:00</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,7 +98,10 @@
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Захиалга <span id="da_doctor_name"></span><br>
+                            Захиалга <span id="da_doctor_name"></span>
+                            <br>
+                            <span id="da_date"></span>
+                            <br>
                             <span id="da_time"></span>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -125,6 +128,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="row mb-4">
+                    <div class="col-md-3">
+                        <select class="form-control" onchange="location = this.value;">
+                            <option>7 хоногоор</option>
+                            <option value="{{url('reception/time/')}}">Өдрөөр</option>
+
+                        </select>
+                    </div>
                     <div class="col-md-3">
                         <select class="form-control" onchange="location = this.value;">
                             <option>{{$role->staff->name}}</option>
@@ -157,7 +167,7 @@
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                                 <button class="btn btn-primary btn-block text-left"
-                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$shift->date}}', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span>
                                                 </button>
@@ -247,10 +257,11 @@
             $("#exampleModalRight").modal();
         }
 
-        function deleteAppointment(name, phone, time, appointment_id, doctor_name) {
+        function deleteAppointment(name, phone, time, date, appointment_id, doctor_name) {
             document.getElementById("da_user_name").innerHTML = name;
             document.getElementById("da_user_phone").innerHTML = phone;
             document.getElementById("da_time").innerHTML = time;
+            document.getElementById("da_date").innerHTML = date;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
             $("#deleteAppointment").modal();

@@ -15,28 +15,28 @@
     @endsection
 @section('menu')
     <li>
-        <a href="{{url('/home')}}">
+        <a href="{{url('/admin')}}">
             <i class="iconsmind-Digital-Drawing"></i>
             <span>Самбар</span>
         </a>
     </li>
-    <li>
-        <a href="{{url('/workers')}}">
+    <li class="active">
+        <a href="{{url('/admin/add_staff')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
-    <li class="active">
-        <a href="{{url('/time')}}">
+    <li>
+        <a href="{{url('/admin/time')}}">
             <i class="iconsmind-Alarm"></i> Цаг
         </a>
     </li>
     <li>
-        <a href="{{url('/material')}}">
+        <a href="{{url('/admin/product')}}">
             <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li>
-        <a href="{{url('/income')}}">
+        <a href="{{url('/admin/transaction')}}">
             <i class="iconsmind-Space-Needle"></i> Санхүү
         </a>
     </li>
@@ -52,14 +52,16 @@
                 <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="inputAddress2">Овог</label>
                                 <input name="last_name" type="text" class="form-control" id="lname" placeholder="Овог">
                                 <span id="lname_msg" style="color:red"></span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="inputAddress2">Нэр</label>
                                 <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр">
@@ -67,8 +69,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="form-row">
                         <div class="col-md-6">
                             <label>Хүйс сонгох</label>
@@ -120,13 +120,12 @@
                     <br><br>
                     <h5 class="mb-12">Зураг оруулах</h5>
 
-                    <label class="btn btn-outline-primary btn-upload" for="inputImage" title="Upload image file" >
-                        <input type="file" class="sr-only" id="Image" name="photo" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
-                        Зургаа сонгох
-                    </label>
+                    <input type="file" name="photo">
+
 
                     <div class="form-group row mb-0">
                         <div class="col-sm-10">
+                            <br>
                             <br>
                             <button onclick="validate()" type="button" class="btn btn-primary mb-0" >Ажилтан нэмэх</button>
 

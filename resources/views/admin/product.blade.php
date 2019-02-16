@@ -52,7 +52,7 @@
                         @csrf
                         <div class=" mb-2 mr-sm-2">
                             <input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                                   placeholder="Барааны нэр">
+                                   placeholder="Барааны нэр" autocomplete="off">
                         </div>
                         <button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
                             Шинэ бараа нэмэх

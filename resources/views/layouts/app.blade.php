@@ -50,7 +50,7 @@
         <div class="search">
             <form action="{{url('/reception/search')}}" method="get" role="search">
                 @csrf
-                <input placeholder="Хайх..." name="key">
+                <input placeholder="Хайх..." name="key" autocomplete="off">
                 <span class="search-icon">
                     <i class="simple-icon-magnifier"></i>
                 </span>

@@ -62,6 +62,7 @@ Route::post('/reception/appointment/edit/{id}','ReceptionTimeController@appointm
 Route::get('/reception/appointment/cancel/{id}','ReceptionTimeController@appointment_cancel');
 
 Route::get('/doctor','DoctorController@index');
+Route::get('/doctor/treatment','DoctorTreatmentController@index');
 
 Route::get('/test', function() {
     return view('test');
