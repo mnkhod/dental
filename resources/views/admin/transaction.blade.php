@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('header')
 
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}"/>
@@ -176,7 +176,7 @@
                     </form>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a href="#" onclick="exportTableToExcel('myTable', 'tselmeg')"><i class="iconsmind-File-Excel"></i> Excel-ээр татах</a>
+                    <a href="#" onclick="write_headers_to_excel()"><i class="iconsmind-File-Excel"></i> Excel-ээр татах</a>
                 </div>
             </div>
 
@@ -218,7 +218,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
 
-                            <table class="data-table">
+                            <table class="data-table" id ="tblData">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -252,7 +252,109 @@
     </div><!-- row end-->
 @endsection
 @section('footer')
+    <script src="https://unpkg.com/tableexport@5.2.0/dist/js/tableexport.min.js"></script>
+    <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.1/xlsx.core.min.js"></script>
+    <script charset="UTF-8" type="text/javascript">
+        TableExport(document.getElementsByTagName("table"));
+    /*
+        function Export(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob( blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                // Setting the file name
+                downloadLink.download = filename;
+
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+    */
+        // var t = document.getElementById('tblData')
+        // function downloadCSV(csv, filename) {
+        //     var csvFile;
+        //     var downloadLink;
+        //
+        //     // CSV file
+        //     csvFile = new Blob([csv], {type: "text/csv"});
+        //
+        //     // Download link
+        //     downloadLink = document.createElement("a");
+        //
+        //     // File name
+        //     downloadLink.download = filename;
+        //
+        //     // Create a link to the file
+        //     downloadLink.href = window.URL.createObjectURL(csvFile);
+        //
+        //     // Hide download link
+        //     downloadLink.style.display = "none";
+        //
+        //     // Add the link to DOM
+        //     document.body.appendChild(downloadLink);
+        //
+        //     // Click download link
+        //     downloadLink.click();
+        // }
+        //
+        // function exportTableToCSV(filename) {
+        //     var csv = [];
+        //     var rows = document.querySelectorAll("table tr");
+        //
+        //     for (var i = 0; i < rows.length; i++) {
+        //         var row = [], cols = rows[i].querySelectorAll("td, th");
+        //
+        //         for (var j = 0; j < cols.length; j++)
+        //             row.push(cols[j].innerText);
+        //
+        //         csv.push(row.join(","));
+        //     }
+        //
+        //     // Download CSV file
+        //     downloadCSV(csv.join("\n"), filename)}
+        function write_headers_to_excel()
+        {
+            str="";
+
+            var myTableHead = document.getElementById('tblData');
+            var rowCount = myTableHead.rows.length;
+            var colCount = myTableHead.getElementsByTagName("tr")[0].getElementsByTagName("th").length;
+
+            var ExcelApp = new ActiveXObject("Excel.Application");
+            var ExcelSheet = new ActiveXObject("Excel.Sheet");
+            ExcelSheet.Application.Visible = true;
+
+            for(var i=0; i<rowCount; i++)
+            {
+                for(var j=0; j<colCount; j++)
+                {
+                    str= myTableHead.getElementsByTagName("tr")[i].getElementsByTagName("th")[j].innerHTML;
+                    ExcelSheet.ActiveSheet.Cells(i+1,j+1).Value = str;
+                }
+            }
+
+        }
+
+    </script>
 
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
     <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>

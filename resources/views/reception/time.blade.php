@@ -107,7 +107,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Үйлчлүүлэгч: <span id="da_user_name"></span><br>
+                        Үйлчлүүлэгч: <a id="da_user_link"><span id="da_user_name"></span></a><br>
                         Холбогдох утас: <span id="da_user_phone"></span><br>
                         <input type="hidden" name="appointment_id" id="da_id">
                     </div>
@@ -233,9 +233,11 @@
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
+            document.getElementById("da_user_link").setAttribute('href', "https://www.google.com"+"/"+"1");
             $("#deleteAppointment").modal();
         }
     </script>
+
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
     <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
     <script src="{{asset('js/vendor/moment.min.js')}}"></script>

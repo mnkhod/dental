@@ -49,7 +49,7 @@
             <div class="card-body">
                 <h5 class="mb-4">Шинэ ажилтан нэмэх</h5>
 
-                <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
+                <form id="form" action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-12">
