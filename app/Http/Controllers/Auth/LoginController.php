@@ -33,7 +33,9 @@ class LoginController extends Controller
                     return redirect('/reception');
                 } elseif (Auth::user()->role->role_id == 2) {
                     return redirect('/doctor');
-                } else {
+                } elseif (Auth::user()->role->role_id == 1) {
+                    return redirect('/reception');
+                }  else {
                     return redirect('/home');
                 }
             }

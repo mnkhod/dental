@@ -27,8 +27,7 @@ class ReceptionUserController extends Controller
             ->orWhere('phone_number', 'like', '%'.$input.'%')
             ->orWhere('name', 'like', '%'.$input.'%')
             ->orWhere('last_name', 'like', '%'.$input.'%')
-            ->limit('25')
-        ;
+            ->limit('25');
 
         return view('reception.search', compact('results', 'input'));
 
