@@ -133,7 +133,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
+                                <div class="col-md-5 text-center"><i class="iconsmind-Business-Man text-primary" style="font-size: 50px;"></i></div>
                                 <div class="col-md-7 text-right"><h4>Ашигласан</h4>350</div>
                             </div>
                         </div>
