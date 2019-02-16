@@ -47,6 +47,27 @@
 @section('content')
     <div class="row">
         <div class="col-md-9">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h2>Цэлмэг</h2>
+                            18 настай
+                        </div>
+                        <div class="col-md-7">
+                            <b>Анхаарах зүйлс:</b> эгвэл таны эргэлзээг тайлах судалгааг эрдэмтэд хийж, судалгааны үр дүнгээ мэргэжлийн сэтгүүлд нийтэлжээ. Тодруулбал, эрдэмтэд өглөөний цай уух
+                        </div>
+                        <div class="col-md-2 text-center text-secondary">
+                            <a href="#">
+                                <b class="text-primary">
+                                    <i class="simple-icon-book-open" style="font-size: 30px"></i><br>Эмчилгээний түүх
+                                </b>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body mb-2">
                     <table class="table table-borderless table-responsive text-center" style="width: 100%">
