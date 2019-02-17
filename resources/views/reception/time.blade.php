@@ -112,6 +112,7 @@
                         <input type="hidden" name="appointment_id" id="da_id">
                     </div>
                     <div class="modal-footer">
+                        <input name="code" autocomplete="off" type="number" class="form-control" placeholder="Нууц үг">
                         <button type="submit" class="btn btn-primary">Захиалга цуцлах</button>
                     </div>
                 </form>

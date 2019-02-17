@@ -128,7 +128,6 @@
                             <br>
                             <br>
                             <button onclick="validate()" type="button" class="btn btn-primary mb-0" >Ажилтан нэмэх</button>
-
                         </div>
                     </div>
                 </form>
