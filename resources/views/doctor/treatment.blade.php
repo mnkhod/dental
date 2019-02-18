@@ -183,10 +183,14 @@
         var all = document.getElementsByClassName(toothClassList[1]);
         var mult = document.getElementsByClassName(toothClassList[2]);
 
-        for (i=0;i<mult.length;i++){
-            single[i].style.display = "none";
-            mult[i].style.display = "none";
+        for (i=0;i<all.length;i++){
             all[i].style.display = "block";
+        }
+        for(i=0;i<single.length;i++){
+            single[i].style.display = "none";
+        }
+        for(i=0;i<mult.length;i++){
+            mult[i].style.display = "none";
         }
 
         function changeStyle(ruby) {
@@ -213,40 +217,49 @@
                 document.getElementById(i).setAttribute("class", "tooth");
             }
             for (var i = 1; i <= 32; i++) {
-                for (var count = 0; count<tooths.length; count++) {
+                for (var count = 0; count < tooths.length; count++) {
                     if (tooths[count] === i) {
                         document.getElementById(i).classList.remove("tooth");
                     }
                 }
+            }
             //ENDING
             //change style gesen function dotor bichsen baigaa bolno
             // START
-            if (tooths.length === 0){
-                for (var i = 1; i <= 32; i++) {
-                    document.getElementById(i).classList.remove("tooth");
-                }
-                for (i=0;all.length;i++){
-                    single[i].style.display = "none";
-                    mult[i].style.display = "none";
-                    if(tooths.length === 0){
+                if (tooths.length === 0){
+                    for (i=0;i<all.length;i++){
                         all[i].style.display = "block";
-                    }  else {
+                    }
+                    for(i=0;i<single.length;i++){
+                        single[i].style.display = "none";
+                    }
+                    for(i=0;i<mult.length;i++){
+                        mult[i].style.display = "none";
+                    }
+                    for (var i = 1; i <= 32; i++) {
+                                document.getElementById(i).classList.remove("tooth");
+                    }
+                } else if(tooths.length === 1){
+                    for (i=0;i<all.length;i++){
                         all[i].style.display = "none";
                     }
+                    for(i=0;i<single.length;i++){
+                        single[i].style.display = "block";
+                    }
+                    for(i=0;i<mult.length;i++){
+                        mult[i].style.display = "none";
+                    }
+                } else {
+                    for (i=0;i<all.length;i++){
+                        all[i].style.display = "single";
+                    }
+                    for(i=0;i<single.length;i++){
+                        single[i].style.display = "none";
+                    }
+                    for(i=0;i<mult.length;i++){
+                        mult[i].style.display = "block";
+                    }
                 }
-            } else if(tooths.length === 1) {
-                for (i=0;i<single.length;i++){
-                    single[i].style.display = "block";
-                    mult[i].style.display = "none";
-                    all[i].style.display = "none";
-                }
-            } else {
-                for (i=0;i<mult.length;i++){
-                    single[i].style.display = "none";
-                    mult[i].style.display = "block";
-                    all[i].style.display = "none";
-                }
-            }
 
         }
 
