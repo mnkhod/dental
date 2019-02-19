@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTreatmentsTable extends Migration
+class CreatePromotionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateUserTreatmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_treatments', function (Blueprint $table) {
+        Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('checkin_id');
-            $table->integer('treatment_id');
-            $table->integer('tooth_id');
+            $table->string('promotion_code');
+            $table->string('promotion_name');
+            $table->integer('percentage');
+            $table->date('promotion_end_date');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateUserTreatmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_treatments');
+        Schema::dropIfExists('promotions');
     }
 }

@@ -136,7 +136,6 @@
                                     @endif
                                 @endfor
                             </tr>
-
                             <tr>
                                 @for($i = 0; $i < 7; $i++)
                                     <?php $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 1)->first(); ?>

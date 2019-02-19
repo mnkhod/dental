@@ -45,36 +45,36 @@
             <div class="modal-content">
 
                 <form method="post" action="{{url('/admin/promotion/add')}}">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Урамшуулал нэмэх</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Урамшууллын код</label>
-                        <input type="text" class="form-control" name="promotion_code">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Урамшуулал нэмэх</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label>Урамшууллын нэр</label>
-                        <input type="text" class="form-control" name="promotion_name">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Урамшууллын код</label>
+                            <input type="text" class="form-control" name="promotion_code">
+                        </div>
+                        <div class="form-group">
+                            <label>Урамшууллын нэр</label>
+                            <input type="text" class="form-control" name="promotion_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Хөнгөлөлтийн хувь</label>
+                            <input type="number" class="form-control" name="percentage">
+                        </div>
+                        <div class="form-group">
+                            <label>Дуусах хугацаа</label>
+                            <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
+                                   placeholder="Эхлэл" value="{{date('m/d/Y')}}">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Хөнгөлөлтийн хувь</label>
-                        <input type="number" class="form-control" name="percentage">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Болих</button>
+                        <button type="submit" class="btn btn-primary">Нэмэх</button>
                     </div>
-                    <div class="form-group">
-                        <label>Дуусах хугацаа</label>
-                        <input id="date" name="promotion_end_date" autocomplete="off" class="form-control datepicker"
-                               placeholder="Эхлэл" value="{{date('m/d/Y')}}">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Болих</button>
-                    <button type="submit" class="btn btn-primary">Нэмэх</button>
-                </div>
                 </form>
             </div>
         </div>
@@ -101,13 +101,13 @@
                         </tr>
                         <?php $id =1?>
                         @foreach($promotions as $promotion)
-                        <tr>
-                            <td>{{$id}}</td>
-                            <td><a href="{{url('/admin/promotion_check/'.$promotion->id)}}">{{$promotion->promotion_code}}</a></td>
-                            <td>{{$promotion->promotion_name}}</td>
-                            <td>{{$promotion->percentage}}%</td>
-                            <td>{{$promotion->promotion_end_date}}</td>
-                        </tr>
+                            <tr>
+                                <td>{{$id}}</td>
+                                <td><a href="{{url('/admin/promotion_check/'.$promotion->id)}}">{{$promotion->promotion_code}}</a></td>
+                                <td>{{$promotion->promotion_name}}</td>
+                                <td>{{$promotion->percentage}}%</td>
+                                <td>{{$promotion->promotion_end_date}}</td>
+                            </tr>
                             <?php $id = $id +1?>
                         @endforeach
                     </table>
@@ -121,11 +121,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <h4><b>{{$last_promotion->promotion_name}}</b></h4> /{{$last_promotion->promotion_code}}/
+                                    <h4><b>{{$prom->promotion_name}}</b></h4> /{{$prom->promotion_code}}/
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <h1 style="padding: 0px; margin-bottom: 0px"><b>{{$last_promotion->percentage}}%</b></h1><br>
-                                    {{$last_promotion->promotion_end_date}}
+                                    <h1 style="padding: 0px; margin-bottom: 0px"><b>{{$prom->percentage}}%</b></h1><br>
+                                    {{$prom->promotion_end_date}}
                                 </div>
                             </div>
                         </div>

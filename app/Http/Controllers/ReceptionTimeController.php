@@ -101,9 +101,14 @@ class ReceptionTimeController extends Controller
         return redirect('/reception/appointment');
     }
     public function cancel(Request $request){
-        $id = $request['appointment_id'];
-        Appointment::find($id)->delete();
-        return back();
+        if($request['code'] == '12345678'){
+            $id = $request['appointment_id'];
+            Appointment::find($id)->delete();
+            return back();
+        }
+        else{
+            return back();
+        }
     }
 
 }

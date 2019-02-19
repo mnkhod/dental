@@ -12,6 +12,6 @@ class UserTreatments extends Model
         return $this->hasMany('App\Treatments', 'id', 'treatment_id');
     }
     public function user(){
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\CheckIn','id','checkin_id');
     }
 }

@@ -134,6 +134,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-light">Захиалга цуцлах</button>
+                        <input name="code" autocomplete="off" type="number" class="form-control" placeholder="Нууц үг">
+                        <button type="submit" class="btn btn-primary">Захиалга цуцлах</button>
                     </div>
                 </form>
 

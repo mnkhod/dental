@@ -32,4 +32,9 @@ class AdminTimeController extends Controller
         }
         return redirect('admin/time');
     }
+    public function cancel(Request $request){
+        $id = $request['time_id'];
+        Time::find($id)->delete();
+        return redirect('/admin/time');
+    }
 }

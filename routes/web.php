@@ -27,6 +27,9 @@ Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
 
 Route::get('/admin/promotion','AdminPromotionController@index');
+Route::post('/admin/promotion/add','AdminPromotionController@store');
+Route::get('/admin/promotion_check/{id}','AdminPromotionController@promotion_check');
+
 Route::get('/admin/product','AdminProductController@product');
 Route::get('/admin/product/{id}','AdminProductController@show');
 Route::post('/admin/add_product','AdminProductController@add_product');
@@ -43,11 +46,12 @@ Route::post('/admin/transaction/salary', 'AdminTransactionController@salary');
 Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
+
 Route::get('/admin/time', 'AdminTimeController@index');
+Route::get('/admin/time/cancel','AdminTimeController@cancel');
 Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
 Route::get('/admin', 'AdminController@dashboard');
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
-
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 
 Route::get('/reception', 'ReceptionTimeController@index');
@@ -57,6 +61,11 @@ Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::get('/reception/time/week/{id}', 'ReceptionTimeController@timeWeek');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
 Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
+Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
+Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
+Route::get('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
+Route::post('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
+
 
 Route::get('/reception/appointment','ReceptionTimeController@appointment_index');
 Route::post('/reception/appointment/edit/{id}','ReceptionTimeController@appointment_edit');
