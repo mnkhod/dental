@@ -53,7 +53,7 @@
     </li>
 @endsection
 @section('content')
-    <div class="modal fade modal-right" id="exampleModalRight" tabindex="-1" role="dialog"
+    <div class="modal fade" id="exampleModalRight" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalRight" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -67,20 +67,28 @@
                 <form action="{{url('reception/time/add')}}" method="post">
                     <div class="modal-body">
                         @csrf
-                        <div class="form-group">
-                            <label>Нэр</label>
-                            <input name="name" autocomplete="off" type="text" class="form-control" placeholder="">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
+                            <div class="col-sm-8">
+                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder="">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Утасны дугаар</label>
-                            <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
+                            <div class="col-sm-8">
+                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
+                            </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа (цагаар):</label>
+                            <div class="col-sm-8">
+                                <input name="hours" autocomplete="off" type="number" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+
                         <input type="hidden" name="time" id="timeInput">
                         <input type="hidden" name="shift_id" id="shiftInput">
-                        <div class="form-group">
-                            <label>Шаардагдах хугацаа (цагаар)</label>
-                            <input name="hours" autocomplete="off" type="number" class="form-control" placeholder="">
-                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -98,8 +106,8 @@
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Захиалга <span id="da_doctor_name"></span><br>
-                            <span id="da_time"></span>
+                            Захиалгын мэдээллэл <br>
+
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -107,12 +115,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        Үйлчлүүлэгч: <a id="da_user_link"><span id="da_user_name"></span></a><br>
-                        Холбогдох утас: <span id="da_user_phone"></span><br>
+                        <h5><span id="da_doctor_name"></span></h5>
+                        <span id="da_date"></span>, <span id="da_time"></span>
+                        <br>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-5" style="color: grey">Үйлчлүүлэгч:</div>
+                            <div class="col-md-7"><a id="da_user_link"><span id="da_user_name"></span></a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5" style="color: grey">Холбогдох утас:</div>
+                            <div class="col-md-7"><span id="da_user_phone"></span></div>
+                        </div>
+
+
                         <input type="hidden" name="appointment_id" id="da_id">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Захиалга цуцлах</button>
+                        <button type="submit" class="btn btn-light">Захиалга цуцлах</button>
                     </div>
                 </form>
 
@@ -164,7 +185,7 @@
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                                 <button class="btn btn-primary btn-block text-left"
-                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                             </td>
@@ -191,7 +212,7 @@
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                                 <button class="btn btn-primary btn-block text-left"
-                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                             </td>
@@ -227,9 +248,10 @@
             document.getElementById('shiftInput').value = shift_id;
             $("#exampleModalRight").modal();
         }
-        function deleteAppointment(name, phone, time, appointment_id, doctor_name) {
+        function deleteAppointment(name, phone, date, time, appointment_id, doctor_name) {
             document.getElementById("da_user_name").innerHTML = name;
             document.getElementById("da_user_phone").innerHTML = phone;
+            document.getElementById("da_date").innerHTML = date;
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;

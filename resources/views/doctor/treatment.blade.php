@@ -70,108 +70,131 @@
             </div>
             <div class="card">
                 <div class="card-body mb-2">
-                    <table class="table table-borderless table-responsive text-center" style="width: 100%">
-                        <tr>
-                            @for($i = 1; $i<=16; $i++)
-                                <td style="color: grey">
-                                    {{$i}}
-                                </td>
-                            @endfor
-                        </tr>
-                        <tr>
-                            @for($i = 1; $i<=16; $i++)
-                                <td>
-                                    <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                         onclick="changeStyle({{$i}})">
-                                </td>
-                            @endfor
-                        </tr>
-                        <tr>
-                            @for($i = 17; $i<=32; $i++)
-                                <td>
-                                    <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                         onclick="changeStyle({{$i}})">
-                                </td>
-                            @endfor
-                        </tr>
-                        <tr>
-                            @for($i = 32; $i>=17; $i=$i-1)
-                                <td style="color: grey">
-                                    {{$i}}
-                                </td>
-                            @endfor
-                        </tr>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table text-center">
+                            <tr>
+                                @for($i = 1; $i<=16; $i++)
+                                    <td style="color: grey">
+                                        {{$i}}
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr>
+                                @for($i = 1; $i<=16; $i++)
+                                    <td>
+                                        <img  id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                              onclick="changeStyle({{$i}})">
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr>
+                                @for($i = 32; $i>16; $i--)
+                                    <td>
+                                        <img  id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                              onclick="changeStyle({{$i}})">
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr>
+                                @for($i = 32; $i>=17; $i=$i-1)
+                                    <td style="color: grey">
+                                        {{$i}}
+                                    </td>
+                                @endfor
+                            </tr>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 
         </div>
         <div class="col-md-3">
+
             <div class="card">
-                <div class="card-body">
-                    <button class="btn btn-secondary btn-block single">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/teeth.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Ломбо<br> 3 төрөлтэй
-                            </div>
-                        </div>
-                    </button>
+                <ul class="nav nav-tabs nav-justified ml-0 mb-2" role="tablist">
 
-                    <button class="btn btn-secondary btn-block multiple">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/device.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Аппарат<br> 3 төрөлтэй
-                            </div>
-                        </div>
-                    </button>
-                    <button class="btn btn-secondary btn-block all">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/teeth.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Өнгөлгөө<br> 40000₮
-                            </div>
-                        </div>
-                    </button>
-                    <button class="btn btn-secondary btn-block all">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/teeth.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Чулуу цэвэрлэгээ<br> 40000₮
-                            </div>
-                        </div>
-                    </button>
-                    <button class="btn btn-secondary btn-block all">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/teeth.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Фторт түрхлэг<br> 40000₮
-                            </div>
-                        </div>
-                    </button>
-                    <button class="btn btn-secondary btn-block single">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <img src="{{url('img/toothImages/svg/teeth.svg')}}" width="40px">
-                            </div>
-                            <div class="col-md-8 text-left">
-                                Хамгаалалт<br> 40000₮
-                            </div>
-                        </div>
-                    </button>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab" aria-controls="first" aria-selected="true">Эмчилгээ</a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Түүх</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-block single">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/teeth.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-12 text-left">
+                                        Ломбо<br> 3 төрөлтэй
+                                    </div>
+                                </div>
+                            </button>
+
+                            <button class="btn btn-secondary btn-block multiple">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/device.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-9 text-left">
+                                        Аппарат<br> 3 төрөлтэй
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="btn btn-secondary btn-block all">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/teeth.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-12 text-left">
+                                        Өнгөлгөө<br> 40000₮
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="btn btn-secondary btn-block all">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/teeth.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-12 text-left">
+                                        Чулуу цэвэрлэгээ<br> 40000₮
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="btn btn-secondary btn-block all">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/teeth.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-12 text-left">
+                                        Фторт түрхлэг<br> 40000₮
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="btn btn-secondary btn-block single">
+                                <div class="row">
+                                    {{--<div class="col-md-3 text-center">--}}
+                                    {{--<img src="{{url('img/toothImages/svg/teeth.svg')}}" width="30px">--}}
+                                    {{--</div>--}}
+                                    <div class="col-md-12 text-left">
+                                        Хамгаалалт<br> 40000₮
+                                    </div>
+                                </div>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="second" role="tabpane2" aria-labelledby="second-tab">
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

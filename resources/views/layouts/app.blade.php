@@ -61,7 +61,7 @@
 
 
     <a class="navbar-logo">
-        <span class="d-none d-xs-block"><img src="{{asset('img/logo-black.png')}}"></span>
+        <span class="d-none d-xs-block"><img style="width: 100%; height: auto;max-width: 100px;" src="{{asset('img/logo-black.png')}}"></span>
         <span class="logo-mobile d-block d-xs-none"></span>
     </a>
 
