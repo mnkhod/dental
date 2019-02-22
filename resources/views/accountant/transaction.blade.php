@@ -22,29 +22,28 @@
 @endsection
 @section('menu')
     <li>
-        <a href="{{url('/admin')}}">
-            <i class="iconsmind-Digital-Drawing"></i>
-            <span>Самбар</span>
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/add_staff')}}">
+        <a href="{{url('/accountant/staffs')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
     </li>
     <li>
-        <a href="{{url('/admin/time')}}">
-            <i class="iconsmind-Alarm"></i> Цаг
+        <a href="{{url('/accountant/shifts')}}">
+            <i class="iconsmind-Alarm"></i> Ээлж
         </a>
     </li>
     <li>
-        <a href="{{url('/admin/product')}}">
+        <a href="{{url('/accountant/products')}}">
             <i class="iconsmind-Medicine-2"></i> Материал
         </a>
     </li>
     <li class="active">
-        <a href="{{url('/admin/transaction')}}">
-            <i class="iconsmind-Space-Needle"></i> Санхүү
+        <a href="{{url('/accountant/transactions')}}">
+            <i class="iconsmind-Calculator-3"></i> Санхүү
+        </a>
+    </li>
+    <li>
+        <a href="{{url('/accountant/hospital')}}">
+            <i class="iconsmind-Betvibes"></i> Эмнэлэг
         </a>
     </li>
 @endsection
@@ -73,7 +72,7 @@
                 <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <form method="post" action="{{url('/admin/transaction/add')}}">
+                            <form method="post" action="{{url('/accountant/transactions/add')}}">
                                 @csrf
                                 <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн" autocomplete="off">
                                 <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар" autocomplete="off">
@@ -85,7 +84,7 @@
                 <div class="tab-pane" id="second" role="tabpane2" aria-labelledby="second-tab">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <form method="post" action="{{url('admin/transaction/salary')}}">
+                            <form method="post" action="{{url('/accountant/transactions/salary')}}">
                                 @csrf
                                 <select class="form-control mb-3" name="staff">
                                     @foreach($roles as $role)
@@ -104,7 +103,7 @@
                 <div class="tab-pane" id="third" role="tabpane3" aria-labelledby="third-tab">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <form action="{{url('admin/transaction/income')}}" method="post">
+                            <form action="{{url('accountant/transactions/income')}}" method="post">
                                 @csrf
                                 <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн" autocomplete="off">
                                 <input class="form-control mb-3" name="description" type="text" placeholder="Тайлбар" autocomplete="off">
@@ -126,21 +125,21 @@
                     <?php $salary = 0?>
                     <?php $other = 0?>
                     @foreach($transactions as $transaction)
-                            <?php $i++;?>
-                            <?php $sum = $sum + $transaction->price;
-                            if ($transaction->price > 0) {
-                                $income = $income + $transaction->price;
+                        <?php $i++;?>
+                        <?php $sum = $sum + $transaction->price;
+                        if ($transaction->price > 0) {
+                            $income = $income + $transaction->price;
+                        } else {
+                            $outcome = $outcome + $transaction->price;
+                            if ($transaction->type == 2) {
+                                $material = $material + $transaction->price;
+                            } elseif($transaction->type == 1) {
+                                $salary = $salary + $transaction->price;
                             } else {
-                                $outcome = $outcome + $transaction->price;
-                                if ($transaction->type == 2) {
-                                    $material = $material + $transaction->price;
-                                } elseif($transaction->type == 1) {
-                                    $salary = $salary + $transaction->price;
-                                } else {
-                                    $other = $other + $transaction->price;
-                                }
+                                $other = $other + $transaction->price;
                             }
-                            ?>
+                        }
+                        ?>
                     @endforeach
 
                     <div class="ct-chart ct-golden-section" id="chart1"></div>
@@ -169,7 +168,7 @@
         <div class="col-md-9">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <form method="post" action="{{url('/admin/transaction/date')}}">
+                    <form method="post" action="{{url('/accountant/transactions/date')}}">
                         @csrf
                         <div class="input-group">
                             <a href="#" onclick="$(this).closest('form').submit()" style="color: #8f8f8f">Хугацаа өөрчлөн харах</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

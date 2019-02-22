@@ -23,6 +23,13 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', 'AdminController@dashboard');
+Route::get('/admin/time', 'AdminTimeController@index');
+Route::get('/admin/time/cancel','AdminTimeController@cancel');
+Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
+Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
+Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
 
@@ -38,7 +45,6 @@ Route::post('/admin/decrease_product','AdminProductController@decrease_product')
 Route::get('/admin/delete_product/{id}','AdminProductController@delete_product');
 
 
-Route::post('/admin/add_transaction','AdminController@add_transaction');
 Route::post('/admin/transaction/date', 'AdminTransactionController@date');
 Route::get('/admin/transaction/{start_date}/{end_date}', 'AdminTransactionController@search');
 Route::get('/admin/transaction', 'AdminTransactionController@index');
@@ -47,12 +53,26 @@ Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 
-Route::get('/admin/time', 'AdminTimeController@index');
-Route::get('/admin/time/cancel','AdminTimeController@cancel');
-Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
-Route::get('/admin', 'AdminController@dashboard');
-Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
-Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
+Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
+Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
+Route::get('/accountant/transactions', 'AccountantTransactionController@index');
+Route::post('/accountant/transactions/salary', 'AccountantTransactionController@salary');
+Route::post('/accountant/transactions/add', 'AccountantTransactionController@store');
+Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
+
+Route::get('/accountant/shifts', 'AccountantShiftController@index');
+Route::get('/accountant/shifts/cancel','AccountantShiftController@cancel');
+Route::get('/accountant/shifts/{i}/{doctor_staff_id}/{shift_id}','AccountantShiftController@store');
+
+Route::get('/accountant/products','AccountantProductController@product');
+Route::get('/accountant/products/{id}','AccountantProductController@show');
+Route::post('/accountant/add_product','AccountantProductController@add_product');
+Route::post('/accountant/edit_product','AccountantProductController@edit_product');
+Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
+Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
+
+
+
 
 Route::get('/reception', 'ReceptionTimeController@index');
 Route::get('/reception/user', 'ReceptionUserController@index');

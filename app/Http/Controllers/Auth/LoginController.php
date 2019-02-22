@@ -34,7 +34,7 @@ class LoginController extends Controller
                 } elseif (Auth::user()->role->role_id == 2) {
                     return redirect('/doctor');
                 } elseif (Auth::user()->role->role_id == 4) {
-                    return redirect('/admin');
+                    return redirect('/accountant');
                 }  else {
                     return redirect('/home');
                 }
