@@ -25,6 +25,11 @@
 @endsection
 @section('menu')
     <li>
+        <a href="{{url('/accountant/transactions')}}">
+            <i class="iconsmind-Calculator-3"></i> Санхүү
+        </a>
+    </li>
+    <li>
         <a href="{{url('/accountant/staffs')}}">
             <i class="iconsmind-Administrator"></i> Ажилчид
         </a>
@@ -37,11 +42,6 @@
     <li>
         <a href="{{url('/accountant/products')}}">
             <i class="iconsmind-Medicine-2"></i> Материал
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/accountant/transactions')}}">
-            <i class="iconsmind-Calculator-3"></i> Санхүү
         </a>
     </li>
     <li>

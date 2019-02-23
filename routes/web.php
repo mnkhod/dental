@@ -71,6 +71,8 @@ Route::post('/accountant/edit_product','AccountantProductController@edit_product
 Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
 
+Route::get('/accountant/staffs', 'AccountantStaffController@index');
+
 
 
 
