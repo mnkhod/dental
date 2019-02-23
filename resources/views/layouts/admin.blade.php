@@ -49,31 +49,17 @@
 
         {{--Search box--}}
 
-        {{--@if(\Illuminate\Support\Facades\Auth::user()->role == null)--}}
 
-        {{--@elseif(\Illuminate\Support\Facades\Auth::user()->role->role_id == 1)--}}
-        {{--<div class="search">--}}
-            {{--<form action="{{url('/reception/search')}}" method="get" role="search">--}}
-                {{--@csrf--}}
-                {{--<input placeholder="Хайх..." name="key" autocomplete="off">--}}
-                {{--<span class="search-icon">--}}
-                    {{--<i class="simple-icon-magnifier"></i>--}}
-                {{--</span>--}}
-            {{--</form>--}}
-        {{--</div>--}}
-        {{--@elseif(\Illuminate\Support\Facades\Auth::user()->role->role_id == 0)--}}
-            {{--<div class="search">--}}
-                {{--<form action="{{url('/admin/search')}}" method="get" role="search">--}}
-                    {{--@csrf--}}
-                    {{--<input placeholder="Хайх..." name="key" autocomplete="off">--}}
-                    {{--<span class="search-icon">--}}
-                    {{--<i class="simple-icon-magnifier"></i>--}}
-                {{--</span>--}}
-                {{--</form>--}}
-            {{--</div>--}}
-        {{--@else--}}
+            <div class="search">
+                <form action="{{url('/admin/search')}}" method="get" role="search">
+                    @csrf
+                    <input placeholder="Хайх..." name="key" autocomplete="off">
+                    <span class="search-icon">
+                    <i class="simple-icon-magnifier"></i>
+                </span>
+                </form>
+            </div>
 
-        {{--@endif--}}
     </div>
 
 
@@ -103,7 +89,32 @@
     <div class="main-menu">
         <div class="scroll">
             <ul class="list-unstyled">
-                @yield('menu')
+                <li id="admin">
+                    <a href="{{url('/admin')}}">
+                        <i class="iconsmind-Digital-Drawing"></i>
+                        <span>Самбар</span>
+                    </a>
+                </li>
+                <li id="adminStaff">
+                    <a href="{{url('/admin/add_staff')}}">
+                        <i class="iconsmind-Administrator"></i> Ажилчид
+                    </a>
+                </li>
+                <li id="adminTime">
+                    <a href="#time">
+                        <i class="iconsmind-Alarm"></i> Цаг
+                    </a>
+                </li>
+                <li id="adminReport">
+                    <a href="#report">
+                        <i class="iconsmind-Inbox-Full"></i> Тайлан
+                    </a>
+                </li>
+                <li id="adminPromotion">
+                    <a href="{{url('/admin/promotion')}}">
+                        <i class="iconsmind-Pricing"></i> Урамшуулал
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -120,7 +131,23 @@
                         <i class="iconsmind-Alarm-Clock"></i> Захиалга
                     </a>
                 </li>
-
+            </ul>
+            <ul class="list-unstyled" data-link="report">
+                <li>
+                    <a href="{{url('/admin/hospital')}}">
+                        <i class="iconsmind-Hospital"></i> Эмнэлэг
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('/admin/transaction')}}">
+                        <i class="iconsmind-Calculator-3"></i> Санхүү
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('/admin/product')}}">
+                        <i class="iconsmind-Medicine-2"></i> Материал
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

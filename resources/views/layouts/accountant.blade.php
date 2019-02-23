@@ -49,11 +49,9 @@
 
         {{--Search box--}}
 
-        {{--@if(\Illuminate\Support\Facades\Auth::user()->role == null)--}}
 
-        {{--@elseif(\Illuminate\Support\Facades\Auth::user()->role->role_id == 1)--}}
         {{--<div class="search">--}}
-            {{--<form action="{{url('/reception/search')}}" method="get" role="search">--}}
+            {{--<form action="{{url('/admin/search')}}" method="get" role="search">--}}
                 {{--@csrf--}}
                 {{--<input placeholder="Хайх..." name="key" autocomplete="off">--}}
                 {{--<span class="search-icon">--}}
@@ -61,19 +59,7 @@
                 {{--</span>--}}
             {{--</form>--}}
         {{--</div>--}}
-        {{--@elseif(\Illuminate\Support\Facades\Auth::user()->role->role_id == 0)--}}
-            {{--<div class="search">--}}
-                {{--<form action="{{url('/admin/search')}}" method="get" role="search">--}}
-                    {{--@csrf--}}
-                    {{--<input placeholder="Хайх..." name="key" autocomplete="off">--}}
-                    {{--<span class="search-icon">--}}
-                    {{--<i class="simple-icon-magnifier"></i>--}}
-                {{--</span>--}}
-                {{--</form>--}}
-            {{--</div>--}}
-        {{--@else--}}
 
-        {{--@endif--}}
     </div>
 
 
@@ -103,29 +89,34 @@
     <div class="main-menu">
         <div class="scroll">
             <ul class="list-unstyled">
-                @yield('menu')
+                <li id="accountantTransaction">
+                    <a href="{{url('/accountant/transactions')}}">
+                        <i class="iconsmind-Calculator-3"></i> Санхүү
+                    </a>
+                </li>
+                <li id="accountantStaff">
+                    <a href="{{url('/accountant/staffs')}}">
+                        <i class="iconsmind-Administrator"></i> Ажилчид
+                    </a>
+                </li>
+                <li id="accountantShift">
+                    <a href="{{url('/accountant/shifts')}}">
+                        <i class="iconsmind-Alarm"></i> Ээлж
+                    </a>
+                </li>
+                <li id="accountantProduct">
+                    <a href="{{url('/accountant/products')}}">
+                        <i class="iconsmind-Medicine-2"></i> Материал
+                    </a>
+                </li>
+                <li id="accountantHospital">
+                    <a href="{{url('/accountant/hospital')}}">
+                        <i class="iconsmind-Betvibes"></i> Эмнэлэг
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-    <div class="sub-menu">
-        <div class="scroll">
-            <ul class="list-unstyled" data-link="time">
-                <li>
-                    <a href="{{url('/admin/shifts')}}">
-                        <i class="iconsmind-Calendar-4"></i> Ээлж
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/admin/time')}}">
-                        <i class="iconsmind-Alarm-Clock"></i> Захиалга
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-
 </div>
 <main>
     <div class="container-fluid">

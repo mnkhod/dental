@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.accountant')
 @section('header')
 
 
@@ -13,34 +13,11 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
 
 @endsection
-@section('menu')
-    <li>
-        <a href="{{url('/accountant/transactions')}}">
-            <i class="iconsmind-Calculator-3"></i> Санхүү
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/accountant/staffs')}}">
-            <i class="iconsmind-Administrator"></i> Ажилчид
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/accountant/shifts')}}">
-            <i class="iconsmind-Alarm"></i> Ээлж
-        </a>
-    </li>
-    <li class="active">
-        <a href="{{url('/accountant/products')}}">
-            <i class="iconsmind-Medicine-2"></i> Материал
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/accountant/hospital')}}">
-            <i class="iconsmind-Betvibes"></i> Эмнэлэг
-        </a>
-    </li>
-@endsection
 @section('content')
+    <!-- Menu active-->
+    <script>
+        document.getElementById('accountantProduct').classList.add('active');
+    </script>
     <div class="row">
         <div class="col-lg-6">
             <div class="card mb-4">

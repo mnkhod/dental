@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('header')
 
 
@@ -13,35 +13,11 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
 
 @endsection
-@section('menu')
-    <li>
-        <a href="{{url('/admin')}}">
-            <i class="iconsmind-Digital-Drawing"></i>
-            <span>Самбар</span>
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/add_staff')}}">
-            <i class="iconsmind-Administrator"></i> Ажилчид
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/time')}}">
-            <i class="iconsmind-Alarm"></i> Цаг
-        </a>
-    </li>
-    <li class="active">
-        <a href="{{url('/admin/product')}}">
-            <i class="iconsmind-Medicine-2"></i> Материал
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/transaction')}}">
-            <i class="iconsmind-Space-Needle"></i> Санхүү
-        </a>
-    </li>
-@endsection
 @section('content')
+    <!-- Menu active-->
+    <script>
+        document.getElementById('adminReport').classList.add('active');
+    </script>
     <div class="row">
         <div class="col-lg-6">
             <div class="card mb-4">
@@ -81,8 +57,6 @@
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
                             <th>Үйлдэл</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -107,6 +81,7 @@
                                         <i class="simple-icon-trash"></i>
                                     </a>
                                 </td>
+
                             </tr>
                         @endforeach
                         <script>
@@ -243,6 +218,7 @@
                                             <th>Ажилтан</th>
                                             <th>Ширхэг</th>
                                             <th>Тайлбар</th>
+                                            <th>Хугацаа</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -253,6 +229,7 @@
                                                 <td>{{$history->user->name}}</td>
                                                 <td>{{$history->quantity}} ширхэг</td>
                                                 <td>{{$history->description}}</td>
+                                                <td>{{$history->created_at}}</td>
                                             </tr>
                                             <?php $i++;?>
                                         @endforeach

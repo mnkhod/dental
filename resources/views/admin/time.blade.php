@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('header')
     {{--End css style gh met link file oruulna--}}
     <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}"/>
@@ -23,36 +23,10 @@
 
     </style>
 @endsection
-@section('menu')
-    <li>
-        <a href="{{url('/admin')}}">
-            <i class="iconsmind-Digital-Drawing"></i>
-            <span>Самбар</span>
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/add_staff')}}">
-            <i class="iconsmind-Administrator"></i> Ажилчид
-        </a>
-    </li>
-    <li class="active">
-        <a href="{{url('/admin/time')}}">
-            <i class="iconsmind-Alarm"></i> Цаг
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/product')}}">
-            <i class="iconsmind-Medicine-2"></i> Материал
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/transaction')}}">
-            <i class="iconsmind-Space-Needle"></i> Санхүү
-        </a>
-    </li>
-
-@endsection
 @section('content')
+    <script>
+        document.getElementById('adminTime').classList.add('active');
+    </script>
     <div class="modal fade" id="deleteShiftModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

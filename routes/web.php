@@ -25,9 +25,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@dashboard');
-Route::get('/admin/time', 'AdminTimeController@index');
-Route::get('/admin/time/cancel','AdminTimeController@cancel');
-Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
+Route::get('/admin/shifts', 'AdminTimeController@index');
+
+
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 Route::get('/admin/add_staff','AdminController@index');
@@ -43,6 +43,11 @@ Route::post('/admin/add_product','AdminProductController@add_product');
 Route::post('/admin/edit_product','AdminProductController@edit_product');
 Route::post('/admin/decrease_product','AdminProductController@decrease_product');
 Route::get('/admin/delete_product/{id}','AdminProductController@delete_product');
+
+Route::get('/admin/time', 'AdminTimeController@time');
+Route::get('/admin/time/week/{id}', 'AdminTimeController@timeWeek');
+Route::post('/admin/time/add', 'AdminTimeController@storeAppointment');
+Route::get('/admin/time/cancel','AdminTimeController@cancelAppointment');
 
 
 Route::post('/admin/transaction/date', 'AdminTransactionController@date');
