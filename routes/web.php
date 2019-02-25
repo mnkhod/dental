@@ -45,6 +45,7 @@ Route::post('/admin/decrease_product','AdminProductController@decrease_product')
 Route::get('/admin/delete_product/{id}','AdminProductController@delete_product');
 
 Route::get('/admin/time', 'AdminTimeController@time');
+Route::get('/admin/time/{i}/{doctor_staff_id}/{shift_id}','AdminTimeController@store');
 Route::get('/admin/time/week/{id}', 'AdminTimeController@timeWeek');
 Route::post('/admin/time/add', 'AdminTimeController@storeAppointment');
 Route::get('/admin/time/cancel','AdminTimeController@cancelAppointment');
