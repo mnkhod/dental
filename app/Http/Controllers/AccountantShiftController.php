@@ -29,7 +29,7 @@ class AccountantShiftController extends Controller
     }
 
     public function cancel(Request $request){
-        $id = $request['time_id'];
+        $id = $request['shift_id'];
         Time::find($id)->delete();
         return redirect('/accountant/shifts');
     }
