@@ -31,7 +31,7 @@
     <div class="modal fade" id="deleteShiftModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="#" >
+                <form action="{{url('/accountant/shifts/cancel')}}" >
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -46,7 +46,7 @@
                         Эмч: <span id="doctorName"></span><br>
                         Өдөр: <span id="shiftDate"></span><br>
                         Ээлж: <span id="shiftTime"></span><br>
-                        <input type="hidden" name="appointment_id" id="shiftId">
+                        <input type="hidden" name="shift_id" id="shiftId">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Ээлж цуцлах</button>
