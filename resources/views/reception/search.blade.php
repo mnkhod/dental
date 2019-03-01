@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.reception')
 @section('header')
     <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}"/>
@@ -24,35 +24,10 @@
     </style>
     {{--End css style gh met link file oruulna--}}
 @endsection
-@section('menu')
-    <li>
-        <a href="{{url('/admin')}}">
-            <i class="iconsmind-Digital-Drawing"></i>
-            <span>Самбар</span>
-        </a>
-    </li>
-    <li class="active">
-        <a href="{{url('/admin/add_staff')}}">
-            <i class="iconsmind-Administrator"></i> Үйлчлүүлэгч
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/time')}}">
-            <i class="iconsmind-Alarm"></i> Цаг
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/product')}}">
-            <i class="iconsmind-Medicine-2"></i> Төлбөр
-        </a>
-    </li>
-    <li>
-        <a href="{{url('/admin/transaction')}}">
-            <i class="iconsmind-Space-Needle"></i> Санхүү
-        </a>
-    </li>
-@endsection
 @section('content')
+    <script>
+        document.getElementById('receptionUser').classList.add('active');
+    </script>
     <div class="row">
         <div class="col-lg-4">
             <h3>
@@ -84,10 +59,6 @@
                             <p class="text-muted text-small mb-2">Цахим хаяг</p>
                             <p class="mb-3">
                                 {{$result->email}}
-                            </p>
-                            <p class="text-muted text-small mb-2">Гэрийн хаяг</p>
-                            <p class="mb-3">
-                                {{$result->location}}
                             </p>
                         </div>
                     </div>

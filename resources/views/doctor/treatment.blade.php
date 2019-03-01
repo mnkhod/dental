@@ -57,14 +57,7 @@
                         <div class="col-md-7">
                             <b>Анхаарах зүйлс:</b> эгвэл таны эргэлзээг тайлах судалгааг эрдэмтэд хийж, судалгааны үр дүнгээ мэргэжлийн сэтгүүлд нийтэлжээ. Тодруулбал, эрдэмтэд өглөөний цай уух
                         </div>
-                        <div class="col-md-2 text-center text-secondary">
-                            <a href="#">
-                                <b class="text-primary">
-                                    <i class="simple-icon-book-open" style="font-size: 30px"></i><br>Эмчилгээний түүх
-                                </b>
 
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

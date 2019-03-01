@@ -24,9 +24,10 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+//--ADMIN STARTING--
 Route::get('/admin', 'AdminController@dashboard');
 Route::get('/admin/shifts', 'AdminTimeController@index');
-
 
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
@@ -50,7 +51,6 @@ Route::get('/admin/time/week/{id}', 'AdminTimeController@timeWeek');
 Route::post('/admin/time/add', 'AdminTimeController@storeAppointment');
 Route::get('/admin/time/cancel','AdminTimeController@cancelAppointment');
 
-
 Route::post('/admin/transaction/date', 'AdminTransactionController@date');
 Route::get('/admin/transaction/{start_date}/{end_date}', 'AdminTransactionController@search');
 Route::get('/admin/transaction', 'AdminTransactionController@index');
@@ -59,6 +59,7 @@ Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 
+//--ACCOUNTANT STARTING--
 Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
 Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
 Route::get('/accountant/transactions', 'AccountantTransactionController@index');
@@ -76,29 +77,28 @@ Route::post('/accountant/add_product','AccountantProductController@add_product')
 Route::post('/accountant/edit_product','AccountantProductController@edit_product');
 Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
-
 Route::get('/accountant/staffs', 'AccountantStaffController@index');
 
 
-
-
-Route::get('/reception', 'ReceptionTimeController@index');
+//--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
+
 Route::get('/reception/search', 'ReceptionUserController@search');
+
 Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::get('/reception/time/week/{id}', 'ReceptionTimeController@timeWeek');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
 Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
+
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
 Route::get('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
 Route::post('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
 
+Route::get('/reception/payment', 'ReceptionPaymentController@index');
 
-Route::get('/reception/appointment','ReceptionTimeController@appointment_index');
-Route::post('/reception/appointment/edit/{id}','ReceptionTimeController@appointment_edit');
-Route::get('/reception/appointment/cancel/{id}','ReceptionTimeController@appointment_cancel');
 
+//--DOCTOR STARTING--
 Route::get('/doctor','DoctorController@index');
 Route::get('/doctor/treatment','DoctorTreatmentController@index');
 
