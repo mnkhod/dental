@@ -30,6 +30,7 @@ class AccountantShiftController extends Controller
 
     public function cancel(Request $request){
         $id = $request['shift_id'];
+        //TODO(1) add validation to this (check if any user has an appointment)
         Time::find($id)->delete();
         return redirect('/accountant/shifts');
     }

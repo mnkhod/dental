@@ -30,6 +30,7 @@
         document.getElementById('receptionPayment').classList.add('active');
     </script>
 
+
 @endsection
 @section('footer')
 

@@ -89,72 +89,72 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="row mb-2">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h4><b>{{$last_promotion->promotion_name}}</b></h4> /{{$last_promotion->promotion_code}}/
-                                </div>
-                                <div class="col-md-4 text-right">
-                                    <h1 style="padding: 0px; margin-bottom: 0px"><b>{{$last_promotion->percentage}}%</b></h1><br>
-                                    {{$last_promotion->promotion_end_date}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5 text-center"><i class="iconsmind-Business-Man text-primary" style="font-size: 50px;"></i></div>
-                                <div class="col-md-7 text-right"><h4>Ашигласан</h4>350</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                                <div class="col-md-7 text-right"><h4>Хөнгөлсөн</h4>444₮</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Нэр</th>
-                                    <th>Үнэн дүн</th>
-                                    <th>Төлсөн дүн</th>
-                                    <th>Хугацаа</th>
-                                    <th>Ресепшн</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Цэлмэг</td>
-                                    <td>100000₮</td>
-                                    <td>70000₮</td>
-                                    <td>2019-03-18</td>
-                                    <td>Халиун</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{--<div class="col-md-6">--}}
+            {{--<div class="row mb-2">--}}
+                {{--<div class="col-md-12">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-8">--}}
+                                    {{--<h4><b>{{$last_promotion->promotion_name}}</b></h4> /{{$last_promotion->promotion_code}}/--}}
+                                {{--</div>--}}
+                                {{--<div class="col-md-4 text-right">--}}
+                                    {{--<h1 style="padding: 0px; margin-bottom: 0px"><b>{{$last_promotion->percentage}}%</b></h1><br>--}}
+                                    {{--{{$last_promotion->promotion_end_date}}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-md-6 mb-2">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-5 text-center"><i class="iconsmind-Business-Man text-primary" style="font-size: 50px;"></i></div>--}}
+                                {{--<div class="col-md-7 text-right"><h4>Ашигласан</h4>350</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-6 mb-2">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>--}}
+                                {{--<div class="col-md-7 text-right"><h4>Хөнгөлсөн</h4>444₮</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="row mb-2">--}}
+                {{--<div class="col-md-12">--}}
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<table class="table">--}}
+                                {{--<tr>--}}
+                                    {{--<th>#</th>--}}
+                                    {{--<th>Нэр</th>--}}
+                                    {{--<th>Үнэн дүн</th>--}}
+                                    {{--<th>Төлсөн дүн</th>--}}
+                                    {{--<th>Хугацаа</th>--}}
+                                    {{--<th>Ресепшн</th>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td>1</td>--}}
+                                    {{--<td>Цэлмэг</td>--}}
+                                    {{--<td>100000₮</td>--}}
+                                    {{--<td>70000₮</td>--}}
+                                    {{--<td>2019-03-18</td>--}}
+                                    {{--<td>Халиун</td>--}}
+                                {{--</tr>--}}
+                            {{--</table>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 @endsection

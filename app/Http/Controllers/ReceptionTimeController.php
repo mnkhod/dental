@@ -7,6 +7,7 @@ use App\Role;
 use App\Time;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptionTimeController extends Controller
 {
@@ -72,10 +73,10 @@ class ReceptionTimeController extends Controller
         }
 
         if($user =User::where('phone_number',$request['phone'])->first()){
-            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id]);
         }
         else{
-            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id]);
         }
         return back();
     }

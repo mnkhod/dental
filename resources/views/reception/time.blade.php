@@ -116,12 +116,14 @@
                             <input name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
 
-                            <button class="btn btn-light" type="button"  style="border-radius: 0px">
+                            <button class="btn btn-light" type="submit"  style="border-radius: 0px">
                                 Цуцлах
                             </button>
                         </div>
+                            <a id="variableLink">
+                                <button id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд оруулах</button>
+                            </a>
 
-                                <button class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд оруулах</button>
                     </div>
                 </form>
 
@@ -136,7 +138,7 @@
                     <div class="col-md-3">
                         <select class="form-control" onchange="location = this.value;">
                             <option>Өдрөөр</option>
-                            <option value="{{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}">
+                            <option value="@if(\App\Role::where('role_id', 2)->first() != null){{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}@endif">
                                 7 хоногоор
                             </option>
 
@@ -174,7 +176,9 @@
                                     @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                         <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                             <button class="btn btn-primary btn-block text-left"
-                                                    onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                    onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
+                                                            '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}'
+                                                            ,'@if($costumer = \App\User::where('phone_number', $appointment->phone)->first()){{$costumer->id}}@else 0 @endif')"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                         </td>
@@ -201,7 +205,9 @@
                                     @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                         <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                             <button class="btn btn-primary btn-block text-left"
-                                                    onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                    onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
+                                                            '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}',
+                                                            '@if($costumer = \App\User::where('phone_number', $appointment->phone)->first()){{$costumer->id}}@else 0 @endif')"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                         </td>
@@ -238,13 +244,20 @@
             $("#exampleModalRight").modal();
         }
 
-        function deleteAppointment(name, phone, date, time, appointment_id, doctor_name) {
+        function deleteAppointment(name, phone, date, time, appointment_id, doctor_name, registered) {
             document.getElementById("da_user_name").innerHTML = name;
             document.getElementById("da_user_phone").innerHTML = phone;
             document.getElementById("da_date").innerHTML = date;
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
+            if(registered === 0) {
+                document.getElementById("variableButton").innerText = "Бүртгэх";
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
+            }  else {
+                document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered);
+            }
             document.getElementById("da_user_link").setAttribute('href', "https://www.google.com" + "/" + "1");
             $("#deleteAppointment").modal();
         }

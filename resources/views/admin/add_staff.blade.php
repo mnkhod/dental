@@ -96,6 +96,7 @@
                             <option value="1">Ресепшн</option>
                             <option value="2">Эмч</option>
                             <option value="3">Сувилагч</option>
+                            <option value="4">Нягтлан бодогч</option>
                         </select><br>
 
                         <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters"
@@ -149,8 +150,14 @@
                                             Ресепшн
                                         @elseif($user->role->role_id ==2)
                                             Эмч
-                                        @else
+                                        @elseif($user->role->role_id ==3)
                                             Сувилагч
+                                        @elseif($user->role->role_id ==4)
+                                            Нягтлан бодогч
+                                        @elseif($user->role->role_id ==0)
+                                            Админ
+                                        @else
+                                            Бусад
                                         @endif</p>
                                 </td>
                                 <td>
