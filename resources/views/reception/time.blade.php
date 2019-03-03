@@ -256,7 +256,7 @@
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
             }  else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
-                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered);
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
             }
             document.getElementById("da_user_link").setAttribute('href', "https://www.google.com" + "/" + "1");
             $("#deleteAppointment").modal();

@@ -134,20 +134,13 @@
     <div class="modal fade text-center" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                {{--<div class="modal-header">--}}
-                    {{--<h5 class="modal-title" id="exampleModalLabel">Ломбо</h5>--}}
-                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                        {{--<span aria-hidden="true">&times;</span>--}}
-                    {{--</button>--}}
-                {{--</div>--}}
                 <div class="modal-body">
                     <br>
                     <br>
-                    <br>
-                    <br>
+                    <h3><b><div id="buriLombo">Шүд #</div></b></h3>
                     <!--                                            content modal-->
-                    <input type="hidden" id="hidden" value="">
-                    <svg height="210" width="200" >
+                    <input type="hidden" id="hiddenDecayChart" value="">
+                    <svg height="200" width="200" >
                         <polygon id="pol1" points="0,0 100,100 200,0" onclick="myFunction('1')" />
                         <polygon id="pol2" points="100,100 200,0 200,200" onclick="myFunction('2')"/>
                         <polygon id="pol4" points="0,200 100,100 200,200" onclick="myFunction('4')"/>
@@ -159,23 +152,23 @@
                         <h5 style="color: darkgrey"><b>Цоорлын зэрэг</b></h5>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-info active">
-                                <input type="radio" name="options" id="option1" checked> 1
+                                <input type="radio" name="decayLevel" id="option1"> 1
                             </label>
                             <label class="btn btn-info">
-                                <input type="radio" name="options" id="option2"> 2
+                                <input type="radio" name="decayLevel" id="option2"> 2
                             </label>
                             <label class="btn btn-info">
-                                <input type="radio" name="options" id="option3"> 3
+                                <input type="radio" name="decayLevel" id="option3"> 3
                             </label>
                             <label class="btn btn-info">
-                                <input type="radio" name="options" id="option3"> 4
+                                <input type="radio" name="decayLevel" id="option4"> 4
                             </label>
                         </div>
                     </div>
                     <br>
                     <h5 style="color: darkgrey"><b>Сүүн шүд</b></h5>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="suunShudToggle">
                         <span class="slider round"></span>
                     </label>
                     <br>
@@ -194,11 +187,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <h2>Цэлмэг</h2>
-                            18 настай
+                            <h2>{{$user->name}}</h2>
+                            {{$age}} настай
                         </div>
                         <div class="col-md-7">
-                            <b>Анхаарах зүйлс:</b> эгвэл таны эргэлзээг тайлах судалгааг эрдэмтэд хийж, судалгааны үр дүнгээ мэргэжлийн сэтгүүлд нийтэлжээ. Тодруулбал, эрдэмтэд өглөөний цай уух
+                            <b>Анхаарах зүйлс:</b> {{$user->description}}
                         </div>
 
                     </div>
@@ -262,43 +255,43 @@
                 <div class="tab-content">
                     <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                         <div class="card-body">
-                            <button class="btn btn-secondary btn-block single" data-toggle="modal" data-target="#exampleModal">
+                            <button class="btn btn-primary btn-block single" data-toggle="modal" data-target="#exampleModal">
                                 <div class="row">
-                                    <div class="col-md-12 text-left">
+                                    <div class="col-md-12 text-left" onclick="reset()">
                                         Ломбо<br> 3 төрөлтэй
                                     </div>
                                 </div>
                             </button>
 
-                            <button class="btn btn-secondary btn-block multiple">
+                            <button class="btn btn-primary btn-block multiple">
                                 <div class="row">
                                     <div class="col-md-9 text-left">
                                         Аппарат<br> 3 төрөлтэй
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-secondary btn-block all">
+                            <button class="btn btn-primary btn-block all">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Өнгөлгөө<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-secondary btn-block all">
+                            <button class="btn btn-primary btn-block all">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Чулуу цэвэрлэгээ<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-secondary btn-block all">
+                            <button class="btn btn-primary btn-block all">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Фторт түрхлэг<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-secondary btn-block single">
+                            <button class="btn btn-primary btn-block single">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Хамгаалалт<br> 40000₮
@@ -334,8 +327,22 @@
         for(i=0;i<mult.length;i++){
             mult[i].style.display = "none";
         }
+        function reset() {
+
+            document.getElementById('option1').click();
+
+            for(i=0;i<selectedArea.length;i++){
+                document.getElementById("pol" + selectedArea[i]).setAttribute('class','empty');
+            }
+            // document.getElementById('suunShudToggle').setAttribute('class','')
+            var x = document.getElementById('suunShudToggle');
+            x.checked = false;
+
+
+        }
 
         function changeStyle(ruby) {
+
             //----VALIDATION-----
             if(tooths.length === 0) {
                 tooths.push(ruby);
@@ -350,9 +357,9 @@
                     tooths.push(ruby);
                 } else {
                     tooths.splice(tooths.indexOf(ruby), 1);
-
                 }
             }
+            document.getElementById('buriLombo').innerText = "Шүд #" + tooths[0];
             //----VALIDATION END-----
             //PAINT table using @tooths array
             console.log(tooths);
@@ -403,7 +410,6 @@
                         mult[i].style.display = "block";
                     }
                 }
-
         }
 
 
@@ -450,7 +456,7 @@
             var total = sumList(selectedArea);
 
 //            hidden value
-            var x = document.getElementById('hidden').value=total;
+            var x = document.getElementById('hiddenDecayChart').value=total;
             console.log(ruby);
         }
     </script>

@@ -99,7 +99,7 @@ Route::get('/reception/payment', 'ReceptionPaymentController@index');
 
 //--DOCTOR STARTING--
 Route::get('/doctor','DoctorController@index');
-Route::get('/doctor/treatment','DoctorTreatmentController@index');
+Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
 
 Route::get('/test', function() {
     return view('test');
