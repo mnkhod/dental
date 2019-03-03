@@ -41,11 +41,10 @@ class ReceptionUserController extends Controller
     public function user_check_edit($id){
         return redirect('/reception/user_check/'.$id);
     }
-    public function check_in($id){
-        $user = User::find($id);
-        $appointment = Appointment::where('created_at','>',date('Y-m-d'). '00:00:00')->where('phone',$user->phone_number)->first();
-        $shift = $appointment->shift_id;
-        $doctor = Time::where('shift_id',$shift)->doctor_id;
+    public function check_in($id,$appointment_id){
+        $app = Appointment::find($appointment_id);
+        $shift = $app->shift_id;
+        $doctor = Time::find($shift)->doctor_id;
         CheckIn::create(['user_id'=>$id,'doctor_id'=>$doctor]);
         return back();
     }
