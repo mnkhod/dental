@@ -88,6 +88,11 @@ class ReceptionTimeController extends Controller
         else{
             return back();
         }
-    }
 
+    }
+    public function check_in(Request $request){
+        $user = User::find($request['user_id']);
+        $appointment = Appointment::where('created_at','>',date('Y-m-d'). '00:00:00')->where('phone',$user->phone_number)->first();
+        return redirect('/reception/time');
+    }
 }

@@ -93,7 +93,6 @@ Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
 Route::get('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
-Route::post('/reception/user_check/{id}/check_in','ReceptionUserController@check_in');
 
 Route::get('/reception/payment', 'ReceptionPaymentController@index');
 

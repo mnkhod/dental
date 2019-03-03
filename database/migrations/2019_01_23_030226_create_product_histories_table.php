@@ -19,6 +19,7 @@ class CreateProductHistoriesTable extends Migration
             $table->integer('user_id');
             $table->integer('quantity');
             $table->text('description');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

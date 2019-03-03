@@ -35,16 +35,16 @@ class AccountantTransactionController extends Controller
 
 
     public function store(Request $request) {
-        Transaction::create(['price'=> -1*$request['price'], 'type'=>3, 'type_id'=>0, 'description'=>$request['description']]);
+        Transaction::create(['price'=> -1*$request['price'], 'type'=>3, 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
     }
     public function salary(Request $request) {
         $user = User::find($request['staff']);
-        Transaction::create(['price'=> -1*$request['price'], 'type'=>1, 'type_id'=>$request['staff'], 'description'=>$user->name.' цалин']);
+        Transaction::create(['price'=> -1*$request['price'], 'type'=>1, 'type_id'=>$request['staff'], 'description'=>$user->name.' цалин','created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
     }
     public function income(Request $request) {
-        Transaction::create(['price'=> $request['price'], 'type'=>5, 'type_id'=>0, 'description'=>$request['description']]);
+        Transaction::create(['price'=> $request['price'], 'type'=>5, 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
     }
 

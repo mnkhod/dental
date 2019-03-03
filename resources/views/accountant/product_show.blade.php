@@ -56,9 +56,6 @@
                             <th>Дугаар</th>
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
-                            <th>Үйлдэл</th>
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -78,11 +75,7 @@
                                 <td>
                                     <p class="text-muted">{{$product->quantity}}</p>
 
-                                <td>
-                                    <a href="{{url('/accountant/delete_product').'/'.$product->id}}">
-                                        <i class="simple-icon-trash"></i>
-                                    </a>
-                                </td>
+
                             </tr>
                         @endforeach
                         <script>

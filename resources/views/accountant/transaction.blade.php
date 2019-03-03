@@ -205,6 +205,7 @@
                                     <th>Төрөл</th>
                                     <th>Тайлбар</th>
                                     <th>Хугацаа</th>
+                                    <th>Хэн</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -217,6 +218,7 @@
                                                 Материал@else Бусад@endif</td>
                                         <td>{{$transaction->description}}</td>
                                         <td>{{$transaction->created_at}}</td>
+                                        <td>{{\App\User::find($transaction->created_by)->name}}</td>
                                         <?php $i++;?>
                                     </tr>
                                 @endforeach

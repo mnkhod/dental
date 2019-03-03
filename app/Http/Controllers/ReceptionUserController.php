@@ -44,6 +44,10 @@ class ReceptionUserController extends Controller
     public function check_in($id){
         $user = User::find($id);
         $appointment = Appointment::where('created_at','>',date('Y-m-d'). '00:00:00')->where('phone',$user->phone_number)->first();
-
+        $shift = $appointment->shift_id;
+        $doctor = Time::where('shift_id',$shift)->doctor_id;
+        CheckIn::create(['user_id'=>$id,'doctor_id'=>$doctor]);
+        return back();
     }
+
 }

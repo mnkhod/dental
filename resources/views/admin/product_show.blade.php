@@ -19,7 +19,7 @@
         document.getElementById('adminReport').classList.add('active');
     </script>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ бараа нэмэх</h5>
@@ -100,7 +100,7 @@
 
 
         </div>
-        <div class="col-xl-6 col-lg-12 mb-4">
+        <div class="col-xl-8 col-lg-12 mb-4">
             <div class="row mb-3">
                 <div class="col-md-12">
                     <div class="card">
@@ -219,6 +219,7 @@
                                             <th>Ширхэг</th>
                                             <th>Тайлбар</th>
                                             <th>Хугацаа</th>
+                                            <th>Хэн</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -230,10 +231,11 @@
                                                 <td>{{$history->quantity}} ширхэг</td>
                                                 <td>{{$history->description}}</td>
                                                 <td>{{$history->created_at}}</td>
+                                                <td>{{\App\User::find($history->created_by)->name}}</td>
                                             </tr>
                                             <?php $i++;?>
-                                        @endforeach
 
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
