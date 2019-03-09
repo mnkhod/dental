@@ -23,7 +23,7 @@
     @yield('header')
 </head>
 
-<body id="app-container" class="menu-sub-hidden show-spinner">
+<body id="app-container" class="menu-hidden show-spinner">
 <nav class="navbar fixed-top">
     <div class="d-flex align-items-center navbar-left">
         <a href="#" class="menu-button d-none d-md-block">

@@ -19,7 +19,7 @@
         document.getElementById('accountantProduct').classList.add('active');
     </script>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ бараа нэмэх</h5>
@@ -94,7 +94,7 @@
 
 
         </div>
-        <div class="col-xl-6 col-lg-12 mb-4">
+        <div class="col-xl-7 col-lg-12 mb-4">
             <div class="row mb-3">
                 <div class="col-md-12">
                     <div class="card">
@@ -176,8 +176,8 @@
                                                             <select class="form-control mb-3" name="user_id">
                                                                 @foreach($roles as $role)
                                                                     <option value="{{$role->staff->id}}">{{$role->staff->name}}/@if($role->role_id == 0)
-                                                                            Менежер @elseif($role->role_id == 1) Pесепшн @elseif($role->role_id == 2)
-                                                                            Доктор @elseif($role->role_id == 3) Сувилагч @else Бусад @endif/
+                                                                            Админ @elseif($role->role_id == 1) Pесепшн @elseif($role->role_id == 2)
+                                                                            Доктор @elseif($role->role_id == 3) Сувилагч @elseif($role->role_id == 3) Нягтлан @else Бусад @endif/
                                                                     </option>
                                                                 @endforeach
                                                             </select>

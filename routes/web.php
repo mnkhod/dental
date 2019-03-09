@@ -66,6 +66,7 @@ Route::get('/accountant/transactions', 'AccountantTransactionController@index');
 Route::post('/accountant/transactions/salary', 'AccountantTransactionController@salary');
 Route::post('/accountant/transactions/add', 'AccountantTransactionController@store');
 Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
+Route::post('/accountant/transactions/outcome/type', 'AccountantTransactionController@outcomeCategory');
 
 Route::get('/accountant/shifts', 'AccountantShiftController@index');
 Route::get('/accountant/shifts/cancel','AccountantShiftController@cancel');
