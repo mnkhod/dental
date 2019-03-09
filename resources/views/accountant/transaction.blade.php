@@ -41,14 +41,14 @@
                 </div>
                 <div class="card mb-4 text-left">
                     <div class="card-body">
-                        <form action="{{url('/accountant/transactions/outcome/type')}}"
+                        <form id = "form" action="{{url('/accountant/transactions/outcome/type')}}"
                               method="post">
                             @csrf
                             <span>Төрлийн нэр:</span>
-                            <input name="name" class="form-control mb-3" autocomplete="off"
+                            <input id = "turul" name="name" class="form-control mb-3" autocomplete="off"
                                    type="text">
-                            <button class="btn btn-primary btn-block"
-                                    type="submit">
+                            <button onclick="h()" class="btn btn-primary btn-block"
+                                    type="button">
                                 Хадгалах
                             </button>
                         </form>
@@ -341,6 +341,18 @@
             table.buttons().container()
                 .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
         });
+
+    </script>
+    <script>
+        function h() {
+            var ss = document.getElementById("turul").value;
+            if(ss === "") {
+                document.getElementById('turul').classList.add('border-danger');
+            } else {
+                document.getElementById("form").submit();
+
+            }
+        }
 
     </script>
     <script src="{{asset('js/vendor/select2.full.js')}}"></script>
