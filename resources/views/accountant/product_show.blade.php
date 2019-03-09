@@ -24,13 +24,13 @@
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ бараа нэмэх</h5>
 
-                    <form class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
+                    <form id = "form3" class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
                         @csrf
                         <div class=" mb-2 mr-sm-2">
-                            <input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                            <input id = "br" name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
                                    placeholder="Барааны нэр">
                         </div>
-                        <button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
+                        <button onclick="baraa()" type="button" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
                             Шинэ бараа нэмэх
                         </button>
                     </form>
@@ -140,8 +140,8 @@
                                                                    type="number"
                                                                    placeholder="Үнийн дүн">
 
-                                                            <button  class="btn btn-primary btn-block"
-                                                                    type="submit">
+                                                            <button onclick="numa()" class="btn btn-primary btn-block"
+                                                                    type="button">
                                                                 Хадгалах
                                                             </button>
                                                         </form>
@@ -272,7 +272,6 @@
         }
         function numb() {
             var number = document.getElementById("numhas").value;
-            console.log(number)
             if(number < 1) {
                 document.getElementById('numhas').classList.add('border-danger');
                 document.getElementById('numhas_msg').innerHTML = "Утга буруу оруулсан байна";
@@ -283,11 +282,22 @@
         function numa(){
             var too = document.getElementById("too").value;
             var une = document.getElementById("une").value;
-            if(number < 1) {
-                document.getElementById('numhas').classList.add('border-danger');
-                document.getElementById('numhas_msg').innerHTML = "Утга буруу оруулсан байна";
-            } else {
+            if(too < 1 ) {
+                document.getElementById('too').classList.add('border-danger');
+            }
+            else if(une < 1){
+                document.getElementById('une').classList.add('border-danger');
+            }
+            else {
                 document.getElementById("form1").submit();
+            }
+        }
+        function baraa() {
+            var br = document.getElementById("br").value;
+            if(br < 1) {
+                document.getElementById('br').classList.add('border-danger');
+            } else {
+                document.getElementById("form3").submit();
             }
         }
     </script>
