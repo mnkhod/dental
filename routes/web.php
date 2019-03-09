@@ -69,9 +69,6 @@ Route::post('/accountant/transactions/add', 'AccountantTransactionController@sto
 Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
 Route::post('/accountant/transactions/outcome/type', 'AccountantTransactionController@outcomeCategory');
 
-Route::get('/accountant/shifts', 'AccountantShiftController@index');
-Route::get('/accountant/shifts/cancel','AccountantShiftController@cancel');
-Route::get('/accountant/shifts/{i}/{doctor_staff_id}/{shift_id}','AccountantShiftController@store');
 
 Route::get('/accountant/products','AccountantProductController@product');
 Route::get('/accountant/products/{id}','AccountantProductController@show');
@@ -85,21 +82,16 @@ Route::get('/accountant/staffs', 'AccountantStaffController@index');
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
 Route::get('/reception/search', 'ReceptionUserController@search');
-
 Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::get('/reception/time/week/{id}', 'ReceptionTimeController@timeWeek');
 Route::post('/reception/time/add', 'ReceptionTimeController@store');
 Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
-
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
 Route::get('/reception/user_check/{id}/{appointment_id}/check_in','ReceptionUserController@check_in');
-
 Route::get('/reception/shifts', 'ReceptionShiftsController@index');
 Route::get('/reception/shifts/cancel','ReceptionShiftsController@cancel');
 Route::get('/reception/shifts/{i}/{doctor_staff_id}/{shift_id}','ReceptionShiftsController@store');
-
-
 Route::get('/reception/payment', 'ReceptionPaymentController@index');
 
 

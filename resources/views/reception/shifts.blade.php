@@ -30,7 +30,7 @@
     <div class="modal fade" id="deleteShiftModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{url('/accountant/shifts/cancel')}}" >
+                <form action="{{url('/reception/shifts/cancel')}}" >
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -91,7 +91,7 @@
                                         </td>
                                     @else
                                         <td>
-                                            <a href="{{url('/admin/time/'.$i.'/'.$doctor->staff->id.'/0')}}">
+                                            <a href="{{url('/reception/shifts/'.$i.'/'.$doctor->staff->id.'/0')}}">
                                                 <button class="btn btn-light hidden">Тавигдаагүй<br><span class="text-right"
                                                                                                           style="font-size: 10px">ээлж тавих</span>
                                                 </button>
@@ -113,7 +113,7 @@
 
                                     @else
                                         <td>
-                                            <a href="{{url('/admin/time/'.$i.'/'.$doctor->staff->id.'/1')}}">
+                                            <a href="{{url('/reception/shifts/'.$i.'/'.$doctor->staff->id.'/1')}}">
                                                 <button class="btn btn-light hidden">Тавигдаагүй<br><span class="text-right"
                                                                                                           style="font-size: 10px">ээлж тавих</span>
                                                 </button>

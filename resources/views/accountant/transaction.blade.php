@@ -26,6 +26,8 @@
         document.getElementById('accountantTransaction').classList.add('active');
     </script>
 
+
+
     <div id="addCategory" class="modal fade show" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
@@ -55,6 +57,40 @@
             </div>
         </div>
     </div>
+
+    {{--USTGAKH MODAL--}}
+    <div id="deleteTransaction" class="modal fade show" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalPopoversLabel">Утга устгах</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="card mb-4 text-left">
+                    <div class="card-body">
+                        <form action="#"
+                              method="post">
+                            @csrf
+                            <span>Тайлбар:</span>
+                            <input type="hidden" id="transactionHidden">
+                            <input name="description" class="form-control mb-3" autocomplete="off"
+                                   type="text">
+                            <button class="btn btn-primary"
+                                    type="submit">
+                                Устгах
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row"><!-- row-->
 
         <div class="col-md-3">
@@ -230,7 +266,7 @@
                                             <a href="#">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>
-                                            <a href="#">
+                                            <a onclick="deleteTransaction({{$transaction->id}})">
                                                 <i class="simple-icon-trash"></i>
                                             </a>
                                         </td>
@@ -248,6 +284,12 @@
     </div><!-- row end-->
 @endsection
 @section('footer')
+    <script>
+        function deleteTransaction(id) {
+            document.getElementById('transactionHidden').value = id;
+            $("#deleteTransaction").modal();
+        }
+    </script>
     <script src="{{asset('plugin/datatables/jquery.dataTables.min.js')}}   "></script>
     <script src="{{asset('plugin/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <!-- Buttons examples -->
