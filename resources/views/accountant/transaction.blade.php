@@ -91,6 +91,7 @@
     </div>
 
 
+
     <div class="row"><!-- row-->
 
         <div class="col-md-3">
@@ -227,6 +228,35 @@
                                    value="@if($end_date){{date('m/d/Y', $end_date)}}@else{{date('m/d/Y')}}@endif">
                             <a href="#" onclick="$(this).closest('form').submit()" style="color: #8f8f8f">үзэх</a>
                         </div>
+                    </form>
+                </div>
+                <div class="col-md-6 text-right">
+                    <form id="monthSearch" action="#" method="post">
+                    <select name="year">
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+                    <select name="month" onchange="document.getElementById('monthSearch').submit()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
                     </form>
                 </div>
 
