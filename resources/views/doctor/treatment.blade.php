@@ -285,6 +285,17 @@
         </div>
     </div>
     <script>
+        var s = '';
+        var v = '';
+        var d=parseInt(31);
+        while (d>0){
+            s = s + d%2;
+            d = parseInt(d/2);
+        }
+        s = s.split("");
+        var list = s.reverse();
+
+
         var tooths = [];
         var selectedArea = [];
         var toothClassList = ["single","all","multiple"]
