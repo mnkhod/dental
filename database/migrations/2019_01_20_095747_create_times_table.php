@@ -18,6 +18,7 @@ class CreateTimesTable extends Migration
             $table->integer('doctor_id');
             $table->date('date');
             $table->tinyInteger('shift_id');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

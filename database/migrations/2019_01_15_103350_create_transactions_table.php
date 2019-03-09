@@ -24,6 +24,7 @@ class CreateTransactionsTable extends Migration
             //5->Busad - orlogo
             $table->integer('type_id');
             $table->text('description')->nullable();
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

@@ -72,11 +72,11 @@
                 </div>
                 <div class="card mb-4 text-left">
                     <div class="card-body">
-                        <form action="#"
+                        <form action="{{url('/accountant/transactions/delete')}}"
                               method="post">
                             @csrf
                             <span>Тайлбар:</span>
-                            <input type="hidden" id="transactionHidden">
+                            <input type="hidden" name="transaction_id" id="transactionHidden">
                             <input name="description" class="form-control mb-3" autocomplete="off"
                                    type="text">
                             <button class="btn btn-primary"
@@ -248,7 +248,7 @@
                                     <th>Тайлбар</th>
                                     <th>Хугацаа</th>
                                     <th>Хэн</th>
-                                    <th></th>
+                                    <th>Үйлдэл</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -263,7 +263,7 @@
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
                                         <td class="text-center">
-                                            <a href="#">
+                                            <a href="{{url('/accountant/transactions/'.$transaction->id)}}">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>
                                             <a onclick="deleteTransaction({{$transaction->id}})">

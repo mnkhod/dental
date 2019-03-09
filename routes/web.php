@@ -61,9 +61,12 @@ Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 //--ACCOUNTANT STARTING--
 Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
-Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
 Route::get('/accountant/transactions', 'AccountantTransactionController@index');
 Route::get('/accountant/transactions/{id}', 'AccountantTransactionController@edit');
+Route::post('/accountant/transactions/delete','AccountantTransactionController@delete');
+Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
+
+
 Route::post('/accountant/transactions/salary', 'AccountantTransactionController@salary');
 Route::post('/accountant/transactions/add', 'AccountantTransactionController@store');
 Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
