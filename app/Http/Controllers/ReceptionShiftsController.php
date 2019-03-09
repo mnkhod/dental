@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptionShiftsController extends Controller
 {
@@ -23,7 +24,7 @@ class ReceptionShiftsController extends Controller
             $time->save();
         } else {
             //Half time
-            Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id]);
+            Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id,'created_by'=>Auth::user()->id]);
         }
         return redirect('/reception/shifts');
     }

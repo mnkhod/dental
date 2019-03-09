@@ -35,7 +35,6 @@ class AccountantTransactionController extends Controller
         $types = OutcomeCategory::all();
         $start_date = strtotime('-30 Days');
         $end_date = strtotime('Today');
-
         return view('accountant.transaction_edit' ,compact('transactions', 'roles', 'start_date','specific', 'end_date', 'types'));
     }
     public function delete(Request $request){
