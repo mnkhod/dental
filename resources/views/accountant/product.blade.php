@@ -25,15 +25,16 @@
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ бараа нэмэх</h5>
 
-                    <form class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
+                    <form id="form" class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
                         @csrf
                         <div class=" mb-2 mr-sm-2">
-                            <input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                            <input name="name" type="text" class="form-control" id="prodddd"
                                    placeholder="Барааны нэр" autocomplete="off">
                         </div>
-                        <button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
+                        <button onclick = "product()" type="button" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
                             Шинэ бараа нэмэх
                         </button>
+
                     </form>
                 </div>
             </div>
@@ -198,6 +199,16 @@
                     }
                 }
             }
+        }
+        function product(){
+        var ss = document.getElementById("prodddd").value;
+        if(ss === "") {
+            document.getElementById('prodddd').classList.add('border-danger');
+            document.getElementById('prodddd_msg').innerHTML = "Нэрээ оруулна уу";
+        } else {
+            document.getElementById("form").submit();
+
+        }
         }
     </script>
 

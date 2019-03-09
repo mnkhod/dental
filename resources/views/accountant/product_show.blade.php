@@ -126,19 +126,21 @@
                                                 </div>
                                                 <div class="card mb-4 text-left">
                                                     <div class="card-body">
-                                                        <form action="{{url('/accountant/edit_product')}}"
+                                                        <form id ="form1"action="{{url('/accountant/edit_product')}}"
                                                               method="post">
                                                             @csrf
                                                             <span>Тоо ширхэг</span>
                                                             <input name="id" type="hidden" value="{{$specific_product->id}}"
                                                                    id="hidden">
-                                                            <input name="quantity" class="form-control mb-3"
+                                                            <input name="quantity" id="too"  class="form-control mb-3"
                                                                    type="number" placeholder="Тоо ширхэг">
+
                                                             <span>Үнийн дүн</span>
-                                                            <input name="price" class="form-control mb-3"
+                                                            <input name="price" id="une" class="form-control mb-3"
                                                                    type="number"
                                                                    placeholder="Үнийн дүн">
-                                                            <button class="btn btn-primary btn-block"
+
+                                                            <button  class="btn btn-primary btn-block"
                                                                     type="submit">
                                                                 Хадгалах
                                                             </button>
@@ -166,7 +168,7 @@
 
                                                 <div class="card mb-4 text-left">
                                                     <div class="card-body">
-                                                        <form action="{{url('/accountant/decrease_product')}}"
+                                                        <form id="form" action="{{url('/accountant/decrease_product')}}"
                                                               method="post">
                                                             @csrf
                                                             <span >Ажилтан сонгох</span>
@@ -183,10 +185,12 @@
                                                             </select>
 
                                                             <span>Тоо ширхэг</span>
-                                                            <input name="quantity" class="form-control mb-3"
+                                                            <input name="quantity" id="numhas" class="form-control mb-3"
                                                                    type="number" placeholder="Тоо ширхэг">
-                                                            <button class="btn btn-primary btn-block"
-                                                                    type="submit">
+                                                            <span id="numhas_msg" style="color:red"></span>
+
+                                                            <button onclick="numb()" class="btn btn-primary btn-block"
+                                                                    type="button">
                                                                 Хадгалах
                                                             </button>
                                                         </form>
@@ -264,6 +268,26 @@
                         tr[i].style.display = "none";
                     }
                 }
+            }
+        }
+        function numb() {
+            var number = document.getElementById("numhas").value;
+            console.log(number)
+            if(number < 1) {
+                document.getElementById('numhas').classList.add('border-danger');
+                document.getElementById('numhas_msg').innerHTML = "Утга буруу оруулсан байна";
+            } else {
+                document.getElementById("form").submit();
+            }
+        }
+        function numa(){
+            var too = document.getElementById("too").value;
+            var une = document.getElementById("une").value;
+            if(number < 1) {
+                document.getElementById('numhas').classList.add('border-danger');
+                document.getElementById('numhas_msg').innerHTML = "Утга буруу оруулсан байна";
+            } else {
+                document.getElementById("form1").submit();
             }
         }
     </script>
