@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             //4->Emchilgee - orlogo
             //5->Busad - orlogo
             $table->integer('type_id');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

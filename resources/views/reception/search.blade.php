@@ -25,50 +25,147 @@
     {{--End css style gh met link file oruulna--}}
 @endsection
 @section('content')
-    <script>
-        document.getElementById('receptionUser').classList.add('active');
-    </script>
     <div class="row">
-        <div class="col-lg-4">
-            <h3>
-                <i class="iconsmind-Folder-Search"></i>
-                <span class="align-middle d-inline-block pt-1"> Хайлтын үр дүн-"{{$input}}"</span>
-            </h3>
-        </div>
-    </div>
-    <div class="separator mb-5"></div>
-    <br>
-    <div class="row">
-        @foreach($results->get() as $result)
-        <div class="col-md-3">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="text-center">
-                        <p class="list-item-heading mb-1"><a href="{{url('/reception/users/'.$result->id)}}">{{$result->last_name}} {{$result->name}}</a></p>
-                        <br>
-                        <div class="text-center">
-                            <p class="text-muted text-small mb-2">Регистрийн дугаар</p>
-                            <p class="mb-3">
-                                {{$result->register}}
-                            </p>
+        <div class="col-md-4"><!--profile heseg-->
 
-                            <p class="text-muted text-small mb-2">Утасны дугаар</p>
-                            <p class="mb-3">
-                                {{$result->phone_number}}
-                            </p>
-                            <p class="text-muted text-small mb-2">Цахим хаяг</p>
-                            <p class="mb-3">
-                                {{$result->email}}
-                            </p>
+
+            <div class="card "><!--row -->
+                <div class="card-body">
+                    <a href="#">
+                        <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                            <a href="#">
+                                <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                            </a>
+                            <div class="pl-3 pr-2">
+                                <a href="#">
+                                    <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
+                                    <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </a>
+                    </h5>
+
+
+
+
+                    <h5 class="card-title">Өвчтөний мэдээлэл</h5>
+                    <div class="d-flex flex-row">
+                        <div class="w-50">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-1">
+                                    <a ><b>Овог</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Нэр</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Хүйс</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Утасны дугаар</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Цахим хаяг</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Регистер</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a ><b>Төрсөн он сар</b> </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="w-50">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-1">
+                                    <a >Болд</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >Цэцэг</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >Эр</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >89876767</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >dd@gmail.com</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >УП8725379</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a >02/04/2019</a>
+                                </li>
+
+
+                            </ul>
                         </div>
                     </div>
+                    <br>
+                    <table class="table table-sm table-borderless">
+
+                        <tbody>
+                        <tr>
+                            <td>
+                                <span class="log-indicator border-theme-2 align-middle"></span>
+                            </td>
+                            <td>
+                                <span class="font-weight-medium">Шүдний ломбо</span>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-muted">500₮</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="log-indicator border-theme-2 align-middle"></span>
+                            </td>
+                            <td>
+                                <span class="font-weight-medium">Чулуу түүх</span>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-muted">2000₮</span>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <span class="badge badge-pill badge-primary">Нийт төлбөр 5000₮</span>
+                    <br>
+                    <br>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <form class="form-inline">
+                            <label class="sr-only" for="inlineFormInputName2">Name</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                                   placeholder="Урамшуулалын код">
+
+                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+
+                        </form>
+                        <form class="form-inline">
+
+                            <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
+                        </form>
+                    </div>
+
 
                 </div>
-            </div>
-        </div>
-        @endforeach
 
-    </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div><!--end row-->
 @endsection
 @section('footer')
 

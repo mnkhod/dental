@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\OutcomeCategory;
 use App\Role;
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccountantTransactionController extends Controller
 {
@@ -17,11 +19,12 @@ class AccountantTransactionController extends Controller
 
 
     public function index() {
-        $transactions = Transaction::all()->where('created_at','>', date('Y-m-d', strtotime('-30 Days')))->sortByDesc('id');
+        $transactions = Transaction::all()->where('created_at','>=', date('Y-m-d', strtotime('first day of this month')))->sortByDesc('id');
         $roles = Role::all();
+        $types = OutcomeCategory::all();
         $start_date = strtotime('-30 Days');
         $end_date = strtotime('Today');;
-        return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date'));
+        return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
     }
 
 
@@ -29,13 +32,14 @@ class AccountantTransactionController extends Controller
     public function search($start_date, $end_date) {
         $transactions = Transaction::all()->whereBetween('created_at', [date('Y-m-d', $start_date), date('Y-m-d', $end_date)])->sortByDesc('id');
         $roles = Role::all();
-        return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date'));
+        $types = OutcomeCategory::all();
+        return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
     }
 
 
 
     public function store(Request $request) {
-        Transaction::create(['price'=> -1*$request['price'], 'type'=>3, 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
+        Transaction::create(['price'=> -1*$request['price'], 'type'=>$request['type'], 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
     }
     public function salary(Request $request) {
@@ -46,6 +50,10 @@ class AccountantTransactionController extends Controller
     public function income(Request $request) {
         Transaction::create(['price'=> $request['price'], 'type'=>5, 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
+    }
+    public function outcomeCategory(Request $request) {
+        OutcomeCategory::create(['name'=>$request['name']]);
+        return redirect()->back();
     }
 
     public function date(Request $request) {
