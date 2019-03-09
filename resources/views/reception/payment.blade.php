@@ -16,7 +16,6 @@
     <script>
         document.getElementById('receptionPayment').classList.add('active');
     </script>
-    <main>
         <div class="row">
             <div class="col-md-4"><!--profile heseg-->
 
