@@ -23,8 +23,17 @@ class AccountantTransactionController extends Controller
         $roles = Role::all();
         $types = OutcomeCategory::all();
         $start_date = strtotime('-30 Days');
-        $end_date = strtotime('Today');;
+        $end_date = strtotime('Today');
         return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
+    }
+
+    public function edit($id) {
+        $transactions = Transaction::all()->where('created_at','>=', date('Y-m-d', strtotime('first day of this month')))->sortByDesc('id');
+        $roles = Role::all();
+        $types = OutcomeCategory::all();
+        $start_date = strtotime('-30 Days');
+        $end_date = strtotime('Today');
+        return view('accountant.transaction_edit' ,compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
     }
 
 

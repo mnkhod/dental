@@ -22,6 +22,7 @@ class AdminTransactionController extends Controller
         return view('admin.transaction', compact('transactions', 'roles', 'start_date', 'end_date'));
     }
 
+
     public function search($start_date, $end_date) {
         $transactions = Transaction::all()->whereBetween('created_at', [date('Y-m-d', $start_date), date('Y-m-d', $end_date)])->sortByDesc('id');
         $roles = Role::all();

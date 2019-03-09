@@ -92,10 +92,10 @@ class AdminTimeController extends Controller
         }
 
         if($user =User::where('phone_number',$request['phone'])->first()){
-            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours'],'state'=>0]);
         }
         else{
-            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours']]);
+            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours'],'state'=>0]);
         }
         return back();
     }

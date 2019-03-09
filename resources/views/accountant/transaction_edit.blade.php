@@ -26,8 +26,6 @@
         document.getElementById('accountantTransaction').classList.add('active');
     </script>
 
-
-
     <div id="addCategory" class="modal fade show" tabindex="-1" role="dialog"
          aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
@@ -57,123 +55,33 @@
             </div>
         </div>
     </div>
+    <div class="row"><!-- row-->
+        <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5>Утга янзлах</h5>
+                <div class="text-right">
+                    <a href="#" data-toggle="modal"
+                       data-target="#addCategory">+ Зардлын төрөл нэмэх</a>
+                    <br>
+                    <br>
 
-    {{--USTGAKH MODAL--}}
-    <div id="deleteTransaction" class="modal fade show" tabindex="-1" role="dialog"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalPopoversLabel">Утга устгах</h5>
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
                 </div>
-                <div class="card mb-4 text-left">
-                    <div class="card-body">
-                        <form action="#"
-                              method="post">
-                            @csrf
-                            <span>Тайлбар:</span>
-                            <input type="hidden" id="transactionHidden">
-                            <input name="description" class="form-control mb-3" autocomplete="off"
-                                   type="text">
-                            <button class="btn btn-primary"
-                                    type="submit">
-                                Устгах
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                <form method="post" action="{{url('/accountant/transactions/add')}}">
+                    @csrf
+                    <select class="form-control mb-3" name="type">
+                        @foreach($types as $type)
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                    <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
+                           autocomplete="off">
+                    <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар"
+                           autocomplete="off">
+                    <button class="btn btn-primary btn-block" type="submit">ЗАРЛАГА ОРУУЛАХ</button>
+                </form>
             </div>
         </div>
-    </div>
-
-
-    <div class="row"><!-- row-->
-
-        <div class="col-md-3">
-            <ul class="nav nav-tabs separator-tabs ml-0 mb-5" role="tablist">
-
-                <li class="nav-item">
-                    <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                       aria-controls="first" aria-selected="true">ЗАРЛАГА</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                       aria-controls="first" aria-selected="true">ЦАЛИН</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link " id="third-tab" data-toggle="tab" href="#third" role="tab"
-                       aria-controls="third" aria-selected="false">ОРЛОГО</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="text-right">
-                                <a href="#" data-toggle="modal"
-                                   data-target="#addCategory">+ Зардлын төрөл нэмэх</a>
-                                <br>
-                                <br>
-
-                            </div>
-                            <form method="post" action="{{url('/accountant/transactions/add')}}">
-                                @csrf
-                                <select class="form-control mb-3" name="type">
-                                    @foreach($types as $type)
-                                        <option value="{{$type->id}}">{{$type->name}}</option>
-                                    @endforeach
-                                </select>
-                                <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
-                                       autocomplete="off">
-                                <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар"
-                                       autocomplete="off">
-                                <button class="btn btn-primary btn-block" type="submit">ЗАРЛАГА ОРУУЛАХ</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="second" role="tabpane2" aria-labelledby="second-tab">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <form method="post" action="{{url('/accountant/transactions/salary')}}">
-                                @csrf
-                                <select class="form-control mb-3" name="staff">
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->staff->id}}">{{$role->staff->name}}/@if($role->id == 0)
-                                                Менежер@elseif($role->id == 1)Pесепшн@elseif($role->id == 2)
-                                                Доктор@elseif($role->id == 3)Сувилагч@else Бусад@endif/
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн"
-                                       autocomplete="off">
-                                <button class="btn btn-primary btn-block" type="submit">ОРУУЛАХ</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="third" role="tabpane3" aria-labelledby="third-tab">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <form action="{{url('accountant/transactions/income')}}" method="post">
-                                @csrf
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн"
-                                       autocomplete="off">
-                                <input class="form-control mb-3" name="description" type="text" placeholder="Тайлбар"
-                                       autocomplete="off">
-                                <button class="btn btn-primary btn-block">ОРЛОГО ОРУУЛАХ</button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Зардлын бүтэц</h5>
@@ -202,8 +110,6 @@
                         @endforeach
                     </table>
                     <b></b>
-
-
                 </div>
             </div>
         </div>
@@ -266,7 +172,7 @@
                                             <a href="#">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>
-                                            <a onclick="deleteTransaction({{$transaction->id}})">
+                                            <a href="#">
                                                 <i class="simple-icon-trash"></i>
                                             </a>
                                         </td>
@@ -284,12 +190,6 @@
     </div><!-- row end-->
 @endsection
 @section('footer')
-    <script>
-        function deleteTransaction(id) {
-            document.getElementById('transactionHidden').value = id;
-            $("#deleteTransaction").modal();
-        }
-    </script>
     <script src="{{asset('plugin/datatables/jquery.dataTables.min.js')}}   "></script>
     <script src="{{asset('plugin/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <!-- Buttons examples -->
