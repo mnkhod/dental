@@ -63,6 +63,7 @@ Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
 Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
 Route::get('/accountant/transactions', 'AccountantTransactionController@index');
+Route::get('/accountant/transactions/{id}', 'AccountantTransactionController@edit');
 Route::post('/accountant/transactions/salary', 'AccountantTransactionController@salary');
 Route::post('/accountant/transactions/add', 'AccountantTransactionController@store');
 Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
@@ -83,7 +84,6 @@ Route::get('/accountant/staffs', 'AccountantStaffController@index');
 
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
-
 Route::get('/reception/search', 'ReceptionUserController@search');
 
 Route::get('/reception/time', 'ReceptionTimeController@time');
@@ -94,6 +94,11 @@ Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
 Route::get('/reception/user_check/{id}/{appointment_id}/check_in','ReceptionUserController@check_in');
+
+Route::get('/reception/shifts', 'ReceptionShiftsController@index');
+Route::get('/reception/shifts/cancel','ReceptionShiftsController@cancel');
+Route::get('/reception/shifts/{i}/{doctor_staff_id}/{shift_id}','ReceptionShiftsController@store');
+
 
 Route::get('/reception/payment', 'ReceptionPaymentController@index');
 

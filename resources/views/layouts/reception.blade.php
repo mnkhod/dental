@@ -104,6 +104,11 @@
                         <i class="iconsmind-Administrator"></i> Үйлчлүүлэгч
                     </a>
                 </li>
+                <li id="receptionShifts">
+                    <a href="{{url('/reception/shifts')}}">
+                        <i class="iconsmind-Calendar-3"></i> Ээлж
+                    </a>
+                </li>
 
             </ul>
         </div>
