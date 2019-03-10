@@ -12,7 +12,7 @@ class ReceptionUserController extends Controller
 {
     //
     public function index() {
-        $users = User::all()->sortBy('created_at');
+        $users = User::all()->sortByDesc('created_at');
         return view('reception.users', compact('users'));
     }
 

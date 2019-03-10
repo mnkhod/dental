@@ -48,5 +48,6 @@ class AccountantProductController extends Controller
         $product = Products::find($id);
         $product->delete();
         return redirect('/accountant/products');
+
     }
 }
