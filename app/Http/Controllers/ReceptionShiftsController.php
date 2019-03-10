@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Log;
 use App\Role;
 use App\Time;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class ReceptionShiftsController extends Controller
     }
 
     public function cancel(Request $request){
+       $log = Log::create(['type'=>2,'type_id'=>$request['shift_id'],'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['description']]);
         $id = $request['shift_id'];
         //TODO(1) add validation to this (check if any user has an appointment)
         Time::find($id)->delete();

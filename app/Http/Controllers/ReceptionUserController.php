@@ -12,7 +12,8 @@ class ReceptionUserController extends Controller
 {
     //
     public function index() {
-        return view('reception.users');
+        $users = User::all()->sortBy('created_at');
+        return view('reception.users', compact('users'));
     }
 
     public function store(Request $request) {

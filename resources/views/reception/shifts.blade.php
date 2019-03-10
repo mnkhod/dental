@@ -48,6 +48,7 @@
                         <input type="hidden" name="shift_id" id="shiftId">
                     </div>
                     <div class="modal-footer">
+                        <input type="text" name="description" class="form-control" id="shiftId" placeholder="Тайлбар">
                         <button type="submit" class="btn btn-primary">Ээлж цуцлах</button>
                     </div>
                 </form>
