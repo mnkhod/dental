@@ -16,6 +16,12 @@ class ReceptionUserController extends Controller
         return view('reception.users', compact('users'));
     }
 
+    public function fromAppointment($name, $phone) {
+        $param = array($name, $phone);
+        $users = User::all()->sortByDesc('created_at');
+        return view('reception.users', compact('param', 'users'));
+    }
+
     public function store(Request $request) {
         $pass = "dragon";
         $pass = bcrypt($pass);

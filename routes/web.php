@@ -85,6 +85,7 @@ Route::get('/accountant/staffs', 'AccountantStaffController@index');
 
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
+Route::get('/reception/user/register/{name}/{phone}', 'ReceptionUserController@fromAppointment');
 Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
 Route::get('/reception/time/week/{id}', 'ReceptionTimeController@timeWeek');

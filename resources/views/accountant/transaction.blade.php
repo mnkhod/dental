@@ -353,7 +353,7 @@
                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$transaction->price}}</td>
-                                        <td>{{$transaction->typeOut->name}}</td>
+                                        <td>@if(!empty($transaction)){{$transaction->typeOut->name}} @endif</td>
                                         <td>@if($transaction->description){{$transaction->description}} @else Тайлбар
                                             байхгүй @endif</td>
                                         <td>{{$transaction->created_at}}</td>

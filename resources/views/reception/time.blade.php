@@ -124,7 +124,7 @@
                             </button>
                         </div>
                         <a id="variableLink">
-                            <button id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд
+                            <button type="button" id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд
                                 оруулах
                             </button>
                         </a>
@@ -249,8 +249,10 @@
 @section('footer')
     <script>
         var mTime;
+        var mShift;
         function bookTime(time, shift_id, doctor_name) {
             mTime = time;
+            mShift = shift_id;
             document.getElementById("timeShow").innerHTML = time;
             document.getElementById("timeInput").value = time;
             document.getElementById("nameShow").innerHTML = doctor_name;
@@ -265,8 +267,9 @@
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
+            registered = parseInt(registered);
             if(registered === 0) {
-                document.getElementById("variableButton").innerText = "Бүртгэх";
+                document.getElementById("variableButton").innerText = "Бүртгэх&Оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
             }  else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
@@ -284,8 +287,13 @@
             }
         }
 
-        function validation(){
-            var doctor_2 = [15,16,17,18,19,20,11];
+        function validation() {
+
+            //var doctor_1 = [15,16,17,18,19,20,11];
+            var doctor_2 = [];
+            //TODO(2) Eniig martvaa Validation back-end --> front-end
+            //var doctor_3 = [15,16,17,18,19,20,11];
+            //var doctor_4 = [15,16,17,18,19,20,11];
             var check = []
             var q = []
             var d = document.getElementById("ner").value;

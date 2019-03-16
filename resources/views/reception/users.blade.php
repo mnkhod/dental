@@ -32,7 +32,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="inputAddress2">Нэр</label>
-                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр">
+                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр" value="@if(!empty($param)) {{$param[0]}} @endif">
                                     <span id="fname_msg" style="color:red"></span>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Утасны дугаар</label>
-                            <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу">
+                            <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу" value="@if(!empty($param)) {{$param[1]}} @endif">
                             <span id="phone_msg" style="color:red"></span>
                         </div>
                         <div class="form-group">
