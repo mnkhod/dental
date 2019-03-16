@@ -46,16 +46,14 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
-                                <input id = "ner" name="name" autocomplete="off" type="text" class="form-control" placeholder="">
-                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder=""
+                                <input id="ner" name="name" autocomplete="off" type="text" class="form-control" placeholder=""
                                        @if(!empty($user)) value="{{$user->name}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
-                                <input id = "utas" name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
-                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder=""
+                                <input id="utas" name="phone" autocomplete="off" type="text" class="form-control" placeholder=""
                                        @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
@@ -121,7 +119,6 @@
                             <input id = "mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
 
-                            <button onclick="val()" class="btn btn-light" type="button"  style="border-radius: 0px">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
                             </button>
