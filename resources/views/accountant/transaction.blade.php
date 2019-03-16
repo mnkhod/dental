@@ -90,6 +90,60 @@
         </div>
     </div>
 
+    <!-- yanzlah-->
+    <div class="modal fade modal-right" id="editTransaction" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalRight" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Үнийн дүн</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{url('/accountant/transactions/edit')}}" method="post">
+
+                <div class="modal-body">
+
+                        @csrf
+                        <div class="form-group">
+                            <label>Үнэ</label>
+                            <input type="number" class="form-control" id="priceholder" name="price">
+                        </div>
+                    <div class="form-group">
+                        <label>Төрөл</label>
+                        <select name="transaction_edit_type" class="form-control" id="mySelect">
+                            <option id="variableValue" value="0"></option>
+
+                        @foreach($types as $type)
+                                <option value="{{$type->id}}">{{$type->name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                        <div class="form-group">
+                            <label>Тайлбар</label>
+                            <textarea name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Тайлбар</label>
+                            <textarea name="log_description" placeholder="Устгаж буй шалтгаан" class="form-control" rows="2"></textarea>
+                        </div>
+
+
+                        <input type="hidden" name="transaction_id" id="transactionEditHidden" value="0">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Болих</button>
+                    <button type="submit" class="btn btn-primary">Хадгалах</button>
+
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--duusah-->
 
 
     <div class="row"><!-- row-->
@@ -231,31 +285,43 @@
                     </form>
                 </div>
                 <div class="col-md-6 text-right">
-                    <form id="monthSearch" action="#" method="post">
-                    <select name="year">
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
+                    <form id="monthSearch" action="{{url('/accountant/transactions/by_month')}}" method="post">
+                    @csrf
+                        <select name="year">
+                            @if($start_date)
+                                <option value="{{date('Y', $start_date)}}">{{date('Y', $start_date)}}</option>
+                                @for($m = 2019; $m<=2027; $m++)
+                                    @if($m != date('Y', $start_date))
+                                        <option value="{{$m}}">{{$m}}</option>
+                                    @endif
+                                @endfor
+                            @else
+                                <option value="{{date('Y')}}">{{date('Y')}}</option>
+                                @for($m = 2019; $m<=2027; $m++)
+                                    @if($m != date('Y'))
+                                        <option value="{{$m}}">{{$m}}</option>
+                                    @endif
+                                @endfor
+                            @endif
                     </select>
                     <select name="month" onchange="document.getElementById('monthSearch').submit()">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                        @if($start_date)
+                            <option value="{{date('m', $start_date)}}">{{date('m', $start_date)}}</option>
+                            @for($m = 1; $m<=12; $m++)
+                                @if($m != date('m', $start_date))
+                                    <option value="{{$m}}">{{$m}}</option>
+                                @endif
+                            @endfor
+                        @else
+                            <option value="{{date('m')}}">{{date('m')}}</option>
+                            @for($m = 1; $m<=12; $m++)
+                                @if($m != date('m'))
+                                    <option value="{{$m}}">{{$m}}</option>
+                                @endif
+                            @endfor
+                        @endif
+
+
                     </select>
                     </form>
                 </div>
@@ -293,7 +359,8 @@
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
                                         <td class="text-center">
-                                            <a href="{{url('/accountant/transactions/'.$transaction->id)}}">
+                                            <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','{{$transaction->typeOut->name}}',
+                                                    '{{$transaction->price}}', '{{$transaction->description}}')">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>
                                             <a onclick="deleteTransaction({{$transaction->id}})">
@@ -314,6 +381,19 @@
     </div><!-- row end-->
 @endsection
 @section('footer')
+    <script>
+        function editTransaction(id ,type, type_name, price, description) {
+            document.getElementById('transactionEditHidden').value = id;
+            document.getElementById('priceholder').value = price;
+            document.getElementById('descriptionholder').value = description;
+            var x = document.getElementById("mySelect").options.namedItem("variableValue");
+            x.value = type;
+            x.text = type_name;
+            $("#editTransaction").modal();
+        }
+
+    </script>
+
     <script>
         function deleteTransaction(id) {
             document.getElementById('transactionHidden').value = id;

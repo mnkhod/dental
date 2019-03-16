@@ -6,6 +6,7 @@ use App\Log;
 use App\OutcomeCategory;
 use App\Role;
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,14 +29,15 @@ class AccountantTransactionController extends Controller
         return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
     }
 
-    public function edit($id) {
+    public function edit(Request $request) {
         $transactions = Transaction::all()->where('created_at','>=', date('Y-m-d', strtotime('first day of this month')))->sortByDesc('id');
         $roles = Role::all();
-        $specific = Transaction::find($id);
+        $specific = Transaction::find($request['transaction_id'])->update(['price'=>$request['price'],'description'=>$request['description'],'type'=>$request['transaction_edit_type']]);
+        $log = Log::create(['type'=>1,'type_id'=>$request['transaction_id'],'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['log_description']]);
         $types = OutcomeCategory::all();
         $start_date = strtotime('-30 Days');
         $end_date = strtotime('Today');
-        return view('accountant.transaction_edit' ,compact('transactions', 'roles', 'start_date','specific', 'end_date', 'types'));
+        return redirect('/accountant/transactions');
     }
     public function delete(Request $request){
         $trans = Transaction::find($request['transaction_id']);
@@ -79,6 +81,17 @@ class AccountantTransactionController extends Controller
         $start_date = strtotime($start_date[2] . '-' . $start_date[0] . '-' . $start_date[1]);
         $end_date = explode('/', $end_date);
         $end_date = strtotime($end_date[2] . '-' . $end_date[0] . '-' . $end_date[1]);;
+        return redirect('/accountant/transactions/' . $start_date.'/'.$end_date);
+    }
+    public function by_month(Request $request){
+        $month = $request['month'];
+        $year = $request['year'];
+        $end_month = $request['month']+1;
+        $start_date= strtotime($year .'-'.$month.'-'.'1');
+        if($end_month == 12){
+            $end_month = 1;
+        }
+        $end_date = strtotime($year.'-'.$end_month.'-'.'1');
         return redirect('/accountant/transactions/' . $start_date.'/'.$end_date);
     }
 

@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ үйлчлүүлэгч нэмэх</h5>
 
-                    <form action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data" id="form">
+                    <form action="{{url('/reception/store')}}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
                         <div class="form-row">
                             <div class="col-md-12">
@@ -85,14 +85,54 @@
                         <div class="form-group row mb-0">
                             <div class="col-sm-10">
                                 <br>
-                                <button onclick="validate()" type="button" class="btn btn-primary mb-0">Ажилтан нэмэх</button>
+                                <button onclick="validate()" type="button" class="btn btn-primary mb-0">Хэрэглэгч нэмэх</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <div class="col-xl-6 col-lg-12 mb-4"><!--table-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Бүх бүртгэлтэй хэрэглэгчид</h5>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
 
+                            <th>Нэр</th>
+                            <th>Овог</th>
+                            <th>Хүйс</th>
+                            <th>Утас</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($users as $user)
+                            @if(is_null($user->role))
+                                <tr>
+                                    <td>
+                                        <p class="list-item-heading">
+                                            <a href="{{url('/reception/user_check/'.$user->id)}}">{{$user->name}}</a>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-muted">{{$user->last_name}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-muted">{{$user->sex}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-muted">{{$user->phone_number}}</p>
+                                    </td>
+                                </tr>
+                                @endif
+                        @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- table end-->
     </div>
 @endsection
 @section('footer')
