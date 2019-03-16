@@ -40,12 +40,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{url('reception/time/add')}}" method="post">
+                <form id = "form111" action="{{url('reception/time/add')}}" method="post">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
+                                <input id = "ner" name="name" autocomplete="off" type="text" class="form-control" placeholder="">
                                 <input name="name" autocomplete="off" type="text" class="form-control" placeholder=""
                                        @if(!empty($user)) value="{{$user->name}}" readonly @endif>
                             </div>
@@ -53,6 +54,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
+                                <input id = "utas" name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
                                 <input name="phone" autocomplete="off" type="text" class="form-control" placeholder=""
                                        @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
@@ -62,7 +64,7 @@
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа
                                 (цагаар):</label>
                             <div class="col-sm-8">
-                                <input name="hours" autocomplete="off" type="number" class="form-control"
+                                <input id = "hugatsaa" name="hours" autocomplete="off" type="number" class="form-control"
                                        placeholder="">
                             </div>
                         </div>
@@ -73,7 +75,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
+                        <button  onclick="validation()" type="button" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
                     </div>
                 </form>
             </div>
@@ -116,9 +118,10 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-8 input-group">
-                            <input name="code" autocomplete="off" type="password" class="form-control input-sm"
+                            <input id = "mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
 
+                            <button onclick="val()" class="btn btn-light" type="button"  style="border-radius: 0px">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
                             </button>
@@ -157,7 +160,7 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <form method="post" action="{{url('/admin/transaction/date')}}">
+                        <form id = "form11" method="post" action="{{url('/admin/transaction/date')}}">
                             @csrf
                             <div class="input-group">
                                 <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
@@ -248,7 +251,9 @@
 @endsection
 @section('footer')
     <script>
+        var mTime;
         function bookTime(time, shift_id, doctor_name) {
+            mTime = time;
             document.getElementById("timeShow").innerHTML = time;
             document.getElementById("timeInput").value = time;
             document.getElementById("nameShow").innerHTML = doctor_name;
@@ -263,16 +268,55 @@
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
-            if (registered === 0) {
+            if(registered === 0) {
                 document.getElementById("variableButton").innerText = "Бүртгэх";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
-            } else {
+            }  else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
             }
             document.getElementById("da_user_link").setAttribute('href', "https://www.google.com" + "/" + "1");
             $("#deleteAppointment").modal();
         }
+        function val() {
+            var b = document.getElementById("mf").value;
+            if(b === ""){
+                document.getElementById('mf').classList.add('border-danger');
+            }else{
+                document.getElementById("modalf").submit();
+            }
+        }
+
+        function validation(){
+            var doctor_2 = [15,16,17,18,19,20,11];
+            var check = []
+            var q = []
+            var d = document.getElementById("ner").value;
+            var ut = document.getElementById("utas").value;
+            var tsag = document.getElementById("hugatsaa").value;
+            for(i = 0; i<=tsag; i++) {
+                var int = parseInt(mTime, 10);
+                check.push(int+i);
+                q.push(doctor_2.includes(check[i]));
+            }
+            if(d === "") {
+                document.getElementById('ner').classList.add('border-danger');
+            }
+
+            else if(tsag >= 1 && tsag !== "" && q.includes(true) === true) {
+                    document.getElementById('hugatsaa').classList.add('border-danger');}
+
+            else if(ut.length !== 8) {
+                document.getElementById('utas').classList.add('border-danger');
+            }
+            else {
+                document.getElementById("form111").submit();
+            }
+
+        }
+        // function check() {
+        //     if
+        // }
     </script>
 
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
