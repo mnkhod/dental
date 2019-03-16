@@ -251,7 +251,7 @@
                                 @endfor
                                 @for($i = 31; $i<=38; $i++)
                                     <td>
-                                        <input type="hidden" id="shud{{$i}}" value="1">
+                                        <input type="hidden" id="shud{{$i}}" value="3">
                                         <svg height="25" width="25">
                                             <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
                                                      onclick="changeStyle({{$i}})"/>

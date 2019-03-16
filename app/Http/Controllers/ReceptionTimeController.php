@@ -52,7 +52,7 @@ class ReceptionTimeController extends Controller
         if ($shift->shift_id == 0) {
             $times = [15, 16, 17, 18, 19, 20];
         } elseif ($shift->shift_id == 1) {
-            $times = [9, 10, 11, 12, 13, 24];
+            $times = [9, 10, 11, 12, 13, 14];
         } else {
             $times = [];
         }

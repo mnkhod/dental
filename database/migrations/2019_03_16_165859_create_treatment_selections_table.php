@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTreatmentsTable extends Migration
+class CreateTreatmentSelectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateTreatmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('treatments', function (Blueprint $table) {
+        Schema::create('treatment_selections', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('treatment_id');
             $table->string('name');
-            $table->integer('selection_type');
-            $table->tinyInteger('category');
-            $table->integer('price')->nullable();
+            $table->integer('price');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateTreatmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('treatments');
+        Schema::dropIfExists('treatment_selections');
     }
 }
