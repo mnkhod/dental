@@ -46,6 +46,11 @@
                         <div class="text-center">
                             <p class="list-item-heading mb-1"><a href="{{url('/reception/users/'.$result->id)}}">{{$result->last_name}} {{$result->name}}</a></p>
                             <br>
+                            <a href="{{url('/reception/time/'.$result->id)}}">
+                                <button class="btn btn-outline-primary" style="border-radius: 0px">Цаг захиалах</button>
+                            </a>
+                            <br>
+                            <br>
                             <div class="text-center">
                                 <p class="text-muted text-small mb-2">Регистрийн дугаар</p>
                                 <p class="mb-3">

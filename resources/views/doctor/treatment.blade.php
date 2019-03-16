@@ -21,11 +21,13 @@
             stroke: darkgrey;
             fill: transparent;
         }
+
         circle {
             stroke-width: 1;
             stroke: darkgrey;
             fill: white;
         }
+
         /*
 
                 circle:hover {
@@ -33,13 +35,15 @@
                 }
         */
         .lombo {
-            fill : #138496;
+            fill: #138496;
             animation-duration: 0.3s;
         }
+
         .empty {
-            fill : white;
+            fill: white;
             animation-duration: 0.3s;
         }
+
         .switch {
             position: relative;
             display: inline-block;
@@ -112,15 +116,17 @@
                 <div class="modal-body">
                     <br>
                     <br>
-                    <h3><b><div id="buriLombo">Шүд #</div></b></h3>
+                    <h3><b>
+                            <div id="buriLombo">Шүд #</div>
+                        </b></h3>
                     <!--                                            content modal-->
                     <input type="hidden" id="hiddenDecayChart" value="">
-                    <svg height="200" width="200" >
-                        <polygon id="pol1" points="0,0 100,100 200,0" onclick="myFunction('1')" />
+                    <svg height="200" width="200">
+                        <polygon id="pol1" points="0,0 100,100 200,0" onclick="myFunction('1')"/>
                         <polygon id="pol2" points="100,100 200,0 200,200" onclick="myFunction('2')"/>
                         <polygon id="pol4" points="0,200 100,100 200,200" onclick="myFunction('4')"/>
                         <polygon id="pol8" points="0,0 100,100 0,200" onclick="myFunction('8')"/>
-                        <circle  id="pol16" cx="100" cy="100" r="50" onclick="myFunction('16')"/>
+                        <circle id="pol16" cx="100" cy="100" r="50" onclick="myFunction('16')"/>
                     </svg>
                     <div>
                         <br>
@@ -158,49 +164,130 @@
 
     <div class="row">
         <div class="col-md-9">
-            <div class="card mb-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h2>{{$user->name}}</h2>
-                            {{$age}} настай
-                        </div>
-                        <div class="col-md-7">
-                            <b>Анхаарах зүйлс:</b> {{$user->description}}
-                        </div>
 
-                    </div>
-                </div>
-            </div>
             <div class="card">
                 <div class="card-body mb-2">
                     <div class="table-responsive">
                         <table class="table text-center">
                             <tr>
-                                @for($i = 1; $i<=16; $i++)
+                                @for($i = 18; $i>=11; $i--)
+                                    <td style="color: grey">
+                                        {{$i}}
+                                    </td>
+                                @endfor
+                                @for($i = 21; $i<=28; $i++)
                                     <td style="color: grey">
                                         {{$i}}
                                     </td>
                                 @endfor
                             </tr>
                             <tr>
-                                @for($i = 1; $i<=16; $i++)
+                                @for($i = 18; $i>=11; $i--)
                                     <td>
-                                        <img  id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                              onclick="changeStyle({{$i}})">
+                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                             onclick="changeStyle({{$i}})">
+                                    </td>
+                                @endfor
+                                @for($i = 21; $i<=28; $i++)
+                                    <td>
+                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                             onclick="changeStyle({{$i}})">
                                     </td>
                                 @endfor
                             </tr>
                             <tr>
-                                @for($i = 32; $i>16; $i--)
+                                @for($i = 18; $i>=11; $i--)
                                     <td>
-                                        <img  id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                              onclick="changeStyle({{$i}})">
+                                        <input type="hidden" id="shud{{$i}}" value="21">
+                                        <svg height="25" width="25">
+                                            <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_1" points="12.5,12.5 25,0 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_2" points="0,25 12.5,12.5 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_3" points="0,0 12.5,12.5 0,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <circle id="pol{{$i}}_4" cx="12.5" cy="12.5" r="6.25"
+                                                    onclick="changeStyle({{$i}})"/>
+                                        </svg>
+                                    </td>
+                                @endfor
+                                @for($i = 21; $i<=28; $i++)
+                                    <td>
+                                        <input type="hidden" id="shud{{$i}}" value="21">
+                                        <svg height="25" width="25">
+                                            <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_1" points="12.5,12.5 25,0 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_2" points="0,25 12.5,12.5 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_3" points="0,0 12.5,12.5 0,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <circle id="pol{{$i}}_4" cx="12.5" cy="12.5" r="6.25"
+                                                    onclick="changeStyle({{$i}})"/>
+                                        </svg>
                                     </td>
                                 @endfor
                             </tr>
                             <tr>
-                                @for($i = 32; $i>=17; $i=$i-1)
+                                @for($i = 48; $i>=41; $i--)
+                                    <td>
+                                        <input type="hidden" id="shud{{$i}}" value="1">
+                                        <svg height="25" width="25">
+                                            <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_1" points="12.5,12.5 25,0 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_2" points="0,25 12.5,12.5 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_3" points="0,0 12.5,12.5 0,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <circle id="pol{{$i}}_4" cx="12.5" cy="12.5" r="6.25"
+                                                    onclick="changeStyle({{$i}})"/>
+                                        </svg>
+                                    </td>
+                                @endfor
+                                @for($i = 31; $i<=38; $i++)
+                                    <td>
+                                        <input type="hidden" id="shud{{$i}}" value="1">
+                                        <svg height="25" width="25">
+                                            <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_1" points="12.5,12.5 25,0 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_2" points="0,25 12.5,12.5 25,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <polygon id="pol{{$i}}_3" points="0,0 12.5,12.5 0,25"
+                                                     onclick="changeStyle({{$i}})"/>
+                                            <circle id="pol{{$i}}_4" cx="12.5" cy="12.5" r="6.25"
+                                                    onclick="changeStyle({{$i}})"/>
+                                        </svg>
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr>
+                                @for($i = 48; $i>=41; $i--)
+                                    <td>
+                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                             onclick="changeStyle({{$i}})">
+                                    </td>
+                                @endfor
+                                @for($i = 31; $i<=38; $i++)
+                                    <td>
+                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                             onclick="changeStyle({{$i}})">
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr>
+                                @for($i = 48; $i>=41; $i--)
+                                    <td style="color: grey">
+                                        {{$i}}
+                                    </td>
+                                @endfor
+                                @for($i = 31; $i<=38; $i++)
                                     <td style="color: grey">
                                         {{$i}}
                                     </td>
@@ -219,18 +306,21 @@
                 <ul class="nav nav-tabs nav-justified ml-0 mb-2" role="tablist">
 
                     <li class="nav-item">
-                        <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab" aria-controls="first" aria-selected="true">Эмчилгээ</a>
+                        <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
+                           aria-controls="first" aria-selected="true">Эмчилгээ</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Түүх</a>
+                        <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
+                           aria-controls="second" aria-selected="false">Түүх</a>
                     </li>
 
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                         <div class="card-body">
-                            <button class="btn btn-primary btn-block single" data-toggle="modal" data-target="#exampleModal">
+                            <button class="btn btn-primary btn-block single" data-toggle="modal"
+                                    data-target="#exampleModal">
                                 <div class="row">
                                     <div class="col-md-12 text-left" onclick="reset()">
                                         Ломбо<br> 3 төрөлтэй
@@ -285,40 +375,31 @@
         </div>
     </div>
     <script>
-        var s = '';
-        var v = '';
-        var d=parseInt(31);
-        while (d>0){
-            s = s + d%2;
-            d = parseInt(d/2);
-        }
-        s = s.split("");
-        var list = s.reverse();
-
 
         var tooths = [];
         var selectedArea = [];
-        var toothClassList = ["single","all","multiple"]
+        var toothClassList = ["single", "all", "multiple"]
 
         var single = document.getElementsByClassName(toothClassList[0]);
         var all = document.getElementsByClassName(toothClassList[1]);
         var mult = document.getElementsByClassName(toothClassList[2]);
 
-        for (i=0;i<all.length;i++){
+        for (i = 0; i < all.length; i++) {
             all[i].style.display = "block";
         }
-        for(i=0;i<single.length;i++){
+        for (i = 0; i < single.length; i++) {
             single[i].style.display = "none";
         }
-        for(i=0;i<mult.length;i++){
+        for (i = 0; i < mult.length; i++) {
             mult[i].style.display = "none";
         }
+
         function reset() {
 
             document.getElementById('option1').click();
 
-            for(i=0;i<selectedArea.length;i++){
-                document.getElementById("pol" + selectedArea[i]).setAttribute('class','empty');
+            for (i = 0; i < selectedArea.length; i++) {
+                document.getElementById("pol" + selectedArea[i]).setAttribute('class', 'empty');
             }
             // document.getElementById('suunShudToggle').setAttribute('class','')
             var x = document.getElementById('suunShudToggle');
@@ -330,11 +411,11 @@
         function changeStyle(ruby) {
 
             //----VALIDATION-----
-            if(tooths.length === 0) {
+            if (tooths.length === 0) {
                 tooths.push(ruby);
             } else {
                 var check = true;
-                for (var count = 0; count<tooths.length; count++) {
+                for (var count = 0; count < tooths.length; count++) {
                     if (tooths[count] === ruby) {
                         check = false;
                     }
@@ -349,70 +430,83 @@
             //----VALIDATION END-----
             //PAINT table using @tooths array
             console.log(tooths);
-            for (var i = 1; i <= 32; i++) {
-                document.getElementById(i).setAttribute("class", "tooth");
-            }
-            for (var i = 1; i <= 32; i++) {
-                for (var count = 0; count < tooths.length; count++) {
-                    if (tooths[count] === i) {
+            for (var j = 1; j <= 4; j++){
+                for (var i = 10*j+1; i <= 10*j+8; i++) {
+                    document.getElementById(i).setAttribute("class", "tooth");
+                }
+                for (var i = 10*j+1; i <= 10*j+8; i++) {
+                    for (var count = 0; count < tooths.length; count++) {
+                        if (tooths[count] === i) {
+                            document.getElementById(i).classList.remove("tooth");
+                        }
+                    }
+                    if (tooths.length === 0) {
                         document.getElementById(i).classList.remove("tooth");
                     }
                 }
+
             }
+
+
+
             //ENDING
             //change style gesen function dotor bichsen baigaa bolno
             // START
-                if (tooths.length === 0){
-                    for (i=0;i<all.length;i++){
-                        all[i].style.display = "block";
-                    }
-                    for(i=0;i<single.length;i++){
-                        single[i].style.display = "none";
-                    }
-                    for(i=0;i<mult.length;i++){
-                        mult[i].style.display = "none";
-                    }
-                    for (var i = 1; i <= 32; i++) {
-                                document.getElementById(i).classList.remove("tooth");
-                    }
-                } else if(tooths.length === 1){
-                    for (i=0;i<all.length;i++){
-                        all[i].style.display = "none";
-                    }
-                    for(i=0;i<single.length;i++){
-                        single[i].style.display = "block";
-                    }
-                    for(i=0;i<mult.length;i++){
-                        mult[i].style.display = "none";
-                    }
-                } else {
-                    for (i=0;i<all.length;i++){
-                        all[i].style.display = "single";
-                    }
-                    for(i=0;i<single.length;i++){
-                        single[i].style.display = "none";
-                    }
-                    for(i=0;i<mult.length;i++){
-                        mult[i].style.display = "block";
+            if (tooths.length === 0) {
+                for (i = 0; i < all.length; i++) {
+                    all[i].style.display = "block";
+                }
+                for (i = 0; i < single.length; i++) {
+                    single[i].style.display = "none";
+                }
+                for (i = 0; i < mult.length; i++) {
+                    mult[i].style.display = "none";
+                }
+                for (var j = 1; j<=4; j++ ){
+                    for (var i = 10*j+1; i <= 10*j+8; i++) {
+                        document.getElementById(i).classList.remove("tooth");
                     }
                 }
+
+            } else if (tooths.length === 1) {
+                for (i = 0; i < all.length; i++) {
+                    all[i].style.display = "none";
+                }
+                for (i = 0; i < single.length; i++) {
+                    single[i].style.display = "block";
+                }
+                for (i = 0; i < mult.length; i++) {
+                    mult[i].style.display = "none";
+                }
+            } else {
+                for (i = 0; i < all.length; i++) {
+                    all[i].style.display = "single";
+                }
+                for (i = 0; i < single.length; i++) {
+                    single[i].style.display = "none";
+                }
+                for (i = 0; i < mult.length; i++) {
+                    mult[i].style.display = "block";
+                }
+            }
         }
 
 
         //LOMBO STARTING
 
 
-        function sumList(array){
+        function sumList(array) {
             var sum = 0
-            for(i=0;i<array.length;i++){
+            for (i = 0; i < array.length; i++) {
                 var parse = parseInt(array[i]);
                 sum += parse;
             }
             return sum
         }
-        function myFunction(ruby){
+
+        function myFunction(ruby) {
 //            Validation start
-            if(selectedArea.length === 0) {
+            if (selectedArea.length === 0) {
                 selectedArea.push(ruby);
             } else {
                 var check = true;
@@ -433,18 +527,49 @@
 //              Change Color on click
             if (selectedArea.includes(ruby) === true) {
 
-                document.getElementById("pol"+ruby).setAttribute('class','lombo');
+                document.getElementById("pol" + ruby).setAttribute('class', 'lombo');
             } else if (selectedArea.includes(ruby) === false) {
 
-                document.getElementById("pol"+ruby).setAttribute('class','empty');
+                document.getElementById("pol" + ruby).setAttribute('class', 'empty');
             }
 //            sumList
             var total = sumList(selectedArea);
 
 //            hidden value
-            var x = document.getElementById('hiddenDecayChart').value=total;
+            var x = document.getElementById('hiddenDecayChart').value = total;
             console.log(ruby);
         }
+
+        //                                integer to binary
+        //Polygon
+        function paint(input) {
+            var s = '';
+            var v = '';
+            var d = parseInt(input);
+            while (d > 0) {
+                s = s + d % 2;
+                d = parseInt(d / 2);
+            }
+            s = s.split("");
+            return s;
+        }
+
+        for(var p = 1; p<=4;p++) {
+            for (var f = 10*p+1; f < 10*p+9; f++) {
+                var x = document.getElementById('shud' + f).value;
+                var list = paint(x);
+
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i] == 1) {
+                        document.getElementById('pol' + f + '_' + i).setAttribute('class', 'lombo');
+                    } else {
+                        document.getElementById('pol' + f + '_' + i).setAttribute('class', 'empty');
+                    }
+                }
+            }
+        }
+
+
     </script>
 @endsection
 @section('footer')

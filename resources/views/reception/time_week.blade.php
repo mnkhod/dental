@@ -43,13 +43,13 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
-                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder="">
+                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->name}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
-                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
+                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -58,6 +58,7 @@
                                 <input name="hours" autocomplete="off" type="number" class="form-control" placeholder="">
                             </div>
                         </div>
+                        <input type="hidden" name="user_id" @if(!empty($user)) value="{{$user->id}}" @else value="0" @endif>
                         <input type="hidden" name="time" id="timeInput">
                         <input type="hidden" name="shift_id" id="shiftInput">
 
@@ -117,6 +118,10 @@
         {{--<div class="col-md-12">--}}
         <div class="card">
             <div class="card-body">
+                @if(!empty($user))
+                <h4>{{$user->name}}</h4>
+                {{$user->register}}
+                @endif
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <select class="form-control" onchange="location = this.value;">

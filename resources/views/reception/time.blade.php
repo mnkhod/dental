@@ -46,15 +46,18 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
-                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder="">
+                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder=""
+                                       @if(!empty($user)) value="{{$user->name}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
-                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="">
+                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder=""
+                                       @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
+                        <input type="hidden" value="@if(!empty($user)) {{$user->id}} @else 0 @endif">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа
                                 (цагаар):</label>
@@ -116,13 +119,15 @@
                             <input name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
 
-                            <button class="btn btn-light" type="submit"  style="border-radius: 0px">
+                            <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
                             </button>
                         </div>
-                            <a id="variableLink">
-                                <button id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд оруулах</button>
-                            </a>
+                        <a id="variableLink">
+                            <button id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд
+                                оруулах
+                            </button>
+                        </a>
 
                     </div>
                 </form>
@@ -134,11 +139,18 @@
         {{--<div class="col-md-12">--}}
         <div class="card">
             <div class="card-body">
+                @if(!empty($user))<h4>{{$user->name}} </h4>{{$user->register}}@endif
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <select class="form-control" onchange="location = this.value;">
                             <option>Өдрөөр</option>
-                            <option value="@if(\App\Role::where('role_id', 2)->first() != null){{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}@endif">
+                            <option value="@if(\App\Role::where('role_id', 2)->first() != null)
+                            @if(!empty($user))
+                            {{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id .'/'. $user->id)}}
+                            @else
+                            {{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}
+                            @endif
+                            @endif">
                                 7 хоногоор
                             </option>
 
@@ -251,10 +263,10 @@
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
-            if(registered === 0) {
+            if (registered === 0) {
                 document.getElementById("variableButton").innerText = "Бүртгэх";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
-            }  else {
+            } else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
             }

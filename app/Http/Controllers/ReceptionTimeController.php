@@ -18,6 +18,12 @@ class ReceptionTimeController extends Controller
         $shifts = Time::all()->where('date', date('Y-m-d'));
         return view('reception.time', compact('shifts'));
     }
+    public function appointment($id) {
+        $user = User::find($id);
+        $shifts = Time::all()->where('date', date('Y-m-d'));
+        return view('reception.time', compact('shifts', 'user'));
+    }
+
     public function timeWeek($id) {
         $role = Role::find($id);
         $roles = Role::where('role_id', 2);
@@ -25,6 +31,14 @@ class ReceptionTimeController extends Controller
         return view('reception.time_week', compact('role', 'roles', 'shifts'));
 
     }
+    public function timeWeekAppointment($id, $user_id) {
+        $user = User::find($user_id);
+        $role = Role::find($id);
+        $roles = Role::where('role_id', 2);
+        $shifts = $role->shifts->where('date', '>=', date('Y-m-d'));
+        return view('reception.time_week', compact('shifts', 'user','role', 'roles'));
+    }
+
 
 //    public function date(Request $request) {
 //        $shifts = Time::all()->where('date', date('Y-m-d'));
@@ -72,14 +86,17 @@ class ReceptionTimeController extends Controller
             }
         }
 
-        if($user =User::where('phone_number',$request['phone'])->first()){
-            Appointment::create(['shift_id'=>$request['shift_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id,'state'=>0]);
-        }
-        else{
-            Appointment::create(['shift_id'=>$request['shift_id'],'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id,'state'=>0]);
+        if($request['user_id'] == 0) {
+            Appointment::create(['shift_id'=>$request['shift_id'],'user_id'=>0,'name'=>$request['name'], 'phone'=>$request['phone'], 'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id,'state'=>0]);
+        } else {
+            $user = User::find($request['user_id']);
+            Appointment::create(['shift_id'=>$request['shift_id'], 'user_id'=>$request['user_id'], 'name'=>$user->name,'phone'=>$request['phone'],'start'=>$request['time'], 'end'=>$request['time']+$request['hours'], 'created_by'=>Auth::user()->id,'state'=>0]);
+
         }
         return back();
     }
+
+
     public function cancel(Request $request){
         if($request['code'] == '12345678'){
             $id = $request['appointment_id'];
