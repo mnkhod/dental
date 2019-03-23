@@ -118,7 +118,8 @@
                         <div class="col-md-8 input-group">
                             <input id = "mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
-
+                            <input id = "mf" name="description" autocomplete="off" type="text" class="form-control input-sm"
+                                   placeholder="Тайлбар">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
                             </button>

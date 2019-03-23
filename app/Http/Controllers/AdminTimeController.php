@@ -7,6 +7,7 @@ use App\Role;
 use App\Time;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminTimeController extends Controller
 {
@@ -29,7 +30,7 @@ class AdminTimeController extends Controller
                 $time->save();
         } else {
             //Half time
-            Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id]);
+            Time::create(['doctor_id'=>$doctor_staff_id, 'date'=>$date,'shift_id'=>$shift_id,'created_by'=>Auth::user()->id]);
         }
         return redirect('admin/shifts');
     }

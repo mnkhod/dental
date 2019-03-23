@@ -67,5 +67,8 @@ class AdminController extends Controller
         $users_number = $users - $roles;
         return view('admin.dashboard',compact('users_number','roles'));
     }
+    public function logs(){
+        return view('admin.logs');
+    }
 
 }

@@ -353,13 +353,13 @@
                                     <tr>
                                         <td>{{$i}}</td>
                                         <td>{{$transaction->price}}</td>
-                                        <td>@if(!empty($transaction)){{$transaction->typeOut->name}} @endif</td>
+                                        <td>@if(!empty($transaction->typeOut)){{$transaction->typeOut->name}} @endif</td>
                                         <td>@if($transaction->description){{$transaction->description}} @else Тайлбар
                                             байхгүй @endif</td>
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
                                         <td class="text-center">
-                                            <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','{{$transaction->typeOut->name}}',
+                                            <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',
                                                     '{{$transaction->price}}', '{{$transaction->description}}')">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>

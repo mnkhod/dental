@@ -16,9 +16,14 @@ class CreateLogsTable extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('type');
+//            0 transaction
+//            2 product
+//            3 appointment
             $table->integer('type_id');
             $table->integer('user_id');
             $table->tinyInteger('action_id');
+//            0 delete
+//            1 delete
             $table->string('description');
             $table->timestamps();
         });

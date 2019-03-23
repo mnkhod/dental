@@ -58,6 +58,8 @@ Route::post('/admin/transaction/salary', 'AdminTransactionController@salary');
 Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
+Route::get('/admin/logs','AdminController@logs');
+
 
 //--ACCOUNTANT STARTING--
 Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
@@ -85,7 +87,7 @@ Route::get('/accountant/staffs', 'AccountantStaffController@index');
 
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
-Route::post('/reception/user/store', 'ReceptionUserController@store');
+Route::post('/reception/user/store','ReceptionUserController@store');
 Route::get('/reception/user/register/{name}/{phone}', 'ReceptionUserController@fromAppointment');
 Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
@@ -106,6 +108,7 @@ Route::get('/reception/payment', 'ReceptionPaymentController@index');
 //--DOCTOR STARTING--
 Route::get('/doctor','DoctorController@index');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
+Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 
 Route::get('/test', function() {
     return view('test');

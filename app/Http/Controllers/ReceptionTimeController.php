@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Log;
 use App\CheckIn;
 use App\Role;
 use App\Time;
@@ -102,6 +103,7 @@ class ReceptionTimeController extends Controller
         if($request['code'] == '12345678'){
             $id = $request['appointment_id'];
             Appointment::find($id)->delete();
+            Log::create(['type'=>2,'type_id'=>$id,'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['description']]);
             return back();
         }
         else{

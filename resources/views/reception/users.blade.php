@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ үйлчлүүлэгч нэмэх</h5>
 
-                    <form action="{{url('/reception/store')}}" method="post" enctype="multipart/form-data" id="form">
+                    <form action="{{url('/reception/user/store')}}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
                         <input type="hidden" name="appointment" value="@if(!empty($param)) 1 @else 0 @endif">
                         <div class="form-row">
