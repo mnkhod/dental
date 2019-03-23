@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoctorUsersTable extends Migration
+class CreateCheckInsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateDoctorUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('doctor_users', function (Blueprint $table) {
+        Schema::create('check_ins', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('doctor_id');
+            $table->integer('shift_id');
             $table->integer('user_id');
             $table->integer('state');
+            //Emchilgeend oruulsan - 0
+            //Emchilgeend duussan - 1
+            //Emchilgeenii tulbur tulsun - 2
+            $table->integer('created_by');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateDoctorUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctor_users');
+        Schema::dropIfExists('check_ins');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\CheckIn;
 use App\Role;
 use App\Time;
 use App\User;
@@ -108,9 +109,10 @@ class ReceptionTimeController extends Controller
         }
 
     }
-    public function check_in(Request $request){
-        $user = User::find($request['user_id']);
-        $appointment = Appointment::where('created_at','>',date('Y-m-d'). '00:00:00')->where('phone',$user->phone_number)->first();
+    public function check_in($user_id, $appointment_id){
+        $user = User::find($user_id);
+        $shift_id = Appointment::find($appointment_id)->shift_id;
+        CheckIn::create(['shift_id'=>$shift_id, 'user_id'=>$user->id, 'state'=>0, 'created_by'=>Auth::user()->id]);
         return redirect('/reception/time');
     }
 }

@@ -21,6 +21,7 @@
 
                     <form action="{{url('/reception/store')}}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
+                        <input type="hidden" name="appointment" value="@if(!empty($param)) 1 @else 0 @endif">
                         <div class="form-row">
                             <div class="col-md-12">
                                 <div class="form-group">

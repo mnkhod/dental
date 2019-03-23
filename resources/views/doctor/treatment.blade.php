@@ -110,6 +110,15 @@
     <script>
         document.getElementById('doctorTreatment').classList.add('active');
     </script>
+    <div id="treatmentTypeModal" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade text-center" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -157,14 +166,20 @@
                     <button class="btn btn-info btn-ls">ОРУУЛАХ</button>
                     <!--                                            content modal-->
                 </div>
-
             </div>
         </div>
     </div>
 
+    <form id="treatmentForm">
+        <input type="hidden" value="" id="treatmentId"> <!-buri -!>
+        <input type="hidden" value="" id="toothId"> <!-buri -!>
+        <input type="hidden" value="" id="userId">
+        <input type="hidden" value="" id="valueId"> <!-buri -!>
+        <input type="hidden" value="" id="checkin_id">
+    </form>
+
     <div class="row">
         <div class="col-md-9">
-
             <div class="card">
                 <div class="card-body mb-2">
                     <div class="table-responsive">
@@ -198,7 +213,7 @@
                             <tr>
                                 @for($i = 18; $i>=11; $i--)
                                     <td>
-                                        <input type="hidden" id="shud{{$i}}" value="21">
+                                        <input type="hidden" id="shud{{$i}}" value="16">
                                         <svg height="25" width="25">
                                             <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
                                                      onclick="changeStyle({{$i}})"/>
@@ -215,7 +230,7 @@
                                 @endfor
                                 @for($i = 21; $i<=28; $i++)
                                     <td>
-                                        <input type="hidden" id="shud{{$i}}" value="21">
+                                        <input type="hidden" id="shud{{$i}}" value="3">
                                         <svg height="25" width="25">
                                             <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
                                                      onclick="changeStyle({{$i}})"/>
@@ -234,7 +249,7 @@
                             <tr>
                                 @for($i = 48; $i>=41; $i--)
                                     <td>
-                                        <input type="hidden" id="shud{{$i}}" value="1">
+                                        <input type="hidden" id="shud{{$i}}" value="7">
                                         <svg height="25" width="25">
                                             <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
                                                      onclick="changeStyle({{$i}})"/>
@@ -251,7 +266,7 @@
                                 @endfor
                                 @for($i = 31; $i<=38; $i++)
                                     <td>
-                                        <input type="hidden" id="shud{{$i}}" value="3">
+                                        <input type="hidden" id="shud{{$i}}" value="15">
                                         <svg height="25" width="25">
                                             <polygon id="pol{{$i}}_0" points="0,0 12.5,12.5 25,0"
                                                      onclick="changeStyle({{$i}})"/>
@@ -316,6 +331,8 @@
                     </li>
 
                 </ul>
+
+
                 <div class="tab-content">
                     <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                         <div class="card-body">
@@ -328,35 +345,35 @@
                                 </div>
                             </button>
 
-                            <button class="btn btn-primary btn-block multiple">
+                            <button class="btn btn-primary btn-block multiple" onclick="treatmentButton('1')">
                                 <div class="row">
                                     <div class="col-md-9 text-left">
                                         Аппарат<br> 3 төрөлтэй
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-primary btn-block all">
+                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('2')">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Өнгөлгөө<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-primary btn-block all">
+                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('3')">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Чулуу цэвэрлэгээ<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-primary btn-block all">
+                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('4')">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Фторт түрхлэг<br> 40000₮
                                     </div>
                                 </div>
                             </button>
-                            <button class="btn btn-primary btn-block single">
+                            <button class="btn btn-primary btn-block single" onclick="treatmentButton('5')">
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Хамгаалалт<br> 40000₮
@@ -375,7 +392,6 @@
         </div>
     </div>
     <script>
-
         var tooths = [];
         var selectedArea = [];
         var toothClassList = ["single", "all", "multiple"]
@@ -568,7 +584,16 @@
                 }
             }
         }
+        // start
+        var formIdList = ["treatmentId", "toothId", "valueId"];
+        function treatmentButton(treatment){
+            document.getElementById('toothId').value = tooths;
+            document.getElementById('treatmentId').value = treatment;
 
+            console.log(document.getElementById('toothId').value);
+            $("#treatmentTypeModal").modal();
+        }
+        // end
 
     </script>
 @endsection

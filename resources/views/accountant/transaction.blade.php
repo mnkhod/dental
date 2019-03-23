@@ -249,7 +249,7 @@
                                 <td class="text-right">
                                     @foreach($local_transactions->where('type', $type->id) as $transaction)
                                         <?php $temp_sum = $temp_sum + $transaction->price?>
-                                    @endforeach
+                                    @endforeachӨнгөлгөө
                                     {{number_format($temp_sum)}}₮
                                     / @if($sum != 0){{number_format($temp_sum/$sum*100, 2)}}% @else 0.00% @endif
                                 </td>

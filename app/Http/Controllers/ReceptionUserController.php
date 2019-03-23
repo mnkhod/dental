@@ -52,7 +52,7 @@ class ReceptionUserController extends Controller
         $app = Appointment::find($appointment_id);
         $shift = $app->shift_id;
         $doctor = Time::find($shift)->doctor_id;
-        CheckIn::create(['user_id'=>$id,'doctor_id'=>$doctor]);
+        CheckIn::create(['user_id'=>$id,'doctor_id'=>$doctor, ]);
         return back();
     }
 

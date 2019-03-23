@@ -85,6 +85,7 @@ Route::get('/accountant/staffs', 'AccountantStaffController@index');
 
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
+Route::post('/reception/user/store', 'ReceptionUserController@store');
 Route::get('/reception/user/register/{name}/{phone}', 'ReceptionUserController@fromAppointment');
 Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
@@ -95,7 +96,7 @@ Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
 Route::get('/reception/time/{id}','ReceptionTimeController@appointment');
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
-Route::get('/reception/user_check/{id}/{appointment_id}/check_in','ReceptionUserController@check_in');
+Route::get('/reception/user_check/{user_id}/{appointment_id}/check_in','ReceptionTimeController@check_in');
 Route::get('/reception/shifts', 'ReceptionShiftsController@index');
 Route::get('/reception/shifts/cancel','ReceptionShiftsController@cancel');
 Route::get('/reception/shifts/{i}/{doctor_staff_id}/{shift_id}','ReceptionShiftsController@store');

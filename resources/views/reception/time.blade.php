@@ -57,7 +57,7 @@
                                        @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
-                        <input type="hidden" value="@if(!empty($user)) {{$user->id}} @else 0 @endif">
+                        <input type="hidden" name="user_id" value="@if(!empty($user)) {{$user->id}} @else 0 @endif">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа
                                 (цагаар):</label>
@@ -278,19 +278,14 @@
             document.getElementById("da_user_link").setAttribute('href', "https://www.google.com" + "/" + "1");
             $("#deleteAppointment").modal();
         }
-        function val() {
-            var b = document.getElementById("mf").value;
-            if(b === ""){
-                document.getElementById('mf').classList.add('border-danger');
-            }else{
-                document.getElementById("modalf").submit();
-            }
-        }
+
 
         function validation() {
 
             //var doctor_1 = [15,16,17,18,19,20,11];
+                    @foreach($shifts as $shift)
             var doctor_2 = [];
+            @endforeach
             //TODO(2) Eniig martvaa Validation back-end --> front-end
             //var doctor_3 = [15,16,17,18,19,20,11];
             //var doctor_4 = [15,16,17,18,19,20,11];
@@ -319,9 +314,7 @@
             }
 
         }
-        // function check() {
-        //     if
-        // }
+
     </script>
 
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
