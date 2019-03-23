@@ -114,7 +114,7 @@
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-body" id="modalBuri">
-                    ...
+
                 </div>
             </div>
         </div>
@@ -349,14 +349,11 @@
                                 <div class="row">
                                     <div class="col-md-9 text-left">
                                         Аппарат<br> 3 төрөлтэй
-                                            <input type="hidden" value="alt/5" class="treatment_1">
-                                            <input type="hidden" value="mungu/1" class="treatment_1">
-                                            <input type="hidden" value="guuli/1" class="treatment_1">
-                                            <input type="hidden" value="some/2" class="treatment_1">
-                                            <input type="hidden" value="buri/6" class="treatment_1">
-                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
-                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
-                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
+                                        <input type="hidden" value="alt/5" class="treatment_1">
+                                        <input type="hidden" value="mungu/1" class="treatment_1">
+                                        <input type="hidden" value="guuli/1" class="treatment_1">
+                                        <input type="hidden" value="some/2" class="treatment_1">
+                                        <input type="hidden" value="buri/6" class="treatment_1">
                                     </div>
                                 </div>
                             </button>
@@ -364,6 +361,9 @@
                                 <div class="row">
                                     <div class="col-md-12 text-left">
                                         Өнгөлгөө<br> 40000₮
+                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
+                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
+                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
                                     </div>
                                 </div>
                             </button>
@@ -454,11 +454,11 @@
             //----VALIDATION END-----
             //PAINT table using @tooths array
             console.log(tooths);
-            for (var j = 1; j <= 4; j++){
-                for (var i = 10*j+1; i <= 10*j+8; i++) {
+            for (var j = 1; j <= 4; j++) {
+                for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
                     document.getElementById(i).setAttribute("class", "tooth");
                 }
-                for (var i = 10*j+1; i <= 10*j+8; i++) {
+                for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
                     for (var count = 0; count < tooths.length; count++) {
                         if (tooths[count] === i) {
                             document.getElementById(i).classList.remove("tooth");
@@ -477,7 +477,6 @@
             // }
 
 
-
             //ENDING
             //change style gesen function dotor bichsen baigaa bolno
             // START
@@ -491,8 +490,8 @@
                 for (i = 0; i < mult.length; i++) {
                     mult[i].style.display = "none";
                 }
-                for (var j = 1; j<=4; j++ ){
-                    for (var i = 10*j+1; i <= 10*j+8; i++) {
+                for (var j = 1; j <= 4; j++) {
+                    for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
                         document.getElementById(i).classList.remove("tooth");
                     }
                 }
@@ -584,8 +583,8 @@
             return s;
         }
 
-        for(var p = 1; p<=4;p++) {
-            for (var f = 10*p+1; f < 10*p+9; f++) {
+        for (var p = 1; p <= 4; p++) {
+            for (var f = 10 * p + 1; f < 10 * p + 9; f++) {
                 var x = document.getElementById('shud' + f).value;
                 var list = paint(x);
 
@@ -598,32 +597,33 @@
                 }
             }
         }
+
         //start
-        function treatmentReset(){
+        function treatmentReset() {
             var x = document.getElementsByClassName('delete');
-            for(i=0;i<x.length;i++){
+            for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";
             }
         }
+
         // start
-        function treatmentButton(treatment){
+        function treatmentButton(treatment) {
             document.getElementById('toothId').value = tooths;
             document.getElementById('treatmentId').value = treatment;
             // console.log(document.getElementById('toothId').value);
             $("#treatmentTypeModal").modal()
             treatment = parseInt(treatment);
+            var n = treatment;
             console.log(treatment);
-            if (treatment = 1){
-                treatmentReset()
-                treatment = parseInt(treatment);
-                var input = document.getElementsByClassName("treatment_" + treatment);
-                for(i=0;i<input.length;i++){
-                    var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + i + 1 + ')">' + input[i].value +'</button>'
-                    document.getElementById('modalBuri').innerHTML += button;
-
-                }
+            treatmentReset();
+            treatment = parseInt(treatment);
+            var input = document.getElementsByClassName("treatment_" + treatment);
+            for (i = 0; i < input.length; i++) {
+                var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + i + 1 + ')">' + input[i].value + '</button>'
+                document.getElementById('modalBuri').innerHTML += button;
             }
         }
+
         // end
 
     </script>

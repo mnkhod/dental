@@ -17,7 +17,13 @@ class CreateTreatmentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('selection_type');
+            //0-Buh shud n deer
+            //1-Neg shud n deer
+            //2-1ees ikh shud n deer
             $table->tinyInteger('category');
+            //0-Emchilgee
+            //1-Gajig zasal
+            //2-Sogog zasal
             $table->integer('price')->nullable();
             $table->timestamps();
         });
