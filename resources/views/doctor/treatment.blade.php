@@ -113,7 +113,7 @@
     <div id="treatmentTypeModal" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body" id="modalBuri">
                     ...
                 </div>
             </div>
@@ -349,6 +349,14 @@
                                 <div class="row">
                                     <div class="col-md-9 text-left">
                                         Аппарат<br> 3 төрөлтэй
+                                            <input type="hidden" value="alt/5" class="treatment_1">
+                                            <input type="hidden" value="mungu/1" class="treatment_1">
+                                            <input type="hidden" value="guuli/1" class="treatment_1">
+                                            <input type="hidden" value="some/2" class="treatment_1">
+                                            <input type="hidden" value="buri/6" class="treatment_1">
+                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
+                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
+                                            <input type="hidden" value="tselmeg/10" class="treatment_2">
                                     </div>
                                 </div>
                             </button>
@@ -464,6 +472,11 @@
             }
 
 
+            // function treatment(choice){
+            //     console.log(choice);
+            // }
+
+
 
             //ENDING
             //change style gesen function dotor bichsen baigaa bolno
@@ -554,6 +567,7 @@
 //            hidden value
             var x = document.getElementById('hiddenDecayChart').value = total;
             console.log(ruby);
+            document.getElementById("toothId").value = tooths;
         }
 
         //                                integer to binary
@@ -584,14 +598,31 @@
                 }
             }
         }
+        //start
+        function treatmentReset(){
+            var x = document.getElementsByClassName('delete');
+            for(i=0;i<x.length;i++){
+                x[i].style.display = "none";
+            }
+        }
         // start
-        var formIdList = ["treatmentId", "toothId", "valueId"];
         function treatmentButton(treatment){
             document.getElementById('toothId').value = tooths;
             document.getElementById('treatmentId').value = treatment;
+            // console.log(document.getElementById('toothId').value);
+            $("#treatmentTypeModal").modal()
+            treatment = parseInt(treatment);
+            console.log(treatment);
+            if (treatment = 1){
+                treatmentReset()
+                treatment = parseInt(treatment);
+                var input = document.getElementsByClassName("treatment_" + treatment);
+                for(i=0;i<input.length;i++){
+                    var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + i + 1 + ')">' + input[i].value +'</button>'
+                    document.getElementById('modalBuri').innerHTML += button;
 
-            console.log(document.getElementById('toothId').value);
-            $("#treatmentTypeModal").modal();
+                }
+            }
         }
         // end
 

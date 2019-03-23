@@ -188,10 +188,17 @@
                                 @if($shift->shift_id == 0 || $shift->shift_id ==2)
                                     @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                         <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                            <button class="btn btn-primary btn-block text-left"
+                                            <button class="btn  @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first())
+                                                    btn-success
+                                                    @else
+                                                    btn-primary
+                                                    @endif
+                                                     btn-block text-left"
                                                     onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
                                                             '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}'
-                                                            ,'@if($costumer = \App\User::where('phone_number', $appointment->phone)->first()){{$costumer->id}}@else 0 @endif')"
+                                                            , @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'
+                                                            @elseif($customer = \App\User::find($appointment->user_id))
+                                                            '{{$customer->id}}' @else '0' @endif )"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                         </td>
@@ -220,7 +227,7 @@
                                             <button class="btn btn-primary btn-block text-left"
                                                     onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
                                                             '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}',
-                                                            '@if($costumer = \App\User::where('phone_number', $appointment->phone)->first()){{$costumer->id}}@else 0 @endif')"
+                                                            '@if($customer = \App\User::where('phone_number', $appointment->phone)->first()){{$customer->id}}@else 0 @endif')"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                         </td>
@@ -268,8 +275,11 @@
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
-            registered = parseInt(registered);
-            if(registered === 0) {
+            // registered = parseInt(registered);
+            if(registered === 'a') {
+                document.getElementById("variableButton").innerText = "Эмчилгээнд орсон";
+                document.getElementById("variableButton").classList.add('disabled');
+            } else if(registered === '0') {
                 document.getElementById("variableButton").innerText = "Бүртгэх&Оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
             }  else {
@@ -284,14 +294,16 @@
         function validation() {
 
             //var doctor_1 = [15,16,17,18,19,20,11];
-                    @foreach($shifts as $shift)
+
             var doctor_2 = [];
+            @foreach($shifts as $shift)
+
             @endforeach
             //TODO(2) Eniig martvaa Validation back-end --> front-end
             //var doctor_3 = [15,16,17,18,19,20,11];
             //var doctor_4 = [15,16,17,18,19,20,11];
-            var check = []
-            var q = []
+            var check = [];
+            var q = [];
             var d = document.getElementById("ner").value;
             var ut = document.getElementById("utas").value;
             var tsag = document.getElementById("hugatsaa").value;
