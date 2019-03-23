@@ -40,20 +40,22 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id = "form111" action="{{url('reception/time/add')}}" method="post">
+                <form id="form111" action="{{url('reception/time/add')}}" method="post">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
-                                <input id="ner" name="name" autocomplete="off" type="text" class="form-control" placeholder=""
+                                <input id="ner" name="name" autocomplete="off" type="text" class="form-control"
+                                       placeholder=""
                                        @if(!empty($user)) value="{{$user->name}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
-                                <input id="utas" name="phone" autocomplete="off" type="text" class="form-control" placeholder=""
+                                <input id="utas" name="phone" autocomplete="off" type="text" class="form-control"
+                                       placeholder=""
                                        @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
@@ -62,7 +64,7 @@
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа
                                 (цагаар):</label>
                             <div class="col-sm-8">
-                                <input id = "hugatsaa" name="hours" autocomplete="off" type="number" class="form-control"
+                                <input id="hugatsaa" name="hours" autocomplete="off" type="number" class="form-control"
                                        placeholder="">
                             </div>
                         </div>
@@ -73,7 +75,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button  onclick="validation()" type="button" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
+                        <button onclick="validation(document.getElementById('shiftInput').value)" type="button"
+                                class="btn btn-primary">ЦАГ ЗАХИАЛАХ
+                        </button>
                     </div>
                 </form>
             </div>
@@ -116,16 +120,18 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-8 input-group">
-                            <input id = "mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
+                            <input id="mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
-                            <input id = "mf" name="description" autocomplete="off" type="text" class="form-control input-sm"
+                            <input id="mf" name="description" autocomplete="off" type="text"
+                                   class="form-control input-sm"
                                    placeholder="Тайлбар">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
                             </button>
                         </div>
                         <a id="variableLink">
-                            <button type="button" id="variableButton" class="btn btn-primary" style="border-radius: 0px">Эмчилгээнд
+                            <button type="button" id="variableButton" class="btn btn-primary"
+                                    style="border-radius: 0px">Эмчилгээнд
                                 оруулах
                             </button>
                         </a>
@@ -158,7 +164,7 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <form id = "form11" method="post" action="{{url('/admin/transaction/date')}}">
+                        <form id="form11" method="post" action="{{url('/admin/transaction/date')}}">
                             @csrf
                             <div class="input-group">
                                 <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
@@ -193,11 +199,11 @@
                                                     @else
                                                     btn-primary
                                                     @endif
-                                                     btn-block text-left"
+                                                    btn-block text-left"
                                                     onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
                                                             '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}'
                                                             , @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'
-                                                            @elseif($customer = \App\User::find($appointment->user_id))
+                                                    @elseif($customer = \App\User::find($appointment->user_id))
                                                             '{{$customer->id}}' @else '0' @endif )"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
@@ -226,8 +232,10 @@
                                         <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
                                             <button class="btn btn-primary btn-block text-left"
                                                     onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
-                                                            '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}',
-                                                            '@if($customer = \App\User::where('phone_number', $appointment->phone)->first()){{$customer->id}}@else 0 @endif')"
+                                                            '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}'
+                                                            , @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'
+                                                    @elseif($customer = \App\User::find($appointment->user_id))
+                                                            '{{$customer->id}}' @else '0' @endif )"
                                                     style="border-radius: 20px; height: 100%;">
                                                 {{$appointment->name}}<br><span>{{$appointment->phone}}</span></button>
                                         </td>
@@ -258,6 +266,7 @@
     <script>
         var mTime;
         var mShift;
+
         function bookTime(time, shift_id, doctor_name) {
             mTime = time;
             mShift = shift_id;
@@ -276,13 +285,13 @@
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
             // registered = parseInt(registered);
-            if(registered === 'a') {
+            if (registered === 'a') {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд орсон";
                 document.getElementById("variableButton").classList.add('disabled');
-            } else if(registered === '0') {
+            } else if (registered === '0') {
                 document.getElementById("variableButton").innerText = "Бүртгэх&Оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
-            }  else {
+            } else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
             }
@@ -291,42 +300,42 @@
         }
 
 
-        function validation() {
+        function validation(shift_id) {
 
-            //var doctor_1 = [15,16,17,18,19,20,11];
+            // Backend bolon Frontend hosluultiin gaikhamshig
+                    @foreach($shifts as $shift)
+                        var shift{{$shift->id}} = @if($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 17, 18, 19, 20, 21, 22, 23] @elseif($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23] @else [1, 2, 3, 4, 5, 6, 7, 8, 21, 22, 23] @endif ;
+                        @foreach ($shift->appointments as $appointment)
+                            @for ($i = $appointment->start; $i< $appointment->end; $i++)
+                                shift{{$shift->id}}.push({{$i}});
+                            @endfor
+                        @endforeach
+                        console.log(shift{{$shift->id}});
+                    @endforeach
+                    var shiftName = "shift" + shift_id;
+                    var check = [];
+                    var q = [];
+                    var d = document.getElementById("ner").value;
+                    var ut = document.getElementById("utas").value;
+                    var tsag = document.getElementById("hugatsaa").value;
+                    for (i = 0; i <= tsag-1; i++) {
+                        var int = parseInt(mTime);
+                        check.push(int + i);
+                        q.push(eval(shiftName).includes(check[i]));
+                    }
+                    console.log(q);
+                    if (d === "") {
+                        document.getElementById('ner').classList.add('border-danger');
+                    } else if (tsag >= 1 && tsag !== "" && q.includes(true) === true) {
+                        document.getElementById('hugatsaa').classList.add('border-danger');
+                    } else if (ut.length !== 8) {
+                        document.getElementById('utas').classList.add('border-danger');
+                    } else {
+                        document.getElementById("form111").submit();
+                    }
 
-            var doctor_2 = [];
-            @foreach($shifts as $shift)
+                }
 
-            @endforeach
-            //TODO(2) Eniig martvaa Validation back-end --> front-end
-            //var doctor_3 = [15,16,17,18,19,20,11];
-            //var doctor_4 = [15,16,17,18,19,20,11];
-            var check = [];
-            var q = [];
-            var d = document.getElementById("ner").value;
-            var ut = document.getElementById("utas").value;
-            var tsag = document.getElementById("hugatsaa").value;
-            for(i = 0; i<=tsag; i++) {
-                var int = parseInt(mTime, 10);
-                check.push(int+i);
-                q.push(doctor_2.includes(check[i]));
-            }
-            if(d === "") {
-                document.getElementById('ner').classList.add('border-danger');
-            }
-
-            else if(tsag >= 1 && tsag !== "" && q.includes(true) === true) {
-                    document.getElementById('hugatsaa').classList.add('border-danger');}
-
-            else if(ut.length !== 8) {
-                document.getElementById('utas').classList.add('border-danger');
-            }
-            else {
-                document.getElementById("form111").submit();
-            }
-
-        }
 
     </script>
 
