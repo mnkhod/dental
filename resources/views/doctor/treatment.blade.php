@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
 
     <style>
+        .scroll {
+            height: 400px;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
         .tooth {
             opacity: 0.5;
         }
@@ -103,7 +109,13 @@
         .slider.round:before {
             border-radius: 50%;
         }
+
+        .line {
+            margin: 10px;
+            border-left: thick solid orange;
+        }
     </style>
+
     {{--End css style gh met link file oruulna--}}
 @endsection
 @section('content')
@@ -128,7 +140,6 @@
                     <h3><b>
                             <div id="buriLombo">Шүд #</div>
                         </b></h3>
-                    <!--                                            content modal-->
                     <input type="hidden" id="hiddenDecayChart" value="">
                     <svg height="200" width="200">
                         <polygon id="pol1" points="0,0 100,100 200,0" onclick="myFunction('1')"/>
@@ -170,12 +181,13 @@
         </div>
     </div>
 
-    <form id="treatmentForm">
-        <input type="hidden" value="" id="treatmentId"> <!-buri -!>
-        <input type="hidden" value="" id="toothId"> <!-buri -!>
-        <input type="hidden" value="" id="userId">
-        <input type="hidden" value="" id="valueId"> <!-buri -!>
-        <input type="hidden" value="" id="checkin_id">
+    <form id="treatmentForm" method="post" action="#">
+        <input type="hidden" value="" id="treatmentId">
+        <input type="hidden" value="" id="treatmentSelectionId">
+        <input type="hidden" value="" id="toothId">
+        <input type="hidden" value="{{$checkin->user_id}}" id="userId">
+        <input type="hidden" value="" id="valueId">
+        <input type="hidden" value="{{$checkin->id}}" id="checkin_id">
     </form>
 
     <div class="row">
@@ -310,92 +322,76 @@
                             </tr>
                         </table>
                     </div>
-
                 </div>
             </div>
-
-        </div>
+        </div><!-- Tooth images ending-->
         <div class="col-md-3">
-
             <div class="card">
                 <ul class="nav nav-tabs nav-justified ml-0 mb-2" role="tablist">
-
                     <li class="nav-item">
                         <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                           aria-controls="first" aria-selected="true">Эмчилгээ</a>
+                           aria-controls="first" aria-selected="true">Түүх</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
-                           aria-controls="second" aria-selected="false">Түүх</a>
+                           aria-controls="second" aria-selected="false">Эмчилгээ</a>
                     </li>
-
                 </ul>
-
-
                 <div class="tab-content">
-                    <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-                        <div class="card-body">
-                            <button class="btn btn-primary btn-block single" data-toggle="modal"
-                                    data-target="#exampleModal">
-                                <div class="row">
-                                    <div class="col-md-12 text-left" onclick="reset()">
-                                        Ломбо<br> 3 төрөлтэй
-                                    </div>
+                    <div class="tab-pane show active scroll" id="first" role="tabpanel" aria-labelledby="first-tab">
+                        <div class="col-md-12 text-left line history11">
+                            <b>Шүд #11 - Ломбо</b>
+                            <br>
+                            <div class="row">
+                                <div class="text-muted col-md-6">
+                                    Ene shudiig goy ynzalsan baidag um.
                                 </div>
-                            </button>
-
-                            <button class="btn btn-primary btn-block multiple" onclick="treatmentButton('1')">
-                                <div class="row">
-                                    <div class="col-md-9 text-left">
-                                        Аппарат<br> 3 төрөлтэй
-                                        <input type="hidden" value="alt/5" class="treatment_1">
-                                        <input type="hidden" value="mungu/1" class="treatment_1">
-                                        <input type="hidden" value="guuli/1" class="treatment_1">
-                                        <input type="hidden" value="some/2" class="treatment_1">
-                                        <input type="hidden" value="buri/6" class="treatment_1">
-                                    </div>
+                                <div class="text-right text-muted col-md-6">
+                                    2019/3/22
                                 </div>
-                            </button>
-                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('2')">
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        Өнгөлгөө<br> 40000₮
-                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
-                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
-                                        <input type="hidden" value="tselmeg/10" class="treatment_2">
-                                    </div>
-                                </div>
-                            </button>
-                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('3')">
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        Чулуу цэвэрлэгээ<br> 40000₮
-                                    </div>
-                                </div>
-                            </button>
-                            <button class="btn btn-primary btn-block all" onclick="treatmentButton('4')">
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        Фторт түрхлэг<br> 40000₮
-                                    </div>
-                                </div>
-                            </button>
-                            <button class="btn btn-primary btn-block single" onclick="treatmentButton('5')">
-                                <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        Хамгаалалт<br> 40000₮
-                                    </div>
-                                </div>
-                            </button>
-
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="second" role="tabpane2" aria-labelledby="second-tab">
-
+                    <div class="tab-pane scroll" id="second" role="tabpane2" aria-labelledby="second-tab">
+                        <div class="card-body">
+                            @foreach($treatments as $treatment)
+                                <!--
+                                In case of special treatment
+                                -->
+                                @if($treatment->id == 1)
+                                    <button class="btn btn-primary btn-block single" data-toggle="modal"
+                                            data-target="#exampleModal">
+                                        <div class="row">
+                                            <div class="col-md-12 text-left" onclick="reset()">
+                                                Ломбо<br> 3 төрөлтэй
+                                            </div>
+                                        </div>
+                                    </button>
+                                @else
+                                    <button class="btn btn-primary btn-block
+                                        @if($treatment->selection_type == 0)
+                                            all
+                                        @elseif($treatment->selection_type == 1)
+                                            single
+                                        @else
+                                            multiple
+                                        @endif" onclick="treatmentButton('{{$treatment->id}}')">
+                                        <div class="row">
+                                            <div class="col-md-9 text-left">
+                                                {{$treatment->name}}<br> {{$treatment->treatmentSelection->count()}}
+                                                төрөлтэй
+                                                @foreach($treatment->treatmentSelection as $selection)
+                                                    <input type="hidden" value="{{$selection->name}}/{{$selection->id}}"
+                                                           class="treatment_{{$treatment->id}}">
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </button>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -419,7 +415,7 @@
         }
 
         function reset() {
-
+            document.getElementById('treatmentSelectionId').value = null;
             document.getElementById('option1').click();
 
             for (i = 0; i < selectedArea.length; i++) {
@@ -433,7 +429,6 @@
         }
 
         function changeStyle(ruby) {
-
             //----VALIDATION-----
             if (tooths.length === 0) {
                 tooths.push(ruby);
@@ -470,16 +465,11 @@
                 }
 
             }
+            for (var z = 0; z < document.getElementsByClassName('line').length; z++) {
+                document.getElementsByClassName('line')[z].style.display = 'none';
+            }
 
 
-            // function treatment(choice){
-            //     console.log(choice);
-            // }
-
-
-            //ENDING
-            //change style gesen function dotor bichsen baigaa bolno
-            // START
             if (tooths.length === 0) {
                 for (i = 0; i < all.length; i++) {
                     all[i].style.display = "block";
@@ -517,6 +507,25 @@
                     mult[i].style.display = "block";
                 }
             }
+
+            if (tooths.length == 0) {
+                for (i = 0; i < document.getElementsByClassName('line').length; i++) {
+                    document.getElementsByClassName('line')[i].style.display = 'block';
+                }
+            } else {
+                for (i = 0; i < tooths.length; i++) {
+                    var choosen = document.getElementsByClassName('history' + tooths[i]);
+                    for (var d = 0; d < choosen.length; d++) {
+                        choosen[d].style.display = 'block';
+                    }
+                }
+            }
+
+
+            // History start
+            // var history = document.getElementsByClassName('history'+11);
+            // history[0].style.display = "none";
+            // History end
         }
 
 
@@ -608,10 +617,10 @@
 
         // start
         function treatmentButton(treatment) {
+            document.getElementById('treatmentSelectionId').value = null;
             document.getElementById('toothId').value = tooths;
             document.getElementById('treatmentId').value = treatment;
-            // console.log(document.getElementById('toothId').value);
-            $("#treatmentTypeModal").modal()
+            $("#treatmentTypeModal").modal();
             treatment = parseInt(treatment);
             var n = treatment;
             console.log(treatment);
@@ -619,9 +628,17 @@
             treatment = parseInt(treatment);
             var input = document.getElementsByClassName("treatment_" + treatment);
             for (i = 0; i < input.length; i++) {
-                var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + i + 1 + ')">' + input[i].value + '</button>'
+                var buttonValue = input[i].value;
+                var buttonId = buttonValue.split('/')[1];
+                var buttonText = buttonValue.split('/')[0];
+                var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ')">' + buttonText + '</button>';
                 document.getElementById('modalBuri').innerHTML += button;
             }
+        }
+
+        function treatment(id) {
+            document.getElementById('treatmentSelectionId').value = id;
+            document.getElementById('treatmentForm').submit();
         }
 
         // end

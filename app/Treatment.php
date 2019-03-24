@@ -8,4 +8,8 @@ class Treatment extends Model
 {
     //
     protected $fillable = ['name','category','price'];
+
+    public function treatmentSelection() {
+        return $this->hasMany('App\TreatmentSelections', 'treatment_id', 'id');
+    }
 }
