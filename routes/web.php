@@ -59,6 +59,7 @@ Route::post('/admin/transaction/add', 'AdminTransactionController@store');
 Route::post('/admin/transaction/income', 'AdminTransactionController@income');
 
 Route::get('/admin/logs','AdminController@logs');
+Route::get('/admin/users','AdminController@users');
 
 
 //--ACCOUNTANT STARTING--

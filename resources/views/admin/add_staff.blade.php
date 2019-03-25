@@ -131,33 +131,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($roles as $role)
                             <tr>
                                 <td>
                                     <p class="list-item-heading">
-                                        <a href="{{url('/admin/add_staff/'.$user->id.'/profile')}}">{{$user->name}}</a>
+                                        <a href="{{url('/admin/add_staff/'.$role->staff->id.'/profile')}}">{{$role->staff->name}}</a>
                                     </p>
                                 </td>
                                 <td>
-                                    <p class="text-muted">{{$user->last_name}}</p>
+                                    <p class="text-muted">{{$role->staff->last_name}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-muted">@if($user->role->role_id ==1)
+                                    <p class="text-muted">@if($role->role_id ==1)
                                             Ресепшн
-                                        @elseif($user->role->role_id ==2)
+                                        @elseif($role->role_id ==2)
                                             Эмч
-                                        @elseif($user->role->role_id ==3)
+                                        @elseif($role->role_id ==3)
                                             Сувилагч
-                                        @elseif($user->role->role_id ==4)
+                                        @elseif($role->role_id ==4)
                                             Нягтлан бодогч
-                                        @elseif($user->role->role_id ==0)
+                                        @elseif($role->role_id ==0)
                                             Админ
                                         @else
                                             Бусад
                                         @endif</p>
                                 </td>
                                 <td>
-                                    <p class="text-muted">{{$user->phone_number}}</p>
+                                    <p class="text-muted">{{$role->staff->phone_number}}</p>
                                 </td>
                             </tr>
                         @endforeach

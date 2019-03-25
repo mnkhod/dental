@@ -23,7 +23,7 @@ class CreateLogsTable extends Migration
             $table->integer('user_id');
             $table->tinyInteger('action_id');
 //            0 delete
-//            1 delete
+//            1 edit
             $table->string('description');
             $table->timestamps();
         });

@@ -181,13 +181,14 @@
         </div>
     </div>
 
-    <form id="treatmentForm" method="post" action="#">
-        <input type="hidden" value="" id="treatmentId">
-        <input type="hidden" value="" id="treatmentSelectionId">
-        <input type="hidden" value="" id="toothId">
-        <input type="hidden" value="{{$checkin->user_id}}" id="userId">
-        <input type="hidden" value="" id="valueId">
-        <input type="hidden" value="{{$checkin->id}}" id="checkin_id">
+    <form id="treatmentForm" method="post" action="{{url('/doctor/treatment/store')}}">
+        @csrf
+        <input type="hidden" name="treatment_id" value="" id="treatmentId">
+        <input type="hidden" name="treatment_selection_id" value="" id="treatmentSelectionId">
+        <input type="hidden" name="tooth_id" value="" id="toothId">
+        <input type="hidden" name="user_id" value="{{$checkin->user_id}}" id="userId">
+        <input type="hidden" name="value_id" value="" id="valueId">
+        <input type="hidden" name="checkin_id" value="{{$checkin->id}}" id="checkin_id">
     </form>
 
     <div class="row">
@@ -338,20 +339,28 @@
                     </li>
                 </ul>
                 <div class="tab-content">
+
                     <div class="tab-pane show active scroll" id="first" role="tabpanel" aria-labelledby="first-tab">
-                        <div class="col-md-12 text-left line history11">
-                            <b>Шүд #11 - Ломбо</b>
+                        @foreach($user_treatments as $user_treatment)
+                        <div class="col-md-12 text-left line history{{$user_treatment->tooth_id}}">
+                            <b>Шүд #{{$user_treatment->tooth_id}} - {{\App\Treatment::find($user_treatment->treatment_id)->name}}</b>
                             <br>
                             <div class="row">
                                 <div class="text-muted col-md-6">
-                                    Ene shudiig goy ynzalsan baidag um.
+                                    @if(is_null($user_treatment->treatment_selection_id))
+                                        Төрөлгүй
+                                        @else
+                                    {{\App\TreatmentSelections::find($user_treatment->treatment_selection_id)->name}}
+                                    @endif
                                 </div>
                                 <div class="text-right text-muted col-md-6">
-                                    2019/3/22
+                                    {{date('Y-m-d', strtotime($user_treatment->created_at))}}
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
+
                     <div class="tab-pane scroll" id="second" role="tabpane2" aria-labelledby="second-tab">
                         <div class="card-body">
                             @foreach($treatments as $treatment)

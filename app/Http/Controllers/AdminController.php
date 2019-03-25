@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
+use App\Log;
 use App\ProductHistory;
 use App\Products;
 use App\Role;
@@ -22,8 +24,8 @@ class AdminController extends Controller
     //STAFF SECTION
     //-------------
     public function index(){
-        $users = User::all();
-        return view('admin.add_staff',compact('users'));
+        $roles = Role::all();
+        return view('admin.add_staff',compact('roles'));
     }
     public function add_staff(Request $request){
 //        $pass = str_random('6');
@@ -56,8 +58,6 @@ class AdminController extends Controller
         $user->role->update(['state'=>0]);
         return redirect('/admin/add_staff/'.$id.'/profile');
     }
-
-
     //--------------
     //DASHBOARD
     //--------------
@@ -65,10 +65,16 @@ class AdminController extends Controller
         $users = User::all()->count();
         $roles =Role::all()->count();
         $users_number = $users - $roles;
+        $appointments = Appointment::all();
         return view('admin.dashboard',compact('users_number','roles'));
     }
     public function logs(){
-        return view('admin.logs');
+        $logs=Log::all();
+        return view('admin.logs',compact('logs'));
+    }
+    public function users(){
+        $users = User::all();
+        return view('admin.users',compact('users'));
     }
 
 }

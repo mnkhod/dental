@@ -16,4 +16,7 @@ class Time extends Model
     public function appointments() {
         return $this->hasMany('App\Appointment', 'shift_id', 'id');
     }
+    public function checkins(){
+        return $this->hasMany('App\CheckIn','shift_id','id');
+    }
 }

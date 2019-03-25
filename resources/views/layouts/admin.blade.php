@@ -100,6 +100,11 @@
                         <i class="iconsmind-Administrator"></i> Ажилчид
                     </a>
                 </li>
+                <li id="adminUsers">
+                    <a href="{{url('/admin/users')}}">
+                        <i class="iconsmind-Administrator"></i> Үйлчлүүлэгчид
+                    </a>
+                </li>
                 <li id="adminTime">
                     <a href="#time">
                         <i class="iconsmind-Alarm"></i> Цаг
@@ -108,6 +113,11 @@
                 <li id="adminReport">
                     <a href="#report">
                         <i class="iconsmind-Inbox-Full"></i> Тайлан
+                    </a>
+                </li>
+                <li id="adminLog">
+                    <a href="{{url('/admin/logs')}}">
+                        <i class="iconsmind-Inbox-Full"></i> Түүх
                     </a>
                 </li>
                 <li id="adminPromotion">

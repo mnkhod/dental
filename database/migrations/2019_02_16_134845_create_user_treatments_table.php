@@ -17,6 +17,7 @@ class CreateUserTreatmentsTable extends Migration
             $table->increments('id');
             $table->integer('checkin_id');
             $table->integer('treatment_id');
+            $table->integer('treatment_selection_id')->nullable();
             $table->integer('tooth_id')->nullable();
             $table->integer('value')->nullable();
             $table->timestamps();
