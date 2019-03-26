@@ -13,6 +13,7 @@
     {{--End css style gh met link file oruulna--}}
 @endsection
 @section('content')
+    {{--//Za aliv l dee--}}
     <script>
         document.getElementById('receptionPayment').classList.add('active');
     </script>
