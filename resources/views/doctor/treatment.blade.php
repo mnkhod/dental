@@ -384,7 +384,13 @@
                                             single
                                         @else
                                             multiple
-                                        @endif" onclick="treatmentButton('{{$treatment->id}}')">
+                                        @endif"
+                                            @if($treatment->treatmentSelection->count() != 0)
+                                            onclick="treatmentButton('{{$treatment->id}}')"
+                                        @else
+                                            onclick="treatment('{{$treatment->id}}')"
+                                        @endif
+                                    >
                                         <div class="row">
                                             <div class="col-md-9 text-left">
                                                 {{$treatment->name}}<br> {{$treatment->treatmentSelection->count()}}
