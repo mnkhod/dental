@@ -21,7 +21,12 @@ class DoctorTreatmentController extends Controller
         return view('doctor.treatment',compact('checkin', 'treatments','user_treatments'));
     }
     public function store(Request $request){
-        UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>$request['treatment_selection_id'],'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id']]);
+        if(empty($request['treatment_selection_id']) || $request['treatment_selection_id']==null || $request['treatment_selection_id']==0){
+            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>0,'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id']]);
+        }
+        else{
+            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>$request['treatment_selection_id'],'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id']]);
+        }
         return back();
     }
 
