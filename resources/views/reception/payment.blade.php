@@ -132,16 +132,12 @@
                     <br>
                     <br>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <form class="form-inline">
+                        <form class="form-inline" action="#" method="post">
                             <label class="sr-only" for="inlineFormInputName2">Name</label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                            <input name="promotion_code" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
                                    placeholder="Урамшуулалын код">
 
                             <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-
-                        </form>
-                        <form class="form-inline">
-
                             <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
                         </form>
                     </div>

@@ -367,16 +367,25 @@
                                 <!--
                                 In case of special treatment
                                 -->
-                                @if($treatment->id == 1)
+                                    @if($treatment->id == 1)
                                     <button class="btn btn-primary btn-block single" data-toggle="modal"
                                             data-target="#exampleModal">
                                         <div class="row">
                                             <div class="col-md-12 text-left" onclick="reset()">
-                                                Ломбо<br> 3 төрөлтэй
+                                                Ломбо<br> төрөлгүй
                                             </div>
                                         </div>
                                     </button>
-                                @else
+                                    @elseif($treatment->id == 2)
+                                        <button class="btn btn-primary btn-block single" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                            <div class="row">
+                                                <div class="col-md-12 text-left" onclick="reset()">
+                                                    Сувгийн эмчилгээ<br> төрөлгүй
+                                                </div>
+                                            </div>
+                                        </button>
+                                    @else
                                     <button class="btn btn-primary btn-block
                                         @if($treatment->selection_type == 0)
                                             all
