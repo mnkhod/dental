@@ -14,4 +14,9 @@ class CheckIn extends Model
     public function doctor() {
         return $this->hasOne('App\Roles', 'id', 'doctor_id');
     }
+    public function shift() {
+        return $this->hasOne('App\Time', 'id', 'shift_id');
+    }
+
+
 }

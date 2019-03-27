@@ -17,558 +17,147 @@
     <script>
         document.getElementById('receptionPayment').classList.add('active');
     </script>
-        <div class="row">
-            <div class="col-md-4"><!--profile heseg-->
+    <div class="row">
+
+@foreach($treatment_done_users as $treatment_done_user)
+        <div class="col-md-4"><!--profile heseg-->
 
 
-                <div class="card "><!--row -->
-                    <div class="card-body">
-                        <a href="#">
-                            <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+            <div class="card "><!--row -->
+                <div class="card-body">
+                    <a href="#">
+                        <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                            <a href="#">
+                                <img src="img/profile-pic-l.jpg" alt="Mayra Sibley"
+                                     class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall"/>
+                            </a>
+                            <div class="pl-3 pr-2">
                                 <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
+                                    <p class="font-weight-medium mb-0 ">Эмч {{$treatment_done_user->shift->doctor->name}}</p>
+                                    <p class="text-muted mb-0 text-small">{{$treatment_done_user->shift->date}} өдөр хийгдсэн эмчилгээ</p>
                                 </a>
-                                <div class="pl-3 pr-2">
-                                    <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </a>
-                        </h5>
-
-
-
-
-                        <h5 class="card-title">Өвчтөний мэдээлэл</h5>
-                        <div class="d-flex flex-row">
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a ><b>Овог</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Нэр</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Хүйс</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Утасны дугаар</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Цахим хаяг</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Регистер</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Төрсөн он сар</b> </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a >Болд</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Цэцэг</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Эр</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >89876767</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >dd@gmail.com</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >УП8725379</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >02/04/2019</a>
-                                    </li>
-
-
-                                </ul>
                             </div>
                         </div>
-                        <br>
-                        <table class="table table-sm table-borderless">
 
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Шүдний ломбо</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">500₮</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Чулуу түүх</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">2000₮</span>
-                                </td>
-                            </tr>
-                            </tbody>
+                    </a>
 
-                        </table>
-                        <span class="badge badge-pill badge-primary">Нийт төлбөр 5000₮</span>
-                        <br>
-                        <br>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                       placeholder="Урамшуулалын код">
 
-                                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                    <h5 class="card-title">Өвчтөний мэдээлэл</h5>
+                    <div class="d-flex flex-row">
+                        <div class="w-50">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-1">
+                                    <a><b>Овог</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Нэр</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Хүйс</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Утасны дугаар</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Цахим хаяг</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Регистер</b> </a>
+                                </li>
+                                <li class="mb-1">
+                                    <a><b>Төрсөн он сар өдөр</b> </a>
+                                </li>
 
-                            </form>
-                            <form class="form-inline">
-
-                                <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
-                            </form>
+                            </ul>
                         </div>
 
+                        <div class="w-50">
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->last_name}}</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->name}}</a>
+                                </li>
+                                <li class="mb-1">
+                                    @if($treatment_done_user->user->sex == 0)
+                                    <a>Эр</a>
+                                        @else
+                                        <a>Эм</a>
+                                @endif
+                                </li>
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->phone_number}}</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->email}}</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->register}}</a>
+                                </li>
+                                <li class="mb-1">
+                                    <a>{{$treatment_done_user->user->birth_date}}</a>
+                                </li>
 
+
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-sm table-borderless">
+                        <?php
+                        $treatments = \App\UserTreatments::all()->where('checkin_id',$treatment_done_user->id)
+                        ?>
+                        <?php $total = 0?>
+                        <tbody>
+                        @foreach( $treatments as $treatment)
+                        <tr>
+                            <td>
+                                <span class="log-indicator border-theme-2 align-middle"></span>
+                            </td>
+                            <td>
+                                <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-muted">{{$treatment->treatment->price}}₮</span>
+                            </td>
+                            <?php /** @var TYPE_NAME $total */
+                            $total = $total + $treatment->treatment->price?>
+                        </tr>
+                        @endforeach
+
+                        </tbody>
+                    </table>
+                    <span class="badge badge-pill badge-primary">Нийт төлбөр {{$total}}₮</span>
+                    <br>
+                    <br>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <form class="form-inline">
+                            <label class="sr-only" for="inlineFormInputName2">Name</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                                   placeholder="Урамшуулалын код">
+
+                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+
+                        </form>
+                        <form class="form-inline">
+
+                            <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
+                        </form>
                     </div>
 
-                </div>
-
-
-
-            </div>
-            <div class="col-md-4"><!--profile heseg-->
-
-
-                <div class="card "><!--row -->
-                    <div class="card-body">
-                        <a href="#">
-                            <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                                <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
-                                </a>
-                                <div class="pl-3 pr-2">
-                                    <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </a>
-                        </h5>
-
-
-
-
-                        <h5 class="card-title">Өвчтөний мэдээлэл</h5>
-                        <div class="d-flex flex-row">
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a ><b>Овог</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Нэр</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Хүйс</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Утасны дугаар</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Цахим хаяг</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Регистер</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Төрсөн он сар</b> </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a >Болд</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Цэцэг</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Эр</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >89876767</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >dd@gmail.com</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >УП8725379</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >02/04/2019</a>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <br>
-                        <table class="table table-sm table-borderless">
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Шүдний ломбо</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">500₮</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Чулуу түүх</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">2000₮</span>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                        <span class="badge badge-pill badge-primary">Нийт төлбөр 5000₮</span>
-                        <br>
-                        <br>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                       placeholder="Урамшуулалын код">
-
-                                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-
-                            </form>
-                            <form class="form-inline">
-
-                                <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
-                            </form>
-                        </div>
-
-
-                    </div>
 
                 </div>
-
-
-
-            </div>
-            <div class="col-md-4"><!--profile heseg-->
-
-
-                <div class="card "><!--row -->
-                    <div class="card-body">
-                        <a href="#">
-                            <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                                <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
-                                </a>
-                                <div class="pl-3 pr-2">
-                                    <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </a>
-                        </h5>
-
-
-
-
-                        <h5 class="card-title">Өвчтөний мэдээлэл</h5>
-                        <div class="d-flex flex-row">
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a ><b>Овог</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Нэр</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Хүйс</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Утасны дугаар</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Цахим хаяг</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Регистер</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Төрсөн он сар</b> </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a >Болд</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Цэцэг</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Эр</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >89876767</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >dd@gmail.com</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >УП8725379</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >02/04/2019</a>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <br>
-                        <table class="table table-sm table-borderless">
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Шүдний ломбо</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">500₮</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Чулуу түүх</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">2000₮</span>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                        <span class="badge badge-pill badge-primary">Нийт төлбөр 5000₮</span>
-                        <br>
-                        <br>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                       placeholder="Урамшуулалын код">
-
-                                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-
-                            </form>
-                            <form class="form-inline">
-
-                                <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
-                            </form>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
 
             </div>
 
 
-        </div><!--end row-->
-        <br>
-        <div class="row">
-            <div class="col-md-4"><!--profile heseg-->
-
-
-                <div class="card "><!--row -->
-                    <div class="card-body">
-                        <a href="#">
-                            <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                                <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
-                                </a>
-                                <div class="pl-3 pr-2">
-                                    <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </a>
-                        </h5>
-
-
-
-
-                        <h5 class="card-title">Өвчтөний мэдээлэл</h5>
-                        <div class="d-flex flex-row">
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a ><b>Овог</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Нэр</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Хүйс</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Утасны дугаар</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Цахим хаяг</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Регистер</b> </a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a ><b>Төрсөн он сар</b> </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div class="w-50">
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-1">
-                                        <a >Болд</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Цэцэг</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >Эр</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >89876767</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >dd@gmail.com</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >УП8725379</a>
-                                    </li>
-                                    <li class="mb-1">
-                                        <a >02/04/2019</a>
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <br>
-                        <table class="table table-sm table-borderless">
-
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Шүдний ломбо</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">500₮</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span class="log-indicator border-theme-2 align-middle"></span>
-                                </td>
-                                <td>
-                                    <span class="font-weight-medium">Чулуу түүх</span>
-                                </td>
-                                <td class="text-right">
-                                    <span class="text-muted">2000₮</span>
-                                </td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                        <span class="badge badge-pill badge-primary">Нийт төлбөр 5000₮</span>
-                        <br>
-                        <br>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInputName2">Name</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
-                                       placeholder="Урамшуулалын код">
-
-                                <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-
-                            </form>
-                            <form class="form-inline">
-
-                                <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
-                            </form>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
         </div>
-    </main><!--profile duusah-->
+    @endforeach
+
+
+    </div><!--end row-->
+
 @endsection
 @section('footer')
 
