@@ -131,17 +131,16 @@
                     <span class="badge badge-pill badge-primary">Нийт төлбөр {{$total}}₮</span>
                     <br>
                     <br>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <form class="form-inline" action="#" method="post">
+                    {{--<div class="btn-group btn-group-toggle" data-toggle="buttons">--}}
+                        <form class="form-inline" action="{{url('/reception/payment/store')}}" method="post">
+                            @csrf
                             <label class="sr-only" for="inlineFormInputName2">Name</label>
                             <input name="promotion_code" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
                                    placeholder="Урамшуулалын код">
-                            <input type="hidden" value="{{$total}}" name="price">
-
-                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
-                            <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлбөр төлөх</button>
+                            <input type="hidden" value="{{$treatment_done_user->id}}" name="checkin_id">
+                            <input type="submit" class="btn btn-sm btn-outline-primary mb-2" value="Төлбөр төлөх">
                         </form>
-                    </div>
+                    {{--</div>--}}
 
 
                 </div>
