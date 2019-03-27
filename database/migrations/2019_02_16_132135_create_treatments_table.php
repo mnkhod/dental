@@ -15,6 +15,8 @@ class CreateTreatmentsTable extends Migration
     {
         Schema::create('treatments', function (Blueprint $table) {
             $table->increments('id');
+            //1->Lombo
+            //2->Shudiig yasan shud bolgono
             $table->string('name');
             $table->integer('selection_type');
             //0-Buh shud n deer
