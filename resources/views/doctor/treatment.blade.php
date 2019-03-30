@@ -209,18 +209,119 @@
                             <tr>
                                 @for($i = 18; $i>=11; $i--)
                                     <?php
-                                    $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                    $special_treatment = 0;
+                                    $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                                    foreach($checkin_all as $checkin_single) {
+                                        $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                        }
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                                    $special_treatment = $tooth_special_treatments[$a];
+                                                    break;
+                                                }
+
+                                            }
+                                        }
+                                    }
                                     ?>
                                     <td>
-                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                             onclick="changeStyle({{$i}})">
+                                        @switch($special_treatment)
+                                            @case(3)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_burees.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(4)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_extraction.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(5)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_implant.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(6)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_paalan.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(7)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(8)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post_cast.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @case(9)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                            @default
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
+                                        @endswitch
+
                                     </td>
                                 @endfor
                                 @for($i = 21; $i<=28; $i++)
-                                    <td>
-                                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                                             onclick="changeStyle({{$i}})">
-                                    </td>
+                                        <?php
+                                        $special_treatment = 0;
+                                        $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                                        foreach($checkin_all as $checkin_single) {
+                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
+                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                            }
+                                            foreach($tooth_treatments as $tooth_treatment) {
+                                                for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                                    if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                                        $special_treatment = $tooth_special_treatments[$a];
+                                                        break;
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                        <td>
+                                            @switch($special_treatment)
+                                                @case(3)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_burees.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(4)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_extraction.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(5)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_implant.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(6)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_paalan.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(7)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(8)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post_cast.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(9)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @default
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                            @endswitch
+
+                                        </td>
                                 @endfor
                             </tr>
                             <tr>
@@ -419,16 +520,120 @@
             </tr>
             <tr>
                 @for($i = 48; $i>=41; $i--)
+                    <?php
+                    $special_treatment = 0;
+                    $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                    foreach($checkin_all as $checkin_single) {
+                        $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
+                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                            $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                        }
+                        foreach($tooth_treatments as $tooth_treatment) {
+                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                    $special_treatment = $tooth_special_treatments[$a];
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+                    ?>
                     <td>
-                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                             onclick="changeStyle({{$i}})">
+                        @switch($special_treatment)
+                            @case(3)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_burees.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(4)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_extraction.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(5)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_implant.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(6)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_paalan.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(7)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(8)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post_cast.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @case(9)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                            @default
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
+                        @endswitch
+
                     </td>
                 @endfor
                 @for($i = 31; $i<=38; $i++)
-                    <td>
-                        <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
-                             onclick="changeStyle({{$i}})">
-                    </td>
+                        <?php
+                        $special_treatment = 0;
+                        $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                        foreach($checkin_all as $checkin_single) {
+                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
+                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                            }
+                            foreach($tooth_treatments as $tooth_treatment) {
+                                for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                    if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                        $special_treatment = $tooth_special_treatments[$a];
+                                        break;
+                                    }
+
+                                }
+                            }
+                        }
+                        ?>
+                        <td>
+                            @switch($special_treatment)
+                                @case(3)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_burees.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(4)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_extraction.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(5)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_implant.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(6)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_paalan.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(7)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(8)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_post_cast.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @case(9)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                                @default
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
+                            @endswitch
+
+                        </td>
                 @endfor
             </tr>
             <tr>
@@ -470,7 +675,7 @@
                 <br>
                 <div class="row">
                     <div class="text-muted col-md-6">
-                        @if(is_null($user_treatment->treatment_selection_id))
+                        @if(is_null($user_treatment->treatment_selection_id) || $user_treatment->treatment_selection_id == 0)
                             Төрөлгүй
                             @else
                         {{\App\TreatmentSelections::find($user_treatment->treatment_selection_id)->name}}
@@ -500,7 +705,7 @@
                             </div>
                         </div>
                     </button>
-                    @elseif($treatment->id == 2)
+                    @elseif($treatment->id == 9)
                         <button class="btn btn-primary btn-block single" data-toggle="modal"
                                 data-target="#exampleModal">
                             <div class="row">
@@ -521,7 +726,7 @@
                             @if($treatment->treatmentSelection->count() != 0)
                             onclick="treatmentButton('{{$treatment->id}}')"
                         @else
-                            onclick="treatment('{{$treatment->id}}')"
+                            onclick="singleTreatment('{{$treatment->id}}')"
                         @endif
                     >
                         <div class="row">
@@ -593,97 +798,97 @@ document.getElementById('treatmentForm').submit();
 }
 
 function changeStyle(ruby) {
-//----VALIDATION-----
-if (tooths.length === 0) {
-tooths.push(ruby);
-} else {
-var check = true;
-for (var count = 0; count < tooths.length; count++) {
-    if (tooths[count] === ruby) {
-        check = false;
+    //----VALIDATION-----
+    if (tooths.length === 0) {
+        tooths.push(ruby);
+    } else {
+        var check = true;
+        for (var count = 0; count < tooths.length; count++) {
+            if (tooths[count] === ruby) {
+                check = false;
+            }
+        }
+        if (check) {
+            tooths.push(ruby);
+        } else {
+            tooths.splice(tooths.indexOf(ruby), 1);
+        }
     }
-}
-if (check) {
-    tooths.push(ruby);
-} else {
-    tooths.splice(tooths.indexOf(ruby), 1);
-}
-}
-document.getElementById('buriLombo').innerText = "Шүд #" + tooths[0];
-//----VALIDATION END-----
-//PAINT table using @tooths array
-console.log(tooths);
-for (var j = 1; j <= 4; j++) {
-for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
-    document.getElementById(i).setAttribute("class", "tooth");
-}
-for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
-    for (var count = 0; count < tooths.length; count++) {
-        if (tooths[count] === i) {
+    document.getElementById('buriLombo').innerText = "Шүд #" + tooths[0];
+    //----VALIDATION END-----
+    //PAINT table using @tooths array
+    console.log(tooths);
+    for (var j = 1; j <= 4; j++) {
+    for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
+        document.getElementById(i).setAttribute("class", "tooth");
+    }
+    for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
+        for (var count = 0; count < tooths.length; count++) {
+            if (tooths[count] === i) {
+                document.getElementById(i).classList.remove("tooth");
+            }
+        }
+        if (tooths.length === 0) {
             document.getElementById(i).classList.remove("tooth");
         }
     }
+
+    }
+    for (var z = 0; z < document.getElementsByClassName('line').length; z++) {
+        document.getElementsByClassName('line')[z].style.display = 'none';
+    }
+
+
     if (tooths.length === 0) {
-        document.getElementById(i).classList.remove("tooth");
+        for (i = 0; i < all.length; i++) {
+            all[i].style.display = "block";
+        }
+        for (i = 0; i < single.length; i++) {
+            single[i].style.display = "none";
+        }
+        for (i = 0; i < mult.length; i++) {
+            mult[i].style.display = "none";
+        }
+        for (var j = 1; j <= 4; j++) {
+            for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
+                document.getElementById(i).classList.remove("tooth");
+            }
+        }
+
+        } else if (tooths.length === 1) {
+        for (i = 0; i < all.length; i++) {
+            all[i].style.display = "none";
+        }
+        for (i = 0; i < single.length; i++) {
+            single[i].style.display = "block";
+        }
+        for (i = 0; i < mult.length; i++) {
+            mult[i].style.display = "none";
+        }
+        } else {
+        for (i = 0; i < all.length; i++) {
+            all[i].style.display = "single";
+        }
+        for (i = 0; i < single.length; i++) {
+            single[i].style.display = "none";
+        }
+        for (i = 0; i < mult.length; i++) {
+            mult[i].style.display = "block";
+        }
     }
-}
 
-}
-for (var z = 0; z < document.getElementsByClassName('line').length; z++) {
-document.getElementsByClassName('line')[z].style.display = 'none';
-}
-
-
-if (tooths.length === 0) {
-for (i = 0; i < all.length; i++) {
-    all[i].style.display = "block";
-}
-for (i = 0; i < single.length; i++) {
-    single[i].style.display = "none";
-}
-for (i = 0; i < mult.length; i++) {
-    mult[i].style.display = "none";
-}
-for (var j = 1; j <= 4; j++) {
-    for (var i = 10 * j + 1; i <= 10 * j + 8; i++) {
-        document.getElementById(i).classList.remove("tooth");
+    if (tooths.length == 0) {
+        for (i = 0; i < document.getElementsByClassName('line').length; i++) {
+            document.getElementsByClassName('line')[i].style.display = 'block';
+        }
+    } else {
+        for (i = 0; i < tooths.length; i++) {
+            var choosen = document.getElementsByClassName('history' + tooths[i]);
+            for (var d = 0; d < choosen.length; d++) {
+                choosen[d].style.display = 'block';
+            }
+        }
     }
-}
-
-} else if (tooths.length === 1) {
-for (i = 0; i < all.length; i++) {
-    all[i].style.display = "none";
-}
-for (i = 0; i < single.length; i++) {
-    single[i].style.display = "block";
-}
-for (i = 0; i < mult.length; i++) {
-    mult[i].style.display = "none";
-}
-} else {
-for (i = 0; i < all.length; i++) {
-    all[i].style.display = "single";
-}
-for (i = 0; i < single.length; i++) {
-    single[i].style.display = "none";
-}
-for (i = 0; i < mult.length; i++) {
-    mult[i].style.display = "block";
-}
-}
-
-if (tooths.length == 0) {
-for (i = 0; i < document.getElementsByClassName('line').length; i++) {
-    document.getElementsByClassName('line')[i].style.display = 'block';
-}
-} else {
-for (i = 0; i < tooths.length; i++) {
-    var choosen = document.getElementsByClassName('history' + tooths[i]);
-    for (var d = 0; d < choosen.length; d++) {
-        choosen[d].style.display = 'block';
-    }
-}
-}
 }
 
 
@@ -691,112 +896,118 @@ for (i = 0; i < tooths.length; i++) {
 
 
 function sumList(array) {
-var sum = 0
-for (i = 0; i < array.length; i++) {
-var parse = parseInt(array[i]);
-sum += parse;
-}
-return sum
+    var sum = 0;
+    for (i = 0; i < array.length; i++) {
+        var parse = parseInt(array[i]);
+        sum += parse;
+    }
+    return sum;
 }
 
 function myFunction(ruby) {
 //            Validation start
-if (selectedArea.length === 0) {
-selectedArea.push(ruby);
-} else {
-var check = true;
-for (var count = 0; count < selectedArea.length;
-     count++) {
-    if (selectedArea[count] === ruby) {
-        check = false;
-    }
-}
-if (check) {
+    if (selectedArea.length === 0) {
     selectedArea.push(ruby);
-} else {
-    selectedArea.splice(selectedArea.indexOf(ruby), 1);
-}
-}
+    } else {
+    var check = true;
+    for (var count = 0; count < selectedArea.length;
+         count++) {
+        if (selectedArea[count] === ruby) {
+            check = false;
+        }
+    }
+    if (check) {
+        selectedArea.push(ruby);
+    } else {
+        selectedArea.splice(selectedArea.indexOf(ruby), 1);
+    }
+    }
 
-//            ----Validation End------
-//              Change Color on click
-if (selectedArea.includes(ruby) === true) {
+    //            ----Validation End------
+    //              Change Color on click
+    if (selectedArea.includes(ruby) === true) {
 
-document.getElementById("pol" + ruby).setAttribute('class', 'lombo');
-} else if (selectedArea.includes(ruby) === false) {
+        document.getElementById("pol" + ruby).setAttribute('class', 'lombo');
+        } else if (selectedArea.includes(ruby) === false) {
 
-document.getElementById("pol" + ruby).setAttribute('class', 'empty');
-}
-//            sumList
-var total = sumList(selectedArea);
+        document.getElementById("pol" + ruby).setAttribute('class', 'empty');
+        }
+        //            sumList
+    var total = sumList(selectedArea);
 
 //            hidden value
-var x = document.getElementById('hiddenDecayChart').value = total;
-console.log(ruby);
-document.getElementById("toothId").value = tooths;
+    var x = document.getElementById('hiddenDecayChart').value = total;
+    console.log(ruby);
+    document.getElementById("toothId").value = tooths;
 }
 
 //                                integer to binary
 //Polygon
 function paint(input) {
-var s = '';
-var v = '';
-var d = parseInt(input);
-while (d > 0) {
-s = s + d % 2;
-d = parseInt(d / 2);
-}
-s = s.split("");
-return s;
+    var s = '';
+    var v = '';
+    var d = parseInt(input);
+    while (d > 0) {
+        s = s + d % 2;
+        d = parseInt(d / 2);
+    }
+    s = s.split("");
+    return s;
 }
 
 for (var p = 1; p <= 4; p++) {
-for (var f = 10 * p + 1; f < 10 * p + 9; f++) {
-var x = document.getElementById('shud' + f).value;
-var list = paint(x);
+    for (var f = 10 * p + 1; f < 10 * p + 9; f++) {
+        var x = document.getElementById('shud' + f).value;
+        var list = paint(x);
 
-for (var i = 0; i < list.length; i++) {
-    if (list[i] == 1) {
-        document.getElementById('pol' + f + '_' + i).setAttribute('class', 'lombo');
-    } else {
-        document.getElementById('pol' + f + '_' + i).setAttribute('class', 'empty');
+        for (var i = 0; i < list.length; i++) {
+            if (list[i] == 1) {
+                document.getElementById('pol' + f + '_' + i).setAttribute('class', 'lombo');
+            } else {
+                document.getElementById('pol' + f + '_' + i).setAttribute('class', 'empty');
+            }
+        }
     }
-}
-}
 }
 
 //start
 function treatmentReset() {
-var x = document.getElementsByClassName('delete');
-for (i = 0; i < x.length; i++) {
-x[i].style.display = "none";
-}
+    var x = document.getElementsByClassName('delete');
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
 }
 
 // start
 function treatmentButton(treatment) {
-document.getElementById('treatmentSelectionId').value = null;
-document.getElementById('toothId').value = tooths;
-document.getElementById('treatmentId').value = treatment;
-$("#treatmentTypeModal").modal();
-treatment = parseInt(treatment);
-var n = treatment;
-console.log(treatment);
-treatmentReset();
-treatment = parseInt(treatment);
-var input = document.getElementsByClassName("treatment_" + treatment);
-for (i = 0; i < input.length; i++) {
-var buttonValue = input[i].value;
-var buttonId = buttonValue.split('/')[1];
-var buttonText = buttonValue.split('/')[0];
-var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ')">' + buttonText + '</button>';
-document.getElementById('modalBuri').innerHTML += button;
-}
+    document.getElementById('treatmentSelectionId').value = null;
+    document.getElementById('toothId').value = tooths;
+    document.getElementById('treatmentId').value = treatment;
+    $("#treatmentTypeModal").modal();
+    treatment = parseInt(treatment);
+    var n = treatment;
+    console.log(treatment);
+    treatmentReset();
+    treatment = parseInt(treatment);
+    var input = document.getElementsByClassName("treatment_" + treatment);
+    for (i = 0; i < input.length; i++) {
+        var buttonValue = input[i].value;
+        var buttonId = buttonValue.split('/')[1];
+        var buttonText = buttonValue.split('/')[0];
+        var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ')">' + buttonText + '</button>';
+        document.getElementById('modalBuri').innerHTML += button;
+    }
 }
 
 function treatment(id) {
-document.getElementById('treatmentSelectionId').value = id;
-document.getElementById('treatmentForm').submit();
+    document.getElementById('treatmentSelectionId').value = id;
+    document.getElementById('treatmentForm').submit();
+}
+function singleTreatment(id) {
+    document.getElementById('treatmentSelectionId').value = null;
+    document.getElementById('toothId').value = tooths;
+    document.getElementById('treatmentId').value = id;
+    document.getElementById('treatmentForm').submit();
 }
 
 // end

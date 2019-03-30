@@ -15,7 +15,7 @@ class DoctorTreatmentController extends Controller
     //
     public function index($checkin_id) {
         $checkin = CheckIn::find($checkin_id);
-        $checkin_all = CheckIn::where('user_id', $checkin->user_id)->get();
+        $checkin_all = CheckIn::where('user_id', $checkin->user_id)->orderBy('id', 'DESC')->get();
         $treatments = Treatment::all();
         $user_treatments = UserTreatments::where('checkin_id',$checkin_id)->orderBy('id', 'DESC')->get();
 
