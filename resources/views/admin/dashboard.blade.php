@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                        <div class="col-md-7 text-right"><h4>23</h4>Захиалгууд</div>
+                        <div class="col-md-7 text-right"><h4>{{$appointments}}</h4>Захиалгууд</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                        <div class="col-md-7 text-right"><h4>20</h4>Өнөөдрийн эмчилгээ</div>
+                        <div class="col-md-7 text-right"><h4>{{$checkins}}</h4>Өнөөдрийн эмчилгээ</div>
                     </div>
                 </div>
             </div>

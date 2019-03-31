@@ -18,7 +18,6 @@ class DoctorTreatmentController extends Controller
         $checkin_all = CheckIn::where('user_id', $checkin->user_id)->orderBy('id', 'DESC')->get();
         $treatments = Treatment::all();
         $user_treatments = UserTreatments::where('checkin_id',$checkin_id)->orderBy('id', 'DESC')->get();
-
         return view('doctor.treatment',compact('checkin', 'treatments','user_treatments', 'checkin_all'));
     }
     public function store(Request $request){

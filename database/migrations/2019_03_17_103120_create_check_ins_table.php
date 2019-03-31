@@ -22,6 +22,7 @@ class CreateCheckInsTable extends Migration
             //Emchilgeend duussan - 1
             //Emchilgeenii tulbur tulsun - 2
             $table->integer('created_by');
+            $table->integer('nurse_id');
             $table->timestamps();
         });
     }

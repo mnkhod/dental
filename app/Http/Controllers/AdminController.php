@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\CheckIn;
 use App\Log;
 use App\ProductHistory;
 use App\Products;
@@ -65,8 +66,9 @@ class AdminController extends Controller
         $users = User::all()->count();
         $roles =Role::all()->count();
         $users_number = $users - $roles;
-        $appointments = Appointment::all();
-        return view('admin.dashboard',compact('users_number','roles'));
+        $appointments = Appointment::all()->where('created_at','>',date('Y-m-d 00:00:00'))->count();
+        $checkins = CheckIn::where('created_at','>',date('Y-m-d'))->count();
+        return view('admin.dashboard',compact('users_number','roles','appointments','checkins'));
     }
     public function logs(){
         $logs=Log::all();
