@@ -112,7 +112,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5 text-center"><i class="iconsmind-Business-Man text-primary" style="font-size: 50px;"></i></div>
-                                <div class="col-md-7 text-right"><h4>Ашигласан</h4>{{$used}}</div>
+                                <div class="col-md-7 text-right"><h4>Ашигласан</h4>{{$used->count()}}</div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5 text-center"><i class="iconsmind-Money text-primary" style="font-size: 50px;"></i></div>
-                                <div class="col-md-7 text-right"><h4>Хөнгөлсөн</h4>444₮</div>
+
+                                <div class="col-md-7 text-right"><h4>Хөнгөлсөн</h4>{{$sum}}₮</div>
                             </div>
                         </div>
                     </div>
@@ -141,21 +142,17 @@
                                     <th>Хугацаа</th>
                                     <th>Ресепшн</th>
                                 </tr>
-                                <? $user_promotions = \App\UserPromotions::all()->where('promotion_id',$prom->id);
-                                ?>
-                                @foreach($user_promotions as $user_promotion)
-                                <? $transaction = \App\Transaction::find($user_promotion->transaction_id);
-                                    $check_in = \App\CheckIn::find($transaction->type_id);
-                                    $user = \App\User::find($check_in->user_id)?>
+                               @foreach($used as $use)
+
                                     <tr>
                                     <td>1</td>
                                     <td>{{$user->name}}</td>
-                                    <td>100000₮</td>
+                                    <td>{{$transaction->price/(1-$prom->percentage/100)}}₮</td>
                                     <td>{{$transaction->price}}₮</td>
                                     <td>{{$transaction->created_at}}</td>
-                                    <td>Халиун</td>
-                                </tr>
-                                    @endforeach
+                                    <td>{{\App\User::find($transaction->created_by)->name}}</td>
+                                    </tr>
+                                   @endforeach
                             </table>
                         </div>
                     </div>
