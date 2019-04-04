@@ -89,6 +89,7 @@
                                 <button onclick="validate()" type="button" class="btn btn-primary mb-0">Хэрэглэгч нэмэх</button>
                             </div>
                         </div>
+                        <input type="hidden" name="appointment_id" value="@if(!empty($param)) {{$param[2]}} @endif">
                     </form>
                 </div>
             </div>

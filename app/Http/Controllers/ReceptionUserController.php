@@ -7,6 +7,7 @@ use App\CheckIn;
 use App\Time;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptionUserController extends Controller
 {
@@ -16,8 +17,8 @@ class ReceptionUserController extends Controller
         return view('reception.users', compact('users'));
     }
 
-    public function fromAppointment($name, $phone) {
-        $param = array($name, $phone);
+    public function fromAppointment($name, $phone, $appointment_id) {
+        $param = array($name, $phone, $appointment_id);
         $users = User::all()->sortByDesc('created_at');
         return view('reception.users', compact('param', 'users'));
     }
@@ -27,7 +28,14 @@ class ReceptionUserController extends Controller
         $pass = bcrypt($pass);
         $birth_date_request = strtotime($request['birth_date']);
         $birth_date = date('Y-m-d', $birth_date_request);
-        User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);
+        $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);
+        if($request['appointment_id']) {
+            $appointment = Appointment::find(intval($request['appointment_id']));
+            $appointment->user_id = $user->id;
+            $appointment->save();
+            $shift_id = $appointment->shift_id;
+            CheckIn::create(['shift_id'=>$shift_id, 'user_id'=>$user->id, 'state'=>0, 'created_by'=>Auth::user()->id,'nurse_id'=>0]);
+        }
         return redirect('/reception/user');
     }
 

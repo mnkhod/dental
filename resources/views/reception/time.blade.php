@@ -290,7 +290,7 @@
                 document.getElementById("variableButton").classList.add('disabled');
             } else if (registered === '0') {
                 document.getElementById("variableButton").innerText = "Бүртгэх&Оруулах";
-                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone);
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone + "/" + appointment_id);
             } else {
                 document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
                 document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
