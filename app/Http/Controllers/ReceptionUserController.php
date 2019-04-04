@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\CheckIn;
+use App\Role;
 use App\Time;
 use App\User;
 use Illuminate\Http\Request;
@@ -53,6 +54,7 @@ class ReceptionUserController extends Controller
         $user = User::find($id);
         return view('reception.user_check',compact('user'));
     }
+
     public function user_check_edit($id){
         return redirect('/reception/user_check/'.$id);
     }

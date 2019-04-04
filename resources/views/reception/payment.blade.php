@@ -27,12 +27,9 @@
                 <div class="card-body">
                     <a href="#">
                         <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                            <a href="#">
-                                <img src="img/profile-pic-l.jpg" alt="Mayra Sibley"
-                                     class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall"/>
-                            </a>
+
                             <div class="pl-3 pr-2">
-                                <a href="#">
+                                <a href="{{url('/reception/user_check/'.$treatment_done_user->shift->doctor->id)}}">
                                     <p class="font-weight-medium mb-0 ">Эмч {{$treatment_done_user->shift->doctor->name}}</p>
                                     <p class="text-muted mb-0 text-small">{{$treatment_done_user->shift->date}} өдөр хийгдсэн эмчилгээ</p>
                                 </a>
@@ -119,10 +116,19 @@
                                 <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
                             </td>
                             <td class="text-right">
-                                <span class="text-muted">{{$treatment->treatment->price}}₮</span>
+                                 <span class="text-muted">
+                                @if($treatment->treatment_selection_id == 0)
+                               {{$treatment->treatment->price}}₮
+                                         <?php /** @var TYPE_NAME $total */
+                                         $total = $total + $treatment->treatment->price?>
+                                    @else
+                                  {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
+                                         <?php /** @var TYPE_NAME $total */
+                                         $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
+                                     @endif
+                                </span>
                             </td>
-                            <?php /** @var TYPE_NAME $total */
-                            $total = $total + $treatment->treatment->price?>
+
                         </tr>
                         @endforeach
 
