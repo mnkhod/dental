@@ -20,7 +20,7 @@ class DoctorController extends Controller
         if(empty($shifts)) {
             $checkins = null;
         } else {
-            $checkins = $shifts->checkins;
+            $checkins = $shifts->checkins->where('state', 0);
         }
         return view('doctor.check_in',compact('checkins'));
     }
