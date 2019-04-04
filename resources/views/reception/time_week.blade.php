@@ -62,7 +62,6 @@
                         <input type="hidden" name="time" id="timeInput">
                         <input type="hidden" name="shift_id" id="shiftInput">
 
-
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
@@ -106,7 +105,22 @@
                         <input type="hidden" name="appointment_id" id="da_id">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-light">Захиалга цуцлах</button>
+                        <div class="col-md-8 input-group">
+                            <input  name="code" autocomplete="off" type="password" class="form-control input-sm"
+                                   placeholder="Нууц үг">
+                            <input  name="description" autocomplete="off" type="text"
+                                   class="form-control input-sm"
+                                   placeholder="Тайлбар">
+                            <button class="btn btn-light" type="submit" style="border-radius: 0px">
+                                Цуцлах
+                            </button>
+                        </div>
+                        <a id="variableLink">
+                            <button type="button" id="variableButton" class="btn btn-primary"
+                                    style="border-radius: 0px">Эмчилгээнд
+                                оруулах
+                            </button>
+                        </a>
                     </div>
                 </form>
 
@@ -161,8 +175,15 @@
                                     @if($shift->shift_id == 0 || $shift->shift_id ==2)
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                                <button class="btn btn-primary btn-block text-left"
-                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$shift->date}}', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                <button class="btn @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first())
+                                                        btn-success
+                                                        @else
+                                                        btn-primary
+                                                        @endif btn-block text-left"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$shift->date}}', '{{$appointment->id}}', '{{$shift->doctor->name}}',
+                                                        @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'
+                                                        @elseif($customer = \App\User::find($appointment->user_id))
+                                                                '{{$customer->id}}' @else '0' @endif )"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span>
                                                 </button>
@@ -201,8 +222,16 @@
                                     @if($shift->shift_id == 1 || $shift->shift_id ==2)
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                             <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                                <button class="btn btn-primary btn-block text-left"
-                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}')"
+                                                <button class="btn @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first())
+                                                            btn-success
+                                                        @else
+                                                            btn-primary
+                                                        @endif btn-block text-left"
+                                                        onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->start}}:00 - {{$appointment->end}}:00',
+                                                                '{{$appointment->id}}', '{{$shift->doctor->name}}',
+                                                        @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'
+                                                        @elseif($customer = \App\User::find($appointment->user_id))
+                                                                '{{$customer->id}}' @else '0' @endif )"
                                                         style="border-radius: 20px; height: 100%;">
                                                     {{$appointment->name}}<br><span>{{$appointment->phone}}</span>
                                                 </button>
@@ -243,7 +272,11 @@
 @endsection
 @section('footer')
     <script>
+        var mTime;
+        var mShift;
         function bookTime(time, date, shift_id, doctor_name) {
+            mTime = time;
+            mShift = shift_id;
             document.getElementById("timeShow").innerHTML = time;
             document.getElementById("dateShow").innerHTML = date;
             document.getElementById("timeInput").value = time;
@@ -252,14 +285,61 @@
             $("#exampleModalRight").modal();
         }
 
-        function deleteAppointment(name, phone, time, date, appointment_id, doctor_name) {
+        function deleteAppointment(name, phone, time, date, appointment_id, doctor_name, registered) {
             document.getElementById("da_user_name").innerHTML = name;
             document.getElementById("da_user_phone").innerHTML = phone;
             document.getElementById("da_time").innerHTML = time;
             document.getElementById("da_date").innerHTML = date;
             document.getElementById("da_id").value = appointment_id;
             document.getElementById("da_doctor_name").innerHTML = doctor_name;
+            if (registered === 'a') {
+                document.getElementById("variableButton").innerText = "Эмчилгээнд орсон";
+                document.getElementById("variableButton").classList.add('disabled');
+            } else if (registered === '0') {
+                document.getElementById("variableButton").innerText = "Бүртгэх&Оруулах";
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user/register')}}" + "/" + name + "/" + phone + "/" + appointment_id);
+            } else {
+                document.getElementById("variableButton").innerText = "Эмчилгээнд оруулах";
+                document.getElementById("variableLink").setAttribute('href', "{{url('/reception/user_check')}}" + "/" + registered + "/" + appointment_id + "/check_in");
+            }
+            document.getElementById("da_user_link").setAttribute('href', "https://www.google.com" + "/" + "1");
             $("#deleteAppointment").modal();
+        }
+        function validation(shift_id) {
+
+            // Backend bolon Frontend hosluultiin gaikhamshig
+
+            @foreach($shifts as $shift)
+                var shift{{$shift->id}} = @if($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 17, 18, 19, 20, 21, 22, 23] @elseif($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23] @else [1, 2, 3, 4, 5, 6, 7, 8, 21, 22, 23] @endif ;
+                @foreach ($shift->appointments as $appointment)
+                    @for ($i = $appointment->start; $i< $appointment->end; $i++)
+                        shift{{$shift->id}}.push({{$i}});
+                    @endfor
+                @endforeach
+                console.log(shift{{$shift->id}});
+            @endforeach
+            var shiftName = "shift" + shift_id;
+            var check = [];
+            var q = [];
+            var d = document.getElementById("ner").value;
+            var ut = document.getElementById("utas").value;
+            var tsag = document.getElementById("hugatsaa").value;
+            for (i = 0; i <= tsag-1; i++) {
+                var int = parseInt(mTime);
+                check.push(int + i);
+                q.push(eval(shiftName).includes(check[i]));
+            }
+            console.log(q);
+            if (d === "") {
+                document.getElementById('ner').classList.add('border-danger');
+            } else if (tsag >= 1 && tsag !== "" && q.includes(true) === true) {
+                document.getElementById('hugatsaa').classList.add('border-danger');
+            } else if (ut.length !== 8) {
+                document.getElementById('utas').classList.add('border-danger');
+            } else {
+                document.getElementById("form111").submit();
+            }
+
         }
     </script>
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
