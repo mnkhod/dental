@@ -44,7 +44,7 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="text-center">
-                            <p class="list-item-heading mb-1"><a href="{{url('/accountant/staffs/'.$role->id)}}">{{$role->staff->last_name}} {{$role->staff->name}}</a></p>
+                            <p class="list-item-heading mb-1"><a href="{{url('/accountant/staff_check/'.$role->staff->id)}}">{{$role->staff->last_name}} {{$role->staff->name}}</a></p>
                             <p class="text-muted">@if($role->role_id == 2) Эмч @elseif($role->role_id == 3) Сувилагч @else Бусад @endif</p>
 
                             <div class="text-center">

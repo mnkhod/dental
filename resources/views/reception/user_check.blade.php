@@ -95,7 +95,7 @@
                                 {{$user->description}}
                             @endif
                         </p>
-                        <a href="{{url('/reception/user_check/'.$user->id.'/check_in')}}"><button type="button" class="btn btn-sm btn-outline-primary ">Эмч рүү оруулах</button></a>
+                        {{--<a href="{{url('/reception/user_check/'.$user->id.'/check_in')}}"><button type="button" class="btn btn-sm btn-outline-primary ">Эмч рүү оруулах</button></a>--}}
                     </div>
                 </div>
             </div>
@@ -107,20 +107,20 @@
             height: 400px;
             overflow: scroll;
         }</style>
-    <div class="ex1"><!-- scroll-->
+    <div class="col-md-4 ex1"><!-- scroll-->
+       @foreach($check_ins as $check_in)
         <div class="col-md-12">
+
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="#">
                             <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                                <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
-                                </a>
+
                                 <div class="pl-3 pr-2">
                                     <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
+                                        <p class="font-weight-medium mb-0 ">Эмч {{$check_in->shift->doctor->name}}</p>
+                                        <p class="text-muted mb-0 text-small"> {{$check_in->shift->date}} өдөр хийгдсэн эмчилгээ</p>
                                     </a>
                                 </div>
                             </div>
@@ -128,100 +128,53 @@
                         </a>
                     </h5>
                     <table class="table table-sm table-borderless">
-
+                        <?php
+                        $treatments = \App\UserTreatments::all()->where('checkin_id',$check_in->id)
+                        ?>
+                        <?php $total = 0;
+                        $sum = 0?>
                         <tbody>
+                        @foreach($treatments as $treatment)
                         <tr>
                             <td>
                                 <span class="log-indicator border-theme-2 align-middle"></span>
                             </td>
                             <td>
-                                <span class="font-weight-medium">Шүдний ломбо</span>
+                                <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
                             </td>
                             <td class="text-right">
-                                <span class="text-muted">500₮</span>
+                                <span class="text-muted">@if($treatment->treatment_selection_id == 0)
+                                        {{$treatment->treatment->price}}₮
+                                        <?php /** @var TYPE_NAME $total */
+                                        $total = $total + $treatment->treatment->price?>
+                                    @else
+                                        {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
+                                        <?php /** @var TYPE_NAME $total */
+                                        $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
+                                    @endif</span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <span class="log-indicator border-theme-2 align-middle"></span>
-                            </td>
-                            <td>
-                                <span class="font-weight-medium">Чулуу түүх</span>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-muted">2000₮</span>
-                            </td>
-                        </tr>
-
-
-
+                            @endforeach
 
                         </tbody>
                     </table>
-                    <span class="badge badge-pill badge-primary">Нийт зарцуулсан 5000₮</span>
-
+                    <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{$total}}₮</span>
+                        <?php $sum = $sum + $total ?>
                 </div>
             </div>
         </div>
         <br>
-        <div class="col-md-12"><!-- col start-->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="#">
-                            <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-                                <a href="#">
-                                    <img src="img/profile-pic-l.jpg" alt="Mayra Sibley" class="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall" />
-                                </a>
-                                <div class="pl-3 pr-2">
-                                    <a href="#">
-                                        <p class="font-weight-medium mb-0 ">Эмч Цэцэг</p>
-                                        <p class="text-muted mb-0 text-small">09.08.2018 өдөр хийгдсэн эмчилгээ</p>
-                                    </a>
-                                </div>
-                            </div>
+        @endforeach
 
-                        </a>
-                    </h5>
-                    <table class="table table-sm table-borderless">
-
-                        <tbody>
-                        <tr>
-                            <td>
-                                <span class="log-indicator border-theme-2 align-middle"></span>
-                            </td>
-                            <td>
-                                <span class="font-weight-medium">Ломбо</span>
-                            </td>
-                            <td class="text-right">
-                                <span class="text-muted">400₮</span>
-                            </td>
-                        </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <span class="badge badge-pill badge-primary">Нийт зарцуулсан 400₮</span>
-                </div>
-            </div>
-        </div><!-- col end-->
     </div>    <!-- scroll end-->
     <div class="col-lg-3">
-        <a href="#" class="card">
-            <div class="card-body text-center">
-                <i class="iconsmind-Alarm"></i>
-                <p class="card-text mb-0">Цаг авсан эсэх</p>
-                <p class="lead text-center">Аваагүй</p>
-            </div>
-        </a>
+
         <br>
         <a href="#" class="card">
             <div class="card-body text-center">
                 <i class="iconsmind-Money-2"></i>
                 <p class="card-text mb-0">Нийт зарцуулсан</p>
-                <p class="lead text-center">1900₮</p>
+                <p class="lead text-center">{{$sum}}₮</p>
             </div>
         </a>
         <br>
@@ -229,12 +182,12 @@
             <div class="card-body text-center">
                 <i class="iconsmind-Hospital"></i>
                 <p class="card-text mb-0">Хэдэн удаа үзүүлсэн эсэх </p>
-                <p class="lead text-center">2 удаа</p>
+                <p class="lead text-center">{{$check_ins->count()}} удаа</p>
             </div>
         </a>
     </div>
 </div>
-</div><!--end row-->
+
 @endsection
 @section('footer')
     <script>

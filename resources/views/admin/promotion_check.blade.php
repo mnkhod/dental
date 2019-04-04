@@ -112,7 +112,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-5 text-center"><i class="iconsmind-Business-Man text-primary" style="font-size: 50px;"></i></div>
-                                <div class="col-md-7 text-right"><h4>Ашигласан</h4>350</div>
+                                <div class="col-md-7 text-right"><h4>Ашигласан</h4>{{$used}}</div>
                             </div>
                         </div>
                     </div>
@@ -141,14 +141,21 @@
                                     <th>Хугацаа</th>
                                     <th>Ресепшн</th>
                                 </tr>
-                                <tr>
+                                <? $user_promotions = \App\UserPromotions::all()->where('promotion_id',$prom->id);
+                                ?>
+                                @foreach($user_promotions as $user_promotion)
+                                <? $transaction = \App\Transaction::find($user_promotion->transaction_id);
+                                    $check_in = \App\CheckIn::find($transaction->type_id);
+                                    $user = \App\User::find($check_in->user_id)?>
+                                    <tr>
                                     <td>1</td>
-                                    <td>Цэлмэг</td>
+                                    <td>{{$user->name}}</td>
                                     <td>100000₮</td>
-                                    <td>70000₮</td>
-                                    <td>2019-03-18</td>
+                                    <td>{{$transaction->price}}₮</td>
+                                    <td>{{$transaction->created_at}}</td>
                                     <td>Халиун</td>
                                 </tr>
+                                    @endforeach
                             </table>
                         </div>
                     </div>

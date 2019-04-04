@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Promotion;
+use App\Transaction;
+use App\UserPromotions;
 use Illuminate\Http\Request;
 
 class AdminPromotionController extends Controller
@@ -11,6 +13,7 @@ class AdminPromotionController extends Controller
     public function index() {
         $promotions = Promotion::all()->sortByDesc('created_at');
         $last_promotion = $promotions->sortByDesc('id')->first();
+
         return view('admin.promotion',compact('promotions','last_promotion'));
     }
     public function store(Request $request){
@@ -22,6 +25,8 @@ class AdminPromotionController extends Controller
     public function promotion_check($id){
         $promotions = Promotion::all()->sortByDesc('created_at');
         $prom = Promotion::find($id);
-        return view('admin.promotion_check',compact('promotions','prom'));
+        $used = UserPromotions::all()->where('promotion_id',$prom->id)->count();
+
+        return view('admin.promotion_check',compact('promotions','prom','used'));
     }
 }
