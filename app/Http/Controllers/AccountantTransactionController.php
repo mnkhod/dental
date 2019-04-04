@@ -14,10 +14,10 @@ class AccountantTransactionController extends Controller
 {
     //
 
-//    public function __construct()
-//    {
-//        $this->middleware('accountant');
-//    }
+    public function __construct()
+    {
+        $this->middleware('accountant');
+    }
 
 
     public function index() {

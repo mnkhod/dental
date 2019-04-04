@@ -15,6 +15,7 @@ class CreateUserTreatmentsTable extends Migration
     {
         Schema::create('user_treatments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->integer('checkin_id');
             $table->integer('treatment_id');
             $table->integer('treatment_selection_id')->nullable();

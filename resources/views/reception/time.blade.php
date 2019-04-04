@@ -335,8 +335,6 @@
                     }
 
                 }
-
-
     </script>
 
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>

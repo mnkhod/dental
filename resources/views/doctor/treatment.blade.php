@@ -11,7 +11,7 @@
 
     <style>
         .scroll {
-            height: 400px;
+            height: 350px;
             overflow-y: scroll;
             width: 100%;
         }
@@ -211,19 +211,19 @@
                                     <?php
                                     $special_treatment = 0;
                                     $tooth_special_treatments = array(3,4,5,6,7,8,9);
-                                    foreach($checkin_all as $checkin_single) {
-                                        $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                            $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
-                                        }
-                                        foreach($tooth_treatments as $tooth_treatment) {
-                                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
-                                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
-                                                    $special_treatment = $tooth_special_treatments[$a];
-                                                    break;
-                                                }
-
+                                    $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                    $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                    if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                        $limit_date = $resetTreatment->created_at;
+                                    }
+                                    $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                    foreach($tooth_treatments as $tooth_treatment) {
+                                        for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                            if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                                $special_treatment = $tooth_special_treatments[$a];
+                                                break;
                                             }
+
                                         }
                                     }
                                     ?>
@@ -269,19 +269,19 @@
                                         <?php
                                         $special_treatment = 0;
                                         $tooth_special_treatments = array(3,4,5,6,7,8,9);
-                                        foreach($checkin_all as $checkin_single) {
-                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
-                                            }
-                                            foreach($tooth_treatments as $tooth_treatment) {
-                                                for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
-                                                    if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
-                                                        $special_treatment = $tooth_special_treatments[$a];
-                                                        break;
-                                                    }
-
+                                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $limit_date = $resetTreatment->created_at;
+                                        }
+                                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                                    $special_treatment = $tooth_special_treatments[$a];
+                                                    break;
                                                 }
+
                                             }
                                         }
                                         ?>
@@ -329,30 +329,30 @@
                                     <td>
                                         <?php
                                         $tooth_value = array();
-                                        foreach($checkin_all as $checkin_single) {
-                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $limit_date = $resetTreatment->created_at;
+                                        }
+                                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            $tooth_treatment_value =  $tooth_treatment->value;
+                                            $tooth_treatment_value_array =  array();
+                                            while($tooth_treatment_value >= 1) {
+                                                array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
+                                                $tooth_treatment_value = (int) $tooth_treatment_value/2;
                                             }
-                                            foreach($tooth_treatments as $tooth_treatment) {
-                                                $tooth_treatment_value =  $tooth_treatment->value;
-                                                $tooth_treatment_value_array =  array();
-                                                while($tooth_treatment_value >= 1) {
-                                                    array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
-                                                    $tooth_treatment_value = (int) $tooth_treatment_value/2;
+                                            $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
+                                            for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
+                                                $checker = 1;
+                                                $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
+                                                for ($t = 0; $t < sizeof($tooth_value); $t++) {
+                                                    if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
+                                                        $checker = 0;
+                                                    }
                                                 }
-                                                $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
-                                                for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
-                                                    $checker = 1;
-                                                    $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
-                                                    for ($t = 0; $t < sizeof($tooth_value); $t++) {
-                                                        if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
-                                                            $checker = 0;
-                                                        }
-                                                    }
-                                                    if($checker == 1) {
-                                                        array_push($tooth_value, $tooth_treatment_value_array[$c]);
-                                                    }
+                                                if($checker == 1) {
+                                                    array_push($tooth_value, $tooth_treatment_value_array[$c]);
                                                 }
                                             }
                                         }
@@ -378,30 +378,30 @@
                                     <td>
                                         <?php
                                         $tooth_value = array();
-                                        foreach($checkin_all as $checkin_single) {
-                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $limit_date = $resetTreatment->created_at;
+                                        }
+                                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            $tooth_treatment_value =  $tooth_treatment->value;
+                                            $tooth_treatment_value_array =  array();
+                                            while($tooth_treatment_value >= 1) {
+                                                array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
+                                                $tooth_treatment_value = (int) $tooth_treatment_value/2;
                                             }
-                                            foreach($tooth_treatments as $tooth_treatment) {
-                                                $tooth_treatment_value =  $tooth_treatment->value;
-                                                $tooth_treatment_value_array =  array();
-                                                while($tooth_treatment_value >= 1) {
-                                                    array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
-                                                    $tooth_treatment_value = (int) $tooth_treatment_value/2;
+                                            $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
+                                            for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
+                                                $checker = 1;
+                                                $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
+                                                for ($t = 0; $t < sizeof($tooth_value); $t++) {
+                                                    if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
+                                                        $checker = 0;
+                                                    }
                                                 }
-                                                $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
-                                                for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
-                                                    $checker = 1;
-                                                    $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
-                                                    for ($t = 0; $t < sizeof($tooth_value); $t++) {
-                                                        if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
-                                                            $checker = 0;
-                                                        }
-                                                    }
-                                                    if($checker == 1) {
-                                                        array_push($tooth_value, $tooth_treatment_value_array[$c]);
-                                                    }
+                                                if($checker == 1) {
+                                                    array_push($tooth_value, $tooth_treatment_value_array[$c]);
                                                 }
                                             }
                                         }
@@ -427,30 +427,30 @@
                                     <td>
                                         <?php
                                         $tooth_value = array();
-                                        foreach($checkin_all as $checkin_single) {
-                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $limit_date = $resetTreatment->created_at;
+                                        }
+                                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            $tooth_treatment_value =  $tooth_treatment->value;
+                                            $tooth_treatment_value_array =  array();
+                                            while($tooth_treatment_value >= 1) {
+                                                array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
+                                                $tooth_treatment_value = (int) $tooth_treatment_value/2;
                                             }
-                                            foreach($tooth_treatments as $tooth_treatment) {
-                                                $tooth_treatment_value =  $tooth_treatment->value;
-                                                $tooth_treatment_value_array =  array();
-                                                while($tooth_treatment_value >= 1) {
-                                                    array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
-                                                    $tooth_treatment_value = (int) $tooth_treatment_value/2;
+                                            $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
+                                            for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
+                                                $checker = 1;
+                                                $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
+                                                for ($t = 0; $t < sizeof($tooth_value); $t++) {
+                                                    if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
+                                                        $checker = 0;
+                                                    }
                                                 }
-                                                $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
-                                                for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
-                                                    $checker = 1;
-                                                    $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
-                                                    for ($t = 0; $t < sizeof($tooth_value); $t++) {
-                                                        if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
-                                                            $checker = 0;
-                                                        }
-                                                    }
-                                                    if($checker == 1) {
-                                                        array_push($tooth_value, $tooth_treatment_value_array[$c]);
-                                                    }
+                                                if($checker == 1) {
+                                                    array_push($tooth_value, $tooth_treatment_value_array[$c]);
                                                 }
                                             }
                                         }
@@ -474,30 +474,30 @@
                                     <td>
                                         <?php
                                         $tooth_value = array();
-                                        foreach($checkin_all as $checkin_single) {
-                                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
+                                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                                            $limit_date = $resetTreatment->created_at;
+                                        }
+                                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                                        foreach($tooth_treatments as $tooth_treatment) {
+                                            $tooth_treatment_value =  $tooth_treatment->value;
+                                            $tooth_treatment_value_array =  array();
+                                            while($tooth_treatment_value >= 1) {
+                                                array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
+                                                $tooth_treatment_value = (int) $tooth_treatment_value/2;
                                             }
-                                            foreach($tooth_treatments as $tooth_treatment) {
-                                                $tooth_treatment_value =  $tooth_treatment->value;
-                                                $tooth_treatment_value_array =  array();
-                                                while($tooth_treatment_value >= 1) {
-                                                    array_push($tooth_treatment_value_array, $tooth_treatment_value%2);
-                                                    $tooth_treatment_value = (int) $tooth_treatment_value/2;
+                                            $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
+                                            for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
+                                                $checker = 1;
+                                                $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
+                                                for ($t = 0; $t < sizeof($tooth_value); $t++) {
+                                                    if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
+                                                        $checker = 0;
+                                                    }
                                                 }
-                                                $tooth_treatment_value_array = array_reverse($tooth_treatment_value_array);
-                                                for($c = 0; $c < sizeof($tooth_treatment_value_array); $c++) {
-                                                    $checker = 1;
-                                                    $tooth_treatment_value_array[$c] = $tooth_treatment_value_array[$c] * pow(2,(sizeof($tooth_treatment_value_array) - $c - 1));
-                                                    for ($t = 0; $t < sizeof($tooth_value); $t++) {
-                                                        if($tooth_value[$t] == $tooth_treatment_value_array[$c]) {
-                                                            $checker = 0;
-                                                        }
-                                                    }
-                                                    if($checker == 1) {
-                                                        array_push($tooth_value, $tooth_treatment_value_array[$c]);
-                                                    }
+                                                if($checker == 1) {
+                                                    array_push($tooth_value, $tooth_treatment_value_array[$c]);
                                                 }
                                             }
                                         }
@@ -523,19 +523,19 @@
                     <?php
                     $special_treatment = 0;
                     $tooth_special_treatments = array(3,4,5,6,7,8,9);
-                    foreach($checkin_all as $checkin_single) {
-                        $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                            $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
-                        }
-                        foreach($tooth_treatments as $tooth_treatment) {
-                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
-                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
-                                    $special_treatment = $tooth_special_treatments[$a];
-                                    break;
-                                }
-
+                    $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                    $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                    if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                        $limit_date = $resetTreatment->created_at;
+                    }
+                    $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                    foreach($tooth_treatments as $tooth_treatment) {
+                        for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                            if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                $special_treatment = $tooth_special_treatments[$a];
+                                break;
                             }
+
                         }
                     }
                     ?>
@@ -581,19 +581,19 @@
                         <?php
                         $special_treatment = 0;
                         $tooth_special_treatments = array(3,4,5,6,7,8,9);
-                        foreach($checkin_all as $checkin_single) {
-                            $tooth_treatments = $checkin_single->treatments->where('tooth_id', $i);
-                            if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
-                                $tooth_treatments = $tooth_treatments->where('created_at', '>=', $resetTreatment->created_at);
-                            }
-                            foreach($tooth_treatments as $tooth_treatment) {
-                                for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
-                                    if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
-                                        $special_treatment = $tooth_special_treatments[$a];
-                                        break;
-                                    }
-
+                        $limit_date = date('Y-m-d', strtotime('2019-01-01'));
+                        $tooth_treatments = $user_treatments->where('tooth_id', $i);
+                        if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
+                            $limit_date = $resetTreatment->created_at;
+                        }
+                        $tooth_treatments = $tooth_treatments->where('created_at', '>', $limit_date);
+                        foreach($tooth_treatments as $tooth_treatment) {
+                            for($a = 0; $a<sizeof($tooth_special_treatments); $a++) {
+                                if($tooth_treatment->treatment_id == $tooth_special_treatments[$a]) {
+                                    $special_treatment = $tooth_special_treatments[$a];
+                                    break;
                                 }
+
                             }
                         }
                         ?>
@@ -668,8 +668,7 @@
 <div class="tab-content">
 
     <div class="tab-pane show active scroll" id="first" role="tabpanel" aria-labelledby="first-tab">
-        @foreach($checkin_all as $checkin_single)
-            @foreach($checkin_single->treatments as $user_treatment)
+            @foreach($user_treatments as $user_treatment)
             <div class="col-md-12 text-left line history{{$user_treatment->tooth_id}}">
                 <b>Шүд #{{$user_treatment->tooth_id}} - {{\App\Treatment::find($user_treatment->treatment_id)->name}}</b>
                 <br>
@@ -687,7 +686,6 @@
                 </div>
             </div>
             @endforeach
-        @endforeach
     </div>
 
     <div class="tab-pane scroll" id="second" role="tabpane2" aria-labelledby="second-tab">
@@ -746,6 +744,19 @@
     </div>
 </div>
 </div>
+    <form action="{{url('/doctor/treatment/finish')}}" method="post">
+        @csrf
+        <br>
+        <select class="form-control" name="nurse_id">
+            <option value="0">Сувилагч сонгох</option>
+            @foreach($nurses as $nurse)
+                <option value="{{$nurse->id}}">{{$nurse->staff->name}}</option>
+            @endforeach
+        </select>
+        <br>
+        <input type="hidden" name="checkin_id" value="{{$checkin->id}}">
+        <button type="submit" class="btn btn-primary btn-block">ДУУСГАХ</button>
+    </form>
 </div>
 </div>
 <script>
@@ -758,43 +769,43 @@ var all = document.getElementsByClassName(toothClassList[1]);
 var mult = document.getElementsByClassName(toothClassList[2]);
 
 for (i = 0; i < all.length; i++) {
-all[i].style.display = "block";
+    all[i].style.display = "block";
 }
 for (i = 0; i < single.length; i++) {
-single[i].style.display = "none";
+    single[i].style.display = "none";
 }
 for (i = 0; i < mult.length; i++) {
-mult[i].style.display = "none";
+    mult[i].style.display = "none";
 }
 
 function reset() {
-document.getElementById('treatmentSelectionId').value = null;
-document.getElementById('option1').click();
+    document.getElementById('treatmentSelectionId').value = null;
+    document.getElementById('option1').click();
 
-for (i = 0; i < selectedArea.length; i++) {
-document.getElementById("pol" + selectedArea[i]).setAttribute('class', 'empty');
-}
-// document.getElementById('suunShudToggle').setAttribute('class','')
-var x = document.getElementById('suunShudToggle');
-x.checked = false;
+    for (i = 0; i < selectedArea.length; i++) {
+        document.getElementById("pol" + selectedArea[i]).setAttribute('class', 'empty');
+    }
+    // document.getElementById('suunShudToggle').setAttribute('class','')
+    var x = document.getElementById('suunShudToggle');
+    x.checked = false;
 
 
 }
 function decaySubmit() {
-console.log("Decay");
-var decayLevel = document.getElementsByName('decayLevel');
-for(var i=0; i<decayLevel.length; i++) {
-if(decayLevel[i].checked) {
-    document.getElementById('treatmentSelectionId').value = i+1;
-}
-}
-if (document.getElementById('suunShudToggle').checked) {
-document.getElementById('treatmentSelectionId').value = parseInt(document.getElementById('treatmentSelectionId').value) + 3;
-}
-document.getElementById('treatmentId').value = 1;
-document.getElementById('valueId').value = document.getElementById('hiddenDecayChart').value;
+    console.log("Decay");
+    var decayLevel = document.getElementsByName('decayLevel');
+    for(var i=0; i<decayLevel.length; i++) {
+        if(decayLevel[i].checked) {
+            document.getElementById('treatmentSelectionId').value = i+1;
+        }
+    }
+    if (document.getElementById('suunShudToggle').checked) {
+        document.getElementById('treatmentSelectionId').value = parseInt(document.getElementById('treatmentSelectionId').value) + 3;
+    }
+    document.getElementById('treatmentId').value = 1;
+    document.getElementById('valueId').value = document.getElementById('hiddenDecayChart').value;
 
-document.getElementById('treatmentForm').submit();
+    document.getElementById('treatmentForm').submit();
 }
 
 function changeStyle(ruby) {

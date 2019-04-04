@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\Auth;
 class DoctorController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('doctor');
+    }
     public function index(){
         $doctor = Auth::user();
-        $shifts = Time::all()->where('date', date('Y-m-d'))->where('doctor_id',Auth::user()->id)->first();
-        $checkins = $shifts->checkins;
+        $shifts = Time::all()->where('date', date('Y-m-d'))->where('doctor_id',$doctor->id)->first();
+        if(empty($shifts)) {
+            $checkins = null;
+        } else {
+            $checkins = $shifts->checkins;
+        }
         return view('doctor.check_in',compact('checkins'));
     }
 }

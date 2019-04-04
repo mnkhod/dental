@@ -111,6 +111,7 @@ Route::post('/reception/payment/store','ReceptionPaymentController@store');
 Route::get('/doctor','DoctorController@index');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
+Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');
 
 Route::get('/test', function() {
     return view('test');

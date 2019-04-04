@@ -90,17 +90,12 @@
         <div class="scroll">
             <ul class="list-unstyled">
                 <li id="doctorDashboard">
-                    <a href="{{url('/docotro/time')}}">
+                    <a href="{{url('/docotro/dash')}}">
                         <i class="iconsmind-Digital-Drawing"></i> Самбар
                     </a>
                 </li>
-                <li id="doctorDiagnostic">
-                    <a href="{{url('/doctor/diagnostic')}}">
-                        <i class="iconsmind-Stethoscope"></i> Оношлогоо
-                    </a>
-                </li>
                 <li id="doctorTreatment">
-                    <a href="{{url('/doctor/treatment')}}">
+                    <a href="{{url('/doctor')}}">
                         <i class="iconsmind-Nurse"></i> Эмчилгээ
                     </a>
                 </li>
