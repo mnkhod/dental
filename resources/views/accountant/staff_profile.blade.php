@@ -25,11 +25,13 @@
                         @if($user->photos->first() == '')
                             Зураггүй
                         @else
-                            <img width="200px" style="border-radius: 100%" src="{{asset('/img/uploads/'.$user->photos->first()->path)}}">
+                            <img width="200px" style="border-radius: 100%"
+                                 src="{{asset('/img/uploads/'.$user->photos->first()->path)}}">
                         @endif
                         <br>
                         <br>
-                        <p class="list-item-heading mb-1"><h3>{{$user->name}} {{$user->last_name}}</h3></p>
+                        <p class="list-item-heading mb-1">
+                        <h3>{{$user->name}} {{$user->last_name}}</h3></p>
                         <div class="text-center">
                             <p class="text-muted text-small mb-2">Утасны дугаар</p>
                             <p class="mb-3">
@@ -42,13 +44,15 @@
                             <p class="text-muted text-small mb-2">Мэргэжил</p>
                             <p class="mb-3">
                                 @if($user->role->role_id == 0)
-                                    Нягтлан
+                                    Админ
                                 @elseif($user->role->role_id == 1)
                                     Ресепшн
                                 @elseif($user->role->role_id == 2)
                                     Эмч
                                 @elseif($user->role->role_id == 3)
                                     Сувилагч
+                                @elseif($user->role->role_id == 4)
+                                    Нягтлан
                                 @else
                                     Бусад
                                 @endif
@@ -60,8 +64,6 @@
                             @if($user->role->state == 0)
                                 Халагдсан
                             @else
-                                <a href="{{url('/admin/add_staff/'.'fire/'.$user->id)}}"><button type="button" class="btn btn-sm btn-outline-primary ">Ажлаас гарсан</button></a>
-                                {{--<button type="button" class="btn btn-sm btn-outline-primary "> Устгах</button>--}}
                             @endif
                         </div>
                     </div>
@@ -80,9 +82,11 @@
                                 <div class="form-group mb-3">
 
                                     <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" placeholder="Эхлэх" />
+                                        <input type="text" class="input-sm form-control" name="start"
+                                               placeholder="Эхлэх"/>
                                         <span class="input-group-addon"></span>
-                                        <input type="text" class="input-sm form-control" name="end" placeholder="Төгсөх" />
+                                        <input type="text" class="input-sm form-control" name="end"
+                                               placeholder="Төгсөх"/>
                                     </div>
                                 </div>
 
@@ -100,87 +104,16 @@
                 </div>
                 <div class="col-md-6">
 
-                    <div class="icon-cards-row">
-
-                        <div class="owl-container">
-                            <div class="owl-carousel dashboard-numbers">
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="simple-icon-user"></i>
-                                        <p class="card-text mb-0">Хүлээгдэж буй хүмүүс</p>
-                                        <p class="lead text-center">16</p>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="iconsmind-Hospital"></i>
-                                        <p class="card-text mb-0">Захиалгын тоо</p>
-                                        <p class="lead text-center">32</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="simple-icon-people"></i>
-                                        <p class="card-text mb-0">Нийт үзэх хүмүүс</p>
-                                        <p class="lead text-center">32</p>
-                                    </div>
-                                </a>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-12 mb-4">
-                            <div class="card dashboard-small-chart">
-                                <div class="card-body">
-                                    <p class="lead color-theme-1 mb-1 value"></p>
-                                    <p class="mb-0 label text-small"></p>
-                                    <div class="chart">
-                                        <canvas id="smallChart1"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
 
-            </div>
-            <ul class="nav nav-tabs separator-tabs ml-0 mb-5" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                       aria-controls="first" aria-selected="true">DETAILS</a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
-                       aria-controls="second" aria-selected="false">ORDERS</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-                    <div class="card mb-4">
-
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">Эмчийн хуваарь</h5>
-                                <div class="calendar"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-            </div>
 
         </div>
+
+    </div>
+
+    </div>
 
     </div><!-- row -->
 @endsection

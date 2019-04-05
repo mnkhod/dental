@@ -157,7 +157,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="first-tab" data-toggle="tab" href="#first" role="tab"
+                    <a class="nav-link" id="second-tab" data-toggle="tab" href="#second" role="tab"
                        aria-controls="first" aria-selected="true">ЦАЛИН</a>
                 </li>
 
@@ -181,7 +181,10 @@
                                 @csrf
                                 <select class="form-control mb-3" name="type">
                                     @foreach($types as $type)
-                                        <option value="{{$type->id}}">{{$type->name}}</option>
+                                        @if($type->id == 4 || $type->id == 1 || $type->id == 2 || $type->id == 5)
+                                            @else
+                                            <option value="{{$type->id}}">{{$type->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
@@ -240,20 +243,24 @@
                     @endforeach
                     <table border="0" width="100%">
                         @foreach($types as $type)
-                            <?php $temp_sum = 0?>
-                            <?php $local_transactions = $transactions?>
-                            <tr>
-                                <td>
-                                    <b>{{$type->name}}</b>
-                                </td>
-                                <td class="text-right">
-                                    @foreach($local_transactions->where('type', $type->id) as $transaction)
-                                        <?php $temp_sum = $temp_sum + $transaction->price?>
-                                    @endforeachӨнгөлгөө
-                                    {{number_format($temp_sum)}}₮
-                                    / @if($sum != 0){{number_format($temp_sum/$sum*100, 2)}}% @else 0.00% @endif
-                                </td>
-                            </tr>
+                            @if($type->id == 4 || $type->id == 5)
+                                @else
+                                <?php $temp_sum = 0?>
+                                <?php $local_transactions = $transactions?>
+                                <tr>
+                                    <td>
+                                        <b>{{$type->name}}</b>
+                                    </td>
+                                    <td class="text-right">
+                                        @foreach($local_transactions->where('type', $type->id) as $transaction)
+                                            <?php $temp_sum = $temp_sum + $transaction->price?>
+                                        @endforeach
+                                        {{number_format($temp_sum)}}₮
+                                        / @if($sum != 0){{number_format($temp_sum/$sum*100, 2)}}% @else 0.00% @endif
+                                    </td>
+                                </tr>
+                                @endif
+
                         @endforeach
                     </table>
                     <b></b>

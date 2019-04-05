@@ -70,12 +70,10 @@ Route::post('/accountant/transactions/delete','AccountantTransactionController@d
 Route::get('/accountant/transactions/{start_date}/{end_date}', 'AccountantTransactionController@search');
 Route::post('/accountant/transactions/by_month','AccountantTransactionController@by_month');
 
-
 Route::post('/accountant/transactions/salary', 'AccountantTransactionController@salary');
 Route::post('/accountant/transactions/add', 'AccountantTransactionController@store');
 Route::post('/accountant/transactions/income', 'AccountantTransactionController@income');
 Route::post('/accountant/transactions/outcome/type', 'AccountantTransactionController@outcomeCategory');
-
 
 Route::get('/accountant/products','AccountantProductController@product');
 Route::get('/accountant/products/{id}','AccountantProductController@show');
@@ -85,6 +83,8 @@ Route::post('/accountant/decrease_product','AccountantProductController@decrease
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
 Route::get('/accountant/staffs', 'AccountantStaffController@index');
 Route::get('/accountant/staff_check/{id}','AccountantStaffController@staff_check');
+
+Route::get('/accountant/hospital', 'AccountantHospitalController@index');
 
 
 //--RECEPTION STARTING--

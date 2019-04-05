@@ -44,7 +44,7 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="text-center">
-                            <p class="list-item-heading mb-1"><a href="{{url('/reception/users/'.$result->id)}}">{{$result->last_name}} {{$result->name}}</a></p>
+                            <p class="list-item-heading mb-1"><a href="{{url('/reception/user_check/'.$result->id)}}">{{$result->last_name}} {{$result->name}}</a></p>
                             <br>
                             <a href="{{url('/reception/time/'.$result->id)}}">
                                 <button class="btn btn-outline-primary" style="border-radius: 0px">Цаг захиалах</button>

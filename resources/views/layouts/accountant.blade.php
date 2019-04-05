@@ -99,11 +99,6 @@
                         <i class="iconsmind-Administrator"></i> Ажилчид
                     </a>
                 </li>
-                <li id="accountantShift">
-                    <a href="{{url('/accountant/shifts')}}">
-                        <i class="iconsmind-Alarm"></i> Ээлж
-                    </a>
-                </li>
                 <li id="accountantProduct">
                     <a href="{{url('/accountant/products')}}">
                         <i class="iconsmind-Medicine-2"></i> Материал

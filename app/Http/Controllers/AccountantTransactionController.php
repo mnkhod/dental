@@ -61,7 +61,7 @@ class AccountantTransactionController extends Controller
         return redirect('/accountant/transactions');
     }
     public function salary(Request $request) {
-        $user = User::find($request['staff']);
+        $user = Role::find($request['staff'])->staff;
         Transaction::create(['price'=> -1*$request['price'], 'type'=>1, 'type_id'=>$request['staff'], 'description'=>$user->name.' цалин','created_by'=>Auth::user()->id]);
         return redirect('/accountant/transactions');
     }
