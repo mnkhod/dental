@@ -47,7 +47,7 @@
 
                                 <td>{{$i}}</td>
                                 <td>{{$user->last_name}}</td>
-                                <td>{{$user->name}}</td>
+                                <td> <a href="{{url('/admin/user_check/'.$user->id)}}">{{$user->name}}</a></td>
                                     <td>
                                     @if($user->sex == 0)
                                     Эр

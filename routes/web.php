@@ -51,15 +51,22 @@ Route::get('/admin/time/week/{id}', 'AdminTimeController@timeWeek');
 Route::post('/admin/time/add', 'AdminTimeController@storeAppointment');
 Route::get('/admin/time/cancel','AdminTimeController@cancelAppointment');
 
-Route::post('/admin/transaction/date', 'AdminTransactionController@date');
-Route::get('/admin/transaction/{start_date}/{end_date}', 'AdminTransactionController@search');
+Route::post('/admin/transactions/date', 'AdminTransactionController@date');
 Route::get('/admin/transaction', 'AdminTransactionController@index');
-Route::post('/admin/transaction/salary', 'AdminTransactionController@salary');
-Route::post('/admin/transaction/add', 'AdminTransactionController@store');
-Route::post('/admin/transaction/income', 'AdminTransactionController@income');
+Route::post('/admin/transactions/edit', 'AdminTransactionController@edit');
+Route::post('/admin/transactions/delete','AdminTransactionController@delete');
+Route::get('/admin/transactions/{start_date}/{end_date}', 'AdminTransactionController@search');
+Route::post('/admin/transactions/by_month','AdminTransactionController@by_month');
+
+Route::post('/admin/transactions/salary', 'AdminTransactionController@salary');
+Route::post('/admin/transactions/add', 'AdminTransactionController@store');
+Route::post('/admin/transactions/income', 'AdminTransactionController@income');
+Route::post('/admin/transactions/outcome/type', 'AdminTransactionController@outcomeCategory');
+
 
 Route::get('/admin/logs','AdminController@logs');
 Route::get('/admin/users','AdminController@users');
+Route::get('/admin/user_check/{id}','AdminController@user_check');
 
 
 //--ACCOUNTANT STARTING--
@@ -110,6 +117,7 @@ Route::post('/reception/payment/store','ReceptionPaymentController@store');
 
 //--DOCTOR STARTING--
 Route::get('/doctor','DoctorController@index');
+Route::get('/doctor/dash','DoctorController@dash');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');

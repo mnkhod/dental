@@ -24,4 +24,5 @@ class DoctorController extends Controller
         }
         return view('doctor.check_in',compact('checkins'));
     }
+
 }
