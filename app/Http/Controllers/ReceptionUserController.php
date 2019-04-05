@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 class ReceptionUserController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('reception');
+    }
     public function index() {
         $users = User::all()->sortByDesc('created_at');
         return view('reception.users', compact('users'));

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Auth;
 class AccountantProductController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('accountant');
+    }
     public function product(){
         $products = Products::all();
         return view('accountant.product',compact('products'));

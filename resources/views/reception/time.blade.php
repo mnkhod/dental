@@ -164,15 +164,15 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <form id="form11" method="post" action="{{url('/admin/transaction/date')}}">
-                            @csrf
-                            <div class="input-group">
-                                <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
-                                       placeholder="mm/dd/YYYY" value="">
-                                <button class="btn btn-primary" style="border-radius: 0px">ҮЗЭХ</button>
+                        {{--<form id="form11" method="post" action="{{url('/admin/transaction/date')}}">--}}
+                            {{--@csrf--}}
+                            {{--<div class="input-group">--}}
+                                {{--<input id="date" name="start_date" autocomplete="off" class="form-control datepicker"--}}
+                                       {{--placeholder="mm/dd/YYYY" value="">--}}
+                                {{--<button class="btn btn-primary" style="border-radius: 0px">ҮЗЭХ</button>--}}
 
-                            </div>
-                        </form>
+                            {{--</div>--}}
+                        {{--</form>--}}
                     </div>
                 </div>
 

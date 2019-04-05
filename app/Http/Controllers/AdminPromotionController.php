@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 class AdminPromotionController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function index() {
         $promotions = Promotion::all()->sortByDesc('created_at');
         $last_promotion = $promotions->sortByDesc('id')->first();

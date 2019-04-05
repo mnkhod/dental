@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('admin');
-//    }
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     //-------------
     //STAFF SECTION

@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 class ReceptionPaymentController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('reception');
+    }
     public function index() {
         $treatment_done_users = CheckIn::all()->where('state',2);
 

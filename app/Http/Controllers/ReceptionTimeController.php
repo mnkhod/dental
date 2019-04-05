@@ -15,7 +15,10 @@ class ReceptionTimeController extends Controller
 {
     //
 
-
+    public function __construct()
+    {
+        $this->middleware('reception');
+    }
     public function time() {
         $shifts = Time::all()->where('date', date('Y-m-d'));
         return view('reception.time', compact('shifts'));
