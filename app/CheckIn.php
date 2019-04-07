@@ -20,6 +20,9 @@ class CheckIn extends Model
     public function treatments() {
         return $this->hasMany('App\UserTreatments', 'checkin_id', 'id');
     }
+    public function transactions() {
+        return Transaction::where('type', 4);
+    }
 
 
 }

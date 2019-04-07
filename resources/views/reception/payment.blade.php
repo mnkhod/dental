@@ -144,7 +144,7 @@
                             <input name="promotion_code" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
                                    placeholder="Урамшуулалын код">
                             <input type="hidden" value="{{$treatment_done_user->id}}" name="checkin_id">
-                            <input type="submit" class="btn btn-sm btn-outline-primary mb-2" value="Төлбөр төлөх">
+                            <input type="submit" class="btn btn-sm btn-outline-primary mb-2" style="border-radius: 0px" value="Төлбөр төлөх">
                         </form>
                     {{--</div>--}}
 

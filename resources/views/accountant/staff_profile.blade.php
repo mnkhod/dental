@@ -149,6 +149,7 @@
                 <div class="col-md-5 scroll" style=" height: 600px;">
                     <?php $sum=0;?>
                     <?php $users=0;?>
+                    @if($user->role->role_id == 2)
                     @foreach($shifts as $shift)
                         @foreach($shift->checkins->where('state', 3) as $check_in)
                             <?php $users++;?>
@@ -201,7 +202,15 @@
 
                                             </tbody>
                                         </table>
-                                        <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{$total}}₮</span>
+                                        <?php $transaction = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first(); ?>
+                                        @if(!empty(\App\UserPromotions::where('transaction_id', $transaction->id)->first()))
+                                            <?php $relation = \App\UserPromotions::where('transaction_id', $transaction->id)->first();?>
+                                            <?php $promotion = \App\Promotion::where('id', $relation->promotion_id)->first();?>
+                                            <span class="badge badge-pill badge-secondary">Хямдарсан {{$promotion->percentage}}% {{$promotion->promotion_name}} </span>
+                                            <br>
+                                        @endif
+                                        <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{\App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price}}₮</span>
+                                        <?php $total = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price;?>
                                         <?php $sum = $sum + $total ?>
                                     </div>
                                 </div>
@@ -209,6 +218,78 @@
                             <br>
                         @endforeach
                     @endforeach
+
+                        @elseif($user->role->role_id == 3)
+
+                            @foreach($checkins->where('state', 3) as $check_in)
+                                <?php $users++;?>
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="#">
+                                                    <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+
+                                                        <div class="pl-3 pr-2">
+                                                            {{--<a href="#">--}}
+                                                            <p class="font-weight-medium mb-0 ">{{$check_in->user->name}}</p>
+                                                            <p class="text-muted mb-0 text-small"> {{$check_in->shift->date}} өдөр хийгдсэн эмчилгээ</p>
+                                                            {{--</a>--}}
+                                                        </div>
+                                                    </div>
+
+                                                </a>
+                                            </h5>
+                                            <table class="table table-sm table-borderless">
+                                                <?php
+                                                $treatments = \App\UserTreatments::all()->where('checkin_id',$check_in->id)
+                                                ?>
+                                                <?php $total = 0;
+                                                ?>
+                                                <tbody>
+                                                @foreach($treatments as $treatment)
+                                                    <tr>
+                                                        <td>
+                                                            <span class="log-indicator border-theme-2 align-middle"></span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
+                                                        </td>
+                                                        <td class="text-right">
+                                    <span class="text-muted">@if($treatment->treatment_selection_id == 0)
+                                            {{$treatment->treatment->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + $treatment->treatment->price?>
+                                        @else
+                                            {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
+                                        @endif</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                                </tbody>
+                                            </table>
+                                            <?php $transaction = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first(); ?>
+                                            @if(!empty(\App\UserPromotions::where('transaction_id', $transaction->id)->first()))
+                                                <?php $relation = \App\UserPromotions::where('transaction_id', $transaction->id)->first();?>
+                                                <?php $promotion = \App\Promotion::where('id', $relation->promotion_id)->first();?>
+                                                <span class="badge badge-pill badge-secondary">Хямдарсан {{$promotion->percentage}}% {{$promotion->promotion_name}} </span>
+                                                <br>
+                                            @endif
+                                            <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{\App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price}}₮</span>
+                                            <?php $total = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price;?>
+                                        <?php $sum = $sum + $total ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            @endforeach
+                        @else
+
+                    @endif
                 </div>
                 <div class="col-md-7">
                     <div class="row">
@@ -234,6 +315,7 @@
                         </div>
                     </div>
                     <br>
+                    @if($user->role->role_id == 2)
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -273,6 +355,7 @@
                         </div>
 
                     </div>
+                        @endif
                 </div>
             </div>
         </div>

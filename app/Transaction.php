@@ -13,4 +13,7 @@ class Transaction extends Model
     public function typeOut() {
         return $this->hasOne('App\OutcomeCategory', 'id', 'type');
     }
+    public function promotion() {
+        return $this->hasOne('App\UserPromotions', 'transaction_id', 'id');
+    }
 }
