@@ -88,8 +88,12 @@ Route::post('/accountant/add_product','AccountantProductController@add_product')
 Route::post('/accountant/edit_product','AccountantProductController@edit_product');
 Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
+
 Route::get('/accountant/staffs', 'AccountantStaffController@index');
 Route::get('/accountant/staff_check/{id}','AccountantStaffController@staff_check');
+Route::get('/accountant/staff_check/{id}/{start_date}/{end_date}', 'AccountantStaffController@search');
+Route::post('/accountant/staff/by_month', 'AccountantStaffController@by_month');
+Route::post('/accountant/staff/date', 'AccountantStaffController@date');
 
 Route::get('/accountant/hospital', 'AccountantHospitalController@index');
 
@@ -121,6 +125,11 @@ Route::get('/doctor/dash','DoctorController@dash');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');
+
+Route::get('/doctor/dashboard/','DoctorController@dashboard');
+Route::get('/doctor/dashboard/{start_date}/{end_date}', 'DoctorController@search');
+Route::post('/doctor/dashboard/by_month', 'DoctorController@by_month');
+Route::post('/doctor/dashboard/date', 'DoctorController@date');
 
 Route::get('/test', function() {
     return view('test');

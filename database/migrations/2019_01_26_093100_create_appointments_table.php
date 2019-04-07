@@ -21,7 +21,6 @@ class CreateAppointmentsTable extends Migration
             $table->string('phone');
             $table->tinyInteger('start');
             $table->tinyInteger('end');
-            $table->integer('state');
             $table->integer('created_by'); //the after method is optional.
             $table->timestamps();
         });

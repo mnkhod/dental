@@ -49,7 +49,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="text" name="description" class="form-control" id="shiftId" placeholder="Тайлбар">
-                        <button type="submit" class="btn btn-primary">Ээлж цуцлах</button>
+                        <button type="submit" class="btn btn-primary" style="border-radius: 0px">Ээлж цуцлах</button>
                     </div>
                 </form>
             </div>

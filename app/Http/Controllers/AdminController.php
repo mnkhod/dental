@@ -29,9 +29,9 @@ class AdminController extends Controller
         return view('admin.add_staff',compact('roles'));
     }
     public function add_staff(Request $request){
-        $pass = str_random('6');
-        Twilio::message('+976'.$request['phone_number'],'MonFamily шүдний эмнэлгийн систем. Таны нэвтрэх нэр:'.$request['email'].' '.'Таны нууц үг:'.$pass.'');
-//        $pass = 'dragon';
+//        $pass = str_random('6');
+//        Twilio::message('+976'.$request['phone_number'],'MonFamily шүдний эмнэлгийн систем. Таны нэвтрэх нэр:'.$request['email'].' '.'Таны нууц үг:'.$pass.'');
+        $pass = 'dragon';
         $pass = bcrypt($pass);
         $birth_date_request = strtotime($request['birth_date']);
         $birth_date = date('Y-m-d', $birth_date_request);

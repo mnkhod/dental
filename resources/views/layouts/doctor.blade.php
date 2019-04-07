@@ -50,15 +50,15 @@
         {{--Search box--}}
 
 
-        <div class="search">
-            <form action="{{url('/reception/search')}}" method="get" role="search">
-                @csrf
-                <input placeholder="Хайх..." name="key" autocomplete="off">
-                <span class="search-icon">
-                    <i class="simple-icon-magnifier"></i>
-                </span>
-            </form>
-        </div>
+        {{--<div class="search">--}}
+            {{--<form action="{{url('/reception/search')}}" method="get" role="search">--}}
+                {{--@csrf--}}
+                {{--<input placeholder="Хайх..." name="key" autocomplete="off">--}}
+                {{--<span class="search-icon">--}}
+                    {{--<i class="simple-icon-magnifier"></i>--}}
+                {{--</span>--}}
+            {{--</form>--}}
+        {{--</div>--}}
 
     </div>
 
@@ -90,7 +90,7 @@
         <div class="scroll">
             <ul class="list-unstyled">
                 <li id="doctorDashboard">
-                    <a href="{{url('/docotro/dash')}}">
+                    <a href="{{url('/doctor/dashboard')}}">
                         <i class="iconsmind-Digital-Drawing"></i> Самбар
                     </a>
                 </li>

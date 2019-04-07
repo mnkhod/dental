@@ -1,4 +1,4 @@
-@extends('layouts.accountant')
+@extends('layouts.doctor')
 @section('header')
 
 
@@ -15,7 +15,7 @@
 @endsection
 @section('content')
     <script>
-        document.getElementById('accountantStaff').classList.add('active');
+        document.getElementById('doctorDashboard').classList.add('active');
     </script>
     <div class="row">
         <div class="col-md-3">
@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-md-6">
 
-                    <form method="post" action="{{url('/accountant/staff/date')}}">
+                    <form method="post" action="{{url('/doctor/dashboard/date')}}">
                         @csrf
 
                         <div class="input-group">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="text-right" style="color: #8f8f8f">
-                        <form id="monthSearch" action="{{url('/accountant/staff/by_month')}}" method="post">
+                        <form id="monthSearch" action="{{url('/doctor/dashboard/by_month')}}" method="post">
                             @csrf
                             Хугацаа өөрчлөн үзэх:
                             <select name="year">

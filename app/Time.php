@@ -19,4 +19,7 @@ class Time extends Model
     public function checkins(){
         return $this->hasMany('App\CheckIn','shift_id','id');
     }
+    public function createdby() {
+        return $this->hasOne('App\User', 'id', 'created_by');
+    }
 }
