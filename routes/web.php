@@ -65,6 +65,7 @@ Route::post('/admin/transactions/outcome/type', 'AdminTransactionController@outc
 
 
 Route::get('/admin/logs','AdminController@logs');
+Route::get('/admin/hospital','AdminController@hospital');
 Route::get('/admin/users','AdminController@users');
 Route::get('/admin/user_check/{id}','AdminController@user_check');
 Route::get('/admin/search', 'AdminController@search');

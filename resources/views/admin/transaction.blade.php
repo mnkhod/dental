@@ -474,6 +474,4 @@
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
 
-
-
 @endsection

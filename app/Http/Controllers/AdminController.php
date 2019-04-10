@@ -83,6 +83,44 @@ class AdminController extends Controller
         $check_ins = CheckIn::all()->where('state',3)->where('user_id',$id);
         return view('admin.user_check',compact('user','check_ins'));
     }
+    public function hospital(){
+        $checkins = CheckIn::all()->where('state',3);
+        $count1 = 0;
+        $count2 = 0;
+        $count3 = 0;
+        $count = 0;
+        foreach ($checkins as $checkin){
+            $user_treatments = $checkin->treatments;
+            $check1 = 0;
+            $check2 = 0;
+            $check3 = 0;
+            foreach ($user_treatments as $user_treatment){
+                $treatment = $user_treatment->treatment;
+                if($treatment->category == 0){
+                    $check1 = 1;
+
+                }
+                elseif ($treatment->category == 1){
+                    $check2 = 1;
+                }
+                elseif ($treatment->category == 2){
+                    $check3 = 1;
+                }
+            }
+            $count++;
+            if($check1 == 1) {
+                $count1++;
+            }
+            if($check2 == 1) {
+                $count2++;
+            }
+            if($check3 == 1) {
+                $count3++;
+            }
+        }
+
+        return view('admin.hospital',compact('count1','count2','count3','count'));
+    }
     public function search(Request $request){
         $input = $request->key;
         $results = User::where('email', 'like', '%'.$input.'%')
@@ -93,5 +131,4 @@ class AdminController extends Controller
 
         return view('admin.search', compact('results', 'input'));
     }
-
 }
