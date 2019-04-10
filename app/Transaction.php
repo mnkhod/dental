@@ -16,4 +16,7 @@ class Transaction extends Model
     public function promotion() {
         return $this->hasOne('App\UserPromotions', 'transaction_id', 'id');
     }
+    public function checkin() {
+        return $this->hasOne('App\Checkin', 'id', 'type_id');
+    }
 }

@@ -83,5 +83,15 @@ class AdminController extends Controller
         $check_ins = CheckIn::all()->where('state',3)->where('user_id',$id);
         return view('admin.user_check',compact('user','check_ins'));
     }
+    public function search(Request $request){
+        $input = $request->key;
+        $results = User::where('email', 'like', '%'.$input.'%')
+            ->orWhere('phone_number', 'like', '%'.$input.'%')
+            ->orWhere('name', 'like', '%'.$input.'%')
+            ->orWhere('last_name', 'like', '%'.$input.'%')
+            ->limit('25');
+
+        return view('admin.search', compact('results', 'input'));
+    }
 
 }

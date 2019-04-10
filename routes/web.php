@@ -67,6 +67,7 @@ Route::post('/admin/transactions/outcome/type', 'AdminTransactionController@outc
 Route::get('/admin/logs','AdminController@logs');
 Route::get('/admin/users','AdminController@users');
 Route::get('/admin/user_check/{id}','AdminController@user_check');
+Route::get('/admin/search', 'AdminController@search');
 
 
 //--ACCOUNTANT STARTING--

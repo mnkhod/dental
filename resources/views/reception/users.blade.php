@@ -121,7 +121,7 @@
                                         <p class="text-muted">{{$user->last_name}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-muted">{{$user->sex}}</p>
+                                        <p class="text-muted">{{$user->sex ? 'Эм':'Эр'}}</p>
                                     </td>
                                     <td>
                                         <p class="text-muted">{{$user->phone_number}}</p>

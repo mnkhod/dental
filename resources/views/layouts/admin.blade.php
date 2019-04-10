@@ -105,11 +105,11 @@
                         <i class="iconsmind-Administrator"></i> Үйлчлүүлэгчид
                     </a>
                 </li>
-                <li id="adminTime">
-                    <a href="#time">
-                        <i class="iconsmind-Alarm"></i> Цаг
-                    </a>
-                </li>
+                {{--<li id="adminTime">--}}
+                    {{--<a href="#time">--}}
+                        {{--<i class="iconsmind-Alarm"></i> Цаг--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li id="adminReport">
                     <a href="#report">
                         <i class="iconsmind-Inbox-Full"></i> Тайлан

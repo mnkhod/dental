@@ -17,6 +17,7 @@ class CreateUserPromotionsTable extends Migration
             $table->increments('id');
             $table->integer('transaction_id');
             $table->integer('promotion_id');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

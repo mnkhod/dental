@@ -77,7 +77,7 @@
                             @csrf
                             <span>Тайлбар:</span>
                             <input type="hidden" name="transaction_id" id="transactionHidden">
-                            <input name="description" class="form-control mb-3" autocomplete="off"
+                            <input required name="description" class="form-control mb-3" autocomplete="off"
                                    type="text" placeholder="Устгаж буй шалтгаан">
                             <button class="btn btn-primary"
                                     type="submit">
@@ -123,11 +123,11 @@
                     </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
-                            <textarea name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
+                            <textarea required name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
-                            <textarea name="log_description" placeholder="Өөрчилж буй шалтгаан" class="form-control" rows="2"></textarea>
+                            <textarea required name="log_description" placeholder="Өөрчилж буй шалтгаан" class="form-control" rows="2"></textarea>
                         </div>
 
 

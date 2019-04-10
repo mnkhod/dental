@@ -142,15 +142,17 @@
                                     <th>Хугацаа</th>
                                     <th>Ресепшн</th>
                                 </tr>
+                                <?php $i=1;?>
                                @foreach($used as $use)
 
                                     <tr>
-                                    <td>1</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$transaction->price/(1-$prom->percentage/100)}}₮</td>
-                                    <td>{{$transaction->price}}₮</td>
-                                    <td>{{$transaction->created_at}}</td>
-                                    <td>{{\App\User::find($transaction->created_by)->name}}</td>
+                                    <td>{{$i}}</td>
+                                    <td>{{$use->transaction->checkin->user->name}}</td>
+                                    <td>{{$use->transaction->price/(1-$prom->percentage/100)}}₮</td>
+                                    <td>{{$use->transaction->price}}₮</td>
+                                    <td>{{$use->created_at}}</td>
+                                    <td>{{\App\User::find($use->created_by)->name}}</td>
+                                    <?php $i++ ?>
                                     </tr>
                                    @endforeach
                             </table>
