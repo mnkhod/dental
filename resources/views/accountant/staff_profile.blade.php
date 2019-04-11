@@ -136,8 +136,6 @@
                                         @endif
                                     @endfor
                                 @endif
-
-
                             </select>
                         </form>
                         <br>
@@ -160,7 +158,6 @@
                                         <h5 class="card-title">
                                             <a href="#">
                                                 <div class="d-flex flex-row mb-3 pb-3 border-bottom">
-
                                                     <div class="pl-3 pr-2">
                                                         {{--<a href="#">--}}
                                                         <p class="font-weight-medium mb-0 ">{{$check_in->user->name}}</p>

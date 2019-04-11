@@ -51,12 +51,10 @@ Route::get('/admin/time/week/{id}', 'AdminTimeController@timeWeek');
 Route::post('/admin/time/add', 'AdminTimeController@storeAppointment');
 Route::get('/admin/time/cancel','AdminTimeController@cancelAppointment');
 
-Route::post('/admin/transactions/date', 'AdminTransactionController@date');
+Route::post('/admin/transaction/date', 'AdminTransactionController@date');
 Route::get('/admin/transaction', 'AdminTransactionController@index');
-Route::post('/admin/transactions/edit', 'AdminTransactionController@edit');
-Route::post('/admin/transactions/delete','AdminTransactionController@delete');
-Route::get('/admin/transactions/{start_date}/{end_date}', 'AdminTransactionController@search');
-Route::post('/admin/transactions/by_month','AdminTransactionController@by_month');
+Route::get('/admin/transaction/{start_date}/{end_date}', 'AdminTransactionController@search');
+Route::post('/admin/transaction/by_month','AdminTransactionController@by_month');
 
 Route::post('/admin/transactions/salary', 'AdminTransactionController@salary');
 Route::post('/admin/transactions/add', 'AdminTransactionController@store');

@@ -9,6 +9,7 @@ use App\ProductHistory;
 use App\Products;
 use App\Role;
 use Aloha\Twilio\Support\Laravel\Facade as Twilio;
+use App\Time;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
@@ -52,7 +53,14 @@ class AdminController extends Controller
     //---------------
     public function profile($id){
         $user = User::find($id);
-        return view('admin.staff_profile',compact('user'));
+        if($user->role->role_id == 2) {
+            $shifts = Time::where('doctor_id', $user->id)->where('date','>=', date('Y-m-d', strtotime('first day of this month')))->orderBy('id', 'desc')->get();
+            return view('admin.staff_profile',compact('user', 'shifts'));
+        } else if($user->role->role_id == 3) {
+            $checkins = CheckIn::where('nurse_id', $user->id)->where('created_at','>=', date('Y-m-d', strtotime('first day of this month')))->orderBy('id', 'desc')->get();
+            return view('admin.staff_profile', compact('user', 'checkins'));
+        }
+        return view('admin.staff_profile', compact('user'));
     }
     public function fire($id){
         $user=User::find($id);

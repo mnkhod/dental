@@ -20,22 +20,22 @@
     </script>
     <div class="row">
         <div class="col-lg-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="mb-4">Шинэ бараа нэмэх</h5>
+            {{--<div class="card mb-4">--}}
+                {{--<div class="card-body">--}}
+                    {{--<h5 class="mb-4">Шинэ бараа нэмэх</h5>--}}
 
-                    <form class="form-inline" action="{{url('/admin/add_product')}}" method="post">
-                        @csrf
-                        <div class=" mb-2 mr-sm-2">
-                            <input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                                   placeholder="Барааны нэр" autocomplete="off">
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
-                            Шинэ бараа нэмэх
-                        </button>
-                    </form>
-                </div>
-            </div>
+                    {{--<form class="form-inline" action="{{url('/admin/add_product')}}" method="post">--}}
+                        {{--@csrf--}}
+                        {{--<div class=" mb-2 mr-sm-2">--}}
+                            {{--<input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"--}}
+                                   {{--placeholder="Барааны нэр" autocomplete="off">--}}
+                        {{--</div>--}}
+                        {{--<button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">--}}
+                            {{--Шинэ бараа нэмэх--}}
+                        {{--</button>--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <div class="card">
                 <div class="card-body">
@@ -56,7 +56,7 @@
                             <th>Дугаар</th>
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
-                            <th>Үйлдэл</th>
+                            {{--<th>Үйлдэл</th>--}}
 
 
                         </tr>
@@ -78,11 +78,11 @@
                                 <td>
                                     <p class="text-muted">{{$product->quantity}}</p>
 
-                                <td>
-                                    <a href="{{url('/admin/delete_product').'/'.$product->id}}">
-                                        <i class="simple-icon-trash"></i>
-                                    </a>
-                                </td>
+                                {{--<td>--}}
+                                    {{--<a href="{{url('/admin/delete_product').'/'.$product->id}}">--}}
+                                        {{--<i class="simple-icon-trash"></i>--}}
+                                    {{--</a>--}}
+                                {{--</td>--}}
                             </tr>
                         @endforeach
                         <script>

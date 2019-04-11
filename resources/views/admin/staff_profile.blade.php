@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('header')
+
+
+
     <link rel="stylesheet" href="{{asset('css/vendor/fullcalendar.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/dataTables.bootstrap4.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/datatables.responsive.bootstrap4.min.css')}}"/>
@@ -8,26 +11,27 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
 @endsection
 @section('content')
     <script>
         document.getElementById('adminStaff').classList.add('active');
     </script>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card ">
                 <div class="card-body">
                     <div class="text-center">
                         @if($user->photos->first() == '')
                             Зураггүй
                         @else
-                            <img width="200px" style="border-radius: 100%" src="{{asset('/img/uploads/'.$user->photos->first()->path)}}">
+                            <img width="200px" style="border-radius: 100%"
+                                 src="{{asset('/img/uploads/'.$user->photos->first()->path)}}">
                         @endif
-                            <br>
-                            <br>
-                        <p class="list-item-heading mb-1"><h3>{{$user->name}} {{$user->last_name}}</h3></p>
+                        <br>
+                        <br>
+                        <p class="list-item-heading mb-1">
+                        <h3>{{$user->name}} {{$user->last_name}}</h3></p>
                         <div class="text-center">
                             <p class="text-muted text-small mb-2">Утасны дугаар</p>
                             <p class="mb-3">
@@ -40,16 +44,18 @@
                             <p class="text-muted text-small mb-2">Мэргэжил</p>
                             <p class="mb-3">
                                 @if($user->role->role_id == 0)
-                                Нягтлан
+                                    Админ
                                 @elseif($user->role->role_id == 1)
                                     Ресепшн
                                 @elseif($user->role->role_id == 2)
                                     Эмч
                                 @elseif($user->role->role_id == 3)
                                     Сувилагч
-                                    @else
-                                Бусад
-                                    @endif
+                                @elseif($user->role->role_id == 4)
+                                    Нягтлан
+                                @else
+                                    Бусад
+                                @endif
                             </p>
                             <p class="text-muted text-small mb-2">Тайлбар</p>
                             <p class="mb-3">
@@ -58,127 +64,304 @@
                             @if($user->role->state == 0)
                                 Халагдсан
                             @else
-                                <a href="{{url('/admin/add_staff/'.'fire/'.$user->id)}}"><button type="button" class="btn btn-sm btn-outline-primary ">Ажлаас гарсан</button></a>
-                            {{--<button type="button" class="btn btn-sm btn-outline-primary "> Устгах</button>--}}
                             @endif
+                            <a href="{{url('/admin/add_staff/fire/'.$user->id)}}"><button type="button" class="btn btn-sm btn-outline-primary ">Ажлаас гарсан</button></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-8">
-
-
+        <div class="col-md-9">
             <div class="row">
-                <div class="col-md-6 col-lg-6 mb-4">
-                    <div class="card dashboard-link-list">
-                        <div class="card-body">
-                            <h5 class="card-title">Хугацаа сонгох</h5>
-                            <div class="d-flex flex-row">
-                                <div class="form-group mb-3">
-
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" placeholder="Эхлэх" />
-                                        <span class="input-group-addon"></span>
-                                        <input type="text" class="input-sm form-control" name="end" placeholder="Төгсөх" />
-                                    </div>
-                                </div>
-
-                            </div>
-                            <a href="#" class="card">
-                                <div class="card-body text-center">
-                                    <i class="iconsmind-Money-2"></i>
-                                    <p class="card-text mb-0">Эдгээр саруудын орлого</p>
-                                    <p class="lead text-center">16</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
                 <div class="col-md-6">
 
-                    <div class="icon-cards-row">
+                    <form method="post" action="{{url('/accountant/staff/date')}}">
+                        @csrf
 
-                        <div class="owl-container">
-                            <div class="owl-carousel dashboard-numbers">
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="simple-icon-user"></i>
-                                        <p class="card-text mb-0">Хүлээгдэж буй хүмүүс</p>
-                                        <p class="lead text-center">16</p>
+                        <div class="input-group">
+                            &nbsp;
+                            &nbsp;
+                            &nbsp;
+                            <a href="#" onclick="$(this).closest('form').submit()" style="color: #8f8f8f">Хугацаа
+                                өөрчлөн харах</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="date" name="start_date" autocomplete="off" class="form-control datepicker"
+                                   style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: #8f8f8f; color: #8f8f8f; padding: 0px"
+                                   placeholder="Эхлэл"
+                                   value="@if(!empty($start_date)){{date('m/d/Y', $start_date)}}@else{{date('m/d/Y', strtotime('-30 Days'))}}@endif">&nbsp;&nbsp;&nbsp;<span
+                                    style="color: #8f8f8f">-&nbsp;&nbsp;&nbsp;</span>
+                            <input name="end_date" autocomplete="off" class="form-control datepicker "
+                                   style="background-color: #f8f8f8; border-color: #f8f8f8; border-bottom-color: #8f8f8f; color: #8f8f8f; padding: 0px"
+                                   placeholder="Төгсгөл"
+                                   value="@if(!empty($end_date)){{date('m/d/Y', $end_date)}}@else{{date('m/d/Y')}}@endif">
+                            <input type="hidden" name="staff_id" value="{{$user->id}}">
+                            <a href="#" onclick="$(this).closest('form').submit()" style="color: #8f8f8f">үзэх</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-right" style="color: #8f8f8f">
+                        <form id="monthSearch" action="{{url('/accountant/staff/by_month')}}" method="post">
+                            @csrf
+                            Хугацаа өөрчлөн үзэх:
+                            <select name="year">
+                                @if(!empty($start_date))
+                                    <option value="{{date('Y', $start_date)}}">{{date('Y', $start_date)}}</option>
+                                    @for($m = 2019; $m<=2027; $m++)
+                                        @if($m != date('Y', $start_date))
+                                            <option value="{{$m}}">{{$m}}</option>
+                                        @endif
+                                    @endfor
+                                @else
+                                    <option value="{{date('Y')}}">{{date('Y')}}</option>
+                                    @for($m = 2019; $m<=2027; $m++)
+                                        @if($m != date('Y'))
+                                            <option value="{{$m}}">{{$m}}</option>
+                                        @endif
+                                    @endfor
+                                @endif
+                            </select>
+                            <input type="hidden" name="staff_id" value="{{$user->id}}">
+                            <select name="month" onchange="document.getElementById('monthSearch').submit()">
+                                @if(!empty($start_date))
+                                    <option value="{{date('m', $start_date)}}">{{date('m', $start_date)}}</option>
+                                    @for($m = 1; $m<=12; $m++)
+                                        @if($m != date('m', $start_date))
+                                            <option value="{{$m}}">{{$m}}</option>
+                                        @endif
+                                    @endfor
+                                @else
+                                    <option value="{{date('m')}}">{{date('m')}}</option>
+                                    @for($m = 1; $m<=12; $m++)
+                                        @if($m != date('m'))
+                                            <option value="{{$m}}">{{$m}}</option>
+                                        @endif
+                                    @endfor
+                                @endif
+                            </select>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 scroll" style=" height: 600px;">
+                    <?php $sum=0;?>
+                    <?php $users=0;?>
+                    @if($user->role->role_id == 2)
+                        @foreach($shifts as $shift)
+                            @foreach($shift->checkins->where('state', 3) as $check_in)
+                                <?php $users++;?>
+                                <div class="col-md-12">
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="#">
+                                                    <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+                                                        <div class="pl-3 pr-2">
+                                                            {{--<a href="#">--}}
+                                                            <p class="font-weight-medium mb-0 ">{{$check_in->user->name}}</p>
+                                                            <p class="text-muted mb-0 text-small"> {{$check_in->shift->date}} өдөр хийгдсэн эмчилгээ</p>
+                                                            {{--</a>--}}
+                                                        </div>
+                                                    </div>
+
+                                                </a>
+                                            </h5>
+                                            <table class="table table-sm table-borderless">
+                                                <?php
+                                                $treatments = \App\UserTreatments::all()->where('checkin_id',$check_in->id)
+                                                ?>
+                                                <?php $total = 0;
+                                                ?>
+                                                <tbody>
+                                                @foreach($treatments as $treatment)
+                                                    <tr>
+                                                        <td>
+                                                            <span class="log-indicator border-theme-2 align-middle"></span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
+                                                        </td>
+                                                        <td class="text-right">
+                                    <span class="text-muted">@if($treatment->treatment_selection_id == 0)
+                                            {{$treatment->treatment->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + $treatment->treatment->price?>
+                                        @else
+                                            {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
+                                        @endif</span>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                                </tbody>
+                                            </table>
+                                            <?php $transaction = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first(); ?>
+                                            @if(!empty(\App\UserPromotions::where('transaction_id', $transaction->id)->first()))
+                                                <?php $relation = \App\UserPromotions::where('transaction_id', $transaction->id)->first();?>
+                                                <?php $promotion = \App\Promotion::where('id', $relation->promotion_id)->first();?>
+                                                <span class="badge badge-pill badge-secondary">Хямдарсан {{$promotion->percentage}}% {{$promotion->promotion_name}} </span>
+                                                <br>
+                                            @endif
+                                            <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{\App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price}}₮</span>
+                                            <?php $total = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price;?>
+                                            <?php $sum = $sum + $total ?>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>
+                                <br>
+                            @endforeach
+                        @endforeach
 
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="iconsmind-Hospital"></i>
-                                        <p class="card-text mb-0">Захиалгын тоо</p>
-                                        <p class="lead text-center">32</p>
+                    @elseif($user->role->role_id == 3)
+
+                        @foreach($checkins->where('state', 3) as $check_in)
+                            <?php $users++;?>
+                            <div class="col-md-12">
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a href="#">
+                                                <div class="d-flex flex-row mb-3 pb-3 border-bottom">
+
+                                                    <div class="pl-3 pr-2">
+                                                        {{--<a href="#">--}}
+                                                        <p class="font-weight-medium mb-0 ">{{$check_in->user->name}}</p>
+                                                        <p class="text-muted mb-0 text-small"> {{$check_in->shift->date}} өдөр хийгдсэн эмчилгээ</p>
+                                                        {{--</a>--}}
+                                                    </div>
+                                                </div>
+
+                                            </a>
+                                        </h5>
+                                        <table class="table table-sm table-borderless">
+                                            <?php
+                                            $treatments = \App\UserTreatments::all()->where('checkin_id',$check_in->id)
+                                            ?>
+                                            <?php $total = 0;
+                                            ?>
+                                            <tbody>
+                                            @foreach($treatments as $treatment)
+                                                <tr>
+                                                    <td>
+                                                        <span class="log-indicator border-theme-2 align-middle"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
+                                                    </td>
+                                                    <td class="text-right">
+                                    <span class="text-muted">@if($treatment->treatment_selection_id == 0)
+                                            {{$treatment->treatment->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + $treatment->treatment->price?>
+                                        @else
+                                            {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
+                                            <?php /** @var TYPE_NAME $total */
+                                            $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
+                                        @endif</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                        <?php $transaction = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first(); ?>
+                                        @if(!empty(\App\UserPromotions::where('transaction_id', $transaction->id)->first()))
+                                            <?php $relation = \App\UserPromotions::where('transaction_id', $transaction->id)->first();?>
+                                            <?php $promotion = \App\Promotion::where('id', $relation->promotion_id)->first();?>
+                                            <span class="badge badge-pill badge-secondary">Хямдарсан {{$promotion->percentage}}% {{$promotion->promotion_name}} </span>
+                                            <br>
+                                        @endif
+                                        <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{\App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price}}₮</span>
+                                        <?php $total = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price;?>
+                                        <?php $sum = $sum + $total ?>
                                     </div>
-                                </a>
-                                <a href="#" class="card">
-                                    <div class="card-body text-center">
-                                        <i class="simple-icon-people"></i>
-                                        <p class="card-text mb-0">Нийт үзэх хүмүүс</p>
-                                        <p class="lead text-center">32</p>
-                                    </div>
-                                </a>
+                                </div>
+                            </div>
+                            <br>
+                        @endforeach
+                    @else
 
-
-
+                    @endif
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h4>
+                                        <b>{{$sum}}₮</b>
+                                    </h4>
+                                    <h5>орлого</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-12 mb-4">
-                            <div class="card dashboard-small-chart">
-                                <div class="card-body">
-                                    <p class="lead color-theme-1 mb-1 value"></p>
-                                    <p class="mb-0 label text-small"></p>
-                                    <div class="chart">
-                                        <canvas id="smallChart1"></canvas>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h4>
+                                        <b>{{$users}} хүн</b>
+                                    </h4>
+                                    <h5>үйлчлүүлсэн</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
+                    @if($user->role->role_id == 2)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Өдөр</th>
+                                                <th>Ээлж</th>
+                                                <th>Үүсгэсэн</th>
+                                                <th>Үүсгэсэн хугацаа</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($shifts as $shift)
+                                                <tr>
+                                                    <td>{{$shift->date}}</td>
+                                                    <td>
+                                                        @if($shift->shift_id == 0)
+                                                            Өглөөний ээлж
+                                                        @elseif($shift->shift_id == 1)
+                                                            Оройн ээлж
+                                                        @else
+                                                            Бүтэн ээлж
+                                                        @endif
+                                                    </td>
+                                                    <td>{{$shift->createdby->name}}</td>
+                                                    <td>{{$shift->created_at}}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
 
 
-            </div>
-            <ul class="nav nav-tabs separator-tabs ml-0 mb-5" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab"
-                       aria-controls="first" aria-selected="true">DETAILS</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link " id="second-tab" data-toggle="tab" href="#second" role="tab"
-                       aria-controls="second" aria-selected="false">ORDERS</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-                    <div class="card mb-4">
-
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">Эмчийн хуваарь</h5>
-                                <div class="calendar"></div>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
-
-            <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-                 </div>
-
         </div>
+
+
+
+    </div>
+
 
     </div><!-- row -->
 @endsection

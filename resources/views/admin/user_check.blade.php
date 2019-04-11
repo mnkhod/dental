@@ -75,6 +75,7 @@
                 height: 400px;
             }</style>
         <div class="col-md-4 ex1 scroll"><!-- scroll-->
+            <?php $sum = 0;?>
             @foreach($check_ins as $check_in)
                 <div class="col-md-12">
 
@@ -98,8 +99,7 @@
                                 <?php
                                 $treatments = \App\UserTreatments::all()->where('checkin_id',$check_in->id)
                                 ?>
-                                <?php $total = 0;
-                                $sum = 0?>
+                                <?php $total = 0;?>
                                 <tbody>
                                 @foreach($treatments as $treatment)
                                     <tr>
