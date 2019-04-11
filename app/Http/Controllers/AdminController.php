@@ -85,15 +85,90 @@ class AdminController extends Controller
     }
     public function hospital(){
         $checkins = CheckIn::all()->where('state',3);
+        $all_users = User::all();
+        $first_time = 0;
+        $second_time = 0;
+        $a = 0;
+        $b = 0;
+        $first1= 0;
+        $second1=0;
+        $corrective_count = 0;
+        $preventive_count = 0;
+        $therapeutic_count = 0;
+        foreach ($all_users as $user){
+            $checkins = $user->checkins;
+            $checks = $checkins->count();
+            foreach ($checkins as $checkin) {
+                $user_treatments = $checkin->treatments;
+                foreach ($user_treatments as $user_treatment){
+                    $treatment = $user_treatment->treatment;
+                    if($treatment->category == 2){
+                        $a = 1;
+                    }
+                    elseif ($treatment->category == 2){
+                        $b = 1;
+                    }
+                }
+            }
+            if($a == 1){
+                $preventive_count++;
+                if($checks == 1){
+                    $first1++;
+                }
+                elseif ($checks > 1){
+                    $second1++;
+                }
+            }
+            elseif ($b == 1){
+                $corrective_count++;
+            }
+
+        }
+
+        foreach ($all_users as $all_user){
+            $checks = CheckIn::all()->where('user_id', $all_user->id)->count();
+            if($checks ==1){
+                $first_time++;
+            }
+            elseif ($checks > 1){
+                $second_time++;
+            }
+        }
+        $checkins2 = CheckIn::all()->where('state',3);
+        $user_checkins = $checkins2->unique('user_id');
         $count1 = 0;
         $count2 = 0;
         $count3 = 0;
         $count = 0;
+        $age1_4_males= 0;
+        $age1_4_females= 0;
+        $age5_9_males = 0;
+        $age5_9_females = 0;
+        $age10_14_males = 0;
+        $age10_14_females = 0;
+        $age1_4_males_1= 0;
+        $age1_4_females_1= 0;
+        $age5_9_males_1 = 0;
+        $age5_9_females_1 = 0;
+        $age10_14_males_1 = 0;
+        $age10_14_females_1 = 0;
+        $males = 0;
+        $females = 0;
+        $check1_male = 0;
+        $check2_male = 0;
+        $check3_male = 0;
+        $check1_female = 0;
+        $check2_female = 0;
+        $check3_female = 0;
+
         foreach ($checkins as $checkin){
+            $user = $checkin->user;
+
             $user_treatments = $checkin->treatments;
             $check1 = 0;
             $check2 = 0;
             $check3 = 0;
+
             foreach ($user_treatments as $user_treatment){
                 $treatment = $user_treatment->treatment;
                 if($treatment->category == 0){
@@ -108,18 +183,75 @@ class AdminController extends Controller
                 }
             }
             $count++;
+
             if($check1 == 1) {
+//                if(strtotime("-1 Year")>$birth_date and $birth_date > $year1_4 and $user->sex == 0){
+//                    $age1_4_males_1++;
+//                }
+//                elseif (strtotime("Today")>$birth_date and $birth_date > $year1_4 and $user->sex == 1){
+//                    $age1_4_females_1++;
+//                }
+//                elseif (strtotime("Today")>$birth_date and $birth_date > $year5_9 and $user->sex == 0){
+//                    $age5_9_males_1++;
+//                }
+//                elseif (strtotime("Today")>$birth_date and $birth_date > $year5_9 and $user->sex == 1){
+//                    $age5_9_females_1++;
+//                }
+//                elseif (strtotime("Today")>$birth_date and $birth_date > $year10_14 and $user->sex == 0){
+//                    $age10_14_males_1++;
+//                }
+//                elseif (strtotime("Today")>$birth_date and $birth_date > $year10_14 and $user->sex == 1){
+//                    $age10_14_females_1++;
+//                }
+
                 $count1++;
             }
             if($check2 == 1) {
+                $user->sex==0 ? $check2_male++ : $check2_female++;
                 $count2++;
             }
             if($check3 == 1) {
+                $user->sex==0 ? $check3_male++ : $check3_female++;
                 $count3++;
+            }
+            $user->sex==0 ? $males++ : $females++;
+
+        }
+        foreach ($user_checkins as $user_checkin){
+            $user = $user_checkin->user;
+
+            $user->sex==0 ? $check1_male++ : $check1_female++;
+            $year1_4 = strtotime("-4 Year");
+            $year5_9 = strtotime("-9 Year");
+            $year10_14 = strtotime("-14 Year");
+            $birth_date = strtotime($user->birth_date);
+            if(strtotime("-1 Year")>$birth_date and $birth_date > $year1_4 and $user->sex == 0){
+                $age1_4_males++;
+            }
+            elseif (strtotime("-1 Year")>$birth_date and $birth_date > $year1_4 and $user->sex == 1){
+                $age1_4_females++;
+            }
+            elseif (strtotime("-4 Year")>$birth_date and $birth_date > $year5_9 and $user->sex == 0){
+                $age5_9_males++;
+            }
+            elseif (strtotime("-4 Year")>$birth_date and $birth_date > $year5_9 and $user->sex == 1){
+                $age5_9_females++;
+            }
+            elseif (strtotime("-5 Year")>$birth_date and $birth_date > $year10_14 and $user->sex == 0){
+                $age10_14_males++;
+            }
+            elseif (strtotime("-5 Year")>$birth_date and $birth_date > $year10_14 and $user->sex == 1){
+                $age10_14_females++;
             }
         }
 
-        return view('admin.hospital',compact('count1','count2','count3','count'));
+        return view('admin.hospital',compact('count1','count2','count3','count',
+            'check1_male','check1_female','check2_female','check2_male','check3_male',
+            'check3_female','males','females',
+            'age1_4_males','age1_4_females','age1_4_females_1','age1_4_males_1','age5_9_females',
+            'age5_9_females_1','age5_9_males','age5_9_males_1','age10_14_females','age10_14_females_1',
+            'age10_14_males','age10_14_males_1','first1','first_time','second_time','second1',
+            'c'));
     }
     public function search(Request $request){
         $input = $request->key;

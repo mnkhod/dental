@@ -36,11 +36,11 @@
                         </tr>
                         <tr>
                             <td>Эрэгтэй</td>
-                            <td>1</td>
+                            <td>{{$males}}</td>
                         </tr>
                         <tr>
                             <td>Эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$females}}</td>
                         </tr>
                         <tr>
                             <td>Амбулаторын үзлэгийн тоо</td>
@@ -48,43 +48,35 @@
                         </tr>
                         <tr>
                             <td>Анх</td>
-                            <td>1</td>
+                            <td>{{$first_time}}</td>
                         </tr>
                         <tr>
                             <td>Давтан</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1 хүртэлх эрэгтэй</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1 хүртэлх эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$second_time}}</td>
                         </tr>
                         <tr>
                             <td>1-4 Эрэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age1_4_males}}</td>
                         </tr>
                         <tr>
                             <td>1-4 Эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age1_4_females}}</td>
                         </tr>
                         <tr>
                             <td>5-9 Эрэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age5_9_males}}</td>
                         </tr>
                         <tr>
                             <td>5-9 Эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age5_9_females}}</td>
                         </tr>
                         <tr>
                             <td>10-14 Эрэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age10_14_males}}</td>
                         </tr>
                         <tr>
                             <td>10-14 Эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$age10_14_females}}</td>
                         </tr>
 
                         </tbody>
@@ -114,11 +106,11 @@
                         </tr>
                         <tr>
                             <td>Эрэгтэй</td>
-                            <td>1</td>
+                            <td>{{$check2_male}}</td>
                         </tr>
                         <tr>
                             <td>Эмэгтэй</td>
-                            <td>1</td>
+                            <td>{{$check2_female}}</td>
                         </tr>
                         <tr>
                             <td>Амбулаторын үзлэгийн тоо</td>
@@ -126,11 +118,11 @@
                         </tr>
                         <tr>
                             <td>Анх</td>
-                            <td>1</td>
+                            <td>{{$first1}}</td>
                         </tr>
                         <tr>
                             <td>Давтан</td>
-                            <td>1</td>
+                            <td>{{$second1}}</td>
                         </tr>
 
 
