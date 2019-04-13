@@ -22,6 +22,8 @@ class CreateTransactionsTable extends Migration
             //3->Busad
             //4->Emchilgee - orlogo
             //5->Busad - orlogo
+            //6->item orlogo
+            //7->item zarlaga
             $table->integer('type_id');
             $table->text('description')->nullable();
             $table->integer('created_by');

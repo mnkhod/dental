@@ -91,6 +91,13 @@ Route::post('/accountant/edit_product','AccountantProductController@edit_product
 Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
 
+Route::get('/accountant/items','AccountantItemController@item');
+Route::get('/accountant/items/{id}','AccountantItemController@show');
+Route::post('/accountant/add_item','AccountantItemController@add_item');
+Route::post('/accountant/edit_item','AccountantItemController@edit_item');
+
+
+
 Route::get('/accountant/staffs', 'AccountantStaffController@index');
 Route::get('/accountant/staff_check/{id}','AccountantStaffController@staff_check');
 Route::get('/accountant/staff_check/{id}/{start_date}/{end_date}', 'AccountantStaffController@search');
@@ -119,6 +126,10 @@ Route::get('/reception/shifts/cancel','ReceptionShiftsController@cancel');
 Route::get('/reception/shifts/{i}/{doctor_staff_id}/{shift_id}','ReceptionShiftsController@store');
 Route::get('/reception/payment', 'ReceptionPaymentController@index');
 Route::post('/reception/payment/store','ReceptionPaymentController@store');
+Route::get('/reception/lease','ReceptionPaymentController@lease');
+Route::get('/reception/product','ReceptionPaymentController@product');
+Route::get('/reception/product/{id}','ReceptionPaymentController@show');
+Route::post('/reception/decrease_product','ReceptionPaymentController@decrease_product');
 
 
 //--DOCTOR STARTING--
