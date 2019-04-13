@@ -109,6 +109,16 @@
                         <i class="iconsmind-Calendar-3"></i> Ээлж
                     </a>
                 </li>
+                <li id="receptionLease">
+                    <a href="{{url('/reception/lease')}}">
+                        <i class="iconsmind-Calendar-3"></i> Зээл
+                    </a>
+                </li>
+                <li id="receptionProduct">
+                    <a href="{{url('/reception/product')}}">
+                        <i class="iconsmind-Calendar-3"></i> Бараа
+                    </a>
+                </li>
 
             </ul>
         </div>

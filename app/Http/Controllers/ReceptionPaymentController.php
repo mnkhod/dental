@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use App\CheckIn;
 use App\Http\Middleware\Doctor;
+use App\Item;
+use App\ItemHistory;
+use App\ProductHistory;
+use App\Products;
 use App\Promotion;
+use App\Role;
 use App\Transaction;
 use App\TreatmentSelections;
 use App\User;
@@ -53,4 +58,29 @@ class ReceptionPaymentController extends Controller
         }
         return back();
     }
+    public function lease(){
+        return view('reception.lease');
+    }
+    public function product(){
+        $products = Item::all();
+        return view('reception.product',compact('products'));
+    }
+    public function show($id) {
+        $products = Item::all();
+        $specific_product = Item::find($id);
+        $histories = ItemHistory::all()->where('item_id', $specific_product->id);
+        $roles = Role::all();
+        return view('reception.product_show', compact('products', 'specific_product', 'histories', 'roles','created_user'));
+    }
+
+    public function decrease_product(Request $request) {
+        $product = Item::find($request['id']);
+        $minus = $product->quantity - $request['quantity'];
+        $product->update(['quantity'=>$minus]);
+        ItemHistory::create(['item_id'=>$product->id,'quantity'=> -1 * $request['quantity'],'created_by'=>Auth::user()->id]);
+        Transaction::create(['type'=>6,'type_id'=>$request['id'],'price'=> 1*$request['price'],'description'=>''.$product->name.' '.$product->quantity.' ширхэг зарсан.','created_by'=>Auth::user()->id]);
+        return redirect('/reception/product/'.$product->id);
+    }
+
+
 }

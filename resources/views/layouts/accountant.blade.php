@@ -109,6 +109,11 @@
                         <i class="iconsmind-Betvibes"></i> Эмнэлэг
                     </a>
                 </li>
+                <li id="accountantItem">
+                    <a href="{{url('/accountant/items')}}">
+                        <i class="iconsmind-Betvibes"></i> Бараа
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
