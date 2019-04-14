@@ -103,7 +103,9 @@ Route::post('/accountant/staff/by_month', 'AccountantStaffController@by_month');
 Route::post('/accountant/staff/date', 'AccountantStaffController@date');
 
 Route::get('/accountant/hospital', 'AccountantHospitalController@index');
-
+Route::get('/accountant/hospital/{from}/{to}', 'AccountantHospitalController@date');
+Route::post('/accountant/hospital/by_month','AccountantHospitalController@by_month');
+Route::post('/accountant/hospital/by_date','AccountantHospitalController@by_date');
 
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
@@ -143,5 +145,8 @@ Route::post('/doctor/dashboard/by_month', 'DoctorController@by_month');
 Route::post('/doctor/dashboard/date', 'DoctorController@date');
 
 Route::get('/test', function() {
-    return view('test');
+    $user = \App\User::find(19);
+    echo  date('Y-m-d H:i:s', strtotime(date('Y-m-d', strtotime('first day of this month')))) . '----';
+    return date('Y-m-d', strtotime($user->checkins->where('state', 3)->first()->created_at));
+//    return view('test');
 });

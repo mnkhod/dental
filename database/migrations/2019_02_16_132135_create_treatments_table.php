@@ -26,6 +26,7 @@ class CreateTreatmentsTable extends Migration
             //0-Emchilgee
             //1-Gajig zasal
             //2-Sogog zasal
+            //3-Mes zasal
             $table->integer('price')->nullable();
             $table->timestamps();
         });
