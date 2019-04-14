@@ -143,17 +143,14 @@
                             <label class="sr-only" for="inlineFormInputName2">Name</label>
                             <input name="promotion_code" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
                                    placeholder="Урамшуулалын код">
+                            <input name="lease" type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
+                                   placeholder="Зээлийн урьдчилгаа">
                             <input type="hidden" value="{{$treatment_done_user->id}}" name="checkin_id">
                             <input type="submit" class="btn btn-sm btn-outline-primary mb-2" style="border-radius: 0px" value="Төлбөр төлөх">
                         </form>
                     {{--</div>--}}
-
-
                 </div>
-
             </div>
-
-
         </div>
     @endforeach
 
