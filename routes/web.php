@@ -127,6 +127,8 @@ Route::get('/reception/shifts/{i}/{doctor_staff_id}/{shift_id}','ReceptionShifts
 Route::get('/reception/payment', 'ReceptionPaymentController@index');
 Route::post('/reception/payment/store','ReceptionPaymentController@store');
 Route::get('/reception/lease','ReceptionPaymentController@lease');
+Route::post('/reception/lease/store','ReceptionPaymentController@lease_store');
+Route::get('/reception/lease/store','ReceptionPaymentController@lease_store');
 Route::get('/reception/product','ReceptionPaymentController@product');
 Route::get('/reception/product/{id}','ReceptionPaymentController@show');
 Route::post('/reception/decrease_product','ReceptionPaymentController@decrease_product');
