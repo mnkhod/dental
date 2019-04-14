@@ -270,27 +270,25 @@ Header
             <h2 style="font-family:sans-serif">Эмч нарын цагийн хуваарь</h2>
             <!--Contenedor-->
             <div id="container">
-                <!--Pestaña 1 activa por defecto-->
-                <input id="tab-1" type="radio" name="tab-group" checked="checked" />
-                <label for="tab-1">Emch 1</label>
-                <!--Pestaña 2 inactiva por defecto-->
-                <input id="tab-2" type="radio" name="tab-group" />
-                <label for="tab-2">Emch 2</label>
-                <!--Pestaña 3 inactiva por defecto-->
-                <input id="tab-3" type="radio" name="tab-group" />
-                <label for="tab-3">Emch 3</label>
+                <?php $i = 1;?>
+                @foreach($roles->get() as $role)
+                    <input id="tab-{{$i}}" type="radio" name="tab-group"/>
+                    <label for="tab-{{$i}}">{{$role->staff->name}}</label>
+                    <?php  $i++; ?>
+                @endforeach
+
                 <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px" > Захиалгатай</p></label>
-                <label style="background: white"><p><img src="{{asset('img/cancel-music.png')}}" width="15px" align="top"> Захиалгагүй</p></label>
                 <!--Contenido a mostrar/ocultar-->
                 <div id="content">
                     <!--Contenido de la Pestaña 1-->
-                    <div id="content-1">
-
+                    <?php $i = 1;?>
+                    @foreach($roles->get() as $role)
+                    <div id="content-{{$i}}">
                         <table class=" table table-responsive" id="tablePreview" class="table-condensed table-bordered table-hover table-striped" cellspacing="100" cellpadding="20" style="overflow-x:auto">
                             <!--Table head-->
                             <thead>
                             <tr>
-                                <th>Гариг</th>
+                                <th>Өдөр</th>
                                 <th>09:00 <br> 10:00</th>
                                 <th>10:00 <br> 11:00</th>
                                 <th>11:00 <br> 12:00</th>
@@ -420,274 +418,10 @@ Header
 
 
                     </div>
-                    <!--Contenido de la Pestaña 2-->
-                    <div id="content-2">
-
-                        <table class="table table-responsive" id="tablePreview" class="table-condensed table-bordered table-hover table-striped" cellspacing="100" cellpadding="20">
-                            <!--Table head-->
-                            <thead>
-                            <tr>
-                                <th>Гариг</th>
-                                <th>09:00 <br> 10:00</th>
-                                <th>10:00 <br> 11:00</th>
-                                <th>11:00 <br> 12:00</th>
-                                <th>12:00 <br> 13:00</th>
-                                <th>13:00 <br> 14:00</th>
-                                <th>14:00 <br> 15:00</th>
-                                <th>15:00 <br> 16:00</th>
-                                <th>16:00 <br> 17:00</th>
-                                <th>17:00 <br> 18:00</th>
-                                <th>18:00 <br> 19:00</th>
-                                <th>19:00 <br> 20:00</th>
-                                <th>20:00 <br> 21:00</th>
-                            </tr>
-                            </thead>
-                            <!--Table head-->
-                            <!--Table body-->
-                            <tbody>
-                            <tr>
-                                <th scope="row">Даваа</th>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Мягмар</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Лхагва </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Пүрэв</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Баасан </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Бямба </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ням</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                            <!--Table body-->
-                        </table>
-                    </div>
-                    <!--Contenido de la Pestaña 3-->
-                    <div id="content-3">
-                        <table class="table table-responsive" id="tablePreview" class="table-condensed table-bordered table-hover table-striped" cellspacing="100" cellpadding="20">
-                            <!--Table head-->
-                            <thead>
-                            <tr>
-                                <th>Гариг</th>
-                                <th>09:00 <br> 10:00</th>
-                                <th>10:00 <br> 11:00</th>
-                                <th>11:00 <br> 12:00</th>
-                                <th>12:00 <br> 13:00</th>
-                                <th>13:00 <br> 14:00</th>
-                                <th>14:00 <br> 15:00</th>
-                                <th>15:00 <br> 16:00</th>
-                                <th>16:00 <br> 17:00</th>
-                                <th>17:00 <br> 18:00</th>
-                                <th>18:00 <br> 19:00</th>
-                                <th>19:00 <br> 20:00</th>
-                                <th>20:00 <br> 21:00</th>
-                            </tr>
-                            </thead>
-                            <!--Table head-->
-                            <!--Table body-->
-                            <tbody>
-                            <tr>
-                                <th scope="row">Даваа</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Мягмар</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Лхагва </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Пүрэв</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Баасан </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Бямба </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ням</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                            <!--Table body-->
-                        </table>
-                    </div>
+                        <?php  $i++; ?>
+                    @endforeach
                 </div>
+
             </div>
 
 

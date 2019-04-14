@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $roles = \App\Role::where('role_id', 2);
+    return view('welcome', compact('roles'));
 });
 
 Route::get('/time', function () {
