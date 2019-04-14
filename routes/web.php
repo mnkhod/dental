@@ -61,9 +61,12 @@ Route::post('/admin/transactions/add', 'AdminTransactionController@store');
 Route::post('/admin/transactions/income', 'AdminTransactionController@income');
 Route::post('/admin/transactions/outcome/type', 'AdminTransactionController@outcomeCategory');
 
+Route::get('/admin/hospital','AdminHospitalController@index');
+Route::get('/admin/hospital/{from}/{to}', 'AdminHospitalController@date');
+Route::post('/admin/hospital/by_month','AdminHospitalController@by_month');
+Route::post('/admin/hospital/by_date','AdminHospitalController@by_date');
 
 Route::get('/admin/logs','AdminController@logs');
-Route::get('/admin/hospital','AdminController@hospital');
 Route::get('/admin/users','AdminController@users');
 Route::get('/admin/user_check/{id}','AdminController@user_check');
 Route::get('/admin/search', 'AdminController@search');
