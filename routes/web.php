@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/time', function () {
     return view('admin.time');
 });
+Route::get('/user','UserController@index');
 
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
