@@ -47,7 +47,7 @@ class send_message_every_6_months extends Command
         //
         $checkins = CheckIn::all();
         foreach ($checkins as $checkin){
-            if($checkin->whereBetween('created_at', array(Carbon::now()->subMonth(6)->toDateTimeString(), Carbon::now()->toDateTimeString()))){
+            if($checkin->whereDate('created_at','<', Carbon::now()->subMonth(6))){
                 $user = User::find($checkin->user_id);
                 Twilio::message('+976'.$user->phone_number,'MonFamily шүдний эмнэлгийн систем. Та эмчилгээнд ороогүй 6 сар болсон байна.');
             }
