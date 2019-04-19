@@ -94,8 +94,6 @@
                         <i class="iconsmind-Digital-Drawing"></i> Түүх
                     </a>
                 </li>
-
-
             </ul>
         </div>
     </div>
