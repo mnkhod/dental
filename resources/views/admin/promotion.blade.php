@@ -19,7 +19,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
-                <form method="post" action="{{url('/admin/promotion/add')}}">
+                <form id = "form" method="post" action="{{url('/admin/promotion/add')}}">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Урамшуулал нэмэх</h5>
@@ -30,15 +30,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Урамшууллын код</label>
-                        <input type="text" class="form-control" name="promotion_code">
+                        <input id = "codess" type="text" class="form-control" name="promotion_code">
                     </div>
                     <div class="form-group">
                         <label>Урамшууллын нэр</label>
-                        <input type="text" class="form-control" name="promotion_name">
+                        <input id = "name" type="text" class="form-control" name="promotion_name">
                     </div>
                     <div class="form-group">
                         <label>Хөнгөлөлтийн хувь</label>
-                        <input type="number" class="form-control" name="percentage">
+                        <input id="huvi" type="number" class="form-control" name="percentage">
                     </div>
                     <div class="form-group">
                         <label>Дуусах хугацаа</label>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Болих</button>
-                    <button type="submit" class="btn btn-primary">Нэмэх</button>
+                    <button onclick="code()" type="button" class="btn btn-primary">Нэмэх</button>
                 </div>
                 </form>
             </div>
@@ -172,4 +172,70 @@
     <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
+    <script>
+        function code(){
+            var check = 1;
+            var n = document.getElementById("codess").value;
+            var d = document.getElementById("name").value;
+            var t = document.getElementById("huvi").value;
+            var tr = document.getElementById("date").value;
+            var dt = tr.split("/")
+            if(n === ""){
+                document.getElementById('codess').classList.add('border-danger');
+                check = check * 0;
+            }else{
+                document.getElementById('codess').classList.remove('border-danger');
+                check = check * 1;
+            }
+            if(d === ""){
+                document.getElementById('name').classList.add('border-danger');
+                check = check * 0;
+            }else{
+                document.getElementById('name').classList.remove('border-danger');
+                check = check * 1;
+            }
+            if(t === ""){
+                document.getElementById('huvi').classList.add('border-danger');
+                check = check * 0;
+            }else{
+                document.getElementById('huvi').classList.remove('border-danger');
+                check = check * 1;
+            }
+            if(isValidDate(tr) === false){
+                document.getElementById('date').classList.add('border-danger');
+                check = check * 0;
+            }else {
+                document.getElementById('date').classList.remove('border-danger');
+                check = check * 1;
+            }
+            function isValidDate(dateString)
+            {
+                // First check for the pattern
+                if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+                    return false;
+
+                // Parse the date parts to integers
+                var parts = dateString.split("/");
+                var day = parseInt(parts[1], 10);
+                var month = parseInt(parts[0], 10);
+                var year = parseInt(parts[2], 10);
+
+                // Check the ranges of month and year
+                if(year < 1000 || year > 3000 || month === 0 || month > 12)
+                    return false;
+
+                var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+                // Adjust for leap years
+                if(year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))
+                    monthLength[1] = 29;
+
+                // Check the range of the day
+                return day > 0 && day <= monthLength[month - 1];
+            }
+            if(check === 1){
+                document.getElementById("form").submit();
+            }
+        }
+    </script>
 @endsection

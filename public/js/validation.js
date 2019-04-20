@@ -11,7 +11,7 @@ function validate() {
     //console.log(surname,name, phone, address, birth, regnum, sex);
     var reglet = ["А","Б","В","Г","Д","Е","Ё","Ж","З","И","Й","К","Л","М","Н","О","Ө","П","Р","С","Т","У","Ү","Ф","Х","Ц","Ч","Ш","Щ","Ь","Ы","Ъ","Э","Ю","Я"];
 
-
+    console.log(reg.length);
     // last name
     if(surename === ""){
         document.getElementById('lname').classList.add('border-danger');
@@ -65,9 +65,8 @@ function validate() {
         document.getElementById('phone_msg').innerHTML = "";
         check = check * 1;
     }
+    if(regnumber(reg) === false ){
 
-
-    if(regnumber(reg) === false){
         document.getElementById('registernum').classList.add('border-danger');
         document.getElementById('registernum_msg').innerHTML = "Регистерийн дугаараа зөв оруулна уу";
         check = check * 0;
@@ -87,6 +86,9 @@ function validate() {
         if(p !== 8){
             return false
         }
+        else if(p !== o.length){
+            return false
+        }
         else{
             return true
         }
@@ -96,19 +98,26 @@ function validate() {
         var i;
         var x=7;
         var y=2;
+        var hh = regg.slice(2, regg.length)
+        var hhgg = parseInt(hh);
+        var s = hhgg.toString();
+        var phh = s.length;
+        console.log(phh)
+        console.log(hh)
+        a = false
+
         for(i in reglet){
-            if (regg[0]===reglet[i]){
-                x = 1;
-            }
-            if (regg[1]===reglet[i]){
-                y = 1;
-            }
-            if (x===y){
-                return true;
+            for(x in reglet){
+                if (reg[0] === reglet[i] && phh === 8 && hh.length === 8 && reg[1] === reglet[x]){
+                     return true
+                }
             }
         }
-        return false
-}
+        return false;
+        }
+    function rss(hhff){
+
+    }
 
     function isValidDate(dateString)
     {
@@ -153,5 +162,6 @@ function validate() {
     */
     if(check === 1){
     document.getElementById("form").submit();
-}}
+}
+}
 

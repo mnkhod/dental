@@ -183,4 +183,38 @@
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
     <script src="{{asset('js/validation.js')}}"></script>
+    <script>
+        var i;
+        var has = document.getElementById('registernum').value;
+        var reg = "УП0024х1737"
+        var reglet = ["А","Б","В","Г","Д","Е","Ё","Ж","З","И","Й","К","Л","М","Н","О","Ө","П","Р","С","Т","У","Ү","Ф","Х","Ц","Ч","Ш","Щ","Ь","Ы","Ъ","Э","Ю","Я"];
+        var ssss = reg.split("");
+        var hh = reg.slice(2, reg.length)
+        var hhgg = parseInt(hh);
+        var s = hhgg.toString();
+        var phh = s.length;
+        var sss = ssss[0].toString();
+        var x =2;
+        var y = 4;
+        hghg = []
+        console.log(phh)
+        console.log(has.length)
+
+        // for(i in reglet){
+        //     for(x in reglet){
+        //         if (reg[0] === reglet[i] && phh === 8 && hh.length === 8 && reg[1] === reglet[x]){
+        //             a = true
+        //         }
+        //     }
+        // }
+        function helo(a){
+            if(a === true){
+                return true
+            }
+            else{
+                return false
+            }
+        }
+
+    </script>
 @endsection
