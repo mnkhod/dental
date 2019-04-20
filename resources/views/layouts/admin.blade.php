@@ -90,7 +90,7 @@
         <div class="scroll">
             <ul class="list-unstyled">
                 <li id="admin">
-                    <a href="{{url('/admin')}}">
+                    <a href="{{url('/admin/dashboard')}}">
                         <i class="iconsmind-Digital-Drawing"></i>
                         <span>Самбар</span>
                     </a>

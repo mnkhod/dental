@@ -744,7 +744,7 @@
     </div>
 </div>
 </div>
-    <form action="{{url('/doctor/treatment/finish')}}" method="post">
+    <form action="{{url('/doctor/treatment/finish')}}" method="post" id="treatmentsFinish">
         @csrf
         <br>
         <select class="form-control" name="nurse_id">
@@ -755,11 +755,49 @@
         </select>
         <br>
         <input type="hidden" name="checkin_id" value="{{$checkin->id}}">
-        <button type="submit" class="btn btn-primary btn-block">ДУУСГАХ</button>
+        <button type="button" onclick="finishDate()" class="btn btn-primary btn-block">ДУУСГАХ</button>
     </form>
+    <div id="treatmentHistoryModal" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5>Хийгдсэн эмчилгээ</h5>
+                    <br>
+                    @foreach($user_treatments->where('checkin_id', $checkin->id) as $treatment_history)
+                        <a href="{{url('/doctor/treatment/history/'.$treatment_history->id)}}">
+                            <div class="col-md-12 text-left line history{{$user_treatment->tooth_id}}">
+                                <b>Шүд #{{$treatment_history->tooth_id}} - {{\App\Treatment::find($treatment_history->treatment_id)->name}}</b>
+                                <br>
+                                <div class="row">
+                                    <div class="text-muted col-md-6">
+                                        @if(is_null($treatment_history->treatment_selection_id) || $treatment_history->treatment_selection_id == 0)
+                                            Төрөлгүй
+                                        @else
+                                            {{\App\TreatmentSelections::find($treatment_history->treatment_selection_id)->name}}
+                                        @endif
+                                    </div>
+                                    <div class="text-right text-muted col-md-6">
+                                        {{date('Y-m-d', strtotime($treatment_history->created_at))}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                    <br>
+                    <button class="btn btn-primary btn-block" onclick="finishTreatment()">ОРУУЛАХ</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 <script>
+    function finishDate() {
+        $("#treatmentHistoryModal").modal();
+    }
+    function finishTreatment() {
+        document.getElementById('treatmentsFinish').submit();
+    }
 var tooths = [];
 var selectedArea = [];
 var toothClassList = ["single", "all", "multiple"]

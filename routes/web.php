@@ -15,6 +15,21 @@ Route::get('/', function () {
     $roles = \App\Role::where('role_id', 2);
     return view('welcome', compact('roles'));
 });
+Route::get('emchilgeenuud', function () {
+    return view('emchilgeenuud');
+});
+Route::get('huuhdiinemchilgee', function () {
+    return view('huuhdiinemchilgee');
+});
+Route::get('adulttreatment', function () {
+    return view('adulttreatment');
+});
+Route::get('emchilge', function () {
+    return view('emchilge');
+});
+Route::get('mesemchilgee', function () {
+    return view('mesemchilgee');
+});
 
 Route::get('/time', function () {
     return view('admin.time');
@@ -28,7 +43,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //--ADMIN STARTING--
-Route::get('/admin', 'AdminController@dashboard');
+Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/shifts', 'AdminTimeController@index');
 
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
@@ -145,6 +160,7 @@ Route::get('/doctor/dash','DoctorController@dash');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');
+Route::get('/doctor/treatment/history/{id}','DoctorTreatmentController@delete_history');
 
 Route::get('/doctor/dashboard/','DoctorController@dashboard');
 Route::get('/doctor/dashboard/{start_date}/{end_date}', 'DoctorController@search');

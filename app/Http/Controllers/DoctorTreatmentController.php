@@ -48,5 +48,9 @@ class DoctorTreatmentController extends Controller
         $checkin->save();
         return redirect('doctor');
     }
+    public function delete_history($id) {
+        UserTreatments::find($id)->delete();
+        return redirect()->back();
+    }
 
 }

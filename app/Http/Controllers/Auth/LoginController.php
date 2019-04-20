@@ -25,10 +25,10 @@ class LoginController extends Controller
     {
         if (Auth::check()) {
             if (is_null(Auth::user()->role)){
-                return redirect('/login');
+                return redirect('/user');
             } else {
                 if(Auth::user()->role->role_id == 0) {
-                    return redirect('/admin');
+                    return redirect('/admin/dashboard');
                 } elseif (Auth::user()->role->role_id == 1) {
                     return redirect('/reception/time');
                 } elseif (Auth::user()->role->role_id == 2) {
@@ -36,7 +36,7 @@ class LoginController extends Controller
                 } elseif (Auth::user()->role->role_id == 4) {
                     return redirect('/accountant/transactions');
                 }  else {
-                    return redirect('/home');
+                    return redirect('/user');
                 }
             }
         } else {
