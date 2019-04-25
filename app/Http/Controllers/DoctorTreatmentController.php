@@ -36,11 +36,18 @@ class DoctorTreatmentController extends Controller
     public function store(Request $request) {
         $checkin = CheckIn::find($request['checkin_id']);
         if(empty($request['treatment_selection_id']) || $request['treatment_selection_id']==null || $request['treatment_selection_id']==0){
-            $price = Treatment::find($request['treatment_id'])->price;
+            if(empty($request['price'])) {
+                $price = Treatment::find($request['treatment_id'])->price;
+            } else {
+                $price = $request['price'];
+            }
             UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>0,'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id, 'price'=>$price]);
-        }
-        else{
-            $price = TreatmentSelections::find($request['treatment_selection_id'])->price;
+        } else {
+            if(empty($request['price'])) {
+                $price = TreatmentSelections::find($request['treatment_selection_id'])->price;
+            } else {
+                $price = $request['price'];
+            }
             UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>$request['treatment_selection_id'],'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id, 'price'=>$price]);
         }
         return back();
