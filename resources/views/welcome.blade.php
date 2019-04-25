@@ -67,13 +67,13 @@ Header
                 <!--          <li><a href="#portfolio">Portfolio</a></li>-->
                 <li><a href="#team">Орчин</a></li>
 
-                <li class="drop-down"><a href="emchilgeenuud.html">Эмчилгээ болон зөвөлгөө</a>
+                <li class="drop-down"><a href="{{url('emchilgeenuud')}}">Эмчилгээ болон зөвөлгөө</a>
                     <ul>
 
-                        <li><a href="huuhdiinemchilgee.html">Хүүхдийн эмчилгээ</a></li>
-                        <li><a href="adulttreatment.html">Насанд хүрэгсдийн эмчилгээ</a></li>
-                        <li><a href="emchilge.html">Согог засал</a></li>
-                        <li><a href="mesemchilgee.html">Мэс заслын эмчилгээ</a></li>
+                        <li><a href="{{url('huuhdiinemchilgee')}}">Хүүхдийн эмчилгээ</a></li>
+                        <li><a href="{{url('adulttreatment')}}">Насанд хүрэгсдийн эмчилгээ</a></li>
+                        <li><a href="{{url('emchilge')}}">Согог засал</a></li>
+                        <li><a href="{{url('mesemchilgee')}}">Мэс заслын эмчилгээ</a></li>
                     </ul>
                 </li>
 
@@ -109,11 +109,11 @@ Header
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            {{--<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--}}
         </ol>
         <div class="carousel-inner" role="listbox">
             <!-- Slide One - Set the background image for this slide in the line below -->
-            <div class="carousel-item" style="background-image: url('https://scontent.fuln2-1.fna.fbcdn.net/v/t1.0-9/19554566_1481492271917312_7565224685749984953_n.jpg?_nc_cat=109&_nc_ht=scontent.fuln2-1.fna&oh=c8cc8cf003e4ae9c30e7104c57c3309f&oe=5D37917B')">
+            <div class="carousel-item  active" style="background-image: url('{{asset('img/slide.jpg')}}')">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
             </div>
@@ -125,13 +125,13 @@ Header
                     <!--          <p class="lead">This is a description for the second slide.</p>-->
                 </div>
             </div>
-            <!-- Slide Three - Set the background image for this slide in the line below -->
-            <div class="carousel-item active" style="background-image: url('{{url('img/orchin.jpg')}}')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h1 class="display-4"><b style="font-family:sans-serif">Гэгээлэг, тав тухтай орчин</b></h1>
-                    <!--          <p class="lead">This is a description for the first slide.</p>-->
-                </div>
-            </div>
+            {{--<!-- Slide Three - Set the background image for this slide in the line below -->--}}
+            {{--<div class="carousel-item" style="background-image: url('{{url('img/orchin.jpg')}}')">--}}
+                {{--<div class="carousel-caption d-none d-md-block">--}}
+                    {{--<h1 class="display-4"><b style="font-family:sans-serif">Гэгээлэг, тав тухтай орчин</b></h1>--}}
+                    {{--<!--          <p class="lead">This is a description for the first slide.</p>-->--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -277,7 +277,8 @@ Header
                     <?php  $i++; ?>
                 @endforeach
 
-                <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px" > Захиалгатай</p></label>
+                <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px"> Захиалгатай</p></label>
+                <label style="background: white"><p><img src="{{asset('img/shift.png')}}" width="15px"> Ээлж байхгүй</p></label>
                 <!--Contenido a mostrar/ocultar-->
                 <div id="content">
                     <!--Contenido de la Pestaña 1-->
@@ -306,112 +307,53 @@ Header
                             <!--Table head-->
                             <!--Table body-->
                             <tbody>
+                            <?php $last = 0;?>
+                            @for($d = 0; $d<7;$d++)
+                            <tr>
+                                <th scope="row">{{date('Y-m-d', strtotime("+".$d." Days"))}}</th>
+                                @for($t=9; $t<15; $t++)
+                                    @if($shift = $role->shifts->where('date', date('Y-m-d', strtotime("+".$d." Days")))->first())
+                                        @if($shift->shift_id == 0 || $shift->shift_id == 2)
+                                            <td align="center">
+                                                @if($last>0)
+                                                    <img src="img/circle-outline.png" width="20px">
+                                                    <?php $last--;?>
+                                                @endif
+                                                @if($appointment = $shift->appointments->where('start', $t)->first())
+                                                    <?php $last = $appointment->end - $appointment->start - 1;?>
+                                                   <img src="img/circle-outline.png" width="20px">
+                                                @endif
+                                            </td>
+                                        @else
+                                            <td style="background: #8f8f8f"></td>
+                                        @endif
+                                    @else
+                                        <td style="background: #8f8f8f"></td>
+                                    @endif
+                                @endfor
+                                @for($t=15; $t<21; $t++)
+                                    @if($shift = $role->shifts->where('date', date('Y-m-d', strtotime("+".$d." Days")))->first())
+                                        @if($shift->shift_id == 1 || $shift->shift_id == 2)
+                                            <td align="center">
+                                            @if($last>0)
+                                                <img src="img/circle-outline.png" width="20px">
+                                                <?php $last--;?>
+                                            @endif
+                                            @if($appointment = $shift->appointments->where('start', $t)->first())
+                                                <?php $last = $appointment->end - $appointment->start - 1;?>
+                                                <img src="img/circle-outline.png" width="20px">
+                                            @endif
+                                            </td>
+                                        @else
+                                            <td style="background: #8f8f8f"></td>
+                                        @endif
+                                    @else
+                                        <td style="background: #8f8f8f"></td>
+                                    @endif
+                                @endfor
+                            </tr>
+                            @endfor
 
-                            <tr>
-                                <th scope="row">Даваа</th>
-                                <td align="center"><img src="img/circle-outline.png" width="20px"></td>
-                                <td align="center"><img src="img/cancel-music.png" width="18px"></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Мягмар</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Лхагва </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Пүрэв</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"> Баасан </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Бямба </th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Ням</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                             </tbody>
                             <!--Table body-->
                         </table>
@@ -420,6 +362,9 @@ Header
                     </div>
                         <?php  $i++; ?>
                     @endforeach
+                    <script>
+                        document.getElementById('tab-1').checked = true;
+                    </script>
                 </div>
 
             </div>
@@ -546,7 +491,7 @@ Header
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img src="maps.png" width="300px">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d680.669471685845!2d106.9502018265471!3d47.92125706351682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDU1JzE2LjgiTiAxMDbCsDU3JzAxLjYiRQ!5e1!3m2!1smn!2smn!4v1555676263264!5m2!1smn!2smn" width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

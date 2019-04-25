@@ -111,12 +111,12 @@
                 </li>
                 <li id="receptionLease">
                     <a href="{{url('/reception/lease')}}">
-                        <i class="iconsmind-Calendar-3"></i> Зээл
+                        <i class="iconsmind-Money-Bag"></i> Зээл
                     </a>
                 </li>
                 <li id="receptionProduct">
                     <a href="{{url('/reception/product')}}">
-                        <i class="iconsmind-Calendar-3"></i> Бараа
+                        <i class="iconsmind-Present"></i> Бараа
                     </a>
                 </li>
 

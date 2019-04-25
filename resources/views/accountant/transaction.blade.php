@@ -101,7 +101,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{url('/accountant/transactions/edit')}}" method="post">
+                <form id="form" action="{{url('/accountant/transactions/edit')}}" method="post">
 
                 <div class="modal-body">
 
@@ -123,7 +123,7 @@
                     </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
-                            <textarea required name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
+                            <textarea required name="description" id="description" class="form-control" rows="2"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
@@ -177,7 +177,7 @@
                                 <br>
 
                             </div>
-                            <form method="post" action="{{url('/accountant/transactions/add')}}">
+                            <form id = "form2" method="post" action="{{url('/accountant/transactions/add')}}">
                                 @csrf
                                 <select class="form-control mb-3" name="type">
                                     @foreach($types as $type)
@@ -187,11 +187,11 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <input name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
+                                <input id="pricee" name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
                                        autocomplete="off">
-                                <input name="description" class="form-control mb-3" type="text" placeholder="Тайлбар"
+                                <input id="descrr"name="description" class="form-control mb-3" type="text" placeholder="Тайлбар"
                                        autocomplete="off">
-                                <button class="btn btn-primary btn-block" type="submit">ЗАРЛАГА ОРУУЛАХ</button>
+                                <button onclick="price()" class="btn btn-primary btn-block" type="button">ЗАРЛАГА ОРУУЛАХ</button>
                             </form>
                         </div>
                     </div>
