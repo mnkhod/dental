@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CheckIn;
 use App\Role;
+use App\Transaction;
 use App\Treatment;
+use App\TreatmentSelections;
 use App\User;
 use App\UserTreatments;
 use Illuminate\Http\Request;
@@ -34,10 +36,12 @@ class DoctorTreatmentController extends Controller
     public function store(Request $request) {
         $checkin = CheckIn::find($request['checkin_id']);
         if(empty($request['treatment_selection_id']) || $request['treatment_selection_id']==null || $request['treatment_selection_id']==0){
-            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>0,'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id]);
+            $price = Treatment::find($request['treatment_id'])->price;
+            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>0,'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id, 'price'=>$price]);
         }
         else{
-            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>$request['treatment_selection_id'],'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id]);
+            $price = TreatmentSelections::find($request['treatment_selection_id'])->price;
+            UserTreatments::create(['checkin_id'=>$request['checkin_id'],'treatment_id'=>$request['treatment_id'],'treatment_selection_id'=>$request['treatment_selection_id'],'tooth_id'=>$request['tooth_id'],'value'=>$request['value_id'], 'user_id'=>$checkin->user_id, 'price'=>$price]);
         }
         return back();
     }
