@@ -62,7 +62,7 @@ class ReceptionPaymentController extends Controller
         }
         elseif (empty($request['promotion_code']) and !empty($request['lease'])){
             Lease::create(['total'=>$total,'checkin_id'=>$request['checkin_id'],'price'=>$total-$request['lease'],'created_by'=>Auth::user()->id]);
-            Transaction::create(['price'=>$total - $request['lease'],'type'=>4,'type_id'=>$request['checkin_id'],'created_by'=>Auth::user()->id,'description'=>'Зээлтэй төлбөр төлөгдсөн.']);
+            Transaction::create(['price'=>$request['lease'],'type'=>4,'type_id'=>$request['checkin_id'],'created_by'=>Auth::user()->id,'description'=>'Зээлтэй төлбөр төлөгдсөн.']);
             $update = CheckIn::find($request['checkin_id']);
             $update->update(['state' => 4]);
         }
@@ -114,7 +114,7 @@ class ReceptionPaymentController extends Controller
         $minus = $product->quantity - $request['quantity'];
         $product->update(['quantity'=>$minus]);
         ItemHistory::create(['item_id'=>$product->id,'quantity'=> -1 * $request['quantity'],'created_by'=>Auth::user()->id]);
-        Transaction::create(['type'=>6,'type_id'=>$request['id'],'price'=> 1*$request['price'],'description'=>''.$product->name.' '.$product->quantity.' ширхэг зарсан.','created_by'=>Auth::user()->id]);
+        Transaction::create(['type'=>6,'type_id'=>$request['id'],'price'=> 1*$request['price'],'description'=>''.$product->name.' '.$request['quantity'].' ширхэг зарсан.','created_by'=>Auth::user()->id]);
         return redirect('/reception/product/'.$product->id);
     }
 

@@ -206,7 +206,6 @@
                                         <tr>
                                             <th>Дугаар</th>
                                             <th>Ширхэг</th>
-                                            <th>Тайлбар</th>
                                             <th>Хугацаа</th>
                                             <th>Хэн</th>
                                         </tr>
@@ -217,7 +216,6 @@
                                             <tr>
                                                 <td>{{$i}}</td>
                                                 <td>{{$history->quantity}} ширхэг</td>
-                                                <td>{{$history->description}}</td>
                                                 <td>{{$history->created_at}}</td>
                                                 <td>{{\App\User::find($history->created_by)->name}}</td>
                                             </tr>
