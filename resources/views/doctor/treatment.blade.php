@@ -131,6 +131,32 @@
             </div>
         </div>
     </div>
+    <div id="treatmentWithLimit" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5>Үнэн дүнг оруулна уу</h5><br>
+                    <input type="text" class="form-control" id="treatmentWithLimitPrice">
+                    <input type="hidden" id="treatmentSelectionIdWithLimit">
+                    <br>
+                    <button class="btn btn-primary" style="border-radius: 0px" onclick="treatmentSelectionWithLimit()">Оруулах</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="singleTreatmentWithLimit" class="modal fade bd-example-modal-sm " tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5>Үнэн дүнг оруулна уу</h5><br>
+                    <input type="text" class="form-control" id="singleTreatmentWithLimitPrice">
+                    <input type="hidden" id="singleTreatmentWithLimitId">
+                    <br>
+                    <button class="btn btn-primary" style="border-radius: 0px" onclick="singleTreatmentWithLimit()">Оруулах</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade text-center" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -188,6 +214,7 @@
         <input type="hidden" name="tooth_id" value="" id="toothId">
         <input type="hidden" name="user_id" value="{{$checkin->user_id}}" id="userId">
         <input type="hidden" name="value_id" value="" id="valueId">
+        <input type="hidden" name="price" value="" id="treatmentPrice">
         <input type="hidden" name="checkin_id" value="{{$checkin->id}}" id="checkin_id">
     </form>
 
@@ -718,7 +745,7 @@
                             @if($treatment->treatmentSelection->count() != 0)
                             onclick="treatmentButton('{{$treatment->id}}')"
                         @else
-                            onclick="singleTreatment('{{$treatment->id}}')"
+                            onclick="singleTreatment('{{$treatment->id}}', '{{$treatment->limit}}')"
                         @endif
                     >
                         <div class="row">
@@ -726,7 +753,7 @@
                                 {{$treatment->name}}<br> {{$treatment->treatmentSelection->count()}}
                                 төрөлтэй
                                 @foreach($treatment->treatmentSelection as $selection)
-                                    <input type="hidden" value="{{$selection->name}}/{{$selection->id}}"
+                                    <input type="hidden" value="{{$selection->name}}/{{$selection->id}}/{{$selection->limit}}"
                                            class="treatment_{{$treatment->id}}">
                                 @endforeach
                             </div>
@@ -1035,21 +1062,45 @@ function treatmentButton(treatment) {
     var input = document.getElementsByClassName("treatment_" + treatment);
     for (i = 0; i < input.length; i++) {
         var buttonValue = input[i].value;
+        var buttonLimit = buttonValue.split('/')[2];
         var buttonId = buttonValue.split('/')[1];
         var buttonText = buttonValue.split('/')[0];
-        var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ')">' + buttonText + '</button>';
+        var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ', ' + buttonLimit +')">' + buttonText + '</button>';
         document.getElementById('modalBuri').innerHTML += button;
     }
 }
 
-function treatment(id) {
-    document.getElementById('treatmentSelectionId').value = id;
+function treatment(id, limit) {
+    if(limit === null) {
+        document.getElementById('treatmentSelectionId').value = id;
+        document.getElementById('treatmentForm').submit();
+    } else {
+        document.getElementById('treatmentSelectionIdWithLimit').value = id;
+        $("#treatmentTypeModal").modal("hide");
+        $("#treatmentWithLimit").modal();
+    }
+}
+function singleTreatment(id, limit) {
+    document.getElementById('treatmentSelectionId').value = null;
+    if(limit === null) {
+        document.getElementById('toothId').value = tooths;
+        document.getElementById('treatmentId').value = id;
+        document.getElementById('treatmentForm').submit();
+    } else {
+        document.getElementById('singleTreatmentWithLimitId').value = id;
+        $("#treatmentTypeModal").modal("hide");
+        $("#singleTreatmentWithLimit").modal();
+    }
+}
+function treatmentSelectionWithLimit() {
+    document.getElementById('treatmentPrice').value = document.getElementById('treatmentWithLimitPrice').value;
+    document.getElementById('treatmentSelectionId').value = document.getElementById('treatmentSelectionIdWithLimit').value;
     document.getElementById('treatmentForm').submit();
 }
-function singleTreatment(id) {
-    document.getElementById('treatmentSelectionId').value = null;
+function singleTreatmentWithLimit() {
+    document.getElementById('treatmentPrice').value = document.getElementById('singleTreatmentWithLimitPrice').value;
+    document.getElementById('treatmentId').value= document.getElementById('singleTreatmentWithLimitId').value;
     document.getElementById('toothId').value = tooths;
-    document.getElementById('treatmentId').value = id;
     document.getElementById('treatmentForm').submit();
 }
 
