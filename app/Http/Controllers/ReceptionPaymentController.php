@@ -35,14 +35,19 @@ class ReceptionPaymentController extends Controller
     public function store(Request $request){
         $user_treatments = UserTreatments::all()->where('checkin_id',$request['checkin_id']);
         $total = 0;
+//        foreach ($user_treatments as $user_treatment){
+//            if($user_treatment->treatment_selection_id == 0){
+//                $total = $total + $user_treatment->treatment->price;
+//            }
+//            else{
+//                $total = $total + TreatmentSelections::find($user_treatment->treatment_selection_id)->price;
+//            }
+//        }
         foreach ($user_treatments as $user_treatment){
-            if($user_treatment->treatment_selection_id == 0){
-                $total = $total + $user_treatment->treatment->price;
+                $total = $total + $user_treatment->price;
             }
-            else{
-                $total = $total + TreatmentSelections::find($user_treatment->treatment_selection_id)->price;
-            }
-        }
+
+
         if(empty($request['promotion_code']) and empty($request['lease'])){
             Transaction::create(['price'=>$total,'type'=>4,'type_id'=>$request['checkin_id'],'created_by'=>Auth::user()->id]);
             $update = CheckIn::find($request['checkin_id']);
