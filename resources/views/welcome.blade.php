@@ -268,6 +268,8 @@ Header
     <section id="features">
         <div class="container">
             <h2 style="font-family:sans-serif">Эмч нарын цагийн хуваарь</h2>
+            <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px"> Захиалгатай</p></label>
+            <label style="background: white"><p><img src="{{asset('img/shift.png')}}" width="15px"> Ээлж байхгүй</p></label>
             <!--Contenedor-->
             <div id="container">
                 <?php $i = 1;?>
@@ -277,15 +279,14 @@ Header
                     <?php  $i++; ?>
                 @endforeach
 
-                <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px"> Захиалгатай</p></label>
-                <label style="background: white"><p><img src="{{asset('img/shift.png')}}" width="15px"> Ээлж байхгүй</p></label>
+
                 <!--Contenido a mostrar/ocultar-->
-                <div id="content">
+                <div class="tab-content">
                     <!--Contenido de la Pestaña 1-->
                     <?php $i = 1;?>
                     @foreach($roles->get() as $role)
                     <div id="content-{{$i}}">
-                        <table class=" table table-responsive" id="tablePreview" class="table-condensed table-bordered table-hover table-striped" cellspacing="100" cellpadding="20" style="overflow-x:auto">
+                        <table class=" table table-responsive table-condensed table-bordered table-hover table-striped" id="tablePreview"  cellspacing="100" cellpadding="20" style="overflow-x:auto">
                             <!--Table head-->
                             <thead>
                             <tr>

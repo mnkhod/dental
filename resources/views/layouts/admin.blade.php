@@ -76,7 +76,7 @@
         <div class="user d-inline-block">
             <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                <span class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+{{--                <span class="name">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>--}}
             </button>
 
             <div class="dropdown-menu dropdown-menu-right mt-3">

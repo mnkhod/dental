@@ -23,6 +23,7 @@ class CreateRolesTable extends Migration
             //Doctor->2
             //Assistant->3
             //Accountant->4
+            //Others->5
             $table->timestamps();
         });
     }

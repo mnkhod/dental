@@ -93,6 +93,7 @@
                             <option value="2">Эмч</option>
                             <option value="3">Сувилагч</option>
                             <option value="4">Нягтлан бодогч</option>
+                            <option value="5">Бусад</option>
                         </select><br>
 
                         <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters"
