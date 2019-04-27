@@ -110,15 +110,11 @@
                                             <span class="font-weight-medium">{{$treatment->treatment->name}}</span>
                                         </td>
                                         <td class="text-right">
-                                <span class="text-muted">@if($treatment->treatment_selection_id == 0)
-                                        {{$treatment->treatment->price}}₮
+                                <span class="text-muted">
+                                        {{$treatment->price}}₮
                                         <?php /** @var TYPE_NAME $total */
-                                        $total = $total + $treatment->treatment->price?>
-                                    @else
-                                        {{\App\TreatmentSelections::find($treatment->treatment_selection_id)->price}}₮
-                                        <?php /** @var TYPE_NAME $total */
-                                        $total = $total + \App\TreatmentSelections::find($treatment->treatment_selection_id)->price?>
-                                    @endif</span>
+                                        $total = $total + $treatment->price?>
+                                 </span>
                                         </td>
                                     </tr>
                                 @endforeach

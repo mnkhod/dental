@@ -150,7 +150,7 @@
                     <?php $sum=0;?>
                     <?php $users=0;?>
                     @foreach($shifts as $shift)
-                        @foreach($shift->checkins->where('state', 3) as $check_in)
+                        @foreach($shift->checkins->where('state','>=', 3) as $check_in)
                             <?php $users++;?>
                             <div class="col-md-12">
 
