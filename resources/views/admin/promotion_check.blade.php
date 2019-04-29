@@ -147,9 +147,9 @@
 
                                     <tr>
                                     <td>{{$i}}</td>
-                                    <td>{{$use->transaction->checkin->user->name}}</td>
-                                    <td>{{$use->transaction->price/(1-$prom->percentage/100)}}₮</td>
-                                    <td>{{$use->transaction->price}}₮</td>
+                                    <td>{{$use->checkin->user->name}}</td>
+                                    <td>{{$use->checkin->treatments->sum('price')/(1-$prom->percentage/100)}}₮</td>
+                                    <td>{{$use->checkin->treatments->sum('price')}}₮</td>
                                     <td>{{$use->created_at}}</td>
                                     <td>{{\App\User::find($use->created_by)->name}}</td>
                                     <?php $i++ ?>

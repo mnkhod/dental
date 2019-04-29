@@ -57,7 +57,7 @@ class ReceptionPaymentController extends Controller
             if($promotion = Promotion::where('promotion_end_date','>',date('Y-m-d'))->where('promotion_code',$request['promotion_code'])->first()){
                 $total = $total - $total*$promotion->percentage/100;
                 $transaction = Transaction::create(['price'=>$total,'type'=>4,'type_id'=>$request['checkin_id'],'created_by'=>Auth::user()->id]);
-                UserPromotions::create(['transaction_id'=>$transaction->id,'promotion_id'=>$promotion->id, 'created_by'=>Auth::user()->id]);
+                UserPromotions::create(['checkin_id'=>$request['checkin_id'],'promotion_id'=>$promotion->id, 'created_by'=>Auth::user()->id]);
                 $update = CheckIn::find($request['checkin_id']);
                 $update->update(['state' => 3]);
             }
@@ -75,8 +75,8 @@ class ReceptionPaymentController extends Controller
             if($promotion = Promotion::where('promotion_end_date','>',date('Y-m-d'))->where('promotion_code',$request['promotion_code'])->first()){
                 $total = $total - $total*$promotion->percentage/100;
                 Lease::create(['total'=>$total,'checkin_id'=>$request['checkin_id'],'price'=>$total-$request['lease'],'created_by'=>Auth::user()->id]);
-                $transaction = Transaction::create(['price'=>$total-$request['lease'],'type'=>4,'type_id'=>$request['checkin_id'],'description'=>'Зээлтэй, урамшуулал ашиглаж төлбөр төлөгдсөн.','created_by'=>Auth::user()->id]);
-                UserPromotions::create(['transaction_id'=>$transaction->id,'promotion_id'=>$promotion->id, 'created_by'=>Auth::user()->id]);
+                $transaction = Transaction::create(['price'=>$request['lease'],'type'=>4,'type_id'=>$request['checkin_id'],'description'=>'Зээлтэй, урамшуулал ашиглаж төлбөр төлөгдсөн.','created_by'=>Auth::user()->id]);
+                UserPromotions::create(['checkin_id'=>$request['checkin_id'],'promotion_id'=>$promotion->id, 'created_by'=>Auth::user()->id]);
                 $update = CheckIn::find($request['checkin_id']);
                 $update->update(['state' => 4]);
             }

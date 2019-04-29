@@ -270,24 +270,27 @@ Header
             <h2 style="font-family:sans-serif">Эмч нарын цагийн хуваарь</h2>
             <label style="background: white"><p><img src="{{asset('img/circle-outline.png')}}" width="15px"> Захиалгатай</p></label>
             <label style="background: white"><p><img src="{{asset('img/shift.png')}}" width="15px"> Ээлж байхгүй</p></label>
-            <!--Contenedor-->
-            <div id="container">
-                <?php $i = 1;?>
-                @foreach($roles->get() as $role)
-                    <input id="tab-{{$i}}" type="radio" name="tab-group"/>
-                    <label for="tab-{{$i}}">{{$role->staff->name}}</label>
-                    <?php  $i++; ?>
-                @endforeach
+            <br>
+            <?php $i = 0;?>
+            <div class="row">
+                <div class="col-md-3">
+                    <select id="select-box" class="form-control">
+                        @foreach($roles->get() as $role)
+                            <option value="{{$i}}">{{$role->staff->name}}</option>
+                            <?php  $i++; ?>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <br>
 
 
-                <!--Contenido a mostrar/ocultar-->
-                <div class="tab-content">
-                    <!--Contenido de la Pestaña 1-->
+
+
                     <?php $i = 1;?>
                     @foreach($roles->get() as $role)
-                    <div id="content-{{$i}}">
-                        <table class=" table table-responsive table-condensed table-bordered table-hover table-striped" id="tablePreview"  cellspacing="100" cellpadding="20" style="overflow-x:auto">
-                            <!--Table head-->
+                    <div id="tab-{{$i}}" class="tabsdf">
+                        <table class=" table table-responsive table-condensed table-bordered table-hover" id="tablePreview"  cellspacing="100" cellpadding="20" style="overflow-x:auto">
                             <thead>
                             <tr>
                                 <th>Өдөр</th>
@@ -305,8 +308,6 @@ Header
                                 <th>20:00 <br> 21:00</th>
                             </tr>
                             </thead>
-                            <!--Table head-->
-                            <!--Table body-->
                             <tbody>
                             <?php $last = 0;?>
                             @for($d = 0; $d<7;$d++)
@@ -356,26 +357,33 @@ Header
                             @endfor
 
                             </tbody>
-                            <!--Table body-->
                         </table>
 
 
                     </div>
                         <?php  $i++; ?>
                     @endforeach
-                    <script>
-                        document.getElementById('tab-1').checked = true;
-                    </script>
+            <script>
+                var tabs = document.getElementsByClassName("tabsdf");
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                }
+                tabs[0].style.display = "block";
+                document.getElementById('select-box').addEventListener("change", function () {
+                    for (var i = 0; i < tabs.length; i++) {
+                        tabs[i].style.display = "none";
+                    }
+                    tabs[document.getElementById('select-box').value].style.display = "block";
+                });
+            </script>
                 </div>
 
-            </div>
 
 
 
 
 
 
-        </div>
     </section><!-- #about -->
 
 

@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Утасны дугаар</label>
-                            <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу" value="@if(!empty($param)) {{$param[1]}} @endif">
+                            <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу" value="@if(!empty($param)){{$param[1]}}@endif">
                             <span id="phone_msg" style="color:red"></span>
                         </div>
                         <div class="form-group">

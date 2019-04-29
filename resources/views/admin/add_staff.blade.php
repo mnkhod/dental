@@ -201,13 +201,7 @@
         console.log(phh)
         console.log(has.length)
 
-        // for(i in reglet){
-        //     for(x in reglet){
-        //         if (reg[0] === reglet[i] && phh === 8 && hh.length === 8 && reg[1] === reglet[x]){
-        //             a = true
-        //         }
-        //     }
-        // }
+
         function helo(a){
             if(a === true){
                 return true

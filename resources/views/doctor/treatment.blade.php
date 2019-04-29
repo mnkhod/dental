@@ -240,7 +240,7 @@
                                 @for($i = 18; $i>=11; $i--)
                                     <?php
                                     $special_treatment = 0;
-                                    $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                                    $tooth_special_treatments = array(3,4,5,6,7,8,9,23);
                                     $limit_date = date('Y-m-d', strtotime('2019-01-01'));
                                     $tooth_treatments = $user_treatments->where('tooth_id', $i);
                                     if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
@@ -287,6 +287,10 @@
                                             <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
                                                  onclick="changeStyle({{$i}})">
                                             @break
+                                            @case(23)
+                                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                                 onclick="changeStyle({{$i}})">
+                                            @break
                                             @default
                                             <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
                                                  onclick="changeStyle({{$i}})">
@@ -298,7 +302,7 @@
                                 @for($i = 21; $i<=28; $i++)
                                         <?php
                                         $special_treatment = 0;
-                                        $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                                        $tooth_special_treatments = array(3,4,5,6,7,8,9,23);
                                         $limit_date = date('Y-m-d', strtotime('2019-01-01'));
                                         $tooth_treatments = $user_treatments->where('tooth_id', $i);
                                         if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
@@ -342,6 +346,10 @@
                                                      onclick="changeStyle({{$i}})">
                                                 @break
                                                 @case(9)
+                                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                                     onclick="changeStyle({{$i}})">
+                                                @break
+                                                @case(23)
                                                 <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
                                                      onclick="changeStyle({{$i}})">
                                                 @break
@@ -552,7 +560,7 @@
                 @for($i = 48; $i>=41; $i--)
                     <?php
                     $special_treatment = 0;
-                    $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                    $tooth_special_treatments = array(3,4,5,6,7,8,9,23);
                     $limit_date = date('Y-m-d', strtotime('2019-01-01'));
                     $tooth_treatments = $user_treatments->where('tooth_id', $i);
                     if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
@@ -599,6 +607,10 @@
                             <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
                                  onclick="changeStyle({{$i}})">
                             @break
+                            @case(23)
+                            <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                 onclick="changeStyle({{$i}})">
+                            @break
                             @default
                             <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
                                  onclick="changeStyle({{$i}})">
@@ -610,7 +622,7 @@
                 @for($i = 31; $i<=38; $i++)
                         <?php
                         $special_treatment = 0;
-                        $tooth_special_treatments = array(3,4,5,6,7,8,9);
+                        $tooth_special_treatments = array(3,4,5,6,7,8,9,23);
                         $limit_date = date('Y-m-d', strtotime('2019-01-01'));
                         $tooth_treatments = $user_treatments->where('tooth_id', $i);
                         if($resetTreatment = $tooth_treatments->where('treatment_id', 2)->first()) {
@@ -657,6 +669,10 @@
                                 <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
                                      onclick="changeStyle({{$i}})">
                                 @break
+                                @case(23)
+                                <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'_canal.png')}}"
+                                     onclick="changeStyle({{$i}})">
+                                @break
                                 @default
                                 <img id='{{$i}}' src="{{url('img/toothImages/'.$i.'.png')}}"
                                      onclick="changeStyle({{$i}})">
@@ -684,6 +700,31 @@
 </div>
 </div><!-- Tooth images ending-->
 <div class="col-md-3">
+    <select class="form-control" onchange="location = this.value;">
+        @if($category == 0)
+            <option value="{{url('doctor/treatment/'.$checkin->id)}}">Эмчилгээ</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/gajig')}}">Гажиг засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/sogog')}}">Согог засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/mes')}}">Мэс засал</option>
+        @elseif($category == 1)
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/gajig')}}">Гажиг засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/sogog')}}">Согог засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/mes')}}">Мэс засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id)}}">Эмчилгээ</option>
+        @elseif($category == 2)
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/sogog')}}">Согог засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/mes')}}">Мэс засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id)}}">Эмчилгээ</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/gajig')}}">Гажиг засал</option>
+        @elseif($category == 3)
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/mes')}}">Мэс засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id)}}">Эмчилгээ</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/gajig')}}">Гажиг засал</option>
+            <option value="{{url('doctor/treatment/'.$checkin->id.'/sogog')}}">Согог засал</option>
+        @endif
+
+    </select>
+    <br>
 <div class="card">
 <ul class="nav nav-tabs nav-justified ml-0 mb-2" role="tablist">
     <li class="nav-item">
@@ -711,7 +752,8 @@
                         @endif
                     </div>
                     <div class="text-right text-muted col-md-6">
-                        {{date('Y-m-d', strtotime($user_treatment->created_at))}}
+                        {{date('Y-m-d', strtotime($user_treatment->created_at))}}<br>
+                        {{$user_treatment->price}}₮
                     </div>
                 </div>
             </div>
@@ -798,7 +840,8 @@
                                         @endif
                                     </div>
                                     <div class="text-right text-muted col-md-6">
-                                        {{date('Y-m-d', strtotime($treatment_history->created_at))}}
+                                        {{date('Y-m-d', strtotime($treatment_history->created_at))}}<br>
+                                        {{$treatment_history->price}}₮
                                     </div>
                                 </div>
                             </div>
@@ -1071,7 +1114,7 @@ function treatmentButton(treatment) {
 }
 
 function treatment(id, limit) {
-    if(limit === null) {
+    if(limit === '' || limit === null || limit === undefined) {
         document.getElementById('treatmentSelectionId').value = id;
         document.getElementById('treatmentForm').submit();
     } else {
@@ -1082,7 +1125,7 @@ function treatment(id, limit) {
 }
 function singleTreatment(id, limit) {
     document.getElementById('treatmentSelectionId').value = null;
-    if(limit === null) {
+    if(limit === '' || limit === null) {
         document.getElementById('toothId').value = tooths;
         document.getElementById('treatmentId').value = id;
         document.getElementById('treatmentForm').submit();

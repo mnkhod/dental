@@ -351,7 +351,7 @@
                                     <th>Тайлбар</th>
                                     <th>Хугацаа</th>
                                     <th>Хэн</th>
-                                    <th>Үйлдэл</th>
+                                    {{--<th>Үйлдэл</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -365,15 +365,15 @@
                                             байхгүй @endif</td>
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
-                                        <td class="text-center">
-                                            <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',
-                                                    '{{$transaction->price}}', '{{$transaction->description}}')">
-                                                <i class="iconsmind-Pencil"></i>
-                                            </a>
-                                            <a onclick="deleteTransaction({{$transaction->id}})">
-                                                <i class="simple-icon-trash"></i>
-                                            </a>
-                                        </td>
+                                        {{--<td class="text-center">--}}
+                                            {{--<a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',--}}
+                                                    {{--'{{$transaction->price}}', '{{$transaction->description}}')">--}}
+                                                {{--<i class="iconsmind-Pencil"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<a onclick="deleteTransaction({{$transaction->id}})">--}}
+                                                {{--<i class="simple-icon-trash"></i>--}}
+                                            {{--</a>--}}
+                                        {{--</td>--}}
                                         <?php $i++;?>
                                     </tr>
                                 @endforeach

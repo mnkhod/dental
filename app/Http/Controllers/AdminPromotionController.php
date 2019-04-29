@@ -33,12 +33,11 @@ class AdminPromotionController extends Controller
         $prom = Promotion::find($id);
         $used = UserPromotions::all()->where('promotion_id',$prom->id);
         $sum = 0;
-        foreach ($used as $use){
-            $transaction = Transaction::find($use->transaction_id);
-            $check_in = CheckIn::find($transaction->type_id);
-            $user = User::find($check_in->user_id);
-            $sum = $sum + (($transaction->price/(1-$prom->percentage/100))-$transaction->price);
+        foreach ($prom->user_promotions as $use){
+            $check_in = $use->checkin;
+            $user = $check_in->user_id;
+//            $sum = $sum + (($transaction->price/(1-$prom->percentage/100))-$transaction->price);
         }
-        return view('admin.promotion_check',compact('promotions','prom','used','transaction','check_in','user','sum'));
+        return view('admin.promotion_check',compact('promotions','prom','used','check_in','user','sum'));
     }
 }

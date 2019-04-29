@@ -158,6 +158,9 @@ Route::post('/reception/decrease_product','ReceptionPaymentController@decrease_p
 Route::get('/doctor','DoctorController@index');
 Route::get('/doctor/dash','DoctorController@dash');
 Route::get('/doctor/treatment/{user_id}','DoctorTreatmentController@index');
+Route::get('/doctor/treatment/{user_id}/gajig','DoctorTreatmentController@gajig');
+Route::get('/doctor/treatment/{user_id}/sogog','DoctorTreatmentController@sogog');
+Route::get('/doctor/treatment/{user_id}/mes','DoctorTreatmentController@mes');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');
 Route::get('/doctor/treatment/history/{id}','DoctorTreatmentController@delete_history');

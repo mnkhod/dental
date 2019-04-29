@@ -23,6 +23,9 @@ class CheckIn extends Model
     public function transactions() {
         return Transaction::where('type', 4);
     }
+    public function user_promotion() {
+        return $this->hasOne('App\UserPromotions', 'checkin_id', 'id');
+    }
 
 
 }
