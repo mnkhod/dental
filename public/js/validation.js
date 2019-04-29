@@ -9,8 +9,9 @@ function validate() {
     var check = 1;
 
     //console.log(surname,name, phone, address, birth, regnum, sex);
-    var reglet = ["А","Б","В","Г","Д","Е","Ё","Ж","З","И","Й","К","Л","М","Н","О","Ө","П","Р","С","Т","У","Ү","Ф","Х","Ц","Ч","Ш","Щ","Ь","Ы","Ъ","Э","Ю","Я"];
-
+    var reglet = ['А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','Ө','П','Р','С','Т','У','Ү','Ф','Х','Ц','Ч','Ш','Щ','Ь','Ы','Ъ','Э','Ю','Я'];
+    var reggg = 'АБВГДЕЁЖЗИЙКЛМНОӨПРСТУҮФХЦЧШЩЬЫЪЭЮЯ'
+    var numlet = ['0','1','2','3','4','5','6','7','8','9'];
     console.log(reg.length);
     // last name
     if(surename === ""){
@@ -96,25 +97,67 @@ function validate() {
 
     function regnumber(regg) {
         var i;
-        var x=7;
-        var y=2;
-        var hh = regg.slice(2, regg.length)
-        var hhgg = parseInt(hh);
-        var s = hhgg.toString();
-        var phh = s.length;
-        console.log(phh)
-        console.log(hh)
-        a = false
+        var z;
+        var x;
+        var hh = regg.slice(2, regg.length);
+        console.log(hh);
+        var a = 0;
+        var b = 1;
+        var lis = [];
 
-        for(i in reglet){
-            for(x in reglet){
-                if (reg[0] === reglet[i] && phh === 8 && hh.length === 8 && reg[1] === reglet[x]){
-                     return true
+        // for(i=0; i < reglet.length; i++){
+        //     var checker1=0;
+        //     for(var x=0; x<reglet.length; x++){
+        //         if(regg.charAt(0) !== reglet[x].charAt(0) || regg.charAt(1) !== reglet[x].charAt(0)){
+        //             a = 0;
+        //             console.log(a);
+        //         }
+        //     }
+                // if (checker1===0) {
+                //     a=0;
+                // }
+            // }
+        console.log(regg[0])
+       // for(i in reglet){
+        var checker1 = 0;
+        if(reggg.includes(regg[0]) && reggg.includes(regg[1])){
+            a = 1
+            console.log(a)
+        }
+        //}
+
+        //     for(var x in reglet){
+        //         if (hh === 8 && regg[0] === reglet[i] && regg[1] === reglet[x]){
+        //              a = 0;
+        //         }
+        //     }
+        //
+        // }
+
+        for(z=0; z < hh.length; z++){
+            var checker=0;
+            for(var k=0; k<numlet.length; k++){
+                if(hh.charAt(z) === numlet[k].charAt(0)){
+                    checker = 1;
+                    // console.log(b)
+                    // lis.push("1")
+                // }else{
+                //     // lis.push("0")
                 }
             }
+            if (checker===0) {
+                b=0;
+            }
+            // console.log(b);
+
         }
-        return false;
+        // console.log(lis)
+        if(a*b === 1){
+            return true;
         }
+    return false;
+
+    }
     function rss(hhff){
 
     }
