@@ -181,7 +181,7 @@
                                 @csrf
                                 <select class="form-control mb-3" name="type">
                                     @foreach($types as $type)
-                                        @if($type->id == 4 || $type->id == 1 || $type->id == 2 || $type->id == 5)
+                                        @if($type->id == 4 || $type->id == 1 || $type->id == 2 || $type->id == 5 || $type->id == 6 || $type->id == 7)
                                             @else
                                             <option value="{{$type->id}}">{{$type->name}}</option>
                                         @endif
@@ -243,7 +243,7 @@
                     @endforeach
                     <table border="0" width="100%">
                         @foreach($types as $type)
-                            @if($type->id == 4 || $type->id == 5)
+                            @if($type->id == 4 || $type->id == 5 || $type->id == 6)
                                 @else
                                 <?php $temp_sum = 0?>
                                 <?php $local_transactions = $transactions?>

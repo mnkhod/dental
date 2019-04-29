@@ -34,8 +34,8 @@ class AccountantItemController extends Controller
     public function edit_item(Request $request){
         $product = Item::find($request['id']);
         $product->update(['quantity'=>$product->quantity + $request['quantity']]);
-        ItemHistory::create(['item_id'=>$product->id,'quantity'=>$request['quantity'], 'created_by'=>Auth::user()->id]);
-        Transaction::create(['type'=>7,'type_id'=>$request['id'],'price'=> -1*$request['price'],'description'=>''.$product->name.' '.$product->quantity.' ширхэг', 'created_by'=>Auth::user()->id]);
+        $history = ItemHistory::create(['item_id'=>$product->id,'quantity'=>$request['quantity'], 'created_by'=>Auth::user()->id]);
+        Transaction::create(['type'=>7,'type_id'=>$history->id,'price'=> -1*$request['price'],'description'=>''.$product->name.' '.$product->quantity.' ширхэг', 'created_by'=>Auth::user()->id]);
         return redirect('/accountant/items/'.$product->id);
     }
     public function delete_item($id){

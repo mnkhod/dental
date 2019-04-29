@@ -220,7 +220,12 @@
                                             <tr>
                                                 <td>{{$i}}</td>
                                                 <td>{{$history->quantity}} ширхэг</td>
-                                                <td>{{\App\Transaction::where('type',7)->where('type_id',$history->item_id)->first()->price}} ₮</td>
+                                                @if($history->quantity<0)
+                                                    <td>{{-1*$specific_product->price*$history->quantity}}₮</td>
+                                                @else
+                                                    <td>{{\App\Transaction::where('type',7)->where('type_id',$history->id)->first()->price}} ₮</td>
+{{--                                                    <td>{{\App\Transaction::where('type',7)->where('type_id',$history->id)->first()}} ₮</td>--}}
+                                                @endif
                                                 <td>{{\App\User::find($history->created_by)->name}}</td>
                                             </tr>
                                             <?php $i++;?>

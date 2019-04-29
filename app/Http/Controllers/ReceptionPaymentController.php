@@ -118,8 +118,8 @@ class ReceptionPaymentController extends Controller
         $product = Item::find($request['id']);
         $minus = $product->quantity - $request['quantity'];
         $product->update(['quantity'=>$minus]);
-        ItemHistory::create(['item_id'=>$product->id,'quantity'=> -1 * $request['quantity'],'created_by'=>Auth::user()->id]);
-        Transaction::create(['type'=>6,'type_id'=>$request['id'],'price'=> 1*$request['price'],'description'=>''.$product->name.' '.$request['quantity'].' ширхэг зарсан.','created_by'=>Auth::user()->id]);
+        $history = ItemHistory::create(['item_id'=>$product->id,'quantity'=> -1 * $request['quantity'],'created_by'=>Auth::user()->id]);
+        Transaction::create(['type'=>6,'type_id'=>$request['id'],'price'=> $request['quantity']*$product->price,'description'=>''.$product->name.' '.$request['quantity'].' ширхэг зарсан.','created_by'=>Auth::user()->id]);
         return redirect('/reception/product/'.$product->id);
     }
 }

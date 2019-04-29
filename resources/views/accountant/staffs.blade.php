@@ -40,7 +40,7 @@
     <br>
     <div class="row">
         @foreach($roles->get() as $role)
-            <div class="col-md-3">
+            <div class="col-md-3" style="padding-bottom: 30px">
                 <div class="card ">
                     <div class="card-body">
                         <div class="text-center">
@@ -67,6 +67,7 @@
                     </div>
                 </div>
             </div>
+
         @endforeach
 
     </div>
