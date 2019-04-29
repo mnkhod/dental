@@ -87,7 +87,7 @@
     <div class="modal fade" id="deleteAppointment" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{url('/reception/time/cancel')}}">
+                <form id = "form11" action="{{url('/reception/time/cancel')}}">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
@@ -120,9 +120,9 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-8 input-group">
-                            <input id="mf" name="code" autocomplete="off" type="password" class="form-control input-sm"
+                            <input id="ps" name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
-                            <input id="mf" name="description" autocomplete="off" type="text"
+                            <input id="ds" name="description" autocomplete="off" type="text"
                                    class="form-control input-sm"
                                    placeholder="Тайлбар">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
@@ -130,7 +130,7 @@
                             </button>
                         </div>
                         <a id="variableLink">
-                            <button type="button" id="variableButton" class="btn btn-primary"
+                            <button onclick="gh()" type="button" id="variableButton" class="btn btn-primary"
                                     style="border-radius: 0px">Эмчилгээнд
                                 оруулах
                             </button>
@@ -349,5 +349,21 @@
     <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
     <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/vendor/Sortable.js')}}"></script>
+    <script>
+        function gh() {
+            var pass = document.getElementById("ps").value;
+            var des = document.getElementById("ds").value;
+            if(pass === ""){
+                document.getElementById('ps').classList.add('border-danger');
+            }
+            else if(des === "") {
+                document.getElementById('ds').classList.add('border-danger');
+                document.getElementById('ps').classList.remove('border-danger');
+            }
+            else {
+                document.getElementById("form11").submit();
+            }
+        }
+    </script>
     {{--Scriptuudiig include hiiideg heseg--}}
 @endsection
