@@ -107,4 +107,6 @@ class AdminController extends Controller
 
         return view('admin.search', compact('results', 'input'));
     }
+
+
 }

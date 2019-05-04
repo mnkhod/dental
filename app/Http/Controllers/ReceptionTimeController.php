@@ -102,7 +102,7 @@ class ReceptionTimeController extends Controller
 
 
     public function cancel(Request $request){
-        if($request['code'] == '12345678'){
+        if($request['code'] == '1111'){
             $id = $request['appointment_id'];
             Appointment::find($id)->delete();
             Log::create(['type'=>2,'type_id'=>$id,'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['description']]);
@@ -111,7 +111,6 @@ class ReceptionTimeController extends Controller
         else{
             return back();
         }
-
     }
     public function check_in($user_id, $appointment_id){
         $user = User::find($user_id);

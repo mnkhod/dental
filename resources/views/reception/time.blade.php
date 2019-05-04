@@ -230,7 +230,12 @@
                                 @if($shift->shift_id == 1 || $shift->shift_id ==2)
                                     @if($appointment = $shift->appointments->where('start', 9+$i)->first())
                                         <td height="90px" rowspan="{{$appointment->end - $appointment->start}}">
-                                            <button class="btn btn-primary btn-block text-left"
+                                            <button class="btn  @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first())
+                                                    btn-success
+                                                    @else
+                                                    btn-primary
+                                                    @endif
+                                                    btn-block text-left"
                                                     onclick="deleteAppointment('{{$appointment->name}}', '{{$appointment->phone}}', '{{$appointment->shift->date}}',
                                                             '{{$appointment->start}}:00 - {{$appointment->end}}:00', '{{$appointment->id}}', '{{$shift->doctor->name}}'
                                                             , @if(\App\CheckIn::where('shift_id', $shift->id)->where('user_id', $appointment->user_id)->first()) 'a'

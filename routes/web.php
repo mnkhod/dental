@@ -50,6 +50,10 @@ Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
+Route::get('/admin/staff_check/{id}/{start_date}/{end_date}', 'AdminStaffController@search');
+Route::post('/admin/staff/by_month', 'AdminStaffController@by_month');
+Route::post('/admin/staff/date', 'AdminStaffController@date');
+
 
 Route::get('/admin/promotion','AdminPromotionController@index');
 Route::post('/admin/promotion/add','AdminPromotionController@store');
@@ -153,7 +157,6 @@ Route::get('/reception/product','ReceptionPaymentController@product');
 Route::get('/reception/product/{id}','ReceptionPaymentController@show');
 Route::post('/reception/decrease_product','ReceptionPaymentController@decrease_product');
 
-
 //--DOCTOR STARTING--
 Route::get('/doctor','DoctorController@index');
 Route::get('/doctor/dash','DoctorController@dash');
@@ -169,10 +172,3 @@ Route::get('/doctor/dashboard/','DoctorController@dashboard');
 Route::get('/doctor/dashboard/{start_date}/{end_date}', 'DoctorController@search');
 Route::post('/doctor/dashboard/by_month', 'DoctorController@by_month');
 Route::post('/doctor/dashboard/date', 'DoctorController@date');
-
-Route::get('/test', function() {
-    $user = \App\User::find(19);
-    echo  date('Y-m-d H:i:s', strtotime(date('Y-m-d', strtotime('first day of this month')))) . '----';
-    return date('Y-m-d', strtotime($user->checkins->where('state', 3)->first()->created_at));
-//    return view('test');
-});

@@ -121,15 +121,14 @@
 
                                 </tbody>
                             </table>
-                            <?php $transaction = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first(); ?>
-                            @if(!empty(\App\UserPromotions::where('transaction_id', $transaction->id)->first()))
-                                <?php $relation = \App\UserPromotions::where('transaction_id', $transaction->id)->first();?>
-                                <?php $promotion = \App\Promotion::where('id', $relation->promotion_id)->first();?>
+                            @if(!empty($check_in->user_promotion))
+                                <?php $promotion = $check_in->user_promotion->promotion;?>
                                 <span class="badge badge-pill badge-secondary">Хямдарсан {{$promotion->percentage}}% {{$promotion->promotion_name}} </span>
                                 <br>
+                                <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{$total = $total*((100-$promotion->percentage)/100)}}₮</span>
+                            @else
+                                <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{$total}}₮</span>
                             @endif
-                            <span class="badge badge-pill badge-primary">Нийт зарцуулсан {{\App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price}}₮</span>
-                            <?php $total = \App\Transaction::where('type', 4)->where('type_id', $check_in->id)->first()->price;?>
                             <?php $sum = $sum + $total ?>
                         </div>
                     </div>

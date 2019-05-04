@@ -40,6 +40,7 @@
     <br>
     <div class="row">
         @foreach($results->get() as $result)
+            @if($result->role == null)
             <div class="col-md-3">
                 <div class="card ">
                     <div class="card-body">
@@ -71,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         @endforeach
 
     </div>

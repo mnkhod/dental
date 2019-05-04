@@ -117,6 +117,9 @@
                         </div>
                     </div>
                 </div>
+                @foreach($used as $use)
+                    <?php $sum = $use->checkin->treatments->sum('price')*($prom->percentage/100) + $sum; ?>
+                @endforeach
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body">
@@ -148,7 +151,7 @@
                                     <tr>
                                     <td>{{$i}}</td>
                                     <td>{{$use->checkin->user->name}}</td>
-                                    <td>{{$use->checkin->treatments->sum('price')/(1-$prom->percentage/100)}}₮</td>
+                                    <td>{{$use->checkin->treatments->sum('price')*($prom->percentage/100)}}₮</td>
                                     <td>{{$use->checkin->treatments->sum('price')}}₮</td>
                                     <td>{{$use->created_at}}</td>
                                     <td>{{\App\User::find($use->created_by)->name}}</td>
