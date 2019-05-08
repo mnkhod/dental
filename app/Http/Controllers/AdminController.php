@@ -34,6 +34,14 @@ class AdminController extends Controller
 //        Twilio::message('+976'.$request['phone_number'],'MonFamily шүдний эмнэлгийн систем. Таны нэвтрэх нэр:'.$request['email'].' '.'Таны нууц үг:'.$pass.'');
         $pass = 'dragon';
         $pass = bcrypt($pass);
+        $validatedData = $request->validate([
+            'last_name' => 'required|max:255',
+            'email'=>'required|unique:users|max:255',
+            'name'=>'required|max:255',
+            'sex'=>'required',
+            'register'=>'required|unique:users|max:255',
+
+        ]);
         $birth_date_request = strtotime($request['birth_date']);
         $birth_date = date('Y-m-d', $birth_date_request);
         $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);

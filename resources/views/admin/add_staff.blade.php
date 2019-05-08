@@ -20,7 +20,15 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="mb-4">Шинэ ажилтан нэмэх</h5>
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form id="form" action="{{url('/admin/add_staff')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
