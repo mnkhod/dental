@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('test', function() {
+    return view('test');
+});
+
 Route::get('/', function () {
     $roles = \App\Role::where('role_id', 2);
     return view('welcome', compact('roles'));

@@ -1,6 +1,7 @@
 function validate() {
     var surename = document.getElementById("lname").value;
     var name = document.getElementById("fname").value;
+    var email = document.getElementById("email").value;
     var phone = document.getElementById("phone").value;
     var address = document.getElementById("Address").value;
     var birth = document.getElementById("birth").value;
@@ -22,6 +23,23 @@ function validate() {
         document.getElementById('lname').classList.remove('border-danger');
         document.getElementById('lname_msg').innerHTML = "";
         check = check * 1;
+    }
+    if(email === ""){
+        document.getElementById('email').classList.add('border-danger');
+        document.getElementById('email_msg').innerHTML = "Цахим хаяг оруулна уу";
+        check = check * 0;
+    }else{
+
+        var re = /\S+@\S+\.\S+/;
+        if(re.test(email)) {
+            document.getElementById('email').classList.remove('border-danger');
+            document.getElementById('email_msg').innerHTML = "";
+            check = check * 1;
+        } else {
+            document.getElementById('email').classList.add('border-danger');
+            document.getElementById('email_msg').innerHTML = "Цахим хаяг зөв оруулна уу";
+            check = check * 0;
+        }
     }
 
     // first name

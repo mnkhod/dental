@@ -63,8 +63,9 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Цахим хаяг</label>
-                                <input name="email" type="email" class="form-control" id="inputEmail4"
+                                <input name="email" type="email" class="form-control" id="email"
                                        placeholder="Цахим хаягаа оруулна уу">
+                                <span id="email_msg" style="color:red"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Регистрийн дугаар</label>
