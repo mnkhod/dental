@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <label for="inputAddress2">Овог</label>
                                     <input name="last_name" type="text" class="form-control" id="lname"
-                                           placeholder="Овог">
+                                           placeholder="Овог" value="{{old('last_name')}}">
                                     <span id="lname_msg" style="color:red"></span>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="inputAddress2">Нэр</label>
-                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр">
+                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр" {{old('name')}}>
                                     <span id="fname_msg" style="color:red"></span>
                                 </div>
                             </div>
@@ -46,14 +46,24 @@
                             <div class="col-md-6">
                                 <label>Хүйс сонгох</label>
                                 <select name="sex" id="sex" class="form-control">
-                                    <option value="0">Эр</option>
-                                    <option value="1">Эм</option>
+                                    @if(!empty(old('sex')))
+                                        @if(old('sex')==0)
+                                            <option value="0">Эр</option>
+                                            <option value="1">Эм</option>
+                                        @else
+                                            <option value="1">Эм</option>
+                                            <option value="0">Эр</option>
+                                        @endif
+                                    @else
+                                        <option value="0">Эр</option>
+                                        <option value="1">Эм</option>
+                                    @endif
                                 </select>
                             </div>
                             <div class="col-md-6">
                                 <label>Төрсөн он сар</label>
                                 <input name="birth_date" class="form-control datepicker" id="birth"
-                                       placeholder="Төрсөн он сар">
+                                       placeholder="Төрсөн он сар" value="{{old('birth_date')}}">
                                 <span id="date_msg" style="color:red"></span>
                             </div>
                         </div>
@@ -63,7 +73,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Цахим хаяг</label>
-                                <input name="email" type="email" class="form-control" id="email"
+                                <input name="email" type="email" class="form-control" id="email" value="{{old('email')}}"
                                        placeholder="Цахим хаягаа оруулна уу">
                                 <span id="email_msg" style="color:red"></span>
                             </div>
@@ -77,12 +87,12 @@
                         <div class="form-group">
                             <label for="inputAddress">Утасны дугаар</label>
                             <input name="phone_number" type="text" class="form-control" id="phone"
-                                   placeholder="Утасны дугаараа оруулна уу">
+                                   placeholder="Утасны дугаараа оруулна уу" value="{{old('phone_number')}}">
                             <span id="phone_msg" style="color:red"></span>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress2">Гэрийн хаяг</label>
-                            <input name="location" type="text" class="form-control" id="Address"
+                            <input name="location" type="text" class="form-control" id="Address" value="{{old('location')}}"
                                    placeholder="Гэрийн хаягаа оруулна уу">
                             <span id="address_msg" style="color:red"></span>
                         </div>
@@ -98,7 +108,7 @@
                         </select><br>
 
                         <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters"
-                                  data-val-length-max="100000" id="info" name="info" placeholder="Тайлбар"></textarea>
+                                  data-val-length-max="100000" id="info" name="info" placeholder="Тайлбар">{{old('info')}}</textarea>
                         <br><br>
                         <h5 class="mb-12">Зураг оруулах</h5>
 

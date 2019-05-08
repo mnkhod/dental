@@ -29,6 +29,14 @@ class ReceptionUserController extends Controller
     }
 
     public function store(Request $request) {
+        $validatedData = $request->validate([
+            'last_name' => 'required|max:255',
+            'email'=>'required|unique:users|max:255',
+            'name'=>'required|max:255',
+            'sex'=>'required',
+            'register'=>'required|unique:users|max:255',
+
+            ]);
         $pass = "dragon";
         $pass = bcrypt($pass);
         $birth_date_request = strtotime($request['birth_date']);
