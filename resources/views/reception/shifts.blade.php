@@ -48,7 +48,7 @@
                         <input type="hidden" name="shift_id" id="shiftId">
                     </div>
                     <div class="modal-footer">
-                        <input type="text" name="description" class="form-control" id="shiftId" placeholder="Тайлбар">
+                        <input type="text" name="description" required class="form-control" id="shiftId" placeholder="Тайлбар">
                         <button type="submit" class="btn btn-primary" style="border-radius: 0px">Ээлж цуцлах</button>
                     </div>
                 </form>
@@ -64,18 +64,14 @@
                         @foreach($doctors as $doctor)
                             <tr>
                                 <td>Эмч</td>
-                                <td>{{date('Y-m-d')}}</td>
-                                <td>{{date('Y-m-d', strtotime("+1 Days"))}}</td>
-                                <td>{{date('Y-m-d', strtotime("+2 Days"))}}</td>
-                                <td>{{date('Y-m-d', strtotime("+3 Days"))}}</td>
-                                <td>{{date('Y-m-d', strtotime("+4 Days"))}}</td>
-                                <td>{{date('Y-m-d', strtotime("+5 Days"))}}</td>
-                                <td>{{date('Y-m-d', strtotime("+6 Days"))}}</td>
+                                @for($i=0; $i<30; $i++)
+                                <td>{{date('Y-m-d', strtotime("+".$i." Days"))}}</td>
+                                @endfor
                             </tr>
                             <tr>
                                 <th rowspan="2"><br><br><br>
                                     {{$doctor->staff->name}}</th>
-                                @for($i = 0; $i < 7; $i++)
+                                @for($i = 0; $i < 30; $i++)
                                     <?php $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 0)->first(); ?>
                                     @if($time)
                                         <td>
@@ -102,7 +98,7 @@
                                 @endfor
                             </tr>
                             <tr>
-                                @for($i = 0; $i < 7; $i++)
+                                @for($i = 0; $i < 30; $i++)
                                     <?php $time = $shifts->where('date', date('Y-m-d', strtotime('+' . $i . ' Days')))->where('doctor_id', $doctor->staff->id)->where('shift_id', 1)->first(); ?>
                                     @if($time)
                                         <td>

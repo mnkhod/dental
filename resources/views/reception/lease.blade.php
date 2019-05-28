@@ -37,9 +37,9 @@
                             Email: {{$user->email}} <br><br>
                             <form class="form-inline" action="{{url('/reception/lease/store')}}" method="post">
                                 @csrf
-                                <input name="price" type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="...">
+                                <input name="price" required type="number" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="...">
                                 <input type="hidden" value="{{$lease->id}}" name="lease_id">
-                                <input type="hidden" value="{{$checkin->id}}" name="checkin_id">
+                                <input type="hidden"  value="{{$checkin->id}}" name="checkin_id">
                                 <button type="submit" class="btn btn-sm btn-outline-primary mb-2">Төлөх</button>
                             </form>
                         </div>

@@ -158,7 +158,7 @@
                             {{url('reception/time/week/'. \App\Role::where('role_id', 2)->first()->id)}}
                             @endif
                             @endif">
-                                7 хоногоор
+                                30 хоногоор
                             </option>
 
                         </select>

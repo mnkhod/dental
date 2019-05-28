@@ -139,7 +139,7 @@
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <select class="form-control" onchange="location = this.value;">
-                            <option>7 хоногоор</option>
+                            <option>30 хоногоор</option>
                             <option value="{{url('reception/time/')}}">Өдрөөр</option>
 
                         </select>
@@ -163,14 +163,14 @@
                     <tr>
                         <th></th>
                         <?php $s = 0?>
-                        @for($d = 0; $d < 7; $d++)
+                        @for($d = 0; $d < 30; $d++)
                             <th>{{date('Y-m-d', strtotime("+".$d." Days"))}}</th>
                         @endfor
                     </tr>
                     @for($i = 0; $i<6; $i++)
                         <tr>
                             <td height="90px">{{9+$i}}:00</td>
-                            @for($d = 0; $d < 7; $d++)
+                            @for($d = 0; $d < 30; $d++)
                                 @if($shift = $shifts->where('date', date('Y-m-d', strtotime("+".$d." Days")))->first())
                                     @if($shift->shift_id == 0 || $shift->shift_id ==2)
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())
@@ -217,7 +217,7 @@
                     @for($i = 6; $i<12; $i++)
                         <tr>
                             <td height="90px">{{9+$i}}:00</td>
-                            @for($d = 0; $d < 7; $d++)
+                            @for($d = 0; $d < 30; $d++)
                                 @if($shift = $shifts->where('date', date('Y-m-d', strtotime("+".$d." Days")))->first())
                                     @if($shift->shift_id == 1 || $shift->shift_id ==2)
                                         @if($appointment = $shift->appointments->where('start', 9+$i)->first())

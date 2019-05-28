@@ -99,6 +99,11 @@
                         <i class="iconsmind-Nurse"></i> Эмчилгээ
                     </a>
                 </li>
+                <li>
+                    <a href="{{url('/logout')}}">
+                        <i class="iconsmind-Power"></i> Гарах
+                    </a>
+                </li>
 
             </ul>
         </div>

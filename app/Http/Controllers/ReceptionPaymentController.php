@@ -92,6 +92,9 @@ class ReceptionPaymentController extends Controller
     }
     public function lease_store(Request $request){
         $lease = Lease::find($request['lease_id']);
+        $request->validate([
+            'price'=>'required'
+        ]);
         $lease->price = $lease->price - $request['price'];
         $lease->save();
         Transaction::create(['price'=>$request['price'],'type'=>4,'type_id'=>$request['checkin_id'],'description'=>'Зээлийн үлдэгдэл төлбөр.','created_by'=>Auth::user()->id]);
