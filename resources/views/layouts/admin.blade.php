@@ -115,9 +115,14 @@
                         <i class="iconsmind-Inbox-Full"></i> Тайлан
                     </a>
                 </li>
+                <li id="adminTreatments">
+                    <a href="{{url('/admin/treatment')}}">
+                        <i class="iconsmind-Nurse"></i> Эмчилгээ
+                    </a>
+                </li>
                 <li id="adminLog">
                     <a href="{{url('/admin/logs')}}">
-                        <i class="iconsmind-Inbox-Full"></i> Түүх
+                         <i class="iconsmind-Inbox-Full"></i> Түүх
                     </a>
                 </li>
                 <li id="adminPromotion">

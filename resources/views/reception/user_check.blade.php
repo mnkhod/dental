@@ -61,6 +61,11 @@
                         <p class="mb-3">
                             {{$user->birth_date}}
                         </p>
+                        <p class="text-muted text-small mb-2">Гэрийн хаяг</p>
+
+                        <p class="mb-3">
+                            {{$user->location}}
+                        </p>
                         <p class="text-muted text-small mb-2">Тайлбар</p>
                         <p class="mb-3">
                             @if($user->description == '')
@@ -69,7 +74,7 @@
                                 {{$user->description}}
                             @endif
                         </p>
-                        {{--<a href="{{url('/reception/user_check/'.$user->id.'/check_in')}}"><button type="button" class="btn btn-sm btn-outline-primary ">Эмч рүү оруулах</button></a>--}}
+                        <a href="{{url('reception/user_check/'.$user->id.'/update')}}"><button class="btn btn-primary">засах</button></a>
                     </div>
                 </div>
             </div>

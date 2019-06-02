@@ -51,11 +51,11 @@
 
 
         <div class="search">
-            <form action="{{url('/reception/search')}}" method="get" role="search">
+            <form id="search" action="{{url('/reception/search')}}" method="get" role="search">
                 @csrf
                 <input placeholder="Хайх..." name="key" autocomplete="off">
                 <span class="search-icon">
-                    <i class="simple-icon-magnifier"></i>
+                    <i class="simple-icon-magnifier" onclick="document.getElementById('search').submit()"></i>
                 </span>
             </form>
         </div>
