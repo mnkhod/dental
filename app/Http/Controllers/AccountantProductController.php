@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductHistory;
 use App\Products;
+use App\Promotion;
 use App\Role;
 use App\Transaction;
 use App\User;
@@ -44,7 +45,7 @@ class AccountantProductController extends Controller
         $product = Products::find($request['id']);
         $user = User::find($request['user_id']);
         ProductHistory::create(['product_id'=>$product->id, 'user_id'=>$user->id, 'quantity'=> -1 * $request['quantity'], 'description'=>$user->name . ' '.$request['quantity'].' ширхэгийг авав', 'created_by'=>Auth::user()->id]);
-        $product->update(['quantity'=>$product->quantity - $request['quantity']]);
+//        $product->update(['quantity'=>$product->quantity - $request['quantity']]);
         return redirect('/accountant/products/'.$product->id);
     }
 
@@ -53,5 +54,20 @@ class AccountantProductController extends Controller
         $product->delete();
         return redirect('/accountant/products');
 
+    }
+    public function change_product_index($id){
+        $products = Products::all();
+        $specific_product = Products::find($id);
+        $histories = ProductHistory::all()->where('product_id', $specific_product->id);
+        $roles = Role::all();
+        return view('accountant.product_change', compact('products', 'specific_product', 'histories', 'roles'));
+    }
+    public function change_product($id, Request $request){
+        $product = Products::find($id);
+        $product->quantity = $request['quantity'];
+        $product->name = $request['name'];
+        $product->save();
+        $product->update([['quantity'=>$request['quantity'],'name'=>$request['name']]]);
+        return redirect('/accountant/products/'.$product->id);
     }
 }

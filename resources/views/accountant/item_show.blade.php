@@ -107,6 +107,8 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <h5>{{$specific_product->name}}</h5>
+                                    <a href="{{url('/accountant/change_item_index/'.$specific_product->id)}}"><i class="iconsmind-Pen"></i></a>
+
                                     <span class="text-muted text-small d-block">Нэмэх товч дээр дарна бараа нэмнэ</span>
                                 </div>
                                 <div class="col-md-5 text-right">

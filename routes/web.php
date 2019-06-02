@@ -116,6 +116,10 @@ Route::get('/accountant/products','AccountantProductController@product');
 Route::get('/accountant/products/{id}','AccountantProductController@show');
 Route::post('/accountant/add_product','AccountantProductController@add_product');
 Route::post('/accountant/edit_product','AccountantProductController@edit_product');
+Route::post('/accountant/change_product/{id}','AccountantProductController@change_product');
+Route::get('/accountant/change_product/{id}','AccountantProductController@change_product');
+Route::get('/accountant/change_product_index/{id}','AccountantProductController@change_product_index');
+Route::post('/accountant/change_product_index/{id}','AccountantProductController@change_product_index');
 Route::post('/accountant/decrease_product','AccountantProductController@decrease_product');
 Route::get('/accountant/delete_product/{id}','AccountantProductController@delete_product');
 
@@ -123,6 +127,10 @@ Route::get('/accountant/items','AccountantItemController@item');
 Route::get('/accountant/items/{id}','AccountantItemController@show');
 Route::post('/accountant/add_item','AccountantItemController@add_item');
 Route::post('/accountant/edit_item','AccountantItemController@edit_item');
+Route::get('/accountant/change_item_index/{id}','AccountantItemController@change_item_index');
+Route::post('/accountant/change_item_index/{id}','AccountantItemController@change_item_index');
+Route::get('/accountant/change_item/{id}','AccountantItemController@change_item');
+Route::post('/accountant/change_item/{id}','AccountantItemController@change_item');
 
 
 

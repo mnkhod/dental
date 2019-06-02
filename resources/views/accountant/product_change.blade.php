@@ -104,6 +104,16 @@
                                     <h5>{{$specific_product->name}}</h5>
                                     <a href="{{url('/accountant/change_product_index/'.$specific_product->id)}}"><i class="iconsmind-Pen"></i></a>
                                     <span class="text-muted text-small d-block">Нэмэх, хасах товч дээр дарна материал нэмж хасна</span>
+                                    <form id ="form1" action="{{url('/accountant/change_product/'.$specific_product->id)}}">
+                                        @csrf
+                                        <input value="{{$specific_product->name}}" type="text" name="name" class="form-control mb-3" placeholder="Материалын нэр">
+                                        <input name="quantity" id="too"  class="form-control mb-3"
+                                               value="{{$specific_product->quantity}}" type="number" placeholder="Тоо ширхэг">
+                                        <button onclick="numa()" class="btn btn-primary btn-block"
+                                                type="submit">
+                                            Хадгалах
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <button class="btn btn-primary" data-toggle="modal"
@@ -127,7 +137,7 @@
                                                 </div>
                                                 <div class="card mb-4 text-left">
                                                     <div class="card-body">
-                                                        <form id ="form1"action="{{url('/accountant/edit_product')}}"
+                                                        <form id ="form1"action="{{url('/accountant/edit_product')}}">
                                                               method="post">
                                                             @csrf
                                                             <span>Тоо ширхэг</span>

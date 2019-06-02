@@ -42,6 +42,19 @@ class AccountantItemController extends Controller
         $product = Item::find($id);
         $product->delete();
         return redirect('/accountant/items');
-
+    }
+    public function change_item_index($id){
+        $products = Item::all();
+        $specific_product = Item::find($id);
+        $histories = ItemHistory::all()->where('item_id', $specific_product->id);
+        return view('accountant.item_change', compact('products', 'specific_product', 'histories', 'roles'));
+    }
+    public function change_item($id,Request $request){
+        $product = Item::find($id);
+        $product->name = $request['name'];
+        $product->quantity = $request['quantity'];
+        $product->price = $request['price'];
+        $product->save();
+        return redirect('/accountant/items/'.$product->id);
     }
 }

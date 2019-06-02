@@ -77,6 +77,7 @@
                                 </td>
                                 <td>
                                     <p class="text-muted">{{$product->quantity}}</p>
+                                </td>
                             </tr>
                         @endforeach
                         <script>
