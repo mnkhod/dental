@@ -97,6 +97,7 @@ Route::get('/admin/user_check/{id}','AdminController@user_check');
 Route::get('/admin/search', 'AdminController@search');
 
 Route::get('/admin/treatment', 'AdminTreatmentController@index');
+Route::get('/admin/treatment/{id}', 'AdminTreatmentController@edit');
 
 
 //--ACCOUNTANT STARTING--

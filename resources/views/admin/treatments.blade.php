@@ -41,19 +41,17 @@
                             <th>Үнэ</th>
                             <th>Үнийн хязгаар</th>
                             <th>Сонголтын тоо</th>
-                            <th>Үйлдэл</th>
                         </thead>
                         <tbody>
                         @foreach($treatments as $treatment)
                             <tr>
                                 <td>{{$treatment->id}}</td>
-                                <td>{{$treatment->name}}</td>
+                                <td><a href="{{url('admin/treatment/'.$treatment->id)}}">{{$treatment->name}}</a></td>
                                 <td>@if($treatment->selection_type == 1) Нэг шүд @else Бүх шүд @endif</td>
-                                <td>@if($treatment->category == 0) Эмчилгээ @elseif($treatment->category == 1) @elseif($treatment->category == 2) @else @endif</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>@if($treatment->category == 0) Эмчилгээ @elseif($treatment->category == 1) Гажиг засал @elseif($treatment->category == 2) Согог засал @else Мэс засал @endif</td>
+                                <td>@if(empty($treatment->price)) Хоосон @else {{$treatment->price}}₮ @endif</td>
+                                <td>@if(empty($treatment->limit)) Хоосон @else {{$treatment->limit}}₮ @endif</td>
+                                <td>{{$treatment->treatmentSelection->count()}}</td>
                             </tr>
                             @endforeach
                         </tbody>
