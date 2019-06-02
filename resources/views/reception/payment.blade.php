@@ -128,7 +128,7 @@
 
                         </tbody>
                     </table>
-                    <span class="badge badge-pill badge-primary">Нийт төлбөр {{$total}}₮</span>
+                    <span class="badge badge-pill badge-primary" style="font-size: 20px">Нийт төлбөр {{$total}}₮</span>
                     <br>
                     <br>
                     {{--<div class="btn-group btn-group-toggle" data-toggle="buttons">--}}

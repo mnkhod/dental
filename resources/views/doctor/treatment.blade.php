@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-stars.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/nouislider.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/vendor/bootstrap-datepicker3.min.css')}}"/>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 
     <style>
         .scroll {
@@ -114,6 +115,29 @@
             margin: 10px;
             border-left: thick solid orange;
         }
+        .zoom {
+            display:inline-block;
+            position: relative;
+        }
+
+        /* magnifying glass icon */
+        .zoom:after {
+            content:'';
+            display:block;
+            width:33px;
+            height:33px;
+            position:absolute;
+            top:0;
+            right:0;
+            /*background:url(icon.png);*/
+        }
+
+        .zoom img {
+            display: block;
+        }
+
+        .zoom img::selection { background-color: transparent; }
+
     </style>
 
     {{--End css style gh met link file oruulna--}}
@@ -698,6 +722,44 @@
     </div>
 </div>
 </div>
+    <div class="card m-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Рентген зураг</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                    <form method="post" action="{{url('doctor/treatment/xray')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="xray_user_id" value="{{$checkin->user_id}}">
+                        <input type="file" name="photo" accept="image/*"> <button class="btn btn-primary" type="submit">Оруулах</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="row m-3">
+                @foreach($checkin->user->photos->sortByDesc('id') as $photo)
+                    <div class="col-md-6">
+                        <span class='zoom' id='xray{{$photo->id}}'>
+                            <img src='{{url('img/uploads/'.$photo->path)}}' width='100%' alt='Daisy on the Ohoopee'/>
+                            <p>{{$photo->created_at}}</p>
+                        </span>
+                        <script>
+                            $(document).ready(function() {
+                                $('#xray{{$photo->id}}').zoom({magnify: 2});
+                            })
+                        </script>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#ex1').zoom({magnify: 2});
+        })
+    </script>
 </div><!-- Tooth images ending-->
 <div class="col-md-3">
     <select class="form-control" onchange="location = this.value;">
@@ -1162,6 +1224,7 @@ function singleTreatmentWithLimit() {
 <script src="{{asset('js/vendor/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/vendor/progressbar.min.js')}}"></script>
 <script src="{{asset('js/vendor/jquery.barrating.min.js')}}"></script>
+<script src="{{asset('js/vendor/jquery.zoom.min.js')}}"></script>
 <script src="{{asset('js/vendor/select2.full.js')}}"></script>
 <script src="{{asset('js/vendor/nouislider.min.js')}}"></script>
 <script src="{{asset('js/vendor/bootstrap-datepicker.js')}}"></script>

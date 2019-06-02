@@ -96,6 +96,8 @@ Route::get('/admin/users','AdminController@users');
 Route::get('/admin/user_check/{id}','AdminController@user_check');
 Route::get('/admin/search', 'AdminController@search');
 
+Route::get('/admin/treatment', 'AdminTreatmentController@index');
+
 
 //--ACCOUNTANT STARTING--
 Route::post('/accountant/transactions/date', 'AccountantTransactionController@date');
@@ -138,6 +140,7 @@ Route::post('/accountant/hospital/by_date','AccountantHospitalController@by_date
 //--RECEPTION STARTING--
 Route::get('/reception/user', 'ReceptionUserController@index');
 Route::post('/reception/user/store','ReceptionUserController@store');
+Route::post('/reception/user/update','ReceptionUserController@update');
 Route::get('/reception/user/register/{name}/{phone}/{appointment_id}', 'ReceptionUserController@fromAppointment');
 Route::get('/reception/search', 'ReceptionUserController@search');
 Route::get('/reception/time', 'ReceptionTimeController@time');
@@ -147,6 +150,7 @@ Route::post('/reception/time/add', 'ReceptionTimeController@store');
 Route::get('/reception/time/cancel','ReceptionTimeController@cancel');
 Route::get('/reception/time/{id}','ReceptionTimeController@appointment');
 Route::get('/reception/user_check/{id}','ReceptionUserController@user_check');
+Route::get('/reception/user_check/{id}/update','ReceptionUserController@user_update');
 Route::post('/reception/user_check/{id}','ReceptionUserController@user_check_edit');
 Route::get('/reception/user_check/{user_id}/{appointment_id}/check_in','ReceptionTimeController@check_in');
 Route::get('/reception/shifts', 'ReceptionShiftsController@index');
@@ -170,6 +174,7 @@ Route::get('/doctor/treatment/{user_id}/sogog','DoctorTreatmentController@sogog'
 Route::get('/doctor/treatment/{user_id}/mes','DoctorTreatmentController@mes');
 Route::post('/doctor/treatment/store','DoctorTreatmentController@store');
 Route::post('/doctor/treatment/finish','DoctorTreatmentController@finish');
+Route::post('/doctor/treatment/xray','DoctorTreatmentController@xray');
 Route::get('/doctor/treatment/history/{id}','DoctorTreatmentController@delete_history');
 
 Route::get('/doctor/dashboard/','DoctorController@dashboard');
