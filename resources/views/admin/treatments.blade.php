@@ -59,7 +59,47 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card m-1">
+                <div class="card-body">
+                    <h5>Шинэ эмчилгээ оруулах</h5>
+                    <form method="post" action="{{url('admin/treatment/store')}}">
+                        @csrf
+                        Нэр:
+                        <input class="form-control" type="text" name="name" required>
+                        <br>
+                        Хийгдэх хэлбэр:
+                        <select class="form-control" name="selection_type">
+                            <option value="0">Бүх шүд</option>
+                            <option value="1">Нэг шүд</option>
+                        </select>
+                        <br>
+                        Төрөл:
+                        <select class="form-control" name="category">
+                                <option value="0">Эмчилгээ</option>
+                                <option value="1">Гажиг засал</option>
+                                <option value="2">Согог засал</option>
+                                <option value="3">Мэс засал</option>
+                        </select>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                Үнэ:
+                                <input class="form-control" name="price" type="number" >
+                            </div>
+                            <div class="col-md-6">
+                                Үнийн хязгаар:
+                                <input class="form-control" name="limit" type="number" >
+                            </div>
+                        </div>
+
+                        <br>
+                        <button class="btn btn-primary" type="submit">Оруулах</button>
+                    </form>
+                </div>
+            </div>
+        </div>
    </div>
 @endsection
 @section('footer')

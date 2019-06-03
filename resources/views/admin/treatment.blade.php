@@ -65,11 +65,12 @@
                     <h5>{{$treatment->name}}</h5>
                     <form method="post" action="{{url('admin/treatment/update')}}">
                         @csrf
+                        <input type="hidden" name="treatment_id" value="{{$treatment->id}}">
                         Нэр:
-                        <input class="form-control" type="text" value="{{$treatment->name}}">
+                        <input class="form-control" type="text" name="name" value="{{$treatment->name}}">
                         <br>
                         Хийгдэх хэлбэр:
-                        <select class="form-control">
+                        <select class="form-control" name="selection_type">
                             @if($treatment->selection_type == 0)
                                 <option value="0">Бүх шүд</option>
                                 <option value="1">Нэг шүд</option>
@@ -80,7 +81,7 @@
                         </select>
                         <br>
                         Төрөл:
-                        <select class="form-control">
+                        <select class="form-control" name="category">
                             @if($treatment->category == 0)
                                 <option value="0">Эмчилгээ</option>
                                 <option value="1">Гажиг засал</option>
@@ -109,37 +110,57 @@
                         <div class="row">
                             <div class="col-md-6">
                                 Үнэ:
-                                <input class="form-control" type="text" value="{{$treatment->price}}">
+                                <input class="form-control" name="price" type="number" value="{{$treatment->price}}">
                             </div>
                             <div class="col-md-6">
                                 Үнийн хязгаар:
-                                <input class="form-control" type="text" value="{{$treatment->limit}}">
+                                <input class="form-control" name="limit" type="number" value="{{$treatment->limit}}">
                             </div>
                         </div>
 
                         <br>
-                        <button class="btn" type="submit">Засах</button>
+                        <button class="btn btn-primary" type="submit">Засах</button>
                     </form>
                 </div>
             </div>
             <div class="card m-1">
                 <div class="card-body">
                     <h5>Төрлүүд</h5>
-                    <form>
-                        @csrf
-                        <input class="form-control" type="text" placeholder="Нэр">
-                        <br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="Үнэ">
+                    @if(empty($treatmentSelection))
+                        <form method="post" action="{{url('admin/treatment/storeTreatmentSelection')}}">
+                            @csrf
+                            <input type="hidden" name="s_treatment_id" value="{{$treatment->id}}">
+                            <input class="form-control" type="text" placeholder="Нэр" name="s_name">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Үнэ" name="s_price" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Үнийн хязгаар" name="s_limit">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="Үнийн хязгаар">
+                            <br>
+                            <button class="btn btn-primary" type="submit">Нэмэх</button>
+                        </form>
+                    @else
+                        <form method="post" action="{{url('admin/treatment/updateTreatmentSelection')}}">
+                            @csrf
+                            <input type="hidden" name="treatment_selection_id" value="{{$treatmentSelection->id}}">
+                            <input class="form-control" type="text" placeholder="Нэр" name="s_u_name" value="{{$treatmentSelection->name}}">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Үнэ" name="s_u_price" value="{{$treatmentSelection->price}}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="number" class="form-control" placeholder="Үнийн хязгаар" value="{{$treatmentSelection->limit}}" name="s_u_limit">
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <button class="btn">Нэмэх</button>
-                    </form>
+                            <br>
+                            <button class="btn btn-primary" type="submit">Засах</button>
+                        </form>
+                    @endif
                     <br>
                     <table class="table">
                         <thead>
@@ -150,7 +171,7 @@
                          <tbody>
                          @foreach($treatment->treatmentSelection as $selection)
                          <tr>
-                             <td>{{$selection->name}}</td>
+                             <td><a href="{{url('admin/treatment/'. $treatment->id .'/' . $selection->id)}}">{{$selection->name}}</a></td>
                              <td>@if($selection->price != null){{$selection->price}}₮@endif</td>
                              <td>@if($selection->limit != null ){{$selection->limit}}₮@endif</td>
                          </tr>

@@ -97,7 +97,12 @@ Route::get('/admin/user_check/{id}','AdminController@user_check');
 Route::get('/admin/search', 'AdminController@search');
 
 Route::get('/admin/treatment', 'AdminTreatmentController@index');
+Route::post('/admin/treatment/store', 'AdminTreatmentController@store');
+Route::post('/admin/treatment/storeTreatmentSelection', 'AdminTreatmentController@storeTreatmentSelection');
+Route::post('/admin/treatment/updateTreatmentSelection', 'AdminTreatmentController@updateTreatmentSelection');
+Route::post('/admin/treatment/update', 'AdminTreatmentController@update');
 Route::get('/admin/treatment/{id}', 'AdminTreatmentController@edit');
+Route::get('/admin/treatment/{id}/{s_id}', 'AdminTreatmentController@editTreatmentSelection');
 
 
 //--ACCOUNTANT STARTING--

@@ -39,13 +39,13 @@ class AccountantTransactionController extends Controller
         $end_date = strtotime('Today');
         return redirect('/accountant/transactions');
     }
-    public function delete(Request $request){
-        $trans = Transaction::find($request['transaction_id']);
-        $log = Log::create(['type'=>0,'type_id'=>$request['transaction_id'],'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['description']]);
-        $trans->delete();
-        return redirect('/accountant/transactions');
-
-    }
+//    public function delete(Request $request){
+//        $trans = Transaction::find($request['transaction_id']);
+//        $log = Log::create(['type'=>0,'type_id'=>$request['transaction_id'],'user_id'=>Auth::user()->id,'action_id'=>0,'description'=>$request['description']]);
+//        $trans->delete();
+//        return redirect('/accountant/transactions');
+//
+//    }
 
     public function search($start_date, $end_date) {
         $transactions = Transaction::all()->whereBetween('created_at', [date('Y-m-d', $start_date), date('Y-m-d', $end_date)])->sortByDesc('id');

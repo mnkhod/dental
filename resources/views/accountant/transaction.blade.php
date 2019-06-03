@@ -104,7 +104,6 @@
                 <form id="form" action="{{url('/accountant/transactions/edit')}}" method="post">
 
                 <div class="modal-body">
-
                         @csrf
                         <div class="form-group">
                             <label>Үнэ</label>
@@ -123,7 +122,7 @@
                     </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
-                            <textarea required name="description" id="description" class="form-control" rows="2"></textarea>
+                            <textarea required name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Тайлбар</label>
@@ -351,7 +350,7 @@
                                     <th>Тайлбар</th>
                                     <th>Хугацаа</th>
                                     <th>Хэн</th>
-                                    {{--<th>Үйлдэл</th>--}}
+                                    <th>Үйлдэл</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -365,15 +364,15 @@
                                             байхгүй @endif</td>
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
-                                        {{--<td class="text-center">--}}
-                                            {{--<a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',--}}
-                                                    {{--'{{$transaction->price}}', '{{$transaction->description}}')">--}}
-                                                {{--<i class="iconsmind-Pencil"></i>--}}
-                                            {{--</a>--}}
+                                        <td class="text-center">
+                                            <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',
+                                                    '{{$transaction->price}}', '{{$transaction->description}}')">
+                                                <i class="iconsmind-Pencil"></i>
+                                            </a>
                                             {{--<a onclick="deleteTransaction({{$transaction->id}})">--}}
                                                 {{--<i class="simple-icon-trash"></i>--}}
                                             {{--</a>--}}
-                                        {{--</td>--}}
+                                        </td>
                                         <?php $i++;?>
                                     </tr>
                                 @endforeach
@@ -402,10 +401,10 @@
     </script>
 
     <script>
-        function deleteTransaction(id) {
-            document.getElementById('transactionHidden').value = id;
-            $("#deleteTransaction").modal();
-        }
+        // function deleteTransaction(id) {
+        //     document.getElementById('transactionHidden').value = id;
+        //     $("#deleteTransaction").modal();
+        // }
     </script>
     <script src="{{asset('plugin/datatables/jquery.dataTables.min.js')}}   "></script>
     <script src="{{asset('plugin/datatables/dataTables.bootstrap4.min.js')}}"></script>
