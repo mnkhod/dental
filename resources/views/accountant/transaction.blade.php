@@ -365,10 +365,12 @@
                                         <td>{{$transaction->created_at}}</td>
                                         <td>{{\App\User::find($transaction->created_by)->name}}</td>
                                         <td class="text-center">
+                                            @if($transaction->created_by == \Illuminate\Support\Facades\Auth::user()->id)
                                             <a onclick="editTransaction('{{$transaction->id}}', '{{$transaction->type}}','@if(!empty($transaction->typeOut)) {{$transaction->typeOut->name}}@endif',
                                                     '{{$transaction->price}}', '{{$transaction->description}}')">
                                                 <i class="iconsmind-Pencil"></i>
                                             </a>
+                                            @endif
                                             {{--<a onclick="deleteTransaction({{$transaction->id}})">--}}
                                                 {{--<i class="simple-icon-trash"></i>--}}
                                             {{--</a>--}}
