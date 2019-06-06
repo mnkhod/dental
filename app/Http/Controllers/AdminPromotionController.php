@@ -40,4 +40,18 @@ class AdminPromotionController extends Controller
         }
         return view('admin.promotion_check',compact('promotions','prom','used','check_in','user','sum'));
     }
+    public function promotion_edit_index($id){
+        $prom = Promotion::find($id);
+        return view('admin.promotion_edit',compact('prom'));
+    }
+    public function promotion_edit($id, Request $request){
+        $prom  = Promotion::find($id);
+        $prom->percentage = $request['percentage'];
+        $prom->promotion_code = $request['promotion_code'];
+        $prom->promotion_name = $request['promotion_name'];
+        $date = date('Y-m-d', strtotime($request['promotion_end_date']));
+        $prom->promotion_end_date = $date;
+        $prom->save();
+        return redirect('/admin/promotion');
+    }
 }
