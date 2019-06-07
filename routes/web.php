@@ -62,6 +62,10 @@ Route::post('/admin/staff/date', 'AdminStaffController@date');
 Route::get('/admin/promotion','AdminPromotionController@index');
 Route::post('/admin/promotion/add','AdminPromotionController@store');
 Route::get('/admin/promotion_check/{id}','AdminPromotionController@promotion_check');
+Route::get('/admin/promotion_edit_index/{id}','AdminPromotionController@promotion_edit_index');
+Route::post('/admin/promotion_edit_index/{id}','AdminPromotionController@promotion_edit_index');
+Route::get('/admin/promotion_edit/{id}','AdminPromotionController@promotion_edit');
+Route::post('/admin/promotion_edit/{id}','AdminPromotionController@promotion_edit');
 
 Route::get('/admin/product','AdminProductController@product');
 Route::get('/admin/product/{id}','AdminProductController@show');

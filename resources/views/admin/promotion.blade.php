@@ -73,6 +73,7 @@
                             <th>Нэр</th>
                             <th>Хувь</th>
                             <th>Дуусах хугацаа</th>
+                            <th>Үйлдэл</th>
                         </tr>
                         <?php $id =1?>
                         @foreach($promotions as $promotion)
@@ -82,6 +83,9 @@
                             <td>{{$promotion->promotion_name}}</td>
                             <td>{{$promotion->percentage}}%</td>
                             <td>{{$promotion->promotion_end_date}}</td>
+                            <td><a href="{{url('/admin/promotion_edit_index/'.$promotion->id)}}">
+                                    <i class="iconsmind-Pencil"></i>
+                                </a></td>
                         </tr>
                             <?php $id = $id +1?>
                         @endforeach
