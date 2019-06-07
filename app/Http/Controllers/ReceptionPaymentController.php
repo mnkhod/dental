@@ -95,8 +95,11 @@ class ReceptionPaymentController extends Controller
         $request->validate([
             'price'=>'required'
         ]);
-        if($lease->price < $request['price'])
-            $lease->price = $lease->price - $request['price'];
+        if($lease->price < $request['price']) {
+            return redirect()->back();
+        }
+
+        $lease->price = $lease->price - $request['price'];
         $lease->save();
         Transaction::create(['price'=>$request['price'],'type'=>4,'type_id'=>$request['checkin_id'],'description'=>'Зээлийн үлдэгдэл төлбөр.','created_by'=>Auth::user()->id]);
         $checkin = CheckIn::find($request['checkin_id']);
