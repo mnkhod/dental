@@ -37,25 +37,25 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{url('reception/time/add')}}" method="post">
+                <form id="form111" action="{{url('reception/time/add')}}" method="post">
                     <div class="modal-body">
                         @csrf
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Нэр:</label>
                             <div class="col-sm-8">
-                                <input name="name" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->name}}" readonly @endif>
+                                <input id="ner" name="name" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->name}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Утасны дугаар:</label>
                             <div class="col-sm-8">
-                                <input name="phone" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
+                                <input id="utas" name="phone" autocomplete="off" type="text" class="form-control" placeholder="" @if(!empty($user))value="{{$user->phone_number}}" readonly @endif>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label text-right">Хугацаа (цагаар):</label>
                             <div class="col-sm-8">
-                                <input name="hours" autocomplete="off" type="number" class="form-control" placeholder="">
+                                <input name="hours" id="hugatsaa" autocomplete="off" type="number" class="form-control" placeholder="">
                             </div>
                         </div>
                         <input type="hidden" name="user_id" @if(!empty($user)) value="{{$user->id}}" @else value="0" @endif>
@@ -64,7 +64,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
+                        <button type="button" onclick="validation(document.getElementById('shiftInput').value)" class="btn btn-primary">ЦАГ ЗАХИАЛАХ</button>
                     </div>
                 </form>
             </div>
@@ -106,9 +106,9 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-8 input-group">
-                            <input  name="code" autocomplete="off" type="password" class="form-control input-sm"
+                            <input required name="code" autocomplete="off" type="password" class="form-control input-sm"
                                    placeholder="Нууц үг">
-                            <input  name="description" autocomplete="off" type="text"
+                            <input required name="description" autocomplete="off" type="text"
                                    class="form-control input-sm"
                                    placeholder="Тайлбар">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
@@ -308,22 +308,22 @@
         function validation(shift_id) {
 
             // Backend bolon Frontend hosluultiin gaikhamshig
-
-            @foreach($shifts as $shift)
-                var shift{{$shift->id}} = @if($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 17, 18, 19, 20, 21, 22, 23] @elseif($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23] @else [1, 2, 3, 4, 5, 6, 7, 8, 21, 22, 23] @endif ;
-                @foreach ($shift->appointments as $appointment)
-                    @for ($i = $appointment->start; $i< $appointment->end; $i++)
-                        shift{{$shift->id}}.push({{$i}});
-                    @endfor
-                @endforeach
-                console.log(shift{{$shift->id}});
+                    @foreach($shifts as $shift)
+            var shift{{$shift->id}} = @if($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 17, 18, 19, 20, 21, 22, 23] @elseif($shift->shift_id == 0) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 21, 22, 23] @else [1, 2, 3, 4, 5, 6, 7, 8, 21, 22, 23] @endif ;
+            @foreach ($shift->appointments as $appointment)
+            @for ($i = $appointment->start; $i< $appointment->end; $i++)
+            shift{{$shift->id}}.push({{$i}});
+            @endfor
             @endforeach
+            console.log(shift{{$shift->id}});
+                    @endforeach
             var shiftName = "shift" + shift_id;
             var check = [];
             var q = [];
             var d = document.getElementById("ner").value;
             var ut = document.getElementById("utas").value;
             var tsag = document.getElementById("hugatsaa").value;
+            console.log(tsag)
             for (i = 0; i <= tsag-1; i++) {
                 var int = parseInt(mTime);
                 check.push(int + i);
@@ -332,12 +332,14 @@
             console.log(q);
             if (d === "") {
                 document.getElementById('ner').classList.add('border-danger');
-            } else if (tsag >= 1 && tsag !== "" && q.includes(true) === true) {
-                document.getElementById('hugatsaa').classList.add('border-danger');
             } else if (ut.length !== 8) {
                 document.getElementById('utas').classList.add('border-danger');
+            } else if (tsag < 1 || tsag === "" || q.includes(true) === true) {
+                document.getElementById("hugatsaa").classList.add('border-danger');
             } else {
                 document.getElementById("form111").submit();
+                // console.log(tsag.value)
+
             }
 
         }

@@ -117,10 +117,7 @@
 
                         <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters"
                                   data-val-length-max="100000" id="info" name="info" placeholder="Тайлбар">{{old('info')}}</textarea>
-                        <br><br>
-                        <h5 class="mb-12">Зураг оруулах</h5>
 
-                        <input type="file" name="photo">
 
 
                         <div class="form-group row mb-0">

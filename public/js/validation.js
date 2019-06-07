@@ -123,53 +123,26 @@ function validate() {
         var b = 1;
         var lis = [];
 
-        // for(i=0; i < reglet.length; i++){
-        //     var checker1=0;
-        //     for(var x=0; x<reglet.length; x++){
-        //         if(regg.charAt(0) !== reglet[x].charAt(0) || regg.charAt(1) !== reglet[x].charAt(0)){
-        //             a = 0;
-        //             console.log(a);
-        //         }
-        //     }
-                // if (checker1===0) {
-                //     a=0;
-                // }
-            // }
         console.log(regg[0])
-       // for(i in reglet){
         var checker1 = 0;
         if(reggg.includes(regg[0]) && reggg.includes(regg[1])){
             a = 1
             console.log(a)
         }
-        //}
 
-        //     for(var x in reglet){
-        //         if (hh === 8 && regg[0] === reglet[i] && regg[1] === reglet[x]){
-        //              a = 0;
-        //         }
-        //     }
-        //
-        // }
 
         for(z=0; z < hh.length; z++){
             var checker=0;
             for(var k=0; k<numlet.length; k++){
                 if(hh.charAt(z) === numlet[k].charAt(0)){
                     checker = 1;
-                    // console.log(b)
-                    // lis.push("1")
-                // }else{
-                //     // lis.push("0")
                 }
             }
-            if (checker===0) {
+            if (checker===0 || checker === 1 && hh.length !== 8) {
                 b=0;
             }
-            // console.log(b);
 
         }
-        // console.log(lis)
         if(a*b === 1){
             return true;
         }

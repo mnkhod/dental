@@ -43,7 +43,7 @@ class ReceptionUserController extends Controller
             $request['email'] = 'nomail@gmail.com';
         $birth_date_request = strtotime($request['birth_date']);
         $birth_date = date('Y-m-d', $birth_date_request);
-        $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);
+        $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['info'],'password'=>$pass,'sex'=>$request['sex']]);
         if($request['appointment_id']) {
             $appointment = Appointment::find(intval($request['appointment_id']));
             $appointment->user_id = $user->id;
@@ -63,7 +63,7 @@ class ReceptionUserController extends Controller
         $user->sex = $request['sex'];
         $user->birth_date = date('Y-m-d', strtotime($request['birth_date']));
         $user->location = $request['location'];
-        $user->description = $request['description'];
+        $user->description = $request['info'];
         $user->save();
         return redirect()->back();
     }

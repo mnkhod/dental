@@ -177,7 +177,7 @@
 
                        <label for="inputState">Тайлбар</label>
 
-                       <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info"  placeholder="Тайлбар">{{$user->desciption}}</textarea>
+                       <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info"  placeholder="Тайлбар">{{$user->description}}</textarea>
 
 
                        <div class="form-group row mb-0">

@@ -121,9 +121,9 @@
                     <div class="modal-footer">
                         <div class="col-md-8 input-group">
                             <input id="ps" name="code" autocomplete="off" type="password" class="form-control input-sm"
-                                   placeholder="Нууц үг">
+                                   placeholder="Нууц үг" required>
                             <input id="ds" name="description" autocomplete="off" type="text"
-                                   class="form-control input-sm"
+                                   class="form-control input-sm" required
                                    placeholder="Тайлбар">
                             <button class="btn btn-light" type="submit" style="border-radius: 0px">
                                 Цуцлах
@@ -323,6 +323,7 @@
                     var d = document.getElementById("ner").value;
                     var ut = document.getElementById("utas").value;
                     var tsag = document.getElementById("hugatsaa").value;
+                    console.log(tsag)
                     for (i = 0; i <= tsag-1; i++) {
                         var int = parseInt(mTime);
                         check.push(int + i);
@@ -331,12 +332,14 @@
                     console.log(q);
                     if (d === "") {
                         document.getElementById('ner').classList.add('border-danger');
-                    } else if (tsag >= 1 && tsag !== "" && q.includes(true) === true) {
-                        document.getElementById('hugatsaa').classList.add('border-danger');
                     } else if (ut.length !== 8) {
                         document.getElementById('utas').classList.add('border-danger');
+                    } else if (tsag < 1 || tsag === "" || q.includes(true) === true) {
+                        document.getElementById("hugatsaa").classList.add('border-danger');
                     } else {
                         document.getElementById("form111").submit();
+                        // console.log(tsag.value)
+
                     }
 
                 }

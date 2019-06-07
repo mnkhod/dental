@@ -23,8 +23,7 @@ class AdminPromotionController extends Controller
         return view('admin.promotion',compact('promotions','last_promotion'));
     }
     public function store(Request $request){
-        $end_date = strtotime($request['promotion_end_date']);
-        $promotion_end_date = date('Y-m-d', $end_date);
+        $promotion_end_date = date('Y-m-d', strtotime($request['promotion_end_date']));
         $promotion = Promotion::create(['promotion_code'=>$request['promotion_code'],'promotion_name'=>$request['promotion_name'],'percentage'=>$request['percentage'],'promotion_end_date'=>$promotion_end_date]);
         return redirect('/admin/promotion');
     }

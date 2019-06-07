@@ -107,7 +107,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Үнэ</label>
-                            <input type="number" class="form-control" id="priceholder" name="price">
+                            <input type="number" required class="form-control" id="priceholder" name="price">
                         </div>
                     <div class="form-group">
                         <label>Төрөл</label>
@@ -136,13 +136,13 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Болих</button>
                     <button type="submit" class="btn btn-primary">Хадгалах</button>
-
                 </div>
                 </form>
             </div>
         </div>
     </div>
     <!--duusah-->
+
 
 
     <div class="row"><!-- row-->
@@ -186,11 +186,11 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <input id="pricee" name="price" class="form-control mb-3" type="number" placeholder="Үнийн дүн"
+                                <input id="pricee" name="price" class="form-control mb-3" required type="number" placeholder="Үнийн дүн"
                                        autocomplete="off">
-                                <input id="descrr"name="description" class="form-control mb-3" type="text" placeholder="Тайлбар"
+                                <input id="descrr"name="description" class="form-control mb-3" required type="text" placeholder="Тайлбар"
                                        autocomplete="off">
-                                <button onclick="price()" class="btn btn-primary btn-block" type="button">ЗАРЛАГА ОРУУЛАХ</button>
+                                <button class="btn btn-primary btn-block" type="submit">ЗАРЛАГА ОРУУЛАХ</button>
                             </form>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн"
+                                <input class="form-control mb-3" required name="price" type="number" placeholder="Үнийн дүн"
                                        autocomplete="off">
                                 <button class="btn btn-primary btn-block" type="submit">ОРУУЛАХ</button>
                             </form>
@@ -220,9 +220,9 @@
                         <div class="card-body">
                             <form action="{{url('accountant/transactions/income')}}" method="post">
                                 @csrf
-                                <input class="form-control mb-3" name="price" type="number" placeholder="Үнийн дүн"
+                                <input class="form-control mb-3" required name="price" type="number" placeholder="Үнийн дүн"
                                        autocomplete="off">
-                                <input class="form-control mb-3" name="description" type="text" placeholder="Тайлбар"
+                                <input class="form-control mb-3" required name="description" type="text" placeholder="Тайлбар"
                                        autocomplete="off">
                                 <button class="btn btn-primary btn-block">ОРЛОГО ОРУУЛАХ</button>
                             </form>

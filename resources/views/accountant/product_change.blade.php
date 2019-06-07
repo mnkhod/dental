@@ -27,7 +27,7 @@
                     <form id = "form3" class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
                         @csrf
                         <div class=" mb-2 mr-sm-2">
-                            <input id = "br" name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                            <input  name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
                                    placeholder="Барааны нэр">
                         </div>
                         <button onclick="baraa()" type="button" class="btn btn-outline-primary mb-2" style="border-radius: 0px">

@@ -237,7 +237,7 @@
         <input type="hidden" name="treatment_selection_id" value="" id="treatmentSelectionId">
         <input type="hidden" name="tooth_id" value="" id="toothId">
         <input type="hidden" name="user_id" value="{{$checkin->user_id}}" id="userId">
-        <input type="hidden" name="value_id" value="" id="valueId">
+        <input type="hidden" name="value_id" value="1" id="valueId">
         <input type="hidden" name="price" value="" id="treatmentPrice">
         <input type="hidden" name="checkin_id" value="{{$checkin->id}}" id="checkin_id">
     </form>
@@ -955,22 +955,6 @@ function reset() {
 
 
 }
-function decaySubmit() {
-    console.log("Decay");
-    var decayLevel = document.getElementsByName('decayLevel');
-    for(var i=0; i<decayLevel.length; i++) {
-        if(decayLevel[i].checked) {
-            document.getElementById('treatmentSelectionId').value = i+1;
-        }
-    }
-    if (document.getElementById('suunShudToggle').checked) {
-        document.getElementById('treatmentSelectionId').value = parseInt(document.getElementById('treatmentSelectionId').value) + 4;
-    }
-    document.getElementById('treatmentId').value = 1;
-    document.getElementById('valueId').value = document.getElementById('hiddenDecayChart').value;
-
-    document.getElementById('treatmentForm').submit();
-}
 
 function changeStyle(ruby) {
     //----VALIDATION-----
@@ -1078,6 +1062,7 @@ function sumList(array) {
     }
     return sum;
 }
+var decayValidation;
 
 function myFunction(ruby) {
 //            Validation start
@@ -1109,12 +1094,36 @@ function myFunction(ruby) {
         }
         //            sumList
     var total = sumList(selectedArea);
+    decayValidation = total;
 
 //            hidden value
     var x = document.getElementById('hiddenDecayChart').value = total;
     console.log(ruby);
     document.getElementById("toothId").value = tooths;
 }
+
+    function decaySubmit() {
+        console.log("Decay");
+        var decayLevel = document.getElementsByName('decayLevel');
+        for (var i = 0; i < decayLevel.length; i++) {
+            if (decayLevel[i].checked) {
+                document.getElementById('treatmentSelectionId').value = i + 1;
+            }
+        }
+        if (document.getElementById('suunShudToggle').checked) {
+            document.getElementById('treatmentSelectionId').value = parseInt(document.getElementById('treatmentSelectionId').value) + 4;
+        }
+        document.getElementById('treatmentId').value = 1;
+        document.getElementById('valueId').value = document.getElementById('hiddenDecayChart').value;
+
+        if (decayValidation > 0){
+            document.getElementById('treatmentForm').submit();
+        } else {
+            alert("Та ломбоо сонгоно уу.")
+        }
+        console.log(decayLevel);
+    }
+
 
 //                                integer to binary
 //Polygon
