@@ -224,6 +224,7 @@
                                             <th>Ширхэг</th>
                                             <th>Үнийн дүн</th>
                                             <th>Хэн</th>
+                                            <th>Хэзээ</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -239,6 +240,7 @@
                                                     {{--                                                    <td>{{\App\Transaction::where('type',7)->where('type_id',$history->id)->first()}} ₮</td>--}}
                                                 @endif
                                                 <td>{{\App\User::find($history->created_by)->name}}</td>
+                                                <td>{{$history->created_at}}</td>
                                             </tr>
                                             <?php $i++;?>
                                         @endforeach

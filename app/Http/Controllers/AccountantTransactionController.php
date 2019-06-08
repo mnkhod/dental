@@ -54,7 +54,9 @@ class AccountantTransactionController extends Controller
         return view('accountant.transaction', compact('transactions', 'roles', 'start_date', 'end_date', 'types'));
     }
 
+    public function updateOutcomeType(Request $request) {
 
+    }
 
     public function store(Request $request) {
         Transaction::create(['price'=> -1*$request['price'], 'type'=>$request['type'], 'type_id'=>0, 'description'=>$request['description'],'created_by'=>Auth::user()->id]);
