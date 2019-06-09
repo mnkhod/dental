@@ -22,12 +22,7 @@
             <div class="card ">
                 <div class="card-body">
                     <div class="text-center">
-                        @if($user->photos->first() == '')
-                            Зураггүй
-                        @else
-                            <img width="200px" style="border-radius: 100%"
-                                 src="{{asset('/img/uploads/'.$user->photos->first()->path)}}">
-                        @endif
+
                         <br>
                         <br>
                         <p class="list-item-heading mb-1">

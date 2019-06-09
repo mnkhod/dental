@@ -155,6 +155,21 @@
                     <p class="lead text-center">{{$check_ins->count()}} удаа</p>
                 </div>
             </a>
+            <br>
+            @foreach($check_ins as $check_in)
+                <?php
+                $lease = \App\Lease::where('checkin_id',$check_in->id)->first();
+               ?>
+            @if(!empty($lease))
+            <a href="#" class="card">
+                <div class="card-body text-center">
+                    <i class="iconsmind-Hospital"></i>
+                    <p class="card-text mb-0">Зээлтэй эсэх </p>
+                    <p class="lead text-center">Төлөх ёстой дүн{{$lease->total}}Зээлийн үлдэгдэл {{$lease->price}}</p>
+                </div>
+            </a>
+             @endif
+            @endforeach
         </div>
     </div>
 @endsection

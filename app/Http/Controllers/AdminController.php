@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\CheckIn;
+use App\Lease;
 use App\Log;
 use App\ProductHistory;
 use App\Products;
@@ -97,7 +98,9 @@ class AdminController extends Controller
     public function user_check($id){
         $user = User::find($id);
         $check_ins = CheckIn::all()->where('state','>=',3)->where('user_id',$id);
+
         return view('admin.user_check',compact('user','check_ins'));
+
     }
 
     public function hospital(){
