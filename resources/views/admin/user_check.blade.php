@@ -164,8 +164,9 @@
             <a href="#" class="card">
                 <div class="card-body text-center">
                     <i class="iconsmind-Hospital"></i>
-                    <p class="card-text mb-0">Зээлтэй эсэх </p>
-                    <p class="lead text-center">Төлөх ёстой дүн{{$lease->total}}Зээлийн үлдэгдэл {{$lease->price}}</p>
+                    Зээлтэй эсэх <br>
+                    Төлөх ёстой дүн <b>{{$lease->total}}₮</b> <br>Зээлийн үлдэгдэл <b>{{$lease->price}}₮</b><br>
+                    {{$lease->created_at}}<br>
                 </div>
             </a>
              @endif

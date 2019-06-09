@@ -106,10 +106,10 @@
                                     <span class="text-muted text-small d-block">Нэмэх, хасах товч дээр дарна материал нэмж хасна</span>
                                     <form id ="form1" action="{{url('/accountant/change_product/'.$specific_product->id)}}">
                                         @csrf
-                                        <input value="{{$specific_product->name}}" type="text" name="name" class="form-control mb-3" placeholder="Материалын нэр">
-                                        <input name="quantity" id="too"  class="form-control mb-3"
+                                        <input required value="{{$specific_product->name}}" type="text" name="name" class="form-control mb-3" placeholder="Материалын нэр">
+                                        <input required name="quantity"  class="form-control mb-3"
                                                value="{{$specific_product->quantity}}" type="number" placeholder="Тоо ширхэг">
-                                        <button onclick="numa()" class="btn btn-primary btn-block"
+                                        <button class="btn btn-primary btn-block"
                                                 type="submit">
                                             Хадгалах
                                         </button>
@@ -141,13 +141,13 @@
                                                               method="post">
                                                             @csrf
                                                             <span>Тоо ширхэг</span>
-                                                            <input name="id" type="hidden" value="{{$specific_product->id}}"
+                                                            <input required name="id" type="hidden" value="{{$specific_product->id}}"
                                                                    id="hidden">
-                                                            <input name="quantity" id="too"  class="form-control mb-3"
+                                                            <input required name="quantity" id="too"  class="form-control mb-3"
                                                                    type="number" placeholder="Тоо ширхэг">
 
                                                             <span>Үнийн дүн</span>
-                                                            <input name="price" id="une" class="form-control mb-3"
+                                                            <input required name="price" id="une" class="form-control mb-3"
                                                                    type="number"
                                                                    placeholder="Үнийн дүн">
 

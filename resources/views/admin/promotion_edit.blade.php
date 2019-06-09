@@ -66,11 +66,11 @@
                     </div>
                     <form id ="form1" action="{{url('/admin/promotion_edit/'.$prom->id)}}">
                         @csrf
-                        <input value="{{$prom->promotion_code}}" type="text" name="promotion_code" class="form-control mb-3" placeholder="Материалын нэр">
-                        <input name="promotion_name" id="too"  class="form-control mb-3"
+                        <input required value="{{$prom->promotion_code}}" type="text" name="promotion_code" class="form-control mb-3" placeholder="Материалын нэр">
+                        <input required name="promotion_name" id="too"  class="form-control mb-3"
                                value="{{$prom->promotion_name}}" type="text">
-                        <input value="{{$prom->percentage}}" type="number" name="percentage" class="form-control mb-3">
-                        <input id="date" name="promotion_end_date" autocomplete="off" class="form-control datepicker"
+                        <input required value="{{$prom->percentage}}" type="number" name="percentage" class="form-control mb-3">
+                        <input required id="date" name="promotion_end_date" autocomplete="off" class="form-control datepicker"
                                placeholder="Эхлэл" value="{{date('m/d/Y', strtotime($prom->promotion_end_date))}}">
                         <br>
                         <button onclick="numa()" class="btn btn-primary btn-block"
