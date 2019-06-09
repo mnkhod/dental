@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Log;
 use App\ProductHistory;
 use App\Products;
 use App\Promotion;
@@ -64,6 +65,8 @@ class AccountantProductController extends Controller
     }
     public function change_product($id, Request $request){
         $product = Products::find($id);
+        $user = User::find(Auth::user()->id);
+        Log::create(['type'=>2,'type_id'=>$product->id,'user_id'=>Auth::user()->id,'action_id'=>1,'description'=>$user->name.' '.$product->name.' материалыг '.$request['name'].' болгож өөрчлөв.'.' Тоо ширхэгийг '.$product->quantity.'-ээс '.$request['quantity'].' болгов.']);
         $product->quantity = $request['quantity'];
         $product->name = $request['name'];
         $product->save();
