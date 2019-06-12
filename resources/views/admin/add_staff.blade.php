@@ -45,7 +45,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="inputAddress2">Нэр</label>
-                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр" {{old('name')}}>
+                                    <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр" value="{{old('name')}}">
                                     <span id="fname_msg" style="color:red"></span>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Регистрийн дугаар</label>
-                                <input name="register" type="text" class="form-control" id="registernum"
+                                <input value="{{old('register')}}" name="register" type="text" class="form-control" id="registernum"
                                        placeholder="Регистрийн дугаараа оруулна уу">
                                 <span id="registernum_msg" style="color:red"></span>
                             </div>
@@ -114,7 +114,12 @@
                             <option value="4">Нягтлан бодогч</option>
                             <option value="5">Бусад</option>
                         </select><br>
-
+                        <div class="form-group">
+                            <label for="inputAddress2">Нууц үг</label>
+                            <input name="password" type="text" class="form-control" required
+                                   placeholder="Нууц үг оруулна уу">
+                        </div>
+                        <br>
                         <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters"
                                   data-val-length-max="100000" id="info" name="info" placeholder="Тайлбар">{{old('info')}}</textarea>
 

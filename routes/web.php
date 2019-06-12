@@ -52,8 +52,10 @@ Route::get('/admin/shifts', 'AdminTimeController@index');
 
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');
 Route::get('/admin/add_staff/fire/{id}','AdminController@fire');
+Route::get('/admin/add_staff/edit/{id}','AdminStaffController@edit');
 Route::get('/admin/add_staff','AdminController@index');
 Route::post('/admin/add_staff','AdminController@add_staff');
+Route::post('/admin/update_staff','AdminStaffController@update');
 Route::get('/admin/staff_check/{id}/{start_date}/{end_date}', 'AdminStaffController@search');
 Route::post('/admin/staff/by_month', 'AdminStaffController@by_month');
 Route::post('/admin/staff/date', 'AdminStaffController@date');

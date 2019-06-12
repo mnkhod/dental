@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\ItemHistory;
+use App\Log;
 use App\Role;
 use App\Transaction;
 use App\User;
@@ -51,6 +52,7 @@ class AccountantItemController extends Controller
     }
     public function change_item($id,Request $request){
         $product = Item::find($id);
+        Log::create(['type'=>4, 'type_id'=>$product->id, 'user_id'=>Auth::user()->id, 'action_id'=>1, 'description'=>'Бараа өөрчлөв: '. $product->name . '->' . $request['name'] . ' тоог ' . $product->quantity . '->' . $request['quantity']]);
         $product->name = $request['name'];
         $product->quantity = $request['quantity'];
         $product->price = $request['price'];

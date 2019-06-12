@@ -20,22 +20,6 @@
     </script>
     <div class="row">
         <div class="col-lg-5">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="mb-4">Шинэ бараа нэмэх</h5>
-
-                    <form id = "form3" class="form-inline" action="{{url('/accountant/add_product')}}" method="post">
-                        @csrf
-                        <div class=" mb-2 mr-sm-2">
-                            <input id = "br" name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"
-                                   placeholder="Барааны нэр">
-                        </div>
-                        <button onclick="baraa()" type="button" class="btn btn-outline-primary mb-2" style="border-radius: 0px">
-                            Шинэ бараа нэмэх
-                        </button>
-                    </form>
-                </div>
-            </div>
 
             <div class="card">
                 <div class="card-body">
@@ -44,8 +28,8 @@
                             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Хайх...">
                         </div>
                     </div>
-                    <h5 class="card-title">Барааны жагсаалт
-                        <br> <span class="text-muted text-small d-block">Барааны нэрэн дээр даран тоо болон үнийг өөрчилнө үү</span>
+                    <h5 class="card-title">Материалын жагсаалт
+                        <br> <span class="text-muted text-small d-block">Материалын нэрэн дээр даран тоо болон үнийг өөрчилнө үү</span>
                     </h5>
 
 
@@ -54,7 +38,7 @@
                         <thead>
                         <tr>
                             <th>Дугаар</th>
-                            <th>Барааны нэр</th>
+                            <th>Материалын нэр</th>
                             <th>Ширхэг</th>
                         </tr>
                         </thead>

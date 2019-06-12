@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('admin');
-//    }
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     //-------------
     //STAFF SECTION
@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function add_staff(Request $request){
 //        $pass = str_random('6');
 //        Twilio::message('+976'.$request['phone_number'],'MonFamily шүдний эмнэлгийн систем. Таны нэвтрэх нэр:'.$request['email'].' '.'Таны нууц үг:'.$pass.'');
-        $pass = 'dragon';
+        $pass = $request['password'];
         $pass = bcrypt($pass);
         $validatedData = $request->validate([
             'last_name' => 'required|max:255',
@@ -41,21 +41,12 @@ class AdminController extends Controller
             'name'=>'required|max:255',
             'sex'=>'required',
             'register'=>'required|unique:users|max:255',
-
         ]);
         $birth_date_request = strtotime($request['birth_date']);
         $birth_date = date('Y-m-d', $birth_date_request);
-        $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['description'],'password'=>$pass,'sex'=>$request['sex']]);
+        $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['info'],'password'=>$pass,'sex'=>$request['sex']]);
         $role = Role::create(['user_id'=>$user->id, 'role_id'=>$request['role'],'state'=>1]);
-        if ($photo = $request->file(['photo'])) {
-            $photo_name = time() . $photo->getClientOriginalName();
-            $photo->move('img/uploads', $photo_name);
-            $user->photos()->create(['path'=>$photo_name]);
-            return redirect('/admin/add_staff');
-        }
-        else{
-            return redirect('/admin/add_staff');
-        }
+        return redirect('/admin/add_staff');
     }
     //---------------
     //PRODUCT SECTION

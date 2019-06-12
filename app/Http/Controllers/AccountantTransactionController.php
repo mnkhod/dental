@@ -30,13 +30,11 @@ class AccountantTransactionController extends Controller
     }
 
     public function edit(Request $request) {
-        $transactions = Transaction::all()->where('created_at','>=', date('Y-m-d', strtotime('first day of this month')))->sortByDesc('id');
-        $roles = Role::all();
-        $specific = Transaction::find($request['transaction_id'])->update(['price'=>$request['price'],'description'=>$request['description'],'type'=>$request['transaction_edit_type']]);
-        $log = Log::create(['type'=>0,'type_id'=>$request['transaction_id'],'user_id'=>Auth::user()->id,'action_id'=>1,'description'=>$request['log_description']]);
-        $types = OutcomeCategory::all();
-        $start_date = strtotime('-30 Days');
-        $end_date = strtotime('Today');
+        $transaction = Transaction::find($request['transaction_id']);
+        Log::create(['type'=>0,'type_id'=>$transaction->id,'user_id'=>Auth::user()->id,'action_id'=>1,'description'=> 'Хэмжээ '
+            .$transaction->price.'₮ -> '.$request['price'].'₮ Тайлбар '.$transaction->description. ' -> '. $request['description'] . ' Төрөл: '
+            .OutcomeCategory::find($transaction->type)->name. ' -> '.OutcomeCategory::find($request['transaction_edit_type'])->name]);
+        $transaction->update(['price'=>$request['price'],'description'=>$request['description'],'type'=>$request['transaction_edit_type']]);
         return redirect('/accountant/transactions');
     }
 //    public function delete(Request $request){

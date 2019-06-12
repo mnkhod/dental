@@ -55,6 +55,7 @@
                             <th>Дугаар</th>
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
+                            <th>Үнэ</th>
 
 
                         </tr>
@@ -75,8 +76,9 @@
                                 </td>
                                 <td>
                                     <p class="text-muted">{{$product->quantity}}</p></td>
-
-
+                                <td>
+                                    {{$product->price}}₮
+                                </td>
                             </tr>
                         @endforeach
                         <script>

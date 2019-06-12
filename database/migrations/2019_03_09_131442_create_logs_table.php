@@ -18,6 +18,7 @@ class CreateLogsTable extends Migration
             $table->integer('type');
 //            0 transaction
 //            2 product
+//            4 item
 //            3 appointment
             $table->integer('type_id');
             $table->integer('user_id');

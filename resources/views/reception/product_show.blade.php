@@ -55,6 +55,7 @@
                             <th>Дугаар</th>
                             <th>Барааны нэр</th>
                             <th>Ширхэг</th>
+                            <th>Үнэ</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,6 +74,9 @@
                                 </td>
                                 <td>
                                     <p class="text-muted">{{$product->quantity}}</p>
+                                <td>
+                                    {{$product->price}}₮
+                                </td>
                             </tr>
                         @endforeach
                         <script>
@@ -163,11 +167,11 @@
 
                                                 <div class="card mb-4 text-left">
                                                     <div class="card-body">
-                                                        <form action="{{url('/reception/decrease_product')}}"
+                                                        <form action="{{url('/reception/decrease_product')}}" autocomplete="off"
                                                               method="post">
                                                             @csrf
 
-                                                            <input name="id" type="hidden" value="{{$specific_product->id}}"
+                                                            <input  name="id" type="hidden" value="{{$specific_product->id}}"
                                                                    id="hidden">
                                                             {{--<select class="form-control mb-3" name="user_id">--}}
                                                                 {{--@foreach($roles as $role)--}}
@@ -179,8 +183,8 @@
                                                             {{--</select>--}}
 
                                                             <span>Тоо ширхэг</span>
-                                                            <input name="quantity" class="form-control mb-3"
-                                                                   type="number" placeholder="Тоо ширхэг">
+                                                            <input required name="quantity" class="form-control mb-3"
+                                                                   type="number" placeholder="Тоо ширхэг" autocomplete="off">
                                                             <button class="btn btn-primary btn-block"
                                                                     type="submit">
                                                                 Хадгалах

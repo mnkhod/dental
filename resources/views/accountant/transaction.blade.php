@@ -124,11 +124,6 @@
                             <label>Тайлбар</label>
                             <textarea required name="description" id="descriptionholder" class="form-control" rows="2"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Тайлбар</label>
-                            <textarea required name="log_description" placeholder="Өөрчилж буй шалтгаан" class="form-control" rows="2"></textarea>
-                        </div>
-
 
                         <input type="hidden" name="transaction_id" id="transactionEditHidden" value="0">
 

@@ -23,8 +23,10 @@ class AdminPromotionController extends Controller
         return view('admin.promotion',compact('promotions','last_promotion'));
     }
     public function store(Request $request){
-        $promotion_end_date = date('Y-m-d', strtotime($request['promotion_end_date']));
-        $promotion = Promotion::create(['promotion_code'=>$request['promotion_code'],'promotion_name'=>$request['promotion_name'],'percentage'=>$request['percentage'],'promotion_end_date'=>$promotion_end_date]);
+        $date = explode('/', $request['promotion_end_date']);
+        $date = $date[2] . '-' . $date[0] . '-' . $date[1];
+        $promotion_end_date = $date;
+        Promotion::create(['promotion_code'=>$request['promotion_code'],'promotion_name'=>$request['promotion_name'],'percentage'=>$request['percentage'],'promotion_end_date'=>$promotion_end_date]);
         return redirect('/admin/promotion');
     }
     public function promotion_check($id){
@@ -48,7 +50,8 @@ class AdminPromotionController extends Controller
         $prom->percentage = $request['percentage'];
         $prom->promotion_code = $request['promotion_code'];
         $prom->promotion_name = $request['promotion_name'];
-        $date = date('Y-m-d', strtotime($request['promotion_end_date']));
+        $date = explode('/', $request['promotion_end_date']);
+        $date = $date[2] . '-' . $date[0] . '-' . $date[1];
         $prom->promotion_end_date = $date;
         $prom->save();
         return redirect('/admin/promotion');

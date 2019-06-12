@@ -19,54 +19,173 @@
     </script>
     <div class="row">
         <div class="col-md-3">
-            <div class="card ">
-                <div class="card-body">
-                    <div class="text-center">
 
-                        <br>
-                        <br>
-                        <p class="list-item-heading mb-1">
-                        <h3>{{$user->name}} {{$user->last_name}}</h3></p>
+                <div class="card ">
+                    <div class="card-body">
                         <div class="text-center">
-                            <p class="text-muted text-small mb-2">Утасны дугаар</p>
-                            <p class="mb-3">
-                                {{$user->phone_number}}
-                            </p>
-                            <p class="text-muted text-small mb-2">Цахим хаяг</p>
-                            <p class="mb-3">
-                                {{$user->email}}
-                            </p>
-                            <p class="text-muted text-small mb-2">Мэргэжил</p>
-                            <p class="mb-3">
-                                @if($user->role->role_id == 0)
-                                    Админ
-                                @elseif($user->role->role_id == 1)
-                                    Ресепшн
-                                @elseif($user->role->role_id == 2)
-                                    Эмч
-                                @elseif($user->role->role_id == 3)
-                                    Сувилагч
-                                @elseif($user->role->role_id == 4)
-                                    Нягтлан
+                            <p class="list-item-heading mb-1">
+                            <h3>{{$user->name}} {{$user->last_name}}
+                                <a href="{{url('/admin/add_staff/edit/'.$user->id)}}"><i class="iconsmind-Pencil"></i></a></h3></p>
+                            <div class="text-center">
+                                <p class="text-muted text-small mb-2">Утасны дугаар</p>
+                                <p class="mb-3">
+                                    {{$user->phone_number}}
+                                </p>
+                                <p class="text-muted text-small mb-2">Цахим хаяг</p>
+                                <p class="mb-3">
+                                    {{$user->email}}
+                                </p>
+                                <p class="text-muted text-small mb-2">Мэргэжил</p>
+                                <p class="mb-3">
+                                    @if($user->role->role_id == 0)
+                                        Админ
+                                    @elseif($user->role->role_id == 1)
+                                        Ресепшн
+                                    @elseif($user->role->role_id == 2)
+                                        Эмч
+                                    @elseif($user->role->role_id == 3)
+                                        Сувилагч
+                                    @elseif($user->role->role_id == 4)
+                                        Нягтлан
+                                    @else
+                                        Бусад
+                                    @endif
+                                </p>
+                                <p class="text-muted text-small mb-2">Тайлбар</p>
+                                <p class="mb-3">
+                                    {{$user->description}}
+                                </p>
+                                @if($user->role->state == 0)
+                                    Халагдсан
                                 @else
-                                    Бусад
                                 @endif
-                            </p>
-                            <p class="text-muted text-small mb-2">Тайлбар</p>
-                            <p class="mb-3">
-                                {{$user->description}}
-                            </p>
-                            @if($user->role->state == 0)
-                                Халагдсан
-                            @else
-                            @endif
-                            <a href="{{url('/admin/add_staff/fire/'.$user->id)}}"><button type="button" class="btn btn-sm btn-outline-primary ">Ажлаас гарсан</button></a>
+                                <a href="{{url('/admin/add_staff/fire/'.$user->id)}}"><button type="button" class="btn btn-sm btn-outline-primary ">Ажлаас гарсан</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
         <div class="col-md-9">
+            @if(!empty($update))
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-4">Ажилтны мэдээллэл засах</h5>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form action="{{url('/admin/update_staff')}}" method="post" id="form">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Овог</label>
+                                            <input name="last_name" type="text" class="form-control" id="lname" placeholder="Овог" value="{{$user->last_name}}">
+                                            <span id="lname_msg" style="color:red"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="inputAddress2">Нэр</label>
+                                            <input name="name" type="text" class="form-control" id="fname" placeholder="Нэр" value="{{$user->name}}">
+                                            <span id="fname_msg" style="color:red"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <label>Хүйс сонгох</label>
+                                        <select name="sex" id="inputState" class="form-control">
+                                            @if($user->sex==1)
+                                                <option value="1">Эм</option>
+                                                <option value="0">Эр</option>
+                                            @else
+                                                <option value="0">Эр</option>
+                                                <option value="1">Эм</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Төрсөн он сар</label>
+                                        <input name="birth_date" autocomplete="off" class="form-control datepicker"
+                                               id = "birth" placeholder="Төрсөн он сар" value="{{date( 'm/d/Y',strtotime($user->birth_date))}}">
+                                        <span id="date_msg" style="color:red"></span>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Цахим хаяг</label>
+                                        <input name="email" type="email" class="form-control" id="email"
+                                               placeholder="Цахим хаягаа оруулна уу" value="{{$user->email}}">
+                                        <span id="email_msg" style="color:red"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Регистрийн дугаар</label>
+                                        <input name="register" type="text" class="form-control" id="registernum"
+                                               placeholder="Регистрийн дугаараа оруулна уу" value="{{$user->register}}">
+                                        <span id="registernum_msg" style="color:red"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Утасны дугаар</label>
+                                    <input name="phone_number" type="text" class="form-control" id="phone" placeholder="Утасны дугаараа оруулна уу"
+                                           value="{{$user->phone_number}}">
+                                    <span id="phone_msg" style="color:red"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">Гэрийн хаяг</label>
+                                    <input name="location" type="text" class="form-control" id="Address" placeholder="Гэрийн хаягаа оруулна уу" value="{{$user->location}}">
+                                    <span id="address_msg" style="color:red"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">Үүрэг</label>
+                                    <select class="form-control" name="role_id">
+                                        <option value="{{$user->role->role_id}}">
+                                            {{$update[$user->role->role_id]}}
+                                        </option>
+                                        @for($i=0;$i<6;$i++)
+                                            @if($user->role->role_id != $i)
+                                                <option value="{{$i}}">
+                                                    {{$update[$i]}}
+                                                </option>
+                                            @endif
+                                        @endfor
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Нууц үг</label>
+                                    <input name="password" type="text" class="form-control" placeholder="Нууц үг солих">
+                                </div>
+
+                                <label for="inputState">Тайлбар</label>
+
+                                <textarea class="form-control" data-val="true" data-val-length="Maximum = 1000000 characters" data-val-length-max="100000" id="info" name="info"  placeholder="Тайлбар">{{$user->description}}</textarea>
+
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-sm-10">
+                                        <br>
+                                        <button onclick="validate()" type="button" class="btn btn-primary mb-0">Засах</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @else
             <div class="row">
                 <div class="col-md-6">
 
@@ -342,6 +461,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
 
 
 
@@ -351,8 +472,7 @@
     </div><!-- row -->
 @endsection
 @section('footer')
-
-
+    <script src="{{asset('js/validation.js')}}"></script>
     <script src="{{asset('js/vendor/Chart.bundle.min.js')}}"></script>
     <script src="{{asset('js/vendor/chartjs-plugin-datalabels.js')}}"></script>
     <script src="{{asset('js/vendor/moment.min.js')}}"></script>
