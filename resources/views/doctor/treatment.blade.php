@@ -237,7 +237,7 @@
         <input type="hidden" name="treatment_selection_id" value="" id="treatmentSelectionId">
         <input type="hidden" name="tooth_id" value="" id="toothId">
         <input type="hidden" name="user_id" value="{{$checkin->user_id}}" id="userId">
-        <input type="hidden" name="value_id" value="1" id="valueId">
+        <input type="hidden" name="value_id" value="" id="valueId">
         <input type="hidden" name="price" value="" id="treatmentPrice">
         <input type="hidden" name="checkin_id" value="{{$checkin->id}}" id="checkin_id">
     </form>
