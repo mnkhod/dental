@@ -29,10 +29,8 @@ class AdminStaffController extends Controller
     public function update(Request $request) {
         $validatedData = $request->validate([
             'last_name' => 'required|max:255',
-            'email'=>'required|unique:users|max:255',
             'name'=>'required|max:255',
             'sex'=>'required',
-            'register'=>'required|unique:users|max:255',
         ]);
         $user = User::find($request['user_id']);
         if(empty($user)) {
