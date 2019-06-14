@@ -160,7 +160,8 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h5>Үнэн дүнг оруулна уу</h5><br>
-                    <input type="text" class="form-control" id="treatmentWithLimitPrice">
+                    <input type="number" class="form-control" id="treatmentWithLimitPrice">
+                    <input type="hidden" id="treatmentWithLimitPriceMin">
                     <input type="hidden" id="treatmentSelectionIdWithLimit">
                     <br>
                     <button class="btn btn-primary" style="border-radius: 0px" onclick="treatmentSelectionWithLimit()">Оруулах</button>
@@ -173,7 +174,8 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <h5>Үнэн дүнг оруулна уу</h5><br>
-                    <input type="text" class="form-control" id="singleTreatmentWithLimitPrice">
+                    <input type="number" class="form-control" id="singleTreatmentWithLimitPrice">
+                    <input type="hidden" id="singleTreatmentWithLimitPriceMin">
                     <input type="hidden" id="singleTreatmentWithLimitId">
                     <br>
                     <button class="btn btn-primary" style="border-radius: 0px" onclick="singleTreatmentWithLimit()">Оруулах</button>
@@ -849,7 +851,7 @@
                             @if($treatment->treatmentSelection->count() != 0)
                             onclick="treatmentButton('{{$treatment->id}}')"
                         @else
-                            onclick="singleTreatment('{{$treatment->id}}', '{{$treatment->limit}}')"
+                            onclick="singleTreatment('{{$treatment->id}}', '{{$treatment->price}}', '{{$treatment->limit}}')"
                         @endif
                     >
                         <div class="row">
@@ -857,7 +859,7 @@
                                 {{$treatment->name}}<br> {{$treatment->treatmentSelection->count()}}
                                 төрөлтэй
                                 @foreach($treatment->treatmentSelection as $selection)
-                                    <input type="hidden" value="{{$selection->name}}/{{$selection->id}}/{{$selection->limit}}"
+                                    <input type="hidden" value="{{$selection->name}}/{{$selection->id}}/{{$selection->price}}/{{$selection->limit}}"
                                            class="treatment_{{$treatment->id}}">
                                 @endforeach
                             </div>
@@ -1176,25 +1178,27 @@ function treatmentButton(treatment) {
     var input = document.getElementsByClassName("treatment_" + treatment);
     for (i = 0; i < input.length; i++) {
         var buttonValue = input[i].value;
-        var buttonLimit = buttonValue.split('/')[2];
+        var buttonLimit = buttonValue.split('/')[3];
+        var buttonLimitMin = buttonValue.split('/')[2];
         var buttonId = buttonValue.split('/')[1];
         var buttonText = buttonValue.split('/')[0];
-        var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ', ' + buttonLimit +')">' + buttonText + '</button>';
+        var button = '<button type="button" class="delete btn btn-primary btn-block mb-1" onclick="treatment(' + buttonId + ', ' + buttonLimitMin + ', ' + buttonLimit +')">' + buttonText + '</button>';
         document.getElementById('modalBuri').innerHTML += button;
     }
 }
 
-function treatment(id, limit) {
+function treatment(id, price ,limit) {
     if(limit === '' || limit === null || limit === undefined) {
         document.getElementById('treatmentSelectionId').value = id;
         document.getElementById('treatmentForm').submit();
     } else {
         document.getElementById('treatmentSelectionIdWithLimit').value = id;
+        document.getElementById('treatmentWithLimitPriceMin').value = price;
         $("#treatmentTypeModal").modal("hide");
         $("#treatmentWithLimit").modal();
     }
 }
-function singleTreatment(id, limit) {
+function singleTreatment(id, price, limit) {
     document.getElementById('treatmentSelectionId').value = null;
     if(limit === '' || limit === null) {
         document.getElementById('toothId').value = tooths;
@@ -1202,22 +1206,33 @@ function singleTreatment(id, limit) {
         document.getElementById('treatmentForm').submit();
     } else {
         document.getElementById('singleTreatmentWithLimitId').value = id;
+        document.getElementById('singleTreatmentWithLimitPriceMin').value = price;
         $("#treatmentTypeModal").modal("hide");
         $("#singleTreatmentWithLimit").modal();
     }
 }
 function treatmentSelectionWithLimit() {
-    document.getElementById('treatmentPrice').value = document.getElementById('treatmentWithLimitPrice').value;
-    document.getElementById('treatmentSelectionId').value = document.getElementById('treatmentSelectionIdWithLimit').value;
-    document.getElementById('treatmentForm').submit();
+    var checkLimitValue = document.getElementById('treatmentWithLimitPriceMin').value;
+    if (checkLimitValue > document.getElementById('treatmentWithLimitPrice').value) {
+        alert('Үнийн дүн буруу байна! Үнийн дүн ' + checkLimitValue + '-ээс их байх ёстой');
+    } else {
+        document.getElementById('treatmentPrice').value = document.getElementById('treatmentWithLimitPrice').value;
+        document.getElementById('treatmentSelectionId').value = document.getElementById('treatmentSelectionIdWithLimit').value;
+        document.getElementById('treatmentForm').submit();
+    }
+
 }
 function singleTreatmentWithLimit() {
-    document.getElementById('treatmentPrice').value = document.getElementById('singleTreatmentWithLimitPrice').value;
-    document.getElementById('treatmentId').value= document.getElementById('singleTreatmentWithLimitId').value;
-    document.getElementById('toothId').value = tooths;
-    document.getElementById('treatmentForm').submit();
+    var checkLimitValue = document.getElementById('singleTreatmentWithLimitPriceMin').value;
+    if (checkLimitValue > document.getElementById('singleTreatmentWithLimitPrice').value) {
+        alert('Үнийн дүн буруу байна! Үнийн дүн '  + checkLimitValue + '-ээс их байх ёстой');
+    } else {
+        document.getElementById('treatmentPrice').value = document.getElementById('singleTreatmentWithLimitPrice').value;
+        document.getElementById('treatmentId').value = document.getElementById('singleTreatmentWithLimitId').value;
+        document.getElementById('toothId').value = tooths;
+        document.getElementById('treatmentForm').submit();
+    }
 }
-
 // end
 
 </script>
