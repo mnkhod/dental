@@ -151,8 +151,13 @@
                                 @if($role_op->id == $role->id)
 
                                 @else
-                                    <option value="{{url('reception/time/week/'.$role_op->id)}}">{{$role_op->staff->name}}</option>
-                                @endif
+{{--                                    <option value="{{url('reception/time/week/'.$role_op->id)}}">{{$role_op->staff->name}}</option>--}}
+                                    <option value=" @if(!empty($user))
+                                    {{url('reception/time/week/'. $role_op->id .'/'. $user->id)}}
+                                    @else
+                                    {{url('reception/time/week/'. $role_op->id)}}
+                                    @endif
+                                    @endif">{{$role_op->staff->name}}</option>
                             @endforeach
                         </select>
                     </div>
