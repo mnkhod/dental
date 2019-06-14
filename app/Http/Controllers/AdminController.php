@@ -42,8 +42,8 @@ class AdminController extends Controller
             'sex'=>'required',
             'register'=>'required|unique:users|max:255',
         ]);
-        $birth_date_request = strtotime($request['birth_date']);
-        $birth_date = date('Y-m-d', $birth_date_request);
+        $date = explode('/', $request['birth_date']);
+        $birth_date = $date[2] . '-' . $date[0] . '-' . $date[1];
         $user = User::create(['last_name'=>$request['last_name'],'name'=>$request['name'],'register'=>$request['register'],'phone_number'=>$request['phone_number'],'email'=>$request['email'],'birth_date'=>$birth_date,'location'=>$request['location'],'description'=>$request['info'],'password'=>$pass,'sex'=>$request['sex']]);
         $role = Role::create(['user_id'=>$user->id, 'role_id'=>$request['role'],'state'=>1]);
         return redirect('/admin/add_staff');
