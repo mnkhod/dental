@@ -230,9 +230,12 @@
                 <div class="card-body">
                     <h5 class="card-title">Зардлын бүтэц</h5>
                     <?php $sum = 0?>
+                    <?php $income = 0?>
                     @foreach($transactions as $transaction)
                         @if($transaction->price < 0)
                             <?php $sum = $sum + $transaction->price;?>
+                        @else
+                            <?php $income = $income + $transaction->price;?>
                         @endif
                     @endforeach
                     <table border="0" width="100%">
@@ -260,6 +263,13 @@
                     <b></b>
 
 
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Орлого</h5>
+                    <b>{{$income}}₮</b>
                 </div>
             </div>
         </div>

@@ -161,7 +161,7 @@
                     @endforeach
                     <table border="0" width="100%">
                         @foreach($types as $type)
-                            @if($type->id == 4 || $type->id == 5)
+                            @if($type->id == 4 || $type->id == 5 || $type->id == 6)
                             @else
                                 <?php $temp_sum = 0?>
                                 <?php $local_transactions = $transactions?>
