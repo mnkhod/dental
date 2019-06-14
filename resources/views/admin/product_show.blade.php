@@ -28,7 +28,7 @@
                         {{--@csrf--}}
                         {{--<div class=" mb-2 mr-sm-2">--}}
                             {{--<input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"--}}
-                                   {{--placeholder="Барааны нэр">--}}
+                                   {{--placeholder="Материалын нэр">--}}
                         {{--</div>--}}
                         {{--<button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">--}}
                             {{--Шинэ бараа нэмэх--}}
@@ -44,8 +44,8 @@
                             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Хайх...">
                         </div>
                     </div>
-                    <h5 class="card-title">Барааны жагсаалт
-                        <br> <span class="text-muted text-small d-block">Барааны нэрэн дээр даран тоо болон үнийг өөрчилнө үү</span>
+                    <h5 class="card-title">Материалын жагсаалт
+                        {{--<br> <span class="text-muted text-small d-block">Материалын нэрэн дээр даран тоо болон үнийг өөрчилнө үү</span>--}}
                     </h5>
 
 
@@ -54,7 +54,7 @@
                         <thead>
                         <tr>
                             <th>Дугаар</th>
-                            <th>Барааны нэр</th>
+                            <th>Материалын нэр</th>
                             <th>Ширхэг</th>
                             {{--<th>Үйлдэл</th>--}}
                         </tr>
@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <h5>{{$specific_product->name}}</h5>
-                                    <span class="text-muted text-small d-block">Нэмэх, хасах товч дээр дарна материал нэмж хасна</span>
+                                    {{--<span class="text-muted text-small d-block">Нэмэх, хасах товч дээр дарна материал нэмж хасна</span>--}}
                                 </div>
                                 <div class="col-md-5 text-right">
                                     {{--<button class="btn btn-primary" data-toggle="modal"--}}

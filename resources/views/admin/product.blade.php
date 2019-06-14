@@ -28,7 +28,7 @@
                         {{--@csrf--}}
                         {{--<div class=" mb-2 mr-sm-2">--}}
                             {{--<input name="name" type="text" class="form-control" id="inlineFormInputGroupUsername2"--}}
-                                   {{--placeholder="Барааны нэр" autocomplete="off">--}}
+                                   {{--placeholder="Материалын нэр" autocomplete="off">--}}
                         {{--</div>--}}
                         {{--<button type="submit" class="btn btn-outline-primary mb-2" style="border-radius: 0px">--}}
                             {{--Шинэ бараа нэмэх--}}
@@ -44,8 +44,7 @@
                             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Хайх...">
                         </div>
                     </div>
-                    <h5 class="card-title">Барааны жагсаалт
-                        <br> <span class="text-muted text-small d-block">Барааны нэрэн дээр даран тоо болон үнийг өөрчилнө үү</span>
+                    <h5 class="card-title">Материалын жагсаалт
                     </h5>
 
 
@@ -54,7 +53,7 @@
                         <thead>
                         <tr>
                             <th>Дугаар</th>
-                            <th>Барааны нэр</th>
+                            <th>Материалын нэр</th>
                             <th>Ширхэг</th>
                             {{--<th>Үйлдэл</th>--}}
 
