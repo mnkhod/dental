@@ -37,7 +37,7 @@ class ReceptionUserController extends Controller
             'register'=>'required|unique:users|max:255',
 
             ]);
-        $pass = "dragon";
+        $pass = $request['register'];
         $pass = bcrypt($pass);
         if(empty($request['email']))
             $request['email'] = 'nomail@gmail.com';
