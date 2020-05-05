@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    container_name: dental-db
+    environment:
+      MYSQL_DATABASE: 'monfamily'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: ''
+      MYSQL_ROOT: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - dental_db:/var/lib/mysql
+
+volumes:
+  dental_db : 
