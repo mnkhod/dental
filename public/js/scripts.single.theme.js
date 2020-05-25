@@ -1,4 +1,4 @@
-/* Dore Single Theme Initializer Script 
+/* Dore Single Theme Initializer Script
 
 Table of Contents
 

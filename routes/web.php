@@ -16,7 +16,6 @@ Route::get('test', function() {
 });
 
 Route::get('/', function () {
-    $roles = \App\Role::where('role_id', 2);
     return view('welcome', compact('roles'));
 });
 Route::get('emchilgeenuud', function () {
@@ -38,7 +37,7 @@ Route::get('mesemchilgee', function () {
 Route::get('/time', function () {
     return view('admin.time');
 });
-Route::get('/user','UserController@index');
+Route::get('/user','UserController@index')->name('user');
 
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -47,7 +46,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //--ADMIN STARTING--
-Route::get('/admin/dashboard', 'AdminController@dashboard');
+Route::get('/admin/dashboard', 'AdminController@dashboard')->name('dash');
 Route::get('/admin/shifts', 'AdminTimeController@index');
 
 Route::get('/admin/add_staff/{id}/profile', 'AdminController@profile');

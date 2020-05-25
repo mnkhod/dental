@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -63,10 +64,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+				$user = User::create([
             'name' => $data['name'],
+						'last_name' => $data['fullname'],
+						'register' => $data['register'],
+						'phone_number' => $data['phone'],
+						'birth_date' => $data['birth'],
+						'sex' => $data['gender'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
+
+				$role = Role::create([
+						'user_id' => $user->id,
+						'role_id' => $data['role'],
+						'state' => 1
+				]);
+
+        return $user;
+			}
 }

@@ -32,7 +32,7 @@
                         </p>
                     </div>
                     <div class="form-side">
-                        <a href="Dashboard.Default.html">
+                        <a href="{{ route('user') }}">
                             <img src="{{asset('img/logo-black.png')}}" style="padding-bottom: 20px">
                         </a>
                         <br>
