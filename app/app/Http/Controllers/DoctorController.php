@@ -29,6 +29,7 @@ class DoctorController extends Controller
         $shifts = Time::where('doctor_id', $user->id)->where('date','>=', date('Y-m-d', strtotime('first day of this month')))->orderBy('id', 'desc')->get();
         return view('doctor.dashboard',compact('user', 'shifts'));
     }
+    
     public function search($start_date, $end_date) {
         $user = Auth::user();
         $shifts = Time::all()->whereBetween('created_at', [date('Y-m-d', $start_date), date('Y-m-d', $end_date)])->sortByDesc('id');
